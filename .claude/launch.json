@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "mirror",
+      "runtimeExecutable": "/bin/sh",
+      "runtimeArgs": ["-c", "cd '/private/tmp/claude-501/-Users-santiagopalacio-Downloads-shopify-Tueste/dd6e2c8b-e847-489e-a973-e75b16d6f175/scratchpad/mirror-preview' && exec /usr/bin/python3 -m http.server 4173"],
+      "port": 4173
+    }
+  ]
+}

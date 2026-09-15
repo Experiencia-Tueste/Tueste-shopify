@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Propuesta local de galería comercial para Tueste.">
+    <title>Tueste | Galería comercial</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:opsz,SOFT,WONK,wght@9..144,0,0,300..700;9..144,0,0,400..700;9..144,0,1,300..700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#inicio" aria-label="Tueste, inicio">
+        <img src="../assets/logo.png" alt="Tueste">
+      </a>
+
+      <nav class="site-nav" aria-label="Principal">
+        <a href="https://h16caz-bz.myshopify.com/collections/cafes?preview_theme_id=191607144736">Café</a>
+        <a href="https://h16caz-bz.myshopify.com/collections/piezas-limitadas?preview_theme_id=191607144736">Objetos</a>
+        <a href="#historia">Tueste Tree</a>
+      </nav>
+
+      <a class="cart-link" href="#coleccion">Selección <span aria-hidden="true">[0]</span></a>
+    </header>
+
+    <main id="inicio">
+      <section class="opening" aria-labelledby="opening-title">
+        <div class="opening__copy">
+          <p class="kicker">Tienda Tueste</p>
+          <h1 id="opening-title">La tienda empieza<br><em>en el origen.</em></h1>
+          <p class="opening__lead">Café, cerámica y piezas para llevar el ritual a casa. Una selección corta, visual y directa.</p>
+          <a class="action action--ink" href="#coleccion">Ver la selección</a>
+        </div>
+
+        <a class="opening__product" href="https://h16caz-bz.myshopify.com/products/cafe-aures-1840-conscious?preview_theme_id=191607144736" aria-label="Ver ficha de Café Aures 1840 Conscious en Shopify">
+          <div class="opening__product-image">
+            <img src="../assets/cafe-1840.png" alt="Empaque Café Aures 1840 Conscious de Tueste">
+          </div>
+          <div class="product-caption">
+            <span>Café Aures 1840 Conscious</span>
+            <strong>$55.000,00</strong>
+          </div>
+        </a>
+      </section>
+
+      <section class="collection" id="coleccion" aria-labelledby="collection-title">
+        <div class="collection__heading">
+          <div>
+            <p class="kicker">Selección</p>
+            <h2 id="collection-title">Productos para entrar<br>por el sabor y quedarse por la historia.</h2>
+          </div>
+          <p class="collection__intro">Cada ficha abre en Shopify dentro de la demo, donde se resuelven sus opciones y compra.</p>
+        </div>
+
+        <div class="filter-row" aria-label="Filtrar productos">
+          <button class="filter is-active" type="button" data-filter="all" aria-pressed="true">Todo</button>
+          <button class="filter" type="button" data-filter="cafe" aria-pressed="false">Café</button>
+          <button class="filter" type="button" data-filter="objetos" aria-pressed="false">Objetos</button>
+          <p class="filter-count" aria-live="polite"><span data-count>5</span> piezas</p>
+        </div>
+
+        <div class="product-grid">
+          <article class="product product--coffee" data-category="cafe">
+            <a class="product__image product__image--coffee" href="https://h16caz-bz.myshopify.com/products/cafe-aures-1840-conscious?preview_theme_id=191607144736">
+              <img src="../assets/cafe-1840.png" alt="Empaque Café Aures 1840 Conscious de Tueste">
+            </a>
+            <div class="product__details">
+              <p class="product__type">Café de origen</p>
+              <div class="product__name-line">
+                <h3>Café Aures 1840 Conscious</h3>
+                <p>$55.000,00</p>
+              </div>
+              <a class="text-link" href="https://h16caz-bz.myshopify.com/products/cafe-aures-1840-conscious?preview_theme_id=191607144736">Ver ficha en Shopify</a>
+            </div>
+          </article>
+
+          <article class="product product--hoodie" data-category="objetos">
+            <a class="product__image product__image--hoodie" href="https://h16caz-bz.myshopify.com/products/origin-grey-hoodie-n%C2%BA-1840-ltd?preview_theme_id=191607144736">
+              <img src="../assets/hoodie.png" alt="Origin Grey Hoodie 1840 LTD de Tueste">
+            </a>
+            <div class="product__details">
+              <p class="product__type">Pieza limitada</p>
+              <div class="product__name-line">
+                <h3>Origin Grey Hoodie 1840 LTD</h3>
+                <p>$499.800,00</p>
+              </div>
+              <a class="text-link" href="https://h16caz-bz.myshopify.com/products/origin-grey-hoodie-n%C2%BA-1840-ltd?preview_theme_id=191607144736">Ver ficha en Shopify</a>
+            </div>
+          </article>
+
+          <article class="product product--splash" data-category="objetos">
+            <a class="product__image product__image--splash" href="https://h16caz-bz.myshopify.com/products/taza-artesanal-splash-edicion-limitada?preview_theme_id=191607144736">
+              <img src="../assets/taza-splash.png" alt="Taza Artesanal Splash Edición Limitada">
+            </a>
+            <div class="product__details">
+              <p class="product__type">Cerámica</p>
+              <div class="product__name-line">
+                <h3>Taza Artesanal Splash Edición Limitada</h3>
+                <p>$145.000,00</p>
+              </div>
+              <a class="text-link" href="https://h16caz-bz.myshopify.com/products/taza-artesanal-splash-edicion-limitada?preview_theme_id=191607144736">Ver ficha en Shopify</a>
+            </div>
+          </article>
+
+          <article class="product product--pink" data-category="objetos">
+            <a class="product__image product__image--pink" href="https://h16caz-bz.myshopify.com/products/taza-efimero-rosada?preview_theme_id=191607144736">
+              <img src="../assets/taza-rosada.png" alt="Taza Efímero Rosada">
+            </a>
+            <div class="product__details">
+              <p class="product__type">Cerámica</p>
+              <div class="product__name-line">
+                <h3>Taza Efímero Rosada</h3>
+                <p>$145.000,00</p>
+              </div>
+              <a class="text-link" href="https://h16caz-bz.myshopify.com/products/taza-efimero-rosada?preview_theme_id=191607144736">Ver ficha en Shopify</a>
+            </div>
+          </article>
+
+          <article class="product product--violet" data-category="objetos">
+            <a class="product__image product__image--violet" href="https://h16caz-bz.myshopify.com/products/taza-efimero-morada?preview_theme_id=191607144736">
+              <img src="../assets/taza-morada.png" alt="Taza Efímero Morada">
+            </a>
+            <div class="product__details">
+              <p class="product__type">Cerámica</p>
+              <div class="product__name-line">
+                <h3>Taza Efímero Morada</h3>
+                <p>$145.000,00</p>
+              </div>
+              <a class="text-link" href="https://h16caz-bz.myshopify.com/products/taza-efimero-morada?preview_theme_id=191607144736">Ver ficha en Shopify</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="feature" aria-labelledby="feature-title">
+        <div class="feature__copy">
+          <p class="kicker">Café de origen</p>
+          <h2 id="feature-title">Café Aures 1840 Conscious</h2>
+          <p>Una ficha clara para ver el producto, sus opciones y la compra sin salir del universo de Tueste.</p>
+          <div class="feature__bottom">
+            <strong>$55.000,00</strong>
+            <a class="action action--line" href="https://h16caz-bz.myshopify.com/products/cafe-aures-1840-conscious?preview_theme_id=191607144736">Abrir producto</a>
+          </div>
+        </div>
+        <a class="feature__image" href="https://h16caz-bz.myshopify.com/products/cafe-aures-1840-conscious?preview_theme_id=191607144736">
+          <img src="../assets/cafe-1840.png" alt="Empaque Café Aures 1840 Conscious de Tueste">
+        </a>
+      </section>
+
+      <section class="story" id="historia" aria-labelledby="story-title">
+        <div class="story__image">
+          <img src="../assets/adopta-arbol.jpg" alt="Paisaje cafetero asociado a Tueste Tree">
+        </div>
+        <div class="story__copy">
+          <p class="kicker">Tueste Tree</p>
+          <h2 id="story-title">Comprar también sostiene lo que viene después.</h2>
+          <p>La tienda es una puerta comercial de Tueste. La experiencia, el origen y la comunidad conservan su propio espacio.</p>
+          <a class="action action--line" href="#coleccion">Volver a la selección</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <img src="../assets/logo.png" alt="Tueste">
+      <p>Galería comercial, propuesta local para revisión.</p>
+      <a href="#inicio">Volver arriba</a>
+    </footer>
+  </body>
+</html>

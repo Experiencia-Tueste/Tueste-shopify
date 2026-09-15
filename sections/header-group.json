@@ -1,0 +1,104 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "header",
+  "name": "t:sections.header-group.name",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "announcement-1": {
+          "type": "announcement",
+          "settings": {
+            "icon": "truck",
+            "text": "Envíos a nivel nacional",
+            "link": "",
+            "hide_icon_mobile": false,
+            "text_mobile": "",
+            "highlighted_text": "none",
+            "highlighted_scribble": "circle"
+          }
+        },
+        "announcement_KabtbV": {
+          "type": "announcement",
+          "settings": {
+            "icon": "bag",
+            "text": "Café Colombiano Fresco",
+            "link": "",
+            "hide_icon_mobile": false,
+            "text_mobile": "",
+            "highlighted_text": "none",
+            "highlighted_scribble": "circle"
+          }
+        }
+      },
+      "block_order": [
+        "announcement-1",
+        "announcement_KabtbV"
+      ],
+      "settings": {
+        "show_social": true,
+        "enable_language_selector": true,
+        "enable_country_selector": true,
+        "invert_icons_selectors": false,
+        "announcement_position": "center",
+        "announcement_layout": "carousel",
+        "autoplay": true,
+        "autoplay_speed": 5,
+        "show_navigation": true,
+        "direction": "left",
+        "speed": 20,
+        "color_text": "#fafafa",
+        "color_background": "#000000",
+        "gradient_background": "",
+        "color_highlight": "#171717",
+        "gradient_highlight": "",
+        "hide_homepage": false,
+        "full_width": true,
+        "rounded": true
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "logo_h1": false,
+        "menu": "menu-principal-tueste",
+        "menu_mobile": "menu-principal-tueste",
+        "menu_active": "block",
+        "hover_menu": true,
+        "header_layout": "left-center",
+        "sticky_header_type": "always",
+        "icons_size": "lg",
+        "menu_drawer_icon_label": "",
+        "enable_language_selector_desktop": true,
+        "enable_country_selector_desktop": true,
+        "show_country_name_dekstop": true,
+        "show_country_flag_desktop": true,
+        "logo_position_mobile": "left",
+        "accordion_menu_mobile": true,
+        "show_social": true,
+        "enable_language_selector": true,
+        "enable_country_selector": true,
+        "transparent_color_text": "#ffffff",
+        "color_text": "#6667a8",
+        "color_background": "#171717",
+        "color_localization": "",
+        "padding_top": 32,
+        "padding_bottom": 32,
+        "full_width": true,
+        "rounded": true
+      }
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "header"
+  ]
+}

@@ -1,0 +1,380 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main-product": {
+      "type": "main-product",
+      "blocks": {
+        "breadcrumb_VAEh4z": {
+          "type": "breadcrumb",
+          "settings": {
+            "show_collections_link": true
+          }
+        },
+        "vendor": {
+          "type": "text",
+          "settings": {
+            "icon": "none",
+            "iwidth": "custom",
+            "icon_width": 20,
+            "text": "{{ product.vendor }}",
+            "text_size": "text-base"
+          }
+        },
+        "rating_BeqMcX": {
+          "type": "rating",
+          "settings": {}
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "title_size": "product-title-md",
+            "title_size_mobile": "product-title-md",
+            "show_price": true,
+            "show_rating": true
+          }
+        },
+        "countdown": {
+          "type": "countdown",
+          "settings": {
+            "heading": "!Genial!",
+            "subheading": "Des Finaliza:",
+            "color_text": "#e11d48",
+            "color_background": "#fff1f2",
+            "gradient_background": ""
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "show_variant_labels": true,
+            "picker_type": "button",
+            "enable_color_swatches": true,
+            "color_swatch_type": "color",
+            "size_chart": ""
+          }
+        },
+        "inventory": {
+          "type": "inventory",
+          "settings": {
+            "inventory_threshold": 15,
+            "show_inventory_transfer": true,
+            "show_inventory_quantity": "low",
+            "color_scheme": "accent-1"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_quantity_selector": true,
+            "show_price": false,
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true,
+            "enable_back_in_stock": false,
+            "show_back_in_stock_name": false,
+            "show_back_in_stock_phone": false
+          }
+        },
+        "pickup_availability": {
+          "type": "pickup_availability",
+          "settings": {}
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Compartir",
+            "show_help_desk": true,
+            "help_label": "¿Necesitas ayuda?",
+            "help_type": "drawer",
+            "help_page": "",
+            "help_page_external": false
+          }
+        },
+        "text_QM6z3T": {
+          "type": "text",
+          "settings": {
+            "icon": "users",
+            "iwidth": "custom",
+            "icon_width": 20,
+            "text": "<strong>Caficultora:</strong> Doña Clara Inés Ríos Ríos",
+            "text_size": "text-base"
+          }
+        },
+        "text_azgBdh": {
+          "type": "text",
+          "settings": {
+            "icon": "organic",
+            "iwidth": "custom",
+            "icon_width": 40,
+            "text": "<strong>Finca: </strong>La Esperanza, Cañón de Aures Caicedonia - Valle del Cauca",
+            "text_size": "text-base"
+          }
+        },
+        "liquid_rHNtnA": {
+          "type": "liquid",
+          "settings": {
+            "liquid": "{%- assign sp_raw = product.metafields.custom.sound_profile -%}\n{%- if sp_raw != blank -%}\n  {%- assign sp = sp_raw.value | default: sp_raw | parse_json -%}\n{%- endif -%}\n\n{%- assign sp_label = sp.label  | default: 'AMOUR' -%}\n{%- assign sp_alias = sp.alias  | default: 'Frecuencia reservada' -%}\n{%- assign sp_hz    = sp.hz     | default: 528 -%}  \n{%- assign sp_color = sp.color  | default: '#FF5A8A' -%}\n{%- assign sp_audio = sp.audio  | default: '' -%}\n{%- assign card_id  = 'freq-card-' | append: product.id -%}\n\n<div id=\"{{ card_id }}\" class=\"freq-card\">\n  <div class=\"freq-card__head\">\n    <div class=\"freq-card__title\">\n      <span class=\"freq-card__dot\" style=\"background:{{ sp_color }}\"></span>\n      <span>Frecuencia del {{ sp_label }}</span>\n    </div>\n    <!-- Muestra SOLO el alias, no el número -->\n    <div class=\"freq-card__hz\" id=\"{{ card_id }}-hz\" data-alias=\"{{ sp_alias | escape }}\">\n      {{ sp_alias }}\n    </div>\n  </div>\n\n  <div class=\"freq-card__wave\">\n    <canvas id=\"{{ card_id }}-canvas\"></canvas>\n  </div>\n\n  <div class=\"freq-card__footer\">\n    <button id=\"{{ card_id }}-btn\" class=\"freq-card__btn\">▶︎ Reproducir</button>\n    <span class=\"freq-card__desc\">Café intervenido con frecuencias para estructurar el agua de la planta y/o cereza</span>\n  </div>\n</div>\n\n<script>\n(function(){\n  // Valores del JSON (no se imprimen visualmente)\n  const hzVal   = Number('{{ sp_hz }}') || 440;         // ← número oculto\n  const color   = '{{ sp_color }}';\n  const audio   = '{{ sp_audio | escape }}';\n  const cardId  = '{{ card_id }}';\n\n  const canvas  = document.getElementById(cardId+'-canvas');\n  const ctx     = canvas.getContext('2d');\n  const btn     = document.getElementById(cardId+'-btn');\n  const hzText  = document.getElementById(cardId+'-hz');\n\n  // Ajuste canvas\n  function resizeCanvas(){\n    canvas.width  = canvas.offsetWidth;\n    canvas.height = 120;\n  }\n  window.addEventListener('resize', resizeCanvas);\n  resizeCanvas();\n\n  // Animación de onda\n  let t = 0;\n  function drawWave(active){\n    ctx.clearRect(0,0,canvas.width,canvas.height);\n\n    // Fondo sutil claro\n    const grad = ctx.createLinearGradient(0,0,canvas.width,canvas.height);\n    grad.addColorStop(0,'rgba(255,255,255,0.20)');\n    grad.addColorStop(1,'rgba(255,255,255,0.30)');\n    ctx.fillStyle = grad; ctx.fillRect(0,0,canvas.width,canvas.height);\n\n    const amp   = active ? 24 : 10;\n    const k     = (hzVal/528) * 2.2;\n    const speed = active ? 0.10 : 0.03;\n\n    // Onda principal (glow)\n    ctx.beginPath();\n    for(let x=0;x<canvas.width;x++){\n      const y = canvas.height/2 + amp * Math.sin((x * 0.02 * k) + t);\n      x===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);\n    }\n    ctx.strokeStyle = color;\n    ctx.lineWidth   = 2;\n    ctx.shadowColor = color;\n    ctx.shadowBlur  = 14;\n    ctx.stroke();\n\n    // Onda secundaria translúcida (profundidad)\n    ctx.beginPath();\n    for(let x=0;x<canvas.width;x++){\n      const y = canvas.height/2 + (amp * .55) * Math.sin((x * 0.018 * k) - t*0.85);\n      x===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);\n    }\n    ctx.strokeStyle = color + 'AA';\n    ctx.lineWidth   = 1.6;\n    ctx.shadowBlur  = 0;\n    ctx.stroke();\n\n    t += speed;\n    requestAnimationFrame(()=>drawWave(active));\n  }\n  drawWave(false);\n\n  // Audio (usar archivo si existe, si no generar tono)\n  let audioCtx=null, osc=null, gain=null, media=null, mediaNode=null, isPlaying=false;\n\n  function stopAll(){\n    isPlaying=false;\n    btn.textContent = '▶︎ Reproducir';\n    hzText.setAttribute('data-active','false');\n    drawWave(false);\n\n    if (osc){ try{osc.stop()}catch(e){} osc.disconnect(); osc=null; }\n    if (gain){ try{gain.disconnect()}catch(e){} gain=null; }\n    if (media){\n      media.pause(); media.currentTime = 0;\n      if (mediaNode){ try{ mediaNode.disconnect() }catch(e){} mediaNode=null; }\n      media = null;\n    }\n    if (audioCtx && audioCtx.state !== 'closed'){\n      // opcional cerrar\n    }\n  }\n\n  function play(){\n    isPlaying=true;\n    t = 0;\n    btn.textContent = '⏹ Detener';\n    hzText.setAttribute('data-active','true');\n    drawWave(true);\n\n    if (audio){\n      media = new Audio(audio);\n      media.crossOrigin = 'anonymous';\n      media.loop = true; media.volume = 0.6;\n      media.play().catch(()=>{});\n      try{\n        audioCtx = new (window.AudioContext || window.webkitAudioContext)();\n        mediaNode = audioCtx.createMediaElementSource(media);\n        const g = audioCtx.createGain(); g.gain.value = 1.0;\n        mediaNode.connect(g).connect(audioCtx.destination);\n      }catch(e){}\n    } else {\n      audioCtx = new (window.AudioContext || window.webkitAudioContext)();\n      osc  = audioCtx.createOscillator();\n      gain = audioCtx.createGain();\n      osc.type = 'sine';\n      osc.frequency.value = hzVal; // ← usamos el número oculto\n      gain.gain.value = 0.08;\n      osc.connect(gain).connect(audioCtx.destination);\n      osc.start();\n    }\n  }\n\n  btn.addEventListener('click', ()=> isPlaying ? stopAll() : play());\n  document.addEventListener('visibilitychange', ()=>{ if(document.hidden) stopAll(); });\n  window.addEventListener('beforeunload', stopAll);\n})();\n</script>\n\n<style>\n/* Estilo claro / glass minimal */\n#{{ card_id }}.freq-card{\n  background: rgba(255,255,255,0.65);\n  backdrop-filter: blur(14px) saturate(180%);\n  -webkit-backdrop-filter: blur(14px) saturate(180%);\n  border: 1px solid rgba(255,255,255,0.45);\n  border-radius: 18px;\n  padding: 16px;\n  box-shadow: 0 10px 28px rgba(0,0,0,0.08), inset 0 0 0 1px rgba(255,255,255,0.12);\n  max-width: 520px;\n}\n\n#{{ card_id }} .freq-card__head{\n  display:flex; align-items:center; justify-content:space-between;\n  gap:12px; margin-bottom:8px;\n}\n#{{ card_id }} .freq-card__title{\n  display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.2px; text-transform:uppercase; font-size:14px; color:#0b0f1a;\n}\n#{{ card_id }} .freq-card__dot{\n  width:12px; height:12px; border-radius:999px; box-shadow:0 0 8px {{ sp_color }};\n}\n#{{ card_id }} .freq-card__hz{ font-size:12px; color:#6b7280; transition: all .3s ease; }\n#{{ card_id }} .freq-card__hz[data-active=\"true\"]{ color:#111; text-shadow: 0 0 8px {{ sp_color }}; }\n\n#{{ card_id }} .freq-card__wave canvas{\n  width:100%; height:120px; display:block;\n  border-radius: 14px;\n  background: rgba(255,255,255,0.25);\n  border: 1px dashed rgba(0,0,0,0.08);\n  box-shadow: inset 0 0 40px rgba(0,0,0,0.04);\n}\n\n#{{ card_id }} .freq-card__footer{\n  display:flex; align-items:center; gap:12px; margin-top:10px;\n}\n#{{ card_id }} .freq-card__btn{\n  appearance:none; cursor:pointer;\n  background: rgba(255,255,255,0.75);\n  border: 1px solid rgba(0,0,0,0.08);\n  color:#111827; padding:10px 16px; border-radius: 28px; font-weight:800; text-transform:uppercase; font-size:12px; letter-spacing:.6px;\n  transition: all .25s ease; box-shadow: 0 6px 18px rgba(0,0,0,0.08);\n}\n#{{ card_id }} .freq-card__btn:hover{ background: {{ sp_color }}; color:#fff; transform: translateY(-2px) scale(1.02); box-shadow: 0 10px 26px rgba(0,0,0,0.10); }\n#{{ card_id }} .freq-card__desc{ font-size:12px; color:#94a3b8; }\n</style>"
+          }
+        },
+        "collapsible_tab_f3eT6z": {
+          "type": "collapsible_tab",
+          "settings": {
+            "opened": false,
+            "style": "with-border",
+            "icon": "none",
+            "heading": "Descripción",
+            "content": "{{ product.description }}",
+            "page": "",
+            "liquid": ""
+          }
+        },
+        "collapsible_tab_UqKABR": {
+          "type": "collapsible_tab",
+          "settings": {
+            "opened": false,
+            "style": "with-border",
+            "icon": "none",
+            "heading": "Carácteristicas",
+            "content": "",
+            "page": "",
+            "liquid": "<style>\n  .specs-card {\n    background: transparent; /* sin caja blanca */\n    border: none;\n    padding: 0;\n  }\n  .specs-grid {\n    display: grid;\n    grid-template-columns: 1fr;\n    gap: 10px;\n  }\n  @media (min-width: 560px){\n    .specs-grid { grid-template-columns: 1fr 1fr; } /* 2 columnas desktop */\n  }\n  .spec-row {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    padding: 10px 12px;\n    border: 1px dashed #e5e7eb;\n    border-radius: 12px;\n    background: rgba(255,255,255,0.05); /* sutil transparencia */\n  }\n  .spec-ico {\n    width: 28px; height: 28px; flex: 0 0 28px;\n    display: grid; place-items: center;\n    border-radius: 10px;\n    background: #f6f7f8;\n    color: #6b7280;\n    font-size: 14px;\n  }\n  .spec-body { display: grid; gap: 2px; }\n  .spec-label {\n    font-size: 12px; line-height: 1;\n    color: #6b7280; letter-spacing: .2px;\n    text-transform: uppercase;\n  }\n  .spec-value {\n    font-size: 15px; color: #111827;\n    font-weight: 600;\n  }\n</style>\n\n{%- assign m = product.metafields.custom -%}\n\n<div class=\"specs-card\">\n  <div class=\"specs-grid\">\n\n    {%- if m.score != blank -%}\n    <div class=\"spec-row\">\n      <div class=\"spec-ico\">★</div>\n      <div class=\"spec-body\">\n        <div class=\"spec-label\">Puntaje</div>\n        <div class=\"spec-value\">{{ m.score }}</div>\n      </div>\n    </div>\n    {%- endif -%}\n\n    {%- if m.altitude != blank -%}\n    <div class=\"spec-row\">\n      <div class=\"spec-ico\">⛰️</div>\n      <div class=\"spec-body\">\n        <div class=\"spec-label\">Altura</div>\n        <div class=\"spec-value\">{{ m.altitude }}</div>\n      </div>\n    </div>\n    {%- endif -%}\n\n    {%- if m.region != blank -%}\n    <div class=\"spec-row\">\n      <div class=\"spec-ico\">📍</div>\n      <div class=\"spec-body\">\n        <div class=\"spec-label\">Región</div>\n        <div class=\"spec-value\">{{ m.region }}</div>\n      </div>\n    </div>\n    {%- endif -%}\n\n    {%- if m.notes != blank -%}\n    <div class=\"spec-row\">\n      <div class=\"spec-ico\">🗒️</div>\n      <div class=\"spec-body\">\n        <div class=\"spec-label\">Notas</div>\n        <div class=\"spec-value\">{{ m.notes }}</div>\n      </div>\n    </div>\n    {%- endif -%}\n\n    {%- if m.main_flavor != blank -%}\n    <div class=\"spec-row\">\n      <div class=\"spec-ico\">😋</div>\n      <div class=\"spec-body\">\n        <div class=\"spec-label\">Sabor principal</div>\n        <div class=\"spec-value\">{{ m.main_flavor }}</div>\n      </div>\n    </div>\n    {%- endif -%}\n\n    {%- if m.type != blank -%}\n    <div class=\"spec-row\">\n      <div class=\"spec-ico\">☕</div>\n      <div class=\"spec-body\">\n        <div class=\"spec-label\">Tipo</div>\n        <div class=\"spec-value\">{{ m.type }}</div>\n      </div>\n    </div>\n    {%- endif -%}\n\n    {%- if m.variety != blank -%}\n    <div class=\"spec-row\">\n      <div class=\"spec-ico\">🌱</div>\n      <div class=\"spec-body\">\n        <div class=\"spec-label\">Variedad</div>\n        <div class=\"spec-value\">{{ m.variety }}</div>\n      </div>\n    </div>\n    {%- endif -%}\n\n    {%- if m.process != blank -%}\n    <div class=\"spec-row\">\n      <div class=\"spec-ico\">⚙️</div>\n      <div class=\"spec-body\">\n        <div class=\"spec-label\">Proceso</div>\n        <div class=\"spec-value\">{{ m.process }}</div>\n      </div>\n    </div>\n    {%- endif -%}\n\n    {%- if m.body != blank -%}\n    <div class=\"spec-row\">\n      <div class=\"spec-ico\">⚖️</div>\n      <div class=\"spec-body\">\n        <div class=\"spec-label\">Cuerpo</div>\n        <div class=\"spec-value\">{{ m.body }}</div>\n      </div>\n    </div>\n    {%- endif -%}\n\n    {%- if m.intensity != blank -%}\n    <div class=\"spec-row\">\n      <div class=\"spec-ico\">⚡</div>\n      <div class=\"spec-body\">\n        <div class=\"spec-label\">Intensidad</div>\n        <div class=\"spec-value\">{{ m.intensity }}</div>\n      </div>\n    </div>\n    {%- endif -%}\n\n    {%- if m.acidity != blank -%}\n    <div class=\"spec-row\">\n      <div class=\"spec-ico\">🍊</div>\n      <div class=\"spec-body\">\n        <div class=\"spec-label\">Acidez</div>\n        <div class=\"spec-value\">{{ m.acidity }}</div>\n      </div>\n    </div>\n    {%- endif -%}\n\n    {%- if m.fermentation != blank -%}\n    <div class=\"spec-row\">\n      <div class=\"spec-ico\">🧪</div>\n      <div class=\"spec-body\">\n        <div class=\"spec-label\">Fermentación</div>\n        <div class=\"spec-value\">{{ m.fermentation }}</div>\n      </div>\n    </div>\n    {%- endif -%}\n\n  </div>\n</div>"
+          }
+        },
+        "collapsible_tab_AHwwyJ": {
+          "type": "collapsible_tab",
+          "settings": {
+            "opened": false,
+            "style": "with-border",
+            "icon": "none",
+            "heading": "Evaluación sensorial (SCA) -> {{ product.metafields.custom.score.value }}",
+            "content": "",
+            "page": "",
+            "liquid": "{%- assign cp = product.metafields.custom.cupping_profile.value -%}\n{%- assign chart_id = 'score-chart-' | append: product.id -%}\n\n  <canvas\n    id=\"{{ chart_id }}\"\n    data-labels='[\"Fragancia\",\"Sabor\",\"Acidez\",\"Cuerpo\",\"Uniformidad\",\"Taza limpia\",\"Puntaje catador\",\"Residual\",\"Balance\",\"Dulzura\"]'\n    data-values='[\n      {{ cp.values.fragrance   | default: 8.5 }},\n      {{ cp.values.flavor      | default: 8.75 }},\n      {{ cp.values.acidity     | default: 8.25 }},\n      {{ cp.values.body        | default: 8.5 }},\n      {{ cp.values.uniformity  | default: 10 }},\n      {{ cp.values.clean_cup   | default: 10 }},\n      {{ cp.values.cupper_score| default: 8.25 }},\n      {{ cp.values.aftertaste  | default: 8 }},\n      {{ cp.values.balance     | default: 8 }},\n      {{ cp.values.sweetness   | default: 9.25 }}\n    ]'>\n  </canvas>\n</div>\n\n<script>\n  (function loadChartJS(cb){\n    if (window.Chart) return cb();\n    var s=document.createElement('script');\n    s.src='https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js';\n    s.onload=cb; document.head.appendChild(s);\n  })(function initRadar(){\n    const el = document.getElementById('{{ chart_id }}');\n    if (!el) return;\n    const labels = JSON.parse(el.getAttribute('data-labels'));\n    const values = JSON.parse(el.getAttribute('data-values'));\n\n    new Chart(el.getContext('2d'), {\n      type: 'radar',\n      data: {\n        labels,\n        datasets: [{\n          data: values,\n          fill: true,\n          backgroundColor: 'rgba(0,181,179,0.15)',\n          borderColor: '#00B5B3',\n          borderWidth: 2,\n          pointBackgroundColor: '#F3FFBD',\n          pointRadius: 4\n        }]\n      },\n      options: {\n        plugins: { legend: { display:false } },\n        scales: {\n          r: {\n            suggestedMin: 0, suggestedMax: 10,\n            ticks: { stepSize: 2, backdropColor:'transparent' },\n            grid: { color: '#e5e7eb' }, angleLines:{ color:'#e5e7eb' },\n            pointLabels: { font: { size: 12 }, color:'#374151' }\n          }\n        }\n      }\n    });\n  });\n</script>"
+          }
+        },
+        "complementary": {
+          "type": "complementary",
+          "settings": {
+            "heading": "Tambien te pueden interesar",
+            "product_limit": 4,
+            "show_vendor": false,
+            "show_price": true
+          }
+        },
+        "sticky_buy_button": {
+          "type": "sticky_buy_button",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "breadcrumb_VAEh4z",
+        "vendor",
+        "rating_BeqMcX",
+        "title",
+        "countdown",
+        "variant_picker",
+        "inventory",
+        "buy_buttons",
+        "pickup_availability",
+        "share",
+        "text_QM6z3T",
+        "text_azgBdh",
+        "liquid_rHNtnA",
+        "collapsible_tab_f3eT6z",
+        "collapsible_tab_UqKABR",
+        "collapsible_tab_AHwwyJ",
+        "complementary",
+        "sticky_buy_button"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "media_size": 60,
+        "gallery_layout": "scroll",
+        "thumbnail_position": "beside",
+        "image_ratio": "adapt",
+        "image_zoom": "none",
+        "hide_variants": true,
+        "enable_video_autoplay": true,
+        "enable_video_looping": true,
+        "mobile_layout": "full_width",
+        "image_ratio_mobile": "square",
+        "mobile_thumbnail": true,
+        "padding_top": 84,
+        "padding_bottom": 84,
+        "divider": false,
+        "full_width": true,
+        "rounded": true
+      }
+    },
+    "help-drawer": {
+      "type": "help-drawer",
+      "blocks": {
+        "content-1": {
+          "type": "content",
+          "settings": {
+            "icon": "rocket",
+            "heading": "Envios a nivel e internacional",
+            "text": "<p>Debes tener en cuenta el costo del envio, depende del peso del producto y el lugar de destino.</p>",
+            "highlighted_text": "none",
+            "highlighted_scribble": "circle",
+            "color_text": "#545454",
+            "color_background": "#e0e1fd",
+            "gradient_background": "",
+            "color_highlight": "#ffddbf",
+            "gradient_highlight": ""
+          }
+        },
+        "content_n9dGgw": {
+          "type": "content",
+          "settings": {
+            "icon": "none",
+            "heading": "Information",
+            "text": "<p>Share contact information, store details, and brand content with your customers.</p>",
+            "highlighted_text": "none",
+            "highlighted_scribble": "circle",
+            "color_text": "#fafafa",
+            "color_background": "#1f1f1f",
+            "gradient_background": "",
+            "color_highlight": "#ffddbf",
+            "gradient_highlight": ""
+          }
+        },
+        "content-2": {
+          "type": "content",
+          "settings": {
+            "icon": "headphone",
+            "heading": "Customer Support",
+            "text": "<p>Use this text to answer questions in as much detail as possible for your customers.</p>",
+            "highlighted_text": "none",
+            "highlighted_scribble": "circle",
+            "color_text": "#0369a1",
+            "color_background": "#f0f9ff",
+            "gradient_background": "",
+            "color_highlight": "#ffddbf",
+            "gradient_highlight": ""
+          }
+        }
+      },
+      "block_order": [
+        "content-1",
+        "content_n9dGgw",
+        "content-2"
+      ],
+      "settings": {
+        "heading": "¿Necesitas Ayuda?",
+        "description": "<p>Si tienes alguna pregunta, no dudes en contactarnos. Te responderemos lo antes posible, dentro de nuestro horario de oficina, en un plazo máximo de 24 horas en días hábiles.</p>"
+      }
+    },
+    "scrolling-text": {
+      "type": "scrolling-text",
+      "blocks": {
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<em><strong>Café  Colombiano Fresco</strong></em>",
+            "text_size": 80,
+            "text_font": "subtitle",
+            "highlighted_text": "half_text",
+            "highlighted_scribble": "circle"
+          }
+        }
+      },
+      "block_order": [
+        "text"
+      ],
+      "settings": {
+        "direction": "left",
+        "speed": 20,
+        "grid_horizontal": 70,
+        "enable_twin": false,
+        "enable_parallax": true,
+        "color_text": "",
+        "color_background": "",
+        "gradient_background": "",
+        "color_highlight": "",
+        "gradient_highlight": "",
+        "padding_top": 28,
+        "padding_bottom": 28,
+        "divider": false,
+        "rounded": false
+      }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "product_limit": 6,
+        "columns": 4,
+        "carousel_on_desktop": true,
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "heading": "Tambien te puede interesar",
+        "heading_size": "title-md",
+        "heading_alignment": "text-left md:items-end md:flex-row",
+        "heading_tag": "h2",
+        "subheading": "",
+        "description": "",
+        "highlighted_text": "none",
+        "highlighted_scribble": "circle",
+        "color_text": "",
+        "color_background": "",
+        "gradient_background": "",
+        "color_highlight": "",
+        "gradient_highlight": "",
+        "color_button_text": "",
+        "color_button_background": "",
+        "color_button_gradient": "",
+        "padding_top": 72,
+        "padding_bottom": 72,
+        "divider": false,
+        "full_width": false,
+        "rounded": true
+      }
+    },
+    "recently-viewed": {
+      "type": "recently-viewed",
+      "disabled": true,
+      "settings": {
+        "product_limit": 6,
+        "columns": 4,
+        "carousel_on_desktop": true,
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "heading": "Recently Viewed",
+        "heading_size": "title-md",
+        "heading_alignment": "text-left md:items-end md:flex-row",
+        "heading_tag": "h2",
+        "subheading": "",
+        "description": "",
+        "highlighted_text": "none",
+        "highlighted_scribble": "circle",
+        "color_text": "",
+        "color_background": "",
+        "gradient_background": "",
+        "color_highlight": "",
+        "gradient_highlight": "",
+        "color_button_text": "",
+        "color_button_background": "",
+        "color_button_gradient": "",
+        "padding_top": 72,
+        "padding_bottom": 72,
+        "divider": false,
+        "full_width": false,
+        "rounded": false
+      }
+    }
+  },
+  "order": [
+    "main-product",
+    "help-drawer",
+    "scrolling-text",
+    "product-recommendations",
+    "recently-viewed"
+  ]
+}

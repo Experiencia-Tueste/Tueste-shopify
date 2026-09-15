@@ -1,0 +1,350 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.overlay-group.name",
+  "type": "custom.overlay",
+  "sections": {
+    "cart-drawer": {
+      "type": "cart-drawer",
+      "settings": {
+        "show_vendor": false,
+        "show_cart_note": true,
+        "show_shipping_calculator": true,
+        "add_discount_code": true,
+        "show_view_cart_button": true,
+        "show_checkout_button": true,
+        "show_free_shipping_bar": true,
+        "free_shipping_minimum_amount": "",
+        "cart_recommendations_enabled": true,
+        "cart_recommendations_heading": "También te puede interesar",
+        "cart_recommendations_limit": 5,
+        "show_cart_recommendations_vendor": false,
+        "show_cart_recommendations_price": true,
+        "cart_recommendations_products": [
+          "cafe-aures-1840-conscious",
+          "cafe-aures-1840-amour"
+        ],
+        "empty_cart_message": "<p>¿Aun no sabes que comprar?<br/>Compra un buen cafecito</p>",
+        "empty_cart_collections": [
+          "cafes"
+        ],
+        "recent_products_enabled": true,
+        "recent_products_heading": "Los que viste",
+        "recent_products_limit": 5,
+        "show_recent_products_vendor": false,
+        "show_recent_products_price": true
+      }
+    },
+    "search-drawer": {
+      "type": "search-drawer",
+      "settings": {}
+    },
+    "newsletter-popup": {
+      "type": "newsletter-popup",
+      "blocks": {
+        "text-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>¿ERES NUEVO EN TUESTE UNITY?</p>",
+            "text_font": "body",
+            "text_size": "subtext-custom",
+            "text_max_size": 12,
+            "text_line_height": 1.6,
+            "text_letter_spacing": 0,
+            "text_capitalize": false,
+            "secondary_color": true,
+            "highlighted_text": "none",
+            "highlighted_scribble": "circle"
+          }
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Regístrate y obtén el 15<em>% off</em> en tu primera compra",
+            "heading_size": "text-2xl lg:text-3xl",
+            "heading_tag": "span",
+            "highlighted_text": "scribble",
+            "highlighted_scribble": "basic-underline"
+          }
+        },
+        "spacing": {
+          "type": "spacing",
+          "settings": {
+            "height": 32,
+            "height_mobile": 12
+          }
+        },
+        "form": {
+          "type": "form",
+          "settings": {}
+        },
+        "text-2": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Suscríbete a nuestro universo cafetero y manten al dia con la última novedades.<br/>No aplica para productos con descuento</p>",
+            "text_font": "body",
+            "text_size": "text-sm",
+            "text_max_size": 32,
+            "text_line_height": 1.6,
+            "text_letter_spacing": 0,
+            "text_capitalize": false,
+            "secondary_color": true,
+            "highlighted_text": "none",
+            "highlighted_scribble": "circle"
+          }
+        },
+        "media": {
+          "type": "media",
+          "settings": {}
+        },
+        "floating": {
+          "type": "floating",
+          "settings": {
+            "heading": "OBTÉN 15% Off",
+            "content_position": "left-0",
+            "show_social": true,
+            "mobile_disabled": true,
+            "mobile_hide_social": false,
+            "color_text": "#171717",
+            "color_background": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "text-1",
+        "heading",
+        "spacing",
+        "form",
+        "text-2",
+        "media",
+        "floating"
+      ],
+      "settings": {
+        "mode": "enabled",
+        "only_homepage": true,
+        "only_visitor": true,
+        "delay": 7,
+        "expiry": 30,
+        "text_alignment": "left",
+        "content_position": "right-0",
+        "color_drawer_text": "#171717",
+        "color_drawer_background": "#ffffff",
+        "color_drawer_highlight": "#ffddbf",
+        "color_drawer_button_text": "#ffffff",
+        "color_drawer_button_background": "#171717",
+        "color_drawer_button_gradient": "",
+        "color_drawer_overlay": "#171717"
+      }
+    },
+    "age-verifier": {
+      "type": "age-verifier",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Confirm your age",
+            "heading_size": "text-lg-2xl",
+            "heading_tag": "h2",
+            "highlighted_text": "none",
+            "highlighted_scribble": "circle"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Are you 18 years old or older?</p>",
+            "text_font": "body",
+            "text_size": "text-base",
+            "text_max_size": 32,
+            "text_line_height": 1.6,
+            "text_letter_spacing": 0,
+            "text_capitalize": false,
+            "secondary_color": false,
+            "highlighted_text": "none",
+            "highlighted_scribble": "circle"
+          }
+        },
+        "spacing": {
+          "type": "spacing",
+          "settings": {
+            "height": 16,
+            "height_mobile": 12
+          }
+        },
+        "buttons": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Yes, I am",
+            "button_label_2": "No, I’m not",
+            "button_link_2": "",
+            "button_external_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text",
+        "spacing",
+        "buttons"
+      ],
+      "disabled": true,
+      "settings": {
+        "mode": "enabled",
+        "expiry": 30,
+        "text_alignment": "center",
+        "content_position": "center-0",
+        "blur_background_image": false,
+        "color_drawer_text": "#171717",
+        "color_drawer_background": "#ffffff",
+        "color_drawer_highlight": "#ffddbf",
+        "color_drawer_button_text": "#ffffff",
+        "color_drawer_button_background": "#171717",
+        "color_drawer_button_gradient": "",
+        "color_drawer_overlay": "#171717"
+      }
+    },
+    "cookie-banner": {
+      "type": "cookie-banner",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Usamos Cookies",
+            "heading_size": "text-lg-2xl",
+            "heading_tag": "span",
+            "highlighted_text": "none",
+            "highlighted_scribble": "circle"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Este sitio utiliza cookies para una mejor experiencia de usuario y analítica.</p>",
+            "text_font": "body",
+            "text_size": "text-base",
+            "text_max_size": 32,
+            "text_line_height": 1.6,
+            "text_letter_spacing": 0,
+            "text_capitalize": false,
+            "secondary_color": false,
+            "highlighted_text": "none",
+            "highlighted_scribble": "circle"
+          }
+        },
+        "spacing": {
+          "type": "spacing",
+          "settings": {
+            "height": 16,
+            "height_mobile": 12
+          }
+        },
+        "buttons": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Aceptar",
+            "button_label_2": "Rechazar"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text",
+        "spacing",
+        "buttons"
+      ],
+      "settings": {
+        "mode": "enabled",
+        "delay": 2,
+        "text_alignment": "right",
+        "content_position": "left-0",
+        "color_drawer_text": "#171717",
+        "color_drawer_background": "#ffffff",
+        "color_drawer_highlight": "#ffddbf",
+        "color_drawer_button_text": "#ffffff",
+        "color_drawer_button_background": "#171717",
+        "color_drawer_button_gradient": ""
+      }
+    },
+    "mobile-dock": {
+      "type": "mobile-dock",
+      "blocks": {
+        "mobile-dock-1": {
+          "type": "home",
+          "settings": {
+            "custom_icon": "",
+            "title": "Home"
+          }
+        },
+        "mobile-dock-2": {
+          "type": "menu",
+          "settings": {
+            "custom_icon": "",
+            "title": "Menu"
+          }
+        },
+        "mobile-dock-3": {
+          "type": "search",
+          "settings": {
+            "custom_icon": "",
+            "title": "Buscar"
+          }
+        },
+        "mobile-dock-4": {
+          "type": "link",
+          "settings": {
+            "custom_icon": "",
+            "title": "Cafés",
+            "link": "shopify://collections/cafes",
+            "external": false
+          }
+        },
+        "mobile-dock-5": {
+          "type": "cart",
+          "settings": {
+            "custom_icon": "",
+            "title": "Carrito"
+          }
+        },
+        "mobile-dock-6": {
+          "type": "account",
+          "settings": {
+            "custom_icon": "",
+            "title": "Cuenta"
+          }
+        }
+      },
+      "block_order": [
+        "mobile-dock-1",
+        "mobile-dock-2",
+        "mobile-dock-3",
+        "mobile-dock-4",
+        "mobile-dock-5",
+        "mobile-dock-6"
+      ],
+      "settings": {
+        "color_text": "#000000",
+        "color_background": "#ffffff",
+        "gradient_background": "",
+        "padding_top": 8,
+        "padding_bottom": 8,
+        "divider": true,
+        "rounded": true
+      }
+    }
+  },
+  "order": [
+    "cart-drawer",
+    "search-drawer",
+    "newsletter-popup",
+    "age-verifier",
+    "cookie-banner",
+    "mobile-dock"
+  ]
+}
