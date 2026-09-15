@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tueste | Galería comercial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Hanken+Grotesk:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="gc-nav">
+  <a href="#inicio" class="gc-nav__logo"><img src="../assets/logo.png" alt="Tueste, inicio" height="28"></a>
+  <nav class="gc-nav__links">
+    <a href="#coleccion" data-filter-link="cafe">CAFÉ</a>
+    <a href="#coleccion" data-filter-link="objetos">OBJETOS</a>
+    <a href="#historia">TUESTE TREE</a>
+  </nav>
+  <a href="#coleccion" class="gc-nav__cta">SELECCIÓN &#8594;</a>
+</header>
+
+<section class="opening" id="inicio">
+  <div class="opening__text">
+    <p class="gc-kicker">TIENDA TUESTE</p>
+    <h1 id="opening-title">La tienda empieza<br><em>en el origen.</em></h1>
+    <p class="opening__lead">Café, cerámica y piezas para llevar el ritual a casa. Una selección corta, visual y directa.</p>
+    <div class="action">
+      <a href="#coleccion" class="gc-btn gc-btn--dark">Ver la selección</a>
+      <a href="#" class="gc-link-quiet">Ver ficha de Café Aures 1840 Conscious &#8594;</a>
+    </div>
+  </div>
+  <div class="opening__product">
+    <div class="opening__product-image">
+      <img src="../assets/cafe-1840.png" alt="Empaque Café Aures 1840 Conscious de Tueste">
+    </div>
+    <div class="opening__product-tag">
+      <span class="gc-kicker gc-kicker--amber">CAFÉ DE ORIGEN</span>
+      <p class="opening__product-name">Café Aures 1840 Conscious</p>
+      <p class="opening__product-price">$55.000,00</p>
+    </div>
+  </div>
+</section>
+
+<section class="collection" id="coleccion">
+  <div class="collection__head">
+    <p class="gc-kicker">SELECCIÓN</p>
+    <h2 id="collection-title">Productos para entrar por el sabor<br><em>y quedarse por la historia.</em></h2>
+    <p class="collection__lead">Cada ficha se resuelve dentro de la tienda Shopify, donde se compran opciones y disponibilidad.</p>
+  </div>
+
+  <div class="filters" role="group" aria-label="Filtrar productos">
+    <button type="button" class="filter is-active" data-filter="todo" aria-pressed="true">TODO</button>
+    <button type="button" class="filter" data-filter="cafe" aria-pressed="false">CAFÉ</button>
+    <button type="button" class="filter" data-filter="objetos" aria-pressed="false">OBJETOS</button>
+    <span class="filters__count"><span data-count>5</span>&nbsp;PIEZAS</span>
+  </div>
+
+  <div class="grid">
+    <article class="card" data-category="cafe">
+      <a href="#" class="card__image-link" aria-label="Empaque Café Aures 1840 Conscious de Tueste">
+        <img src="../assets/cafe-1840.png" alt="Empaque Café Aures 1840 Conscious de Tueste">
+      </a>
+      <p class="card__eyebrow">CAFÉ DE ORIGEN</p>
+      <h3 class="card__name">Café Aures 1840 Conscious</h3>
+      <div class="card__row">
+        <span class="card__price">$55.000,00</span>
+        <a href="#" class="card__link">Ver ficha &#8594;</a>
+      </div>
+    </article>
+
+    <article class="card" data-category="objetos">
+      <a href="#" class="card__image-link" aria-label="Origin Grey Hoodie 1840-LTD de Tueste">
+        <img src="../assets/hoodie.png" alt="Origin Grey Hoodie 1840-LTD de Tueste">
+      </a>
+      <p class="card__eyebrow">PIEZA LIMITADA</p>
+      <h3 class="card__name">Origin Grey Hoodie 1840-LTD</h3>
+      <div class="card__row">
+        <span class="card__price">$499.800,00</span>
+        <a href="#" class="card__link">Ver ficha &#8594;</a>
+      </div>
+    </article>
+
+    <article class="card is-sold-out" data-category="objetos">
+      <a href="#" class="card__image-link" aria-label="Taza Artesanal Splash Edición Limitada">
+        <img src="../assets/taza-splash.png" alt="Taza Artesanal Splash Edición Limitada">
+        <span class="card__badge">Agotado</span>
+      </a>
+      <p class="card__eyebrow">CERÁMICA</p>
+      <h3 class="card__name">Taza Artesanal Splash Edición Limitada</h3>
+      <div class="card__row">
+        <span class="card__price">$145.000,00</span>
+        <span class="card__link card__link--disabled">Agotado</span>
+      </div>
+    </article>
+
+    <article class="card" data-category="objetos">
+      <a href="#" class="card__image-link" aria-label="Taza Efímero Rosada">
+        <img src="../assets/taza-rosada.png" alt="Taza Efímero Rosada">
+      </a>
+      <p class="card__eyebrow">CERÁMICA <span class="card__dot" style="background:#e8b9c4"></span></p>
+      <h3 class="card__name">Taza Efímero Rosada</h3>
+      <div class="card__row">
+        <span class="card__price">$145.000,00</span>
+        <a href="#" class="card__link">Ver ficha &#8594;</a>
+      </div>
+    </article>
+
+    <article class="card" data-category="objetos">
+      <a href="#" class="card__image-link" aria-label="Taza Efímero Morada">
+        <img src="../assets/taza-morada.png" alt="Taza Efímero Morada">
+      </a>
+      <p class="card__eyebrow">CERÁMICA <span class="card__dot" style="background:#a893d1"></span></p>
+      <h3 class="card__name">Taza Efímero Morada</h3>
+      <div class="card__row">
+        <span class="card__price">$145.000,00</span>
+        <a href="#" class="card__link">Ver ficha &#8594;</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="feature">
+  <div class="feature__image">
+    <img src="../assets/cafe-1840.png" alt="Café Aures 1840 Conscious">
+  </div>
+  <div class="feature__info">
+    <p class="gc-kicker gc-kicker--amber">CAFÉ DE ORIGEN</p>
+    <h2 id="feature-title">Café Aures 1840 Conscious</h2>
+    <p class="feature__lead">Una ficha clara para ver el producto, sus opciones y la compra sin salir del universo de Tueste.</p>
+    <p class="feature__price">$55.000,00</p>
+    <a href="#" class="gc-btn gc-btn--amber">Abrir producto &#8594;</a>
+  </div>
+</section>
+
+<section class="tree" id="historia">
+  <div class="tree__panel">
+    <p class="gc-kicker gc-kicker--coral">TUESTE TREE</p>
+    <h2 id="tree-title">Adopta un árbol.<br><em>Escucha su origen.</em></h2>
+    <p class="tree__lead">No compras una planta: entras a un origen vivo en el Cañón de Aures, con certificado, comunidad y la frecuencia sonora de tu lote.</p>
+
+    <div class="tree__stats">
+      <div><b>1.840 m</b><span>Altitud · Cañón de Aures</span></div>
+      <div><b>300</b><span>Árboles · Lote 000 Founders</span></div>
+      <div><b>24–48 h</b><span>Certificado digital</span></div>
+    </div>
+
+    <ol class="tree__steps">
+      <li><span class="tree__step-n">01</span><div><h3>Adopta tu árbol</h3><p>Un clic, pago seguro con Shopify.</p></div></li>
+      <li><span class="tree__step-n">02</span><div><h3>Recibe tu certificado</h3><p>Numerado + la frecuencia de tu lote, en 24–48 h.</p></div></li>
+      <li><span class="tree__step-n">03</span><div><h3>Sigue tu cosecha</h3><p>Actualizaciones de finca y café del lote.</p></div></li>
+    </ol>
+
+    <div class="tree__cta">
+      <a href="#" class="gc-btn gc-btn--coral">Adoptar mi árbol — COP 380.000</a>
+      <p class="tree__trust">Pago seguro procesado por Shopify · Certificado en 24–48 h · Adopción simbólica y cultural</p>
+    </div>
+
+    <p class="tree__footnote">La tienda es una puerta comercial de Tueste. La experiencia, el origen y la comunidad conservan su propio espacio. <a href="#coleccion" class="gc-link-quiet">Volver a la selección &#8594;</a></p>
+  </div>
+
+  <div class="tree__visual">
+    <img src="../assets/adopta-arbol.jpg" alt="Estampado Tueste — Transformation &amp; Origin">
+  </div>
+</section>
+
+<footer class="gc-footer">
+  <img src="../assets/logo.png" alt="Tueste">
+  <p>Galería comercial, propuesta local para revisión.</p>
+  <a href="#inicio">Volver arriba</a>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,282 @@
+/* ============ Tueste — Galería comercial (propuesta local, no publicada) ============
+   Base cálida sobre negro/café, con dos acentos de color por vista como máximo:
+   crema (fondo), tinta (texto), berenjena (campo editorial), ámbar (jerarquía/precio),
+   coral (solo en el interludio Tueste Tree). Fraunces + Hanken Grotesk + DM Mono.
+=================================================== */
+
+:root{
+  --crema: #F6EEE0;
+  --crema-soft: #FBF6EC;
+  --tinta: #211812;
+  --berenjena: #2E1830;
+  --berenjena-soft: #3E2440;
+  --ambar: #B9792E;
+  --ambar-soft: #EFDCBE;
+  --coral: #C05A3C;
+  --border: rgba(33,24,18,0.14);
+  --border-on-dark: rgba(246,238,224,0.18);
+  --radius: 18px;
+  --radius-pill: 999px;
+  --max-w: 1240px;
+}
+
+*{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+html,body{ margin:0; padding:0; }
+body{
+  font-family:'Hanken Grotesk', sans-serif;
+  color:var(--tinta);
+  background:var(--crema);
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+img{ max-width:100%; display:block; }
+h1,h2,h3{ margin:0 0 .4em; line-height:1.05; letter-spacing:-0.01em; font-family:'Fraunces', serif; font-weight:600; text-wrap:balance; }
+h1 em, h2 em{ font-style:italic; font-weight:500; color:var(--ambar); }
+p{ margin:0 0 1em; }
+a{ color:inherit; text-decoration:none; }
+button{ font-family:inherit; cursor:pointer; }
+
+.gc-kicker{
+  font-family:'DM Mono', monospace;
+  text-transform:uppercase;
+  font-size:.72rem;
+  letter-spacing:.14em;
+  font-weight:500;
+  color:var(--tinta);
+  opacity:.65;
+  margin:0 0 .8em;
+}
+.gc-kicker--amber{ color:var(--ambar); opacity:1; }
+.gc-kicker--coral{ color:var(--coral); opacity:1; }
+
+.gc-btn{
+  display:inline-block;
+  font-family:'Hanken Grotesk', sans-serif;
+  font-weight:600;
+  font-size:.9rem;
+  padding:.9em 1.6em;
+  border-radius:var(--radius-pill);
+  transition:transform .15s ease, opacity .15s ease;
+}
+.gc-btn:hover{ transform:translateY(-1px); opacity:.9; }
+.gc-btn--dark{ background:var(--tinta); color:var(--crema-soft); }
+.gc-btn--amber{ background:var(--ambar); color:var(--crema-soft); }
+.gc-link-quiet{ font-size:.9rem; font-weight:600; border-bottom:1px solid var(--border); padding-bottom:2px; }
+.gc-link-coral{ font-size:.9rem; font-weight:600; color:var(--crema-soft); border-bottom:1px solid var(--border-on-dark); padding-bottom:2px; }
+
+/* ---------- Nav ---------- */
+.gc-nav{
+  max-width:var(--max-w);
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  padding:22px 32px;
+}
+.gc-nav__logo img{ filter:brightness(0) saturate(100%); opacity:.9; }
+.gc-nav__links{ display:flex; gap:28px; font-family:'DM Mono', monospace; font-size:.72rem; letter-spacing:.1em; }
+.gc-nav__links a{ opacity:.7; }
+.gc-nav__links a:hover{ opacity:1; }
+.gc-nav__cta{ font-family:'DM Mono', monospace; font-size:.72rem; letter-spacing:.1em; font-weight:500; border-bottom:1px solid var(--tinta); padding-bottom:2px; }
+
+/* ---------- Opening ---------- */
+.opening{
+  max-width:var(--max-w);
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:48px;
+  align-items:center;
+  padding:28px 32px 72px;
+}
+.opening__text h1{ font-size:clamp(2.4rem, 4.2vw, 3.6rem); }
+.opening__lead{ font-size:1.05rem; max-width:32ch; opacity:.85; }
+.action{ display:flex; flex-direction:column; align-items:flex-start; gap:14px; margin-top:8px; }
+
+.opening__product{
+  position:relative;
+  background:var(--berenjena);
+  border-radius:var(--radius);
+  padding:40px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:24px;
+}
+.opening__product-image{ width:100%; max-width:260px; }
+.opening__product-image img{ width:100%; }
+.opening__product-tag{ text-align:center; }
+.opening__product-name{ font-family:'Fraunces', serif; font-size:1.15rem; color:var(--crema-soft); margin:0 0 .3em; }
+.opening__product-price{ font-family:'DM Mono', monospace; color:var(--ambar-soft); font-size:1rem; margin:0; }
+
+/* ---------- Collection ---------- */
+.collection{ max-width:var(--max-w); margin:0 auto; padding:64px 32px; }
+.collection__head{ max-width:640px; margin-bottom:36px; }
+.collection__head h2{ font-size:clamp(1.7rem, 2.8vw, 2.3rem); }
+.collection__lead{ opacity:.75; font-size:.98rem; }
+
+.filters{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:28px;
+  padding-bottom:20px;
+  border-bottom:1px solid var(--border);
+  flex-wrap:wrap;
+}
+.filter{
+  font-family:'DM Mono', monospace;
+  font-size:.72rem;
+  letter-spacing:.08em;
+  border:1px solid var(--border);
+  background:transparent;
+  color:var(--tinta);
+  padding:.55em 1.1em;
+  border-radius:var(--radius-pill);
+  opacity:.7;
+}
+.filter.is-active{ background:var(--tinta); color:var(--crema-soft); border-color:var(--tinta); opacity:1; }
+.filters__count{ margin-left:auto; font-family:'DM Mono', monospace; font-size:.72rem; letter-spacing:.08em; opacity:.55; }
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(230px, 1fr));
+  gap:28px;
+}
+.card{ display:flex; flex-direction:column; }
+.card__image-link{
+  display:block;
+  position:relative;
+  aspect-ratio:1/1;
+  background:var(--crema-soft);
+  border-radius:var(--radius);
+  overflow:hidden;
+  margin-bottom:14px;
+}
+.card__image-link img{ width:100%; height:100%; object-fit:contain; padding:18px; transition:transform .35s ease; }
+.card:not(.is-sold-out):hover .card__image-link img{ transform:scale(1.045); }
+.card:not(.is-sold-out):hover .card__name{ opacity:.7; }
+.card__dot{ display:inline-block; width:8px; height:8px; border-radius:50%; margin-left:4px; vertical-align:middle; }
+.card__badge{
+  position:absolute;
+  top:12px;
+  left:12px;
+  background:var(--tinta);
+  color:var(--crema-soft);
+  font-family:'DM Mono', monospace;
+  font-size:.65rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  padding:.4em .8em;
+  border-radius:var(--radius-pill);
+}
+.card.is-sold-out .card__image-link img{ opacity:.45; }
+.card__eyebrow{ font-family:'DM Mono', monospace; font-size:.68rem; letter-spacing:.1em; opacity:.55; margin:0 0 .4em; }
+.card__name{ font-size:1.05rem; margin:0 0 .5em; transition:opacity .2s ease; }
+.card__row{ display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.card__price{ font-family:'DM Mono', monospace; font-size:.92rem; color:var(--ambar); }
+.card__link{ font-size:.82rem; font-weight:600; opacity:.75; }
+.card__link:hover{ opacity:1; }
+.card__link--disabled{ opacity:.4; font-weight:500; }
+
+/* ---------- Feature ---------- */
+.feature{
+  max-width:var(--max-w);
+  margin:0 auto 64px;
+  background:var(--berenjena);
+  border-radius:var(--radius);
+  display:grid;
+  grid-template-columns:.85fr 1.15fr;
+  gap:0;
+  overflow:hidden;
+}
+.feature__image{ background:var(--berenjena-soft); display:flex; align-items:center; justify-content:center; padding:40px; }
+.feature__image img{ max-width:220px; }
+.feature__info{ padding:48px; color:var(--crema-soft); display:flex; flex-direction:column; align-items:flex-start; }
+.feature__info h2{ color:var(--crema-soft); font-size:clamp(1.6rem, 2.6vw, 2.1rem); }
+.feature__lead{ opacity:.8; max-width:38ch; }
+.feature__price{ font-family:'DM Mono', monospace; font-size:1.3rem; color:var(--ambar-soft); margin-bottom:1.2em; }
+
+/* ---------- Tueste Tree ---------- */
+.tree{
+  max-width:var(--max-w);
+  margin:0 auto 64px;
+  background:var(--berenjena);
+  border-radius:var(--radius);
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  overflow:hidden;
+}
+.tree__panel{ padding:56px 48px; color:var(--crema-soft); }
+.tree__panel h2{ color:var(--crema-soft); font-size:clamp(1.8rem, 3vw, 2.4rem); }
+.tree__panel h2 em{ color:var(--coral); }
+.tree__lead{ opacity:.85; max-width:44ch; }
+
+.tree__stats{
+  display:flex;
+  flex-wrap:wrap;
+  gap:32px;
+  margin:8px 0 32px;
+  padding:20px 0;
+  border-top:1px solid var(--border-on-dark);
+  border-bottom:1px solid var(--border-on-dark);
+}
+.tree__stats b{ display:block; font-family:'Fraunces', serif; font-size:1.3rem; font-weight:600; margin-bottom:.2em; }
+.tree__stats span{ display:block; font-family:'DM Mono', monospace; font-size:.68rem; letter-spacing:.06em; text-transform:uppercase; opacity:.6; }
+
+.tree__steps{ list-style:none; margin:0 0 32px; padding:0; display:flex; flex-direction:column; gap:18px; }
+.tree__steps li{ display:flex; gap:16px; align-items:flex-start; }
+.tree__step-n{ font-family:'DM Mono', monospace; font-size:.8rem; color:var(--coral); padding-top:.2em; }
+.tree__steps h3{ font-size:1rem; margin:0 0 .2em; color:var(--crema-soft); }
+.tree__steps p{ font-size:.88rem; opacity:.75; margin:0; }
+
+.tree__cta{ display:flex; flex-direction:column; align-items:flex-start; gap:10px; }
+.gc-btn--coral{ background:var(--coral); color:var(--crema-soft); }
+.tree__trust{ font-family:'DM Mono', monospace; font-size:.68rem; letter-spacing:.03em; opacity:.6; margin:0; }
+
+.tree__footnote{ margin:28px 0 0; padding-top:20px; border-top:1px solid var(--border-on-dark); font-size:.88rem; opacity:.7; }
+.tree__footnote .gc-link-quiet{ display:inline-block; margin-left:6px; color:var(--crema-soft); border-color:var(--border-on-dark); opacity:1; }
+
+.tree__visual{ background:var(--berenjena-soft); display:flex; align-items:center; justify-content:center; padding:32px; }
+.tree__visual img{ width:100%; height:100%; max-height:520px; object-fit:cover; border-radius:calc(var(--radius) - 6px); }
+
+/* ---------- Footer ---------- */
+.gc-footer{
+  max-width:var(--max-w);
+  margin:0 auto;
+  padding:48px 32px 64px;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+}
+.gc-footer img{ height:22px; filter:brightness(0) saturate(100%); opacity:.6; }
+.gc-footer p{ font-size:.82rem; opacity:.55; margin:0; }
+.gc-footer a{ font-family:'DM Mono', monospace; font-size:.72rem; letter-spacing:.08em; opacity:.6; }
+.gc-footer a:hover{ opacity:1; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 860px){
+  .opening{ grid-template-columns:1fr; padding-top:12px; }
+  .feature{ grid-template-columns:1fr; }
+  .feature__image{ padding:32px; }
+  .tree{ grid-template-columns:1fr; }
+  .tree__panel{ padding:40px 28px; }
+  .tree__visual{ padding:0 28px 40px; order:-1; }
+  .tree__visual img{ max-height:280px; }
+  .gc-nav{ padding:18px 20px; }
+  .gc-nav__links{ gap:18px; }
+  .collection{ padding:48px 20px; }
+  .opening__text, .story{ padding-left:20px; padding-right:20px; }
+  .opening{ padding-left:20px; padding-right:20px; }
+  .story{ padding-top:80px; padding-bottom:80px; }
+}
+
+@media (max-width: 520px){
+  .gc-nav__links{ display:none; }
+  .grid{ grid-template-columns:repeat(auto-fill, minmax(150px, 1fr)); gap:18px; }
+  .filters__count{ margin-left:0; width:100%; order:10; margin-top:8px; }
+}

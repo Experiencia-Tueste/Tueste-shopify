@@ -1,0 +1,106 @@
+╔══════════════════════════════════════════════════════════╗
+║   TUESTE · VISTA PREVIA DE LA TIENDA (carpeta mirror)     ║
+╚══════════════════════════════════════════════════════════╝
+
+CÓMO VERLA EN TU COMPUTADOR
+───────────────────────────────────────────────
+  · En Mac:      doble clic en  INICIAR-Mac.command
+  · En Windows:  doble clic en  INICIAR-Windows.bat
+
+  Se abre solo en el navegador en:  http://localhost:8000
+
+  Si el doble clic no abre nada, abre una terminal en esta
+  carpeta y escribe:   python3 -m http.server 8000
+  y luego entra a http://localhost:8000 en tu navegador.
+
+  Para DETENER el servidor: cierra la ventana negra
+  (o presiona Control + C dentro de ella).
+
+
+ORDEN DE LA PÁGINA (de arriba a abajo)
+───────────────────────────────────────────────
+  1.  Barra superior ....... Lote 000 Founders        [EDITADO]
+  2.  Menú / navegación ..... 5 opciones + botón árbol [EDITADO]
+  3.  Hero (banners) ........ como estaba
+  4.  Intro "Del origen..." . como estaba
+  5.  Marquee "se escucha" .. como estaba
+  6.  ADOPTA UN ÁRBOL ....... isla oscura, 3 pasos     [NUEVO]  ← subió aquí
+  7.  Café Aures 1840 ....... producto, como estaba
+  8.  Productos Destacados .. como estaba
+  9.  Vive el Ritual ........ como estaba
+  10. Playlist / Origen T. .. como estaba
+  11. PARA MARCAS ........... editorial + ecualizador  [NUEVO]
+  12. Footer ................ como estaba
+
+
+QUÉ ES NUEVO Y QUÉ SE MANTUVO
+───────────────────────────────────────────────
+  [NUEVO]   = secciones que integramos (Adopta, Marcas,
+              nav, barra superior).
+  como estaba = tus secciones originales, intactas.
+              NO se tocó: hero, producto, carrito, footer.
+
+  Todo lo nuevo usa las clases que empiezan por  "ot-"
+  (ot-adopta, ot-marcas, ot-card, etc.) en el archivo
+  styles.css — fácil de encontrar para editar.
+
+
+ARCHIVOS DE ESTA CARPETA
+───────────────────────────────────────────────
+  index.html ...... la página (estructura y textos)
+  styles.css ...... todos los estilos (busca "UNIVERSO
+                    ORIGEN TOSTADO" para ver lo nuevo)
+  script.js ....... interacciones (incluye el ecualizador)
+  assets/ ......... imágenes
+
+  Los cambios que hagas aquí NO afectan tu tienda real
+  todavía. Esta carpeta es solo para VER y DECIDIR.
+
+
+PROPUESTA APARTE: GALERÍA COMERCIAL
+───────────────────────────────────────────────
+  Dentro de esta misma carpeta hay una subcarpeta
+  galeria-comercial/ con una propuesta de página
+  distinta: una vista tipo galería (catálogo grande,
+  precio directo, filtro Café/Objetos) usando los
+  mismos 5 productos y fotos de esta vista previa.
+
+  Para verla, con el servidor local ya abierto entra a:
+    http://localhost:8000/galeria-comercial/
+
+  Es una propuesta independiente para revisar y decidir
+  si se adopta — no reemplaza ni modifica index.html.
+
+
+PROPUESTA APARTE: TIENDA EDITORIAL
+───────────────────────────────────────────────
+  Otra subcarpeta, tienda-editorial/, es la fusión de
+  las dos ideas: TODAS las secciones de esta vista previa
+  (barra de anuncio, menú completo, hero, Adopta un Árbol,
+  ficha de café, colección, ritual, playlist, Para Marcas,
+  footer) rediseñadas con el lenguaje visual editorial
+  (tipografías Fraunces + Hanken Grotesk + DM Mono, paleta
+  crema/berenjena/ámbar, esquinas rectas).
+
+  Además, cada producto tiene su propia ficha real dentro
+  de tienda-editorial/productos/ (fotos, precio, opciones)
+  — ya no son enlaces muertos. Café Aures usa datos 100%
+  reales; el hoodie y las tazas incluyen opciones de
+  ejemplo (talla, capacidad) marcadas como ilustrativas,
+  ya que esos datos reales aún no existen en esta vista
+  previa.
+
+  Para verla, con el servidor local ya abierto entra a:
+    http://localhost:8000/tienda-editorial/
+
+  Tampoco reemplaza ni modifica index.html ni galeria-
+  comercial/ — es una tercera propuesta independiente.
+
+  Tres imágenes de ambiente (tienda-editorial/assets/) son
+  ilustrativas, generadas con IA (Higgsfield) porque esta
+  vista previa aún no tenía foto real para esos espacios:
+  la portada del slide "Music, Art & Coffee", el paisaje
+  del Cañón de Aures en "Adopta un Árbol" (marcado en la
+  página como "Ilustrativa"), y el tocadiscos de "Playlist".
+  Ninguna reemplaza fotos reales de producto — esas siguen
+  siendo las tuyas (café, hoodie, tazas).
