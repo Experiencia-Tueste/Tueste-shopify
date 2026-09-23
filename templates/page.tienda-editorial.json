@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "slideshow": {
@@ -404,59 +395,6 @@
         "rounded": true
       }
     },
-    "rich_text_tueste_tree": {
-      "type": "rich-text",
-      "blocks": {
-        "text": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Con <strong>Tueste Tree</strong> adoptas simbólicamente un árbol de café y sigues su historia cosecha a cosecha. Recibes un certificado digital, actualizaciones del lote, frecuencias sonoras y acceso a la comunidad. No compras una planta: entras a un origen vivo.</p>",
-            "text_font": "body",
-            "text_size": "subtext-md",
-            "text_max_size": 32,
-            "text_line_height": 1.6,
-            "text_letter_spacing": 0,
-            "text_capitalize": false,
-            "secondary_color": false,
-            "highlighted_text": "none",
-            "highlighted_scribble": "circle"
-          }
-        }
-      },
-      "block_order": [
-        "text"
-      ],
-      "settings": {
-        "text_alignment": "left",
-        "text_alignment_mobile": "left",
-        "heading": "Adopta un árbol de café",
-        "heading_size": "title-md",
-        "heading_alignment": "text-left md:items-end md:flex-row",
-        "heading_width": "medium",
-        "heading_tag": "h2",
-        "subheading": "",
-        "description": "",
-        "button_label": "Adoptar un árbol",
-        "button_link": "shopify://pages/tueste-tree",
-        "button_external": false,
-        "button_icon": true,
-        "highlighted_text": "scribble",
-        "highlighted_scribble": "basic-underline",
-        "color_text": "",
-        "color_background": "",
-        "gradient_background": "",
-        "color_highlight": "",
-        "gradient_highlight": "",
-        "color_button_text": "",
-        "color_button_background": "",
-        "color_button_gradient": "",
-        "padding_top": 72,
-        "padding_bottom": 72,
-        "divider": false,
-        "narrow": false,
-        "rounded": false
-      }
-    },
     "rich_text_ritual": {
       "type": "rich-text",
       "blocks": {
@@ -673,6 +611,75 @@
         "rounded": false
       }
     },
+    "editorial_tree": {
+      "type": "editorial-tree",
+      "blocks": {
+        "stat_altitude": {
+          "type": "stat",
+          "settings": {
+            "value": "1.840 m",
+            "label": "Altitud · Cañón de Aures"
+          }
+        },
+        "stat_trees": {
+          "type": "stat",
+          "settings": {
+            "value": "300",
+            "label": "Árboles · Lote 000"
+          }
+        },
+        "stat_symbolic": {
+          "type": "stat",
+          "settings": {
+            "value": "01",
+            "label": "Adopción simbólica"
+          }
+        },
+        "step_adopt": {
+          "type": "step",
+          "settings": {
+            "number": "01",
+            "title": "Adopta tu árbol",
+            "text": "Una experiencia simbólica vinculada a un lote de origen."
+          }
+        },
+        "step_certificate": {
+          "type": "step",
+          "settings": {
+            "number": "02",
+            "title": "Recibe tu constancia",
+            "text": "Obtén un identificador digital y la historia del lote."
+          }
+        },
+        "step_follow": {
+          "type": "step",
+          "settings": {
+            "number": "03",
+            "title": "Sigue su cosecha",
+            "text": "Recibe las actualizaciones que el equipo pueda documentar."
+          }
+        }
+      },
+      "block_order": [
+        "stat_altitude",
+        "stat_trees",
+        "stat_symbolic",
+        "step_adopt",
+        "step_certificate",
+        "step_follow"
+      ],
+      "settings": {
+        "anchor": "tree",
+        "eyebrow": "02 / Tueste Tree",
+        "heading": "Adopta un árbol. Escucha su origen.",
+        "body": "<p>No compras una planta: entras a un origen vivo. Recibes una constancia digital y sigues la historia del lote mientras el equipo documenta su evolución.</p>",
+        "image": "",
+        "media_note": "Visual de concepto · datos operativos en validación",
+        "button_label": "Conocer la adopción",
+        "button_link": "shopify://pages/tueste-tree",
+        "disclaimer": "Adopción simbólica y cultural · no representa inversión financiera."
+      }
+    },
     "tueste_sessions": {
       "type": "tueste-sessions",
       "settings": {
@@ -689,28 +696,21 @@
       "settings": {
         "current_experience": "tienda"
       }
-    },
-    "tueste_universo_home": {
-      "type": "tueste-universo-home",
-      "settings": {
-        "tree_taken": 3570,
-        "tree_total": 10200,
-        "tree_url": "/pages/tueste-tree",
-        "unity_url": "/pages/tueste-unity",
-        "records_url": "/pages/tueste-records",
-        "spotify_url": "https://open.spotify.com"
-      },
-      "blocks": {
-        "coffee_1": { "type": "coffee", "settings": { "title": "Aures 1840 Conscious", "meta": "Lote 01 · 340 g", "price": "$55.000 COP" } },
-        "coffee_2": { "type": "coffee", "settings": { "title": "Aures 1840 Amour", "meta": "Lote 02 · 340 g", "price": "$55.000 COP" } },
-        "coffee_3": { "type": "coffee", "settings": { "title": "Combo Unity", "meta": "680 g · dos frecuencias", "price": "$98.000 COP" } },
-        "coffee_4": { "type": "coffee", "settings": { "title": "Aures 1840 + Taza Efímero", "meta": "340 g + taza artesanal", "price": "$150.000 COP" } },
-        "coffee_5": { "type": "coffee", "settings": { "title": "Aures 1840 + Experiencia Sonora", "meta": "340 g + experiencia digital", "price": "$75.000 COP" } }
-      },
-      "block_order": ["coffee_1", "coffee_2", "coffee_3", "coffee_4", "coffee_5"]
     }
   },
   "order": [
-    "tueste_universo_home"
+    "slideshow",
+    "rich-text-1",
+    "scrolling_text_YjgeMc",
+    "featured-product",
+    "featured-collections",
+    "editorial_tree",
+    "rich_text_ritual",
+    "image_with_text_pAcyN4",
+    "rich_text_para_marcas",
+    "tueste_sessions",
+    "tueste_records_teaser",
+    "blog-posts-collage",
+    "tueste_universe"
   ]
 }

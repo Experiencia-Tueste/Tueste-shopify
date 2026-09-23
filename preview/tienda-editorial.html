@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="Tueste · café colombiano de origen, música, ritual y comunidad.">
+    <title>Tueste · Tienda editorial</title>
+    <link rel="stylesheet" href="../assets/tienda-editorial.css">
+    <style>
+      @font-face{font-family:"Tueste Typeface";src:url("../assets/tueste-typeface.ttf") format("truetype");font-weight:700;font-display:swap}
+      @font-face{font-family:"Poppins";src:url("../assets/poppins-regular.ttf") format("truetype");font-weight:400;font-display:swap}
+      @font-face{font-family:"Poppins";src:url("../assets/poppins-semibold.ttf") format("truetype");font-weight:600;font-display:swap}
+      @font-face{font-family:"Archivo Black";src:url("../assets/archivo-black.ttf") format("truetype");font-weight:900;font-display:swap}
+      @font-face{font-family:"Lora";src:url("../assets/lora-italic.ttf") format("truetype");font-style:italic;font-weight:400 600;font-display:swap}
+      @font-face{font-family:"DM Mono";src:url("../assets/dm-mono-regular.ttf") format("truetype");font-weight:400;font-display:swap}
+      html{scroll-behavior:smooth}
+      body{margin:0;background:#15130f;color:#ffe8bf;-webkit-font-smoothing:antialiased}
+    </style>
+  </head>
+  <body class="te-preview">
+    
+<style id="tu-css">
+/* ---- Universo Tueste · bloque de navegación común entre tienda, Tree, Unity y Records ---- */
+.tu-universe{
+  --tu-bg:#1C1913;--tu-surface:#221F18;--tu-line:rgba(255,232,191,.14);--tu-line2:rgba(255,232,191,.28);
+  --tu-fg:#FFE8BF;--tu-fg2:#F3DFB6;--tu-muted:#A9997C;--tu-accent:#FBA922;--tu-radius:22px;
+  --tu-disp:"Tueste Typeface","Archivo Black","Poppins",sans-serif;--tu-mono:"DM Mono",ui-monospace,monospace;--tu-sans:"Poppins",system-ui,sans-serif;
+  --tu-max:1100px;--tu-gutter:20px;
+  font-family:var(--tu-sans);color:var(--tu-fg);-webkit-font-smoothing:antialiased;box-sizing:border-box}
+.tu-universe *{box-sizing:border-box}
+.tu-universe[data-theme="records"]{
+  --tu-bg:#0E0F11;--tu-surface:#141517;--tu-line:#26282C;--tu-line2:#34373D;--tu-fg:#ECE8E0;--tu-fg2:#ECE8E0;--tu-muted:#9A9B9F;--tu-accent:#C29A55;--tu-radius:0;--tu-max:1240px;--tu-gutter:clamp(16px,4vw,48px)}
+.tu-wrap{width:min(var(--tu-max),100%);margin-inline:auto;padding-inline:var(--tu-gutter)}
+.tu-universe{background:var(--tu-bg);border-top:1px solid var(--tu-line);padding-block:clamp(3rem,7vw,4.5rem)}
+.tu-universe .tu-kicker{display:flex;align-items:center;gap:.6rem;font-family:var(--tu-mono);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--tu-muted);margin:0 0 .8rem}
+.tu-universe .tu-kicker::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--tu-accent)}
+.tu-universe h2{margin:0 0 .6rem;font-family:var(--tu-disp);font-weight:700;text-transform:uppercase;font-size:clamp(1.5rem,3.6vw,2.4rem);line-height:1.05;letter-spacing:.01em;color:var(--tu-fg)}
+.tu-universe h2 em{font-style:normal;color:var(--tu-accent)}
+.tu-universe .tu-intro{margin:0 0 2rem;color:var(--tu-fg2);max-width:56ch;font-size:.98rem;line-height:1.6}
+.tu-universe .tu-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.tu-universe .tu-card{display:flex;flex-direction:column;gap:.7rem;padding:1.4rem 1.3rem 1.3rem;background:var(--tu-surface);border:1px solid var(--tu-line);border-radius:var(--tu-radius);text-decoration:none;color:inherit;position:relative;transition:border-color .25s,transform .25s}
+.tu-universe .tu-card:hover{border-color:var(--tu-line2);transform:translateY(-3px)}
+.tu-universe .tu-card .tu-n{font-family:var(--tu-mono);font-size:.66rem;letter-spacing:.2em;color:var(--tu-muted);display:flex;justify-content:space-between;align-items:center;min-height:1.4rem}
+.tu-universe .tu-card .tu-n b{font-weight:500;color:var(--tu-accent);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;border:1px solid var(--tu-accent);border-radius:999px;padding:.15rem .5rem;display:none}
+.tu-universe .tu-card.is-here .tu-n b{display:inline-block}
+.tu-universe .tu-card.is-here{border-color:var(--tu-accent)}
+.tu-universe .tu-card .tu-logo{height:32px;display:flex;align-items:center;margin:.1rem 0 .2rem}
+.tu-universe .tu-card .tu-logo img{height:28px;width:auto;max-width:100%;display:block;object-fit:contain}
+.tu-universe .tu-card p{margin:0;color:var(--tu-muted);font-size:.86rem;line-height:1.55;flex:1}
+.tu-universe .tu-card span{font-family:var(--tu-mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--tu-fg2);margin-top:.5rem}
+.tu-universe .tu-card:hover span{color:var(--tu-accent)}
+@media (max-width:900px){.tu-universe .tu-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.tu-universe .tu-grid{grid-template-columns:1fr}.tu-universe .tu-card{padding:1.1rem 1.1rem 1rem}}
+@media (prefers-reduced-motion:reduce){.tu-universe .tu-card{transition:none}}
+</style>
+<header class="te-preview__header">
+      <div class="te-preview__wrap te-preview__header-inner">
+        <a class="te-preview__brand" href="#inicio" aria-label="Tueste, inicio"><img class="te-preview__brand-logo" src="../assets/tueste-logo-glass.png" alt="Tueste" width="700" height="242"></a>
+        <nav class="te-preview__nav" aria-label="Navegación principal">
+          <a href="#cafe">Café</a>
+          <a href="#piezas">Piezas</a>
+          <a href="#tree">Tueste Tree</a>
+          <a data-tu="unity" href="./tueste-unity-landing-offline.html">Tueste Unity</a>
+          <a data-tu="records" href="./tueste-records-landing-offline.html">Tueste Records</a>
+          <a href="#ritual">Escuchar</a>
+          <span class="te-preview__bar-count"><b data-taken>3.570</b> / 10.200 fundadores</span>
+          <button class="te-preview__cart-button" type="button" data-cart-open>Carrito 0</button>
+        </nav>
+      </div>
+    </header>
+
+    <main id="inicio">
+      <!-- HERO · carrusel -->
+      <section class="te-preview__hero" data-hero aria-roledescription="carrusel" aria-label="Tueste en portada">
+        <article class="te-preview__slide is-active" data-slide aria-label="1 de 4 · Origen">
+          <div class="te-preview__hero-bg" style="background-image:url('../assets/tueste-tree-hero-vitral.webp')" aria-hidden="true"></div>
+          <div class="te-preview__wrap te-preview__hero-copy">
+            <span class="te-preview__eyebrow">01 / Music, art &amp; coffee</span>
+            <h1>Café colombiano de origen, <em>hecho música</em>.</h1>
+            <p class="te-preview__lead">Tueste interpreta el café desde el territorio: origen, ritual, sonido y comunidad. Aquí el café se escucha antes de probarse.</p>
+            <div class="te-preview__actions">
+              <a class="te-preview__button" href="#cafe">Comprar café</a>
+              <a class="te-preview__button te-preview__button--secondary" href="#tree">Sembrar un árbol</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="te-preview__slide" data-slide aria-label="2 de 4 · Tueste Tree">
+          <div class="te-preview__hero-bg" style="background-image:url('../assets/tueste-tree-siembra-vitral.webp');background-position:center 45%" aria-hidden="true"></div>
+          <div class="te-preview__wrap te-preview__hero-copy">
+            <span class="te-preview__eyebrow">02 / Tueste Tree</span>
+            <h1>Siembra un árbol. <em>Cofunda un origen</em>.</h1>
+            <p class="te-preview__lead">Los primeros 10.200 árboles son fundacionales. Eliges tu lugar en el lote, lo siembras y sigues su año completo.</p>
+            <div class="te-preview__actions">
+              <a class="te-preview__button" data-tu="tree" href="./tueste-tree-landing-offline.html">Entrar a la finca</a>
+              <a class="te-preview__button te-preview__button--secondary" href="#insignias">Ver las insignias</a>
+            </div>
+            <div class="te-preview__founders">
+              <div class="te-preview__founders-num"><span>Fundadores de Tueste Tree</span><span><b data-taken>3.570</b> de 10.200</span></div>
+              <div class="te-preview__meter"><i data-meter style="width:0"></i></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="te-preview__slide te-preview__slide--banner" data-slide aria-label="3 de 4 · Piezas limitadas">
+          <div class="te-preview__hero-bg" style="background-image:url('../assets/banner_hodie.png');background-position:center 50%" aria-hidden="true"></div>
+          <div class="te-preview__wrap te-preview__hero-copy">
+            <span class="te-preview__eyebrow">03 / Piezas limitadas</span>
+            <div class="te-preview__actions">
+              <a class="te-preview__button" href="#cafe">Comprar el hoodie</a>
+              <a class="te-preview__button te-preview__button--secondary" href="#piezas">Ver todas las piezas</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="te-preview__slide te-preview__slide--banner" data-slide aria-label="4 de 4 · Tueste Selection">
+          <div class="te-preview__hero-bg" style="background-image:url('../assets/banner_lanzamiento.png');background-position:center 50%" aria-hidden="true"></div>
+          <div class="te-preview__wrap te-preview__hero-copy">
+            <span class="te-preview__eyebrow">04 / Tueste Selection · Tueste Records</span>
+            <div class="te-preview__actions">
+              <a class="te-preview__button" data-tu="records" data-tu-hash="#lanzamientos" href="./tueste-records-landing-offline.html">Ver el lanzamiento</a>
+              <a class="te-preview__button te-preview__button--secondary" data-tu="records" href="./tueste-records-landing-offline.html">Entrar al sello</a>
+            </div>
+          </div>
+        </article>
+
+        <div class="te-preview__hero-controls">
+          <div class="te-preview__hero-dots" data-hero-dots role="tablist" aria-label="Diapositivas"></div>
+          <button class="te-preview__hero-arrow" type="button" data-hero-prev aria-label="Anterior">‹</button>
+          <button class="te-preview__hero-arrow" type="button" data-hero-next aria-label="Siguiente">›</button>
+        </div>
+      </section>
+
+      <!-- MARQUEE -->
+      <div class="te-preview__marquee" aria-label="Donde el café se escucha">
+        <div class="te-preview__marquee-track">
+          <span>Donde el café se escucha · </span>
+          <span aria-hidden="true">Donde el café se escucha · </span>
+          <span aria-hidden="true">Donde el café se escucha · </span>
+          <span aria-hidden="true">Donde el café se escucha · </span>
+        </div>
+      </div>
+
+      <!-- INTRO -->
+      <section class="te-preview__section">
+        <div class="te-preview__wrap te-preview__intro te-preview__reveal">
+          <div>
+            <span class="te-preview__eyebrow">Tueste / Editorial</span>
+            <h2>Del origen a la taza, <em>con intención</em>.</h2>
+          </div>
+          <div>
+            <p>En <strong>Tueste</strong> el café no se sirve, se interpreta. Cultivamos café colombiano de origen en el cañón de Aures y lo convertimos en música, ritual y comunidad.</p>
+            <p>Aquí compras café fresco, siembras un árbol y sigues su cosecha, o vives una experiencia sensorial donde el origen suena antes de llegar a la taza.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CAFÉ · carrusel de presentaciones -->
+      <section class="te-preview__section" id="cafe">
+        <div class="te-preview__wrap te-preview__reveal">
+          <div class="te-preview__section-heading te-preview__heading-row">
+            <div>
+              <span class="te-preview__eyebrow">02 / Café de origen</span>
+              <h2>El café que <em>abre la escucha</em>.</h2>
+              <p>Los lotes de la colección Aures, en todas sus presentaciones. Cada bolsa trae el QR musical de su lote.</p>
+            </div>
+            <div class="te-preview__rail-nav">
+              <button class="te-preview__arrow" type="button" data-rail-prev="cafes" aria-label="Anterior">‹</button>
+              <button class="te-preview__arrow" type="button" data-rail-next="cafes" aria-label="Siguiente">›</button>
+            </div>
+          </div>
+
+          <div class="te-preview__rail" data-rail="cafes" tabindex="0" aria-label="Presentaciones de café">
+            <article class="te-preview__cafe">
+              <div class="te-preview__cafe-art te-preview__cafe-art--leaf">
+                <img src="../assets/aures-conscious.png" alt="Bolsa de Café Aures 1840 Conscious" loading="lazy">
+              </div>
+              <div class="te-preview__cafe-body">
+                <span class="te-preview__meta">Lote 01 · 340 g</span>
+                <h3>Aures 1840 Conscious</h3>
+                <p class="te-preview__card-note">Panela, cereza madura y cacao. Grano entero o molido, tueste medio.</p>
+                <p class="te-preview__card-price">$55.000 COP</p>
+                <a class="te-preview__button" href="#cafe">Comprar</a>
+              </div>
+            </article>
+
+            <article class="te-preview__cafe">
+              <div class="te-preview__cafe-art te-preview__cafe-art--cherry">
+                <img src="../assets/aures-amour.png" alt="Bolsa de Café Aures 1840 Amour" loading="lazy">
+              </div>
+              <div class="te-preview__cafe-body">
+                <span class="te-preview__meta">Lote 02 · 340 g</span>
+                <h3>Aures 1840 Amour</h3>
+                <p class="te-preview__card-note">El lote más dulce de la colección. Grano entero o molido.</p>
+                <p class="te-preview__card-price">$55.000 COP <b class="te-preview__chip">Agotado</b></p>
+                <a class="te-preview__button te-preview__button--secondary" href="#cafe">Avísame</a>
+              </div>
+            </article>
+
+            <article class="te-preview__cafe">
+              <div class="te-preview__cafe-art te-preview__cafe-art--amber te-preview__cafe-art--clean">
+                <img src="../assets/combo-unity.png" alt="Caja Tueste Unity con los dos lotes" loading="lazy">
+              </div>
+              <div class="te-preview__cafe-body">
+                <span class="te-preview__meta">680 g · dos frecuencias</span>
+                <h3>Combo Unity</h3>
+                <p class="te-preview__card-note">Conscious y Amour juntos: 340 g de cada lote, con su molienda a elegir.</p>
+                <p class="te-preview__card-price">$98.000 COP</p>
+                <a class="te-preview__button" href="#cafe">Comprar</a>
+              </div>
+            </article>
+
+            <article class="te-preview__cafe">
+              <div class="te-preview__cafe-art te-preview__cafe-art--fill">
+                <img src="../assets/combo-taza.jpg" alt="Combo Café Aures 1840 con taza Efímero" loading="lazy">
+              </div>
+              <div class="te-preview__cafe-body">
+                <span class="te-preview__meta">340 g + taza artesanal</span>
+                <h3>Aures 1840 + Taza Efímero</h3>
+                <p class="te-preview__card-note">El ritual completo en casa: el lote y una taza hecha a mano por artesanos locales.</p>
+                <p class="te-preview__card-price">$150.000 COP <b class="te-preview__chip">Agotado</b></p>
+                <a class="te-preview__button te-preview__button--secondary" href="#cafe">Avísame</a>
+              </div>
+            </article>
+
+            <article class="te-preview__cafe">
+              <div class="te-preview__cafe-art te-preview__cafe-art--fill">
+                <img src="../assets/combo-sonora.jpg" alt="Vinilo y fundas de Origen Tostado, la experiencia sonora del lote" loading="lazy">
+              </div>
+              <div class="te-preview__cafe-body">
+                <span class="te-preview__meta">340 g + experiencia digital</span>
+                <h3>Aures 1840 + Experiencia Sonora</h3>
+                <p class="te-preview__card-note">El café que se bebe y se escucha: una frecuencia de Origen Tostado creada para el lote.</p>
+                <p class="te-preview__card-price">$75.000 COP <b class="te-preview__chip">Agotado</b></p>
+                <a class="te-preview__button te-preview__button--secondary" href="#cafe">Avísame</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- PIEZAS -->
+      <section class="te-preview__section" id="piezas">
+        <div class="te-preview__wrap te-preview__reveal">
+          <div class="te-preview__section-heading">
+            <span class="te-preview__eyebrow">03 / Piezas · Café · Ritual</span>
+            <h2>Objetos <em>con origen</em>.</h2>
+          </div>
+          <div class="te-preview__cards">
+            <article class="te-preview__card"><div class="te-preview__card-image"><img src="../assets/taza-rosada.png" alt="Taza efímero rosada" loading="lazy"></div><div class="te-preview__card-body"><h3>Taza efímero rosada</h3><p class="te-preview__card-price">$145.000 COP <b class="te-preview__chip">Agotado</b></p><p class="te-preview__card-note">Pieza limitada, torneada a mano.</p><a class="te-preview__button te-preview__button--secondary" href="#cafe">Avísame</a></div></article>
+            <article class="te-preview__card"><div class="te-preview__card-image"><img src="../assets/taza-morada.png" alt="Taza efímero morada" loading="lazy"></div><div class="te-preview__card-body"><h3>Taza efímero morada</h3><p class="te-preview__card-price">$145.000 COP</p><p class="te-preview__card-note">Pieza limitada, torneada a mano.</p><a class="te-preview__button" href="#cafe">Comprar</a></div></article>
+            <article class="te-preview__card"><div class="te-preview__card-image"><img src="../assets/taza-splash.png" alt="Taza Splash" loading="lazy"></div><div class="te-preview__card-body"><h3>Taza Splash</h3><p class="te-preview__card-price">$145.000 COP</p><p class="te-preview__card-note">Pieza única, hecha a mano · edición limitada.</p><a class="te-preview__button" href="#cafe">Comprar</a></div></article>
+            <article class="te-preview__card"><div class="te-preview__card-image"><img src="../assets/hoodie.png" alt="Origin Grey Hoodie" loading="lazy"></div><div class="te-preview__card-body"><h3>Origin Grey Hoodie</h3><p class="te-preview__card-price">$380.000 COP</p><p class="te-preview__card-note">Edición limitada 1840-LTD · tallas XS a XL.</p><a class="te-preview__button" href="#cafe">Comprar</a></div></article>
+          </div>
+        </div>
+      </section>
+
+      <!-- TUESTE TREE -->
+      <section class="te-preview__section" id="tree">
+        <div class="te-preview__wrap te-preview__reveal">
+          <div class="te-preview__section-heading">
+            <span class="te-preview__eyebrow">04 / Tueste Tree</span>
+            <h2>Siembra un árbol. <em>Cofunda un origen</em>.</h2>
+            <p>Los primeros 10.200 árboles son fundacionales. No compras una planta: entras a un origen vivo y lo sigues durante todo un año.</p>
+          </div>
+          <div class="te-preview__tree-shell">
+            <div class="te-preview__tree-media">
+              <img src="../assets/tueste-tree-siembra-vitral.webp" alt="Manos sembrando una plántula de café bajo la lluvia" loading="lazy">
+              <span>Finca Tres Esquinas · Lote fundacional</span>
+            </div>
+            <div class="te-preview__tree-copy">
+              <h3>Tu nombre queda en la tierra.</h3>
+              <p>Eliges tu lugar en el lote, siembras tu árbol en pantalla y recibes tu Certificado de Tradición numerado en 48 horas.</p>
+              <ul class="te-preview__facts">
+                <li><span>Valor</span><span>USD 100 por árbol fundacional</span></li>
+                <li><span>En línea</span><span>De 1 a 30 árboles · más de 30, con nuestro agente</span></li>
+                <li><span>Insignia</span><span>Semilla, Plata, Oro u Holográfica según cuántos siembres</span></li>
+              </ul>
+              <div class="te-preview__founders">
+                <div class="te-preview__founders-num"><span>Ya sembraron</span><span><b data-taken>3.570</b> de 10.200</span></div>
+                <div class="te-preview__meter"><i data-meter style="width:0"></i></div>
+              </div>
+              <div class="te-preview__actions">
+                <a class="te-preview__button" data-tu="tree" href="./tueste-tree-landing-offline.html">Entrar a la finca</a>
+                <a class="te-preview__button te-preview__button--secondary" href="#insignias">Ver las insignias</a>
+              </div>
+              <p class="te-preview__disclaimer">Adopción simbólica y cultural · no representa inversión financiera.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- INSIGNIAS -->
+      <section class="te-preview__section" id="insignias">
+        <div class="te-preview__wrap te-preview__reveal">
+          <div class="te-preview__section-heading">
+            <span class="te-preview__eyebrow">05 / Las insignias del proyecto</span>
+            <h2>Cuatro acabados, <em>un mismo origen</em>.</h2>
+            <p>Cada adopción recibe su insignia digital. El acabado cambia según cuántos árboles siembres.</p>
+          </div>
+          <div class="te-preview__badges">
+            <article class="te-preview__badge">
+              <img src="../assets/tueste-tree-insignia-1-semilla.webp" alt="Insignia Semilla" loading="lazy">
+              <p class="te-preview__badge-q">1 – 9<small>Árboles</small></p>
+              <p class="te-preview__badge-name">Semilla</p>
+              <p class="te-preview__badge-desc">Tarjeta a color sobre papel. El primer árbol del guardián.</p>
+            </article>
+            <article class="te-preview__badge">
+              <img src="../assets/tueste-tree-insignia-10-plata.webp" alt="Insignia Plata" loading="lazy">
+              <p class="te-preview__badge-q">10 – 19<small>Árboles</small></p>
+              <p class="te-preview__badge-name">Plata</p>
+              <p class="te-preview__badge-desc">Acabado metálico plateado para quien siembra un corredor.</p>
+            </article>
+            <article class="te-preview__badge">
+              <img src="../assets/tueste-tree-insignia-20-oro.webp" alt="Insignia Oro" loading="lazy">
+              <p class="te-preview__badge-q">20 – 29<small>Árboles</small></p>
+              <p class="te-preview__badge-name">Oro</p>
+              <p class="te-preview__badge-desc">Acabado dorado. Una franja entera del lote fundacional.</p>
+            </article>
+            <article class="te-preview__badge">
+              <img src="../assets/tueste-tree-insignia-30-holografica.webp" alt="Insignia Holográfica" loading="lazy">
+              <p class="te-preview__badge-q">30+<small>Árboles</small></p>
+              <p class="te-preview__badge-name">Holográfica</p>
+              <p class="te-preview__badge-desc">Arcoíris holográfico. Socio fundador del proyecto.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIVIR EL CAFÉ -->
+      <section class="te-preview__section" id="vivir">
+        <div class="te-preview__wrap te-preview__reveal">
+          <div class="te-preview__section-heading">
+            <span class="te-preview__eyebrow">06 / Vivir el café</span>
+            <h2>Tu árbol te va a escribir. <em>Y tú vas a estar ahí</em>.</h2>
+            <p>Cuatro capítulos a lo largo del año, cada uno con algo que te llega.</p>
+          </div>
+          <div class="te-preview__chapters">
+            <article class="te-preview__chapter">
+              <div class="te-preview__chapter-art"><img src="../assets/tueste-tree-cap1-lluvia.webp" alt="La primera lluvia" loading="lazy"></div>
+              <p class="te-preview__chapter-n">Capítulo 1 · Semanas 1 a 4</p>
+              <h3>La primera lluvia</h3>
+              <p>Un brote de dos hojas a 1.840 m, envuelto en la niebla del cañón.</p>
+              <div class="te-preview__chapter-get"><span>Te llega</span>Certificado numerado en 48 h y la primera foto del lote en el mes 1.</div>
+            </article>
+            <article class="te-preview__chapter">
+              <div class="te-preview__chapter-art"><img src="../assets/tueste-tree-cap2-flor.webp" alt="La noche en que florece" loading="lazy"></div>
+              <p class="te-preview__chapter-n">Capítulo 2 · La floración</p>
+              <h3>La noche en que florece</h3>
+              <p>Tres días de flores blancas y olor a jazmín sobre toda la ladera.</p>
+              <div class="te-preview__chapter-get"><span>Te llega</span>Video del lote en flor y la frecuencia sonora de la temporada.</div>
+            </article>
+            <article class="te-preview__chapter">
+              <div class="te-preview__chapter-art"><img src="../assets/tueste-tree-cap3-cosecha.webp" alt="Cuando enrojece" loading="lazy"></div>
+              <p class="te-preview__chapter-n">Capítulo 3 · La cosecha</p>
+              <h3>Cuando enrojece</h3>
+              <p>Las cerezas pasan de verde a rojo y se recogen a mano, una por una.</p>
+              <div class="te-preview__chapter-get"><span>Te llega</span>Actualización de cosecha y acceso preferencial al café del lote.</div>
+            </article>
+            <article class="te-preview__chapter">
+              <div class="te-preview__chapter-art"><img src="../assets/tueste-tree-cap4-taza.webp" alt="La taza con tu nombre" loading="lazy"></div>
+              <p class="te-preview__chapter-n">Capítulo 4 · La taza</p>
+              <h3>La taza con tu nombre</h3>
+              <p>El lote vuelve tostado a las manos del guardián que lo sembró.</p>
+              <div class="te-preview__chapter-get"><span>Te llega</span>Café del lote, balance del año y renovación a precio de fundador.</div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- RITUAL -->
+      <section class="te-preview__section" id="ritual">
+        <div class="te-preview__wrap te-preview__reveal">
+          <div class="te-preview__section-heading">
+            <span class="te-preview__eyebrow">07 / Tueste Sessions 001</span>
+            <h2>El café también <em>se escucha</em>.</h2>
+            <p><em>Coffee in Frequencies</em> es el primer álbum de Origen Tostado: diez frecuencias, de 60 Hz al infinito, que recorren el viaje de la semilla de café desde el silencio hasta la expansión.</p>
+          </div>
+          <div class="te-preview__panel">
+            <div class="te-preview__panel-image"><a href="https://open.spotify.com/album/3QORX6JtWw22nwDNMy9jLp" target="_blank" rel="noopener"><img src="../assets/banner_2.png" alt="Tueste Sessions 001 · Coffee in Frequencies, álbum de Origen Tostado" loading="lazy"></a></div>
+            <div>
+              <h3>Coffee in Frequencies · Origen Tostado</h3>
+              <p>Más que música, un paisaje sonoro grabado con los sonidos reales del café: una invitación a cerrar los ojos, escuchar a fondo y volver a donde todo empieza. Es la misma frecuencia que vive en el QR de cada bolsa.</p>
+              <div class="te-preview__actions">
+                <a class="te-preview__button" href="https://open.spotify.com/album/3QORX6JtWw22nwDNMy9jLp" target="_blank" rel="noopener">Escuchar en Spotify</a>
+                <a class="te-preview__button te-preview__button--secondary" data-tu="records" data-tu-hash="#plataformas" href="./tueste-records-landing-offline.html">Todas las plataformas</a>
+              </div>
+              <p class="te-preview__disclaimer">¿Quieres vivirlo en persona? <a href="#cafe">Ritual de Adopción Fundador · 001</a>: 30 cupos, 30 árboles, una frecuencia.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- UNITY -->
+      <section class="te-preview__section" id="unity">
+        <div class="te-preview__wrap te-preview__unity te-preview__reveal">
+          <div class="te-preview__unity-art" aria-hidden="true">
+            <img src="../assets/tueste-unity-logo.png" alt="" loading="lazy" width="700" height="242">
+          </div>
+          <div>
+            <span class="te-preview__eyebrow">08 / Tueste Unity</span>
+            <h2>Tu marca de café, <em>con firma sonora</em>.</h2>
+          </div>
+          <div>
+            <p><strong>Tueste Unity</strong> es nuestro estudio creativo y de branding sonoro para marcas de café: co-branding, firma sonora, contenido y experiencias. Cada proyecto se cotiza a la medida.</p>
+            <p class="te-preview__quote">Curamos música electrónica y creamos canciones con sonidos reales del café, grabados por nuestro equipo en el origen.</p>
+            <div class="te-preview__actions">
+              <a class="te-preview__button" data-tu="unity" href="./tueste-unity-landing-offline.html">Conoce Tueste Unity</a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- RECORDS -->
+      <section class="te-preview__section" id="records">
+        <div class="te-preview__wrap te-preview__unity te-preview__reveal">
+          <div class="te-preview__unity-art te-preview__records-art" aria-hidden="true">
+            <img src="../assets/banner_lanzamiento.png" alt="" loading="lazy" width="1800" height="1013">
+          </div>
+          <div>
+            <span class="te-preview__eyebrow">09 / Tueste Records</span>
+            <h2>El café también <em>se publica</em>.</h2>
+          </div>
+          <div>
+            <p><strong>Tueste Records</strong> es el sello discográfico de Tueste: lanzamientos, artistas y las frecuencias creadas con los sonidos reales del origen. Aquí vive <em>Origen Tostado</em> y todo lo que se viene.</p>
+            <p class="te-preview__quote">Cada lote tiene su música. Cada lanzamiento, su café.</p>
+            <div class="te-preview__actions">
+              <a class="te-preview__button" data-tu="records" href="./tueste-records-landing-offline.html">Entrar al sello</a>
+              <a class="te-preview__button te-preview__button--secondary" data-tu="records" data-tu-hash="#plataformas" href="./tueste-records-landing-offline.html">Dónde escuchar</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <section class="tu-universe" data-tu-here="tienda" data-theme="tueste" aria-label="Universo Tueste"><div class="tu-wrap"><p class="tu-kicker">Universo Tueste</p><h2>Un origen, <em>cuatro caminos</em>.</h2><p class="tu-intro">Todo nace en el mismo cafetal del Cañón de Aures: el café que compras, el árbol que siembras, la marca que creas con nosotros y la música que lo cuenta.</p><div class="tu-grid"><a class="tu-card" data-tu="tienda" href="#inicio" target="_top" aria-label="Tienda tueste.co"><div class="tu-n"><span>01</span><b>Estás aquí</b></div><div class="tu-logo"><img class="tu-logo-tienda" src="../assets/tueste-logo-glass.png" alt="Tueste"></div><p>Café de origen, piezas y ritual. La casa de todo lo que hacemos.</p><span>Entrar →</span></a><a class="tu-card" data-tu="tree" href="./tueste-tree-landing-offline.html" target="_top" aria-label="Tueste Tree"><div class="tu-n"><span>02</span><b>Estás aquí</b></div><div class="tu-logo"><img class="tu-logo-tree" src="../assets/tueste-logo-glass.png" alt="Tueste Tree"></div><p>Siembra un árbol en la Finca Tres Esquinas y cofunda un origen.</p><span>Entrar →</span></a><a class="tu-card" data-tu="unity" href="./tueste-unity-landing-offline.html" target="_top" aria-label="Tueste Unity"><div class="tu-n"><span>03</span><b>Estás aquí</b></div><div class="tu-logo"><img class="tu-logo-unity" src="../assets/tueste-logo-glass.png" alt="Tueste Unity"></div><p>Tu marca de café con nuestro origen y una firma sonora.</p><span>Entrar →</span></a><a class="tu-card" data-tu="records" href="./tueste-records-landing-offline.html" target="_top" aria-label="Tueste Records"><div class="tu-n"><span>04</span><b>Estás aquí</b></div><div class="tu-logo"><img class="tu-logo-records" src="../assets/tueste-logo-glass.png" alt="Tueste Records"></div><p>El sello: lanzamientos, artistas y dónde escuchar el café.</p><span>Entrar →</span></a></div></div></section>
+<footer class="te-preview__footer" id="footer">
+      <div class="te-preview__rainbow" aria-hidden="true"></div>
+      <div class="te-preview__wrap te-preview__footer-inner">
+        <div><a class="te-preview__brand" href="#inicio" aria-label="Tueste, inicio"><img class="te-preview__brand-logo" src="../assets/tueste-logo-glass.png" alt="Tueste" width="700" height="242"></a><p>Café fresco · música · ritual · comunidad</p></div>
+        <div><p><a data-tu="tree" href="./tueste-tree-landing-offline.html">Tueste Tree</a></p><p><a data-tu="unity" href="./tueste-unity-landing-offline.html">Tueste Unity</a></p><p><a data-tu="records" href="./tueste-records-landing-offline.html">Tueste Records</a></p></div>
+        <div><p>tuesteunity@tueste.co</p><p>+57 310 269 0145</p></div>
+        <div><p>© Tueste · Monacua Global Company S.A.S.</p></div>
+      </div>
+    </footer>
+
+    <aside class="te-preview__cart-drawer" data-cart-drawer aria-label="Carrito" aria-hidden="true">
+      <h2>Tu carrito</h2>
+      <p>El carrito visual está conectado como referencia local. No ejecuta compras ni modifica Shopify.</p>
+      <p class="te-preview__meta">0 productos</p>
+      <button class="te-preview__button te-preview__button--secondary" type="button" data-cart-close>Cerrar</button>
+    </aside>
+    <script src="./tienda-editorial.js" defer></script>
+  
+<script id="tu-js">
+/* ---- Universo Tueste · enlaces entre páginas ----
+   Para producción, reemplazar por las rutas reales, por ejemplo:
+   window.TUESTE_LINKS = {"tienda":"#inicio","tree":"./tueste-tree-landing-offline.html","unity":"./tueste-unity-landing-offline.html#unity","records":"./tueste-records-landing-offline.html#records"}; */
+window.TUESTE_LINKS = {"tienda":"#inicio","tree":"./tueste-tree-landing-offline.html","unity":"./tueste-unity-landing-offline.html","records":"./tueste-records-landing-offline.html"};
+(function(){
+  var L = window.TUESTE_LINKS || {};
+  var strip = document.querySelector('.tu-universe');
+  var here = strip ? strip.getAttribute('data-tu-here') : '';
+  var nodes = document.querySelectorAll('[data-tu]');
+  for (var i = 0; i < nodes.length; i++) {
+    var a = nodes[i], k = a.getAttribute('data-tu');
+    if (L[k]) a.setAttribute('href', L[k] + (a.getAttribute('data-tu-hash') || ''));
+    if (/^https?:\/\//.test(a.getAttribute('href') || '')) a.setAttribute('target', '_top');
+    if (k === here) { a.classList.add('is-here'); a.setAttribute('aria-current', 'page'); }
+  }
+})();
+</script>
+
+</body>
+</html>

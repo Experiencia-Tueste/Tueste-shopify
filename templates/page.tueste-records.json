@@ -1,0 +1,58 @@
+{
+  "sections": {
+    "tueste_records": {
+      "type": "tueste-records",
+      "blocks": {
+        "release_1": {
+          "type": "release",
+          "settings": {
+            "type": "album",
+            "year": "2026",
+            "status": "Disponible",
+            "art_label": "Origen\nTostado",
+            "title": "Origen Tostado",
+            "description": "Una escucha construida con territorio, café y memoria.",
+            "color": "#312817",
+            "link": "https://open.spotify.com",
+            "link_label": "Escuchar"
+          }
+        },
+        "release_2": {
+          "type": "release",
+          "settings": {
+            "type": "ep",
+            "year": "2026",
+            "status": "Próximamente",
+            "art_label": "Coffee\nin frequencies",
+            "title": "Coffee in Frequencies",
+            "description": "Tueste Sessions 001, una pieza para acompañar el ritual.",
+            "color": "#1e2e2c",
+            "link": "https://open.spotify.com",
+            "link_label": "Escuchar"
+          }
+        },
+        "release_3": {
+          "type": "release",
+          "settings": {
+            "type": "single",
+            "year": "2026",
+            "status": "Disponible",
+            "art_label": "Aures\n1840",
+            "title": "Aures 1840",
+            "description": "Una frecuencia nacida en el mismo paisaje del café.",
+            "color": "#2d2027",
+            "link": "https://open.spotify.com",
+            "link_label": "Escuchar"
+          }
+        },
+        "spotify": { "type": "platform", "settings": { "name": "Spotify", "description": "Perfil del sello", "url": "https://open.spotify.com" } },
+        "youtube": { "type": "platform", "settings": { "name": "YouTube", "description": "Sesiones y visuales", "url": "https://www.youtube.com" } },
+        "apple": { "type": "platform", "settings": { "name": "Apple Music", "description": "Catálogo del sello", "url": "https://music.apple.com" } },
+        "soundcloud": { "type": "platform", "settings": { "name": "SoundCloud", "description": "Pruebas y frecuencias", "url": "https://soundcloud.com" } }
+      },
+      "block_order": ["release_1", "release_2", "release_3", "spotify", "youtube", "apple", "soundcloud"],
+      "settings": {}
+    }
+  },
+  "order": ["tueste_records"]
+}

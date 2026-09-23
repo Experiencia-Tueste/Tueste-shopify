@@ -1,0 +1,129 @@
+{
+  "sections": {
+    "tueste_universe": {
+      "type": "tueste-universe",
+      "settings": {
+        "current_experience": "tree"
+      }
+    },
+    "tueste_tree_landing": {
+      "type": "tueste-tree-landing",
+      "blocks": {
+        "badge_seed": {
+          "type": "badge",
+          "settings": {
+            "image_key": "seed",
+            "threshold": "1 árbol",
+            "badge_label": "Insignia",
+            "name": "Semilla",
+            "description": "La primera raíz. Un árbol con tu nombre en el lote fundacional."
+          }
+        },
+        "badge_silver": {
+          "type": "badge",
+          "settings": {
+            "image_key": "silver",
+            "threshold": "10 árboles",
+            "badge_label": "Insignia",
+            "name": "Plata",
+            "description": "Una hilera propia. Diez árboles y una voz clara en la comunidad."
+          }
+        },
+        "badge_gold": {
+          "type": "badge",
+          "settings": {
+            "image_key": "gold",
+            "threshold": "20 árboles",
+            "badge_label": "Insignia",
+            "name": "Oro",
+            "description": "Un surco entero. Veinte árboles y acceso preferencial a cada cosecha."
+          }
+        },
+        "badge_holographic": {
+          "type": "badge",
+          "settings": {
+            "image_key": "holographic",
+            "threshold": "30+ árboles",
+            "badge_label": "Insignia",
+            "name": "Holográfica",
+            "description": "Socio fundador. Treinta árboles o más y participación en el proyecto."
+          }
+        },
+        "chapter_rain": {
+          "type": "chapter",
+          "settings": {
+            "image_key": "cap1",
+            "image_alt": "La primera lluvia",
+            "label": "Capítulo 1 · Semanas 1 a 4",
+            "title": "La primera lluvia",
+            "body": "Un brote de dos hojas rompe la tierra a 1.840 metros. La niebla del cañón lo cubre cada mañana y cada tarde el sol lo despeja.",
+            "deliverable_label": "Te llega",
+            "deliverable": "Tu certificado numerado en 48 horas y la primera foto o video de tu lote desde la finca."
+          }
+        },
+        "chapter_flower": {
+          "type": "chapter",
+          "settings": {
+            "image_key": "cap2",
+            "image_alt": "La noche en que florece",
+            "label": "Capítulo 2 · La floración",
+            "title": "La noche en que florece",
+            "body": "Una vez al año la ladera se llena de flores blancas y durante tres días la finca huele a jazmín. Esa noche te la mandamos.",
+            "deliverable_label": "Te llega",
+            "deliverable": "Video del lote en flor y la frecuencia sonora de la temporada."
+          }
+        },
+        "chapter_harvest": {
+          "type": "chapter",
+          "settings": {
+            "image_key": "cap3",
+            "image_alt": "Cuando enrojece",
+            "label": "Capítulo 3 · La cosecha",
+            "title": "Cuando enrojece",
+            "body": "Las cerezas pasan de verde a lima, de lima a naranja y de naranja a rojo. Se recogen a mano, una por una, en la pendiente.",
+            "deliverable_label": "Te llega",
+            "deliverable": "La actualización de cosecha y acceso preferencial al café del lote."
+          }
+        },
+        "chapter_cup": {
+          "type": "chapter",
+          "settings": {
+            "image_key": "cap4",
+            "image_alt": "La taza con tu nombre",
+            "label": "Capítulo 4 · La taza",
+            "title": "La taza con tu nombre",
+            "body": "Tostamos el lote y el café vuelve a ti: el mismo suelo que viste en la primera foto, en tu taza.",
+            "deliverable_label": "Te llega",
+            "deliverable": "El café del lote, el balance del año y la invitación a renovar."
+          }
+        }
+      },
+      "block_order": [
+        "badge_seed",
+        "badge_silver",
+        "badge_gold",
+        "badge_holographic",
+        "chapter_rain",
+        "chapter_flower",
+        "chapter_harvest",
+        "chapter_cup"
+      ],
+      "settings": {}
+    },
+    "tueste_tree_extras": {
+      "type": "tueste-tree-extras",
+      "blocks": {
+        "faq_1": { "type": "faq", "settings": { "question": "¿La adopción me hace dueño de un árbol o de la finca?", "answer": "No. Es una adopción simbólica, cultural y comunitaria; no implica propiedad legal sobre tierra, finca, árbol o producción específica." } },
+        "faq_2": { "type": "faq", "settings": { "question": "¿Puedo adoptar más de un árbol?", "answer": "Sí. La experiencia actualiza cantidad e insignia de manera editorial; la compra final usa el producto real configurado por la tienda." } },
+        "faq_3": { "type": "faq", "settings": { "question": "¿Qué recibo durante el año?", "answer": "El certificado y las comunicaciones editoriales descritas en cada capítulo, sujetas a la evolución del proyecto." } }
+      },
+      "block_order": ["faq_1", "faq_2", "faq_3"],
+      "settings": {}
+    }
+  },
+  "order": [
+    "tueste_universe",
+    "tueste_tree_landing",
+    "tueste_tree_extras"
+  ]
+}

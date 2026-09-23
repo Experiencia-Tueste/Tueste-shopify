@@ -1,0 +1,31 @@
+{{ 'universo-tueste.css' | asset_url | stylesheet_tag }}
+
+<section class="universo-page tu-home-block tu-section" id="tueste-sessions-{{ section.id }}">
+  <div class="tu-wrap">
+    <div class="tu-home-block__heading"><div><p class="tu-kicker">07 / Tueste Sessions 001</p><h2>{{ section.settings.title }}</h2></div><p class="tu-lead">{{ section.settings.description }}</p></div>
+    <div class="tu-card-grid" style="grid-template-columns:minmax(0,1fr) minmax(0,1fr)">
+      <a class="tu-card" href="{{ section.settings.link }}"{% if section.settings.external %} target="_blank" rel="noopener"{% endif %}><div class="tu-card__media"><img src="{{ 'banner_2.png' | asset_url }}" alt="Tueste Sessions 001" loading="lazy" width="1200" height="800"></div><p class="tu-card__label">Coffee in frequencies</p><h3>{{ section.settings.card_title }}</h3><p>{{ section.settings.card_body }}</p></a>
+      <div class="tu-card"><p class="tu-card__label">Escuchar</p><h3>{{ section.settings.listen_title }}</h3><p>{{ section.settings.listen_body }}</p><a class="tu-button tu-button--ghost" href="{{ section.settings.link }}"{% if section.settings.external %} target="_blank" rel="noopener"{% endif %}>{{ section.settings.link_label }} <span aria-hidden="true">↗</span></a></div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Tueste Sessions",
+  "tag": "section",
+  "limit": 1,
+  "settings": [
+    { "type": "text", "id": "title", "label": "Título", "default": "El café se escucha antes de probarse." },
+    { "type": "textarea", "id": "description", "label": "Descripción", "default": "Una sesión construida con el origen, el ritual y los sonidos que viven alrededor de una taza." },
+    { "type": "text", "id": "card_title", "label": "Título de tarjeta", "default": "Coffee in Frequencies" },
+    { "type": "textarea", "id": "card_body", "label": "Texto de tarjeta", "default": "Tueste Sessions 001 · Origen Tostado." },
+    { "type": "text", "id": "listen_title", "label": "Título escuchar", "default": "Dale play al territorio." },
+    { "type": "textarea", "id": "listen_body", "label": "Texto escuchar", "default": "Una pieza de Tueste Records para acompañar el ritual." },
+    { "type": "text", "id": "link_label", "label": "Texto enlace", "default": "Escuchar en Spotify" },
+    { "type": "url", "id": "link", "label": "URL de escucha" },
+    { "type": "checkbox", "id": "external", "label": "Abrir enlace externo", "default": true }
+  ],
+  "presets": [{ "name": "Tueste Sessions" }]
+}
+{% endschema %}

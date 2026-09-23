@@ -1,0 +1,31 @@
+{%- assign records_page = pages['tueste-records'] -%}
+{%- assign records_url = records_page.url | default: '/pages/tueste-records' -%}
+{{ 'universo-tueste.css' | asset_url | stylesheet_tag }}
+
+<section class="universo-page tu-home-block tu-section" id="tueste-records-{{ section.id }}">
+  <div class="tu-wrap">
+    <div class="tu-home-block__heading"><div><p class="tu-kicker">09 / Tueste Records</p><h2>{{ section.settings.title }}</h2></div><p class="tu-lead">{{ section.settings.description }}</p></div>
+    <div class="tu-card-grid" style="grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)">
+      <a class="tu-card" href="{{ records_url }}"><div class="tu-card__media"><img src="{{ 'banner_lanzamiento.png' | asset_url }}" alt="Tueste Records · lanzamiento" loading="lazy" width="1200" height="800"></div><p class="tu-card__label">Tueste Records</p><h3>{{ section.settings.card_title }}</h3><p>{{ section.settings.card_body }}</p></a>
+      <div class="tu-card"><p class="tu-card__label">El sello</p><h3>{{ section.settings.side_title }}</h3><p>{{ section.settings.side_body }}</p><a class="tu-button tu-button--ghost" href="{{ records_url }}">{{ section.settings.cta_label }} <span aria-hidden="true">→</span></a></div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Tueste Records · teaser",
+  "tag": "section",
+  "limit": 1,
+  "settings": [
+    { "type": "text", "id": "title", "label": "Título", "default": "La música que cuenta el origen." },
+    { "type": "textarea", "id": "description", "label": "Descripción", "default": "Lanzamientos, artistas y las frecuencias creadas con los sonidos reales del cafetal." },
+    { "type": "text", "id": "card_title", "label": "Título de tarjeta", "default": "Origen Tostado" },
+    { "type": "textarea", "id": "card_body", "label": "Texto de tarjeta", "default": "Entra al sello y escucha la historia antes de probarla." },
+    { "type": "text", "id": "side_title", "label": "Título lateral", "default": "Un sello nacido en la finca." },
+    { "type": "textarea", "id": "side_body", "label": "Texto lateral", "default": "Tueste Records conecta café, música, ritual y comunidad." },
+    { "type": "text", "id": "cta_label", "label": "Texto CTA", "default": "Entrar al sello" }
+  ],
+  "presets": [{ "name": "Tueste Records · teaser" }]
+}
+{% endschema %}

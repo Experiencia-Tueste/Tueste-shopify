@@ -1,0 +1,43 @@
+{{ 'universo-tueste.css' | asset_url | stylesheet_tag }}
+
+<section class="universo-page tu-tree-extras" id="tree-context-{{ section.id }}">
+  <div class="tu-wrap tu-section">
+    <div class="tu-home-block__heading"><div><p class="tu-kicker">Más allá del certificado</p><h2>{{ section.settings.title }}</h2></div><p class="tu-lead">{{ section.settings.intro }}</p></div>
+    <div class="tu-tree-extras__grid">
+      <article class="tu-tree-extra"><p class="tu-kicker">Impacto</p><h3>{{ section.settings.impact_title }}</h3><p>{{ section.settings.impact_body }}</p></article>
+      <article class="tu-tree-extra tu-tree-extra--image"><img src="{{ 'tueste-tree-hero-vitral.webp' | asset_url }}" alt="Paisaje de origen de Tueste Tree" loading="lazy" width="1200" height="900"></article>
+      <article class="tu-tree-extra"><p class="tu-kicker">La finca</p><h3>{{ section.settings.farm_title }}</h3><p>{{ section.settings.farm_body }}</p></article>
+    </div>
+  </div>
+  <div class="tu-wrap tu-section" id="preguntas">
+    <div class="tu-home-block__heading"><div><p class="tu-kicker">Preguntas frecuentes</p><h2>{{ section.settings.faq_title }}</h2></div></div>
+    <div class="tu-tree-extras__grid">
+      {%- for block in section.blocks -%}
+        <details class="tu-tree-extra" {{ block.shopify_attributes }}><summary>{{ block.settings.question }}</summary><p>{{ block.settings.answer }}</p></details>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Tueste Tree · contexto",
+  "tag": "section",
+  "limit": 1,
+  "settings": [
+    { "type": "text", "id": "title", "label": "Título", "default": "Un árbol es una relación en el tiempo." },
+    { "type": "textarea", "id": "intro", "label": "Introducción", "default": "Tree es una experiencia editorial de origen. El certificado cuenta la historia; el año y la finca le dan sentido." },
+    { "type": "text", "id": "impact_title", "label": "Título impacto", "default": "Reforestar también es escuchar." },
+    { "type": "textarea", "id": "impact_body", "label": "Texto impacto", "default": "Cada adopción ayuda a sostener una conversación de largo plazo sobre territorio, café y comunidad. Los alcances concretos se comunicarán con transparencia a medida que el proyecto avance." },
+    { "type": "text", "id": "farm_title", "label": "Título finca", "default": "Finca Tres Esquinas." },
+    { "type": "textarea", "id": "farm_body", "label": "Texto finca", "default": "Cañón de Aures, 1.840 msnm. Un paisaje vivo que se cuenta por la lluvia, la flor, la cereza y la taza." },
+    { "type": "text", "id": "faq_title", "label": "Título FAQ", "default": "Lo que conviene saber antes de entrar." }
+  ],
+  "blocks": [
+    { "type": "faq", "name": "Pregunta", "settings": [
+      { "type": "text", "id": "question", "label": "Pregunta", "default": "¿La adopción me hace dueño de un árbol o de la finca?" },
+      { "type": "textarea", "id": "answer", "label": "Respuesta", "default": "No. Es una adopción simbólica, cultural y comunitaria; no implica propiedad legal sobre tierra, finca, árbol o producción específica." }
+    ] }
+  ]
+}
+{% endschema %}

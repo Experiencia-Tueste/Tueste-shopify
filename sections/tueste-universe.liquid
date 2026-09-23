@@ -1,0 +1,14 @@
+{{ 'universo-tueste.css' | asset_url | stylesheet_tag }}
+{% render 'universo-tueste', current: section.settings.current_experience %}
+
+{% schema %}
+{
+  "name": "Universo Tueste",
+  "tag": "section",
+  "limit": 1,
+  "settings": [
+    { "type": "select", "id": "current_experience", "label": "Experiencia activa", "options": [{ "value": "tienda", "label": "Tienda" }, { "value": "tree", "label": "Tueste Tree" }, { "value": "unity", "label": "Tueste Unity" }, { "value": "records", "label": "Tueste Records" }], "default": "tienda" }
+  ],
+  "presets": [{ "name": "Universo Tueste" }]
+}
+{% endschema %}

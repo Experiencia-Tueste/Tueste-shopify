@@ -1,0 +1,375 @@
+{%- liquid
+  assign hero_image = 'tueste-tree-hero-vitral.webp' | asset_url
+  assign siembra_image = 'tueste-tree-siembra-vitral.webp' | asset_url
+  assign certificate_image = 'tueste-tree-card1-ref.webp' | asset_url
+  assign badge_seed = 'tueste-tree-insignia-1-semilla.webp' | asset_url
+  assign badge_silver = 'tueste-tree-insignia-10-plata.webp' | asset_url
+  assign badge_gold = 'tueste-tree-insignia-20-oro.webp' | asset_url
+  assign badge_holographic = 'tueste-tree-insignia-30-holografica.webp' | asset_url
+  assign benefits = section.settings.benefits | split: '||'
+  assign adoption_price_label = 'Consultar'
+  assign adoption_cta_link = section.settings.cta_link | default: '/products/adopcion-digital-tueste-tree'
+  assign adoption_product = all_products[section.settings.adoption_product_handle]
+  if adoption_product != blank
+    assign adoption_variant = adoption_product.selected_or_first_available_variant
+    assign adoption_price_value = adoption_variant.price | divided_by: 100
+    assign adoption_price_label = adoption_price_value | append: ' ' | append: shop.currency
+    assign adoption_cta_link = adoption_product.url | append: '?variant=' | append: adoption_variant.id
+  endif
+-%}
+
+{{ 'tueste-tree-landing.css' | asset_url | stylesheet_tag }}
+
+<section
+  id="TuesteTree-{{ section.id }}"
+  class="tueste-tree-landing"
+  data-tueste-tree
+  data-price="{{ adoption_price_label | escape }}"
+  data-total-founders="{{ section.settings.founder_total | escape }}"
+  data-initial-founders="{{ section.settings.founder_count | escape }}"
+  data-storage-key="tueste-tree-guardian"
+  data-badge-seed="{{ badge_seed }}"
+  data-badge-silver="{{ badge_silver }}"
+  data-badge-gold="{{ badge_gold }}"
+  data-badge-holographic="{{ badge_holographic }}"
+  style="--tt-hero-image: url('{{ hero_image }}'); --tt-siembra-image: url('{{ siembra_image }}');"
+>
+  <div class="tt-progress-bar" data-progress-bar>
+    <div class="tt-progress-copy">
+      <span>Fundadores</span>
+      <strong><span data-founder-count>{{ section.settings.founder_count | escape }}</span> {{ section.settings.progress_suffix | escape }}</strong>
+    </div>
+    <div class="tt-progress-track" aria-hidden="true"><span data-progress-meter></span></div>
+    <span class="tt-progress-total">{{ section.settings.founder_total | escape }}</span>
+  </div>
+
+  <div class="tt-hero tt-section-pad" data-step="0">
+    <div class="tt-hero-image" role="img" aria-label="Amanecer sobre el cafetal de la Finca Tres Esquinas"></div>
+    <div class="tt-hero-overlay" aria-hidden="true"></div>
+    <div class="tt-container tt-hero-content">
+      <p class="tt-kicker">{{ section.settings.hero_eyebrow | escape }}</p>
+      <h1>{{ section.settings.hero_title }}</h1>
+      <p class="tt-lead">{{ section.settings.hero_lead | escape | newline_to_br }}</p>
+      <div class="tt-button-row">
+        <button class="tt-button tt-button--primary" type="button" data-enter-finca>{{ section.settings.hero_button | escape }} <span aria-hidden="true">→</span></button>
+        <a class="tt-text-link" href="#tt-chapters">{{ section.settings.hero_secondary_link | escape }}</a>
+      </div>
+      <div class="tt-founder-meter" aria-live="polite">
+        <div class="tt-founder-numbers"><span><strong data-founder-count>{{ section.settings.founder_count | escape }}</strong> {{ section.settings.founder_label | escape }}</span><span>{{ section.settings.founder_total | escape }}</span></div>
+        <div class="tt-meter" aria-hidden="true"><span data-progress-meter></span></div>
+        <p>{{ section.settings.founder_note | escape }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tt-step tt-section-pad" data-step="1" hidden>
+    <div class="tt-container">
+      <div class="tt-section-heading">
+        <p class="tt-kicker">Paso 1 · El lote</p>
+        <h2>{{ section.settings.map_title }}</h2>
+        <p class="tt-lead">{{ section.settings.map_lead | escape | newline_to_br }}</p>
+      </div>
+      <div class="tt-map-layout">
+        <div class="tt-lot" data-lot>
+          <div class="tt-lot-terrace" aria-hidden="true"></div>
+          <div class="tt-lot-legend" aria-label="Estados del lote">
+            <span><i class="tt-legend-dot tt-legend-dot--taken"></i>Con guardián</span>
+            <span><i class="tt-legend-dot tt-legend-dot--free"></i>Libre</span>
+            <span><i class="tt-legend-dot tt-legend-dot--mine"></i>El tuyo</span>
+          </div>
+          <div class="tt-tree-grid" role="group" aria-label="Mapa editorial del lote fundacional">
+            {%- for tree in (1..60) -%}
+              {%- assign tree_mod = tree | modulo: 7 -%}
+              {%- assign tree_taken = false -%}
+              {%- if tree_mod == 0 or tree_mod == 3 -%}{%- assign tree_taken = true -%}{%- endif -%}
+              <button
+                class="tt-tree-node{% if tree_taken %} is-taken{% else %} is-free{% endif %}"
+                type="button"
+                data-tree-node
+                data-tree-number="{{ tree }}"
+                data-tree-status="{% if tree_taken %}taken{% else %}free{% endif %}"
+                {% if tree_taken %}disabled aria-disabled="true"{% endif %}
+                aria-label="{% if tree_taken %}Con guardián{% else %}Libre{% endif %} · árbol {{ tree }}"
+              >
+                <span class="tt-sr-only">Árbol {{ tree }}</span>
+              </button>
+            {%- endfor -%}
+          </div>
+          <p class="tt-editorial-note">{{ section.settings.map_editorial_note | escape }}</p>
+        </div>
+        <div class="tt-selection-card" data-selection-card>
+          <p class="tt-selection-label">Tu árbol</p>
+          <strong class="tt-selection-number" data-selection-number><span class="tt-placeholder">Toca un punto libre</span></strong>
+          <dl class="tt-facts">
+            <div><dt>Lote</dt><dd>Fundacional · 10.200 árboles</dd></div>
+            <div><dt>Finca</dt><dd>Tres Esquinas, hogar de Casa Cántara</dd></div>
+            <div><dt>Altura</dt><dd>1.840 msnm · Paisaje Cultural Cafetero</dd></div>
+            <div><dt>Variedad</dt><dd data-selection-variety>—</dd></div>
+          </dl>
+          <button class="tt-button tt-button--primary" type="button" data-to-plant disabled>Ir a sembrar <span aria-hidden="true">→</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tt-step tt-section-pad" data-step="2" hidden>
+    <div class="tt-container">
+      <div class="tt-section-heading">
+        <p class="tt-kicker">Paso 2 · La siembra</p>
+        <h2>{{ section.settings.plant_title }}</h2>
+        <p class="tt-lead">{{ section.settings.plant_lead | escape | newline_to_br }}</p>
+      </div>
+      <div class="tt-planting" data-planting>
+        <canvas class="tt-seeds" data-seeds aria-hidden="true"></canvas>
+        <button class="tt-hold-button" type="button" data-hold-to-plant aria-label="Mantén presionado para sembrar">
+          <svg viewBox="0 0 196 196" aria-hidden="true"><circle class="tt-hold-track" cx="98" cy="98" r="91"></circle><circle class="tt-hold-progress" data-hold-progress cx="98" cy="98" r="91"></circle></svg>
+          <span><strong>Sembrar</strong>mantén presionado</span>
+        </button>
+        <div class="tt-sprout" aria-hidden="true"><img src="{{ certificate_image }}" alt="" width="640" height="853" loading="lazy"></div>
+      </div>
+      <div class="tt-planted-message" data-planted-message hidden>
+        <p class="tt-kicker">Sembrado</p>
+        <p>{{ section.settings.planted_message | escape }}</p>
+        <button class="tt-button tt-button--primary" type="button" data-to-name>Ponerle nombre <span aria-hidden="true">→</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="tt-step tt-section-pad" data-step="3" hidden>
+    <div class="tt-container tt-narrow-container">
+      <div class="tt-section-heading">
+        <p class="tt-kicker">Paso 3 · El nombre</p>
+        <h2>{{ section.settings.name_title }}</h2>
+        <p class="tt-lead">{{ section.settings.name_lead | escape | newline_to_br }}</p>
+      </div>
+      <div class="tt-name-form">
+        <label class="tt-field"><span>Nombre del guardián</span><input type="text" maxlength="40" autocomplete="name" data-guardian-name placeholder="{{ section.settings.guardian_placeholder | escape }}"></label>
+        <label class="tt-field"><span>Nombre del árbol (opcional)</span><input type="text" maxlength="30" data-tree-name placeholder="{{ section.settings.tree_name_placeholder | escape }}"></label>
+        <div class="tt-form-actions">
+          <button class="tt-button tt-button--primary" type="button" data-to-certificate disabled>Ver mi certificado <span aria-hidden="true">→</span></button>
+          <p>{{ section.settings.name_helper | escape }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tt-step tt-section-pad" data-step="4" hidden>
+    <div class="tt-container">
+      <div class="tt-section-heading">
+        <p class="tt-kicker">Paso 4 · Tu certificado</p>
+        <h2>{{ section.settings.certificate_title }}</h2>
+      </div>
+      <div class="tt-certificate-layout">
+        <article class="tt-certificate" data-certificate>
+          <div class="tt-certificate-dots tt-certificate-dots--left" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div class="tt-certificate-dots tt-certificate-dots--right" aria-hidden="true"><i></i><i></i><i></i></div>
+          <p class="tt-certificate-brand">TUESTE TREE</p>
+          <p class="tt-certificate-kicker">Certificado de tradición</p>
+          <p class="tt-certificate-subtitle">Tueste Tree · Adopción de origen</p>
+          <h3>{{ section.settings.certificate_heading }}</h3>
+          <img src="{{ certificate_image }}" alt="Ilustración Tueste Tree" width="640" height="853" loading="lazy">
+          <hr>
+          <p class="tt-certificate-lot">Lote fundacional · Founders</p>
+          <p class="tt-certificate-number" data-certificate-number>ÁRBOL N.° 000000</p>
+          <dl>
+            <div><dt>Guardián</dt><dd data-certificate-name>—</dd></div>
+            <div><dt>Nombre del árbol</dt><dd data-certificate-tree>—</dd></div>
+            <div><dt>Cantidad</dt><dd data-certificate-quantity>1 árbol fundacional</dd></div>
+            <div><dt>Fecha de siembra</dt><dd data-certificate-date>—</dd></div>
+            <div><dt>Origen</dt><dd>Finca Tres Esquinas · Cañón de Aures · 1.840 msnm</dd></div>
+          </dl>
+          <p class="tt-certificate-note">{{ section.settings.certificate_note | escape }}</p>
+        </article>
+
+        <aside class="tt-adoption-panel">
+          <p class="tt-kicker">Activa tu árbol fundacional</p>
+          <div class="tt-price"><strong>{{ adoption_price_label | escape }}</strong><span>{{ section.settings.price_suffix | escape }}</span></div>
+          <p class="tt-purchase-lead">{{ section.settings.purchase_lead | escape | newline_to_br }}</p>
+          <ul class="tt-benefits">
+            {%- for benefit in benefits -%}<li>{{ benefit | escape }}</li>{%- endfor -%}
+          </ul>
+          <div class="tt-quantity-card">
+            <p class="tt-kicker">Paso 5 · La cantidad</p>
+            <label for="TuesteTreeQuantity-{{ section.id }}">¿Cuántos árboles adoptas?</label>
+            <div class="tt-quantity-row">
+              <div class="tt-stepper" role="group" aria-label="Cantidad de árboles">
+                <button type="button" data-quantity-minus aria-label="Un árbol menos">−</button>
+                <input id="TuesteTreeQuantity-{{ section.id }}" type="number" min="1" max="1000" value="1" inputmode="numeric" data-quantity aria-label="Cantidad">
+                <button type="button" data-quantity-plus aria-label="Un árbol más">+</button>
+              </div>
+            <div class="tt-total"><strong data-quantity-total>{{ adoption_price_label | escape }}</strong><span data-quantity-label>· 1 árbol fundacional</span></div>
+            </div>
+            <div class="tt-current-badge" data-current-badge>
+              <img src="{{ badge_seed }}" alt="Insignia Tueste Tree" width="440" height="607" data-current-badge-image loading="lazy">
+              <div><span>Tu insignia</span><strong data-current-badge-name>SEMILLA</strong><p data-current-badge-description></p></div>
+            </div>
+            <p class="tt-quantity-hint">{{ section.settings.quantity_hint | escape }}</p>
+            <div class="tt-agent-note" data-agent-note hidden><strong>¿Quieres más de 30 árboles?</strong><p>{{ section.settings.agent_body | escape }}</p></div>
+          </div>
+          <div class="tt-button-row">
+            <a class="tt-button tt-button--primary" href="{{ adoption_cta_link }}" data-buy-link>{{ section.settings.cta_label | escape }} <span aria-hidden="true">→</span></a>
+            <button class="tt-button tt-button--secondary" type="button" data-share>Compartir mi árbol</button>
+          </div>
+          <p class="tt-secure-note">{{ section.settings.secure_note | escape }}</p>
+          <p class="tt-legal-note">{{ section.settings.disclaimer | escape }}</p>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <section class="tt-badges tt-section-pad" id="tt-badges">
+    <div class="tt-container">
+      <div class="tt-section-heading">
+        <p class="tt-kicker">Las insignias del proyecto</p>
+        <h2>{{ section.settings.badges_title }}</h2>
+        <p class="tt-lead">{{ section.settings.badges_lead | escape | newline_to_br }}</p>
+      </div>
+      <div class="tt-badge-grid">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'badge' -%}
+            {%- assign badge_asset = badge_seed -%}
+            {%- if block.settings.image_key == 'silver' -%}{%- assign badge_asset = badge_silver -%}{%- endif -%}
+            {%- if block.settings.image_key == 'gold' -%}{%- assign badge_asset = badge_gold -%}{%- endif -%}
+            {%- if block.settings.image_key == 'holographic' -%}{%- assign badge_asset = badge_holographic -%}{%- endif -%}
+            <article class="tt-badge-card" data-badge-card data-badge-threshold="{{ block.settings.threshold | escape }}" {{ block.shopify_attributes }}>
+              <img src="{{ badge_asset }}" alt="{{ block.settings.name | escape }}" width="440" height="605" loading="lazy">
+              <p>{{ block.settings.threshold | escape }}<small>{{ block.settings.badge_label | escape }}</small></p>
+              <h3>{{ block.settings.name | escape }}</h3>
+              <div>{{ block.settings.description | escape }}</div>
+            </article>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+
+  <section class="tt-chapters tt-section-pad" id="tt-chapters">
+    <div class="tt-container">
+      <div class="tt-section-heading">
+        <p class="tt-kicker">Vivir el café · el año de tu árbol</p>
+        <h2>{{ section.settings.chapters_title }}</h2>
+        <p class="tt-lead">{{ section.settings.chapters_lead | escape | newline_to_br }}</p>
+      </div>
+      <div class="tt-chapter-grid">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'chapter' -%}
+            {%- assign chapter_asset = 'tueste-tree-cap1-lluvia.webp' | asset_url -%}
+            {%- if block.settings.image_key == 'cap2' -%}{%- assign chapter_asset = 'tueste-tree-cap2-flor.webp' | asset_url -%}{%- endif -%}
+            {%- if block.settings.image_key == 'cap3' -%}{%- assign chapter_asset = 'tueste-tree-cap3-cosecha.webp' | asset_url -%}{%- endif -%}
+            {%- if block.settings.image_key == 'cap4' -%}{%- assign chapter_asset = 'tueste-tree-cap4-taza.webp' | asset_url -%}{%- endif -%}
+            <article class="tt-chapter-card" {{ block.shopify_attributes }}>
+              <div class="tt-chapter-art"><img src="{{ chapter_asset }}" alt="{{ block.settings.image_alt | escape }}" width="420" height="420" loading="lazy"></div>
+              <p class="tt-chapter-label">{{ block.settings.label | escape }}</p>
+              <h3>{{ block.settings.title | escape }}</h3>
+              <p>{{ block.settings.body | escape }}</p>
+              <div class="tt-chapter-deliverable"><span>{{ block.settings.deliverable_label | escape }}</span>{{ block.settings.deliverable | escape }}</div>
+            </article>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+      <p class="tt-quote">{{ section.settings.chapters_quote | escape }}</p>
+    </div>
+  </section>
+
+  <footer class="tt-editorial-footer">
+    <div class="tt-container">
+      <p>Tueste Tree · Un proyecto de Monacua Global Company S.A.S. · Paisaje Cultural Cafetero, Colombia</p>
+      <small>{{ section.settings.footer_disclaimer | escape }}</small>
+    </div>
+  </footer>
+  <div class="tt-toast" data-toast role="status" aria-live="polite"></div>
+</section>
+
+<script src="{{ 'tueste-tree-landing.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Tueste Tree landing",
+  "tag": "section",
+  "class": "section-tueste-tree-landing",
+  "limit": 1,
+  "settings": [
+    { "type": "text", "id": "progress_suffix", "label": "Texto después del contador", "default": "ya tienen su árbol" },
+    { "type": "text", "id": "founder_count", "label": "Fundadores actuales", "default": "3.570" },
+    { "type": "text", "id": "founder_total", "label": "Total de fundadores", "default": "10.200" },
+    { "type": "text", "id": "founder_label", "label": "Etiqueta del avance", "default": "fundadores ya tienen su árbol" },
+    { "type": "text", "id": "founder_note", "label": "Nota del avance", "default": "El 35 % del lote fundacional ya tiene guardián. La ventana fundacional no se vuelve a abrir." },
+    { "type": "text", "id": "hero_eyebrow", "label": "Eyebrow del hero", "default": "Finca Tres Esquinas · Cañón de Aures · 1.840 msnm" },
+    { "type": "inline_richtext", "id": "hero_title", "label": "Título del hero", "default": "Siembra un árbol. <em>Cofunda un origen.</em>" },
+    { "type": "textarea", "id": "hero_lead", "label": "Descripción del hero", "default": "Los primeros 10.200 árboles de Tueste Tree son fundacionales: quienes entran ahora no adoptan, cofundan. Entra a la finca, elige tu lugar en el lote y siembra con tus manos el árbol que llevará tu nombre." },
+    { "type": "text", "id": "hero_button", "label": "Botón principal del hero", "default": "Entrar a la finca" },
+    { "type": "text", "id": "hero_secondary_link", "label": "Enlace secundario del hero", "default": "Qué recibe un fundador" },
+    { "type": "inline_richtext", "id": "map_title", "label": "Título del mapa", "default": "Elige tu lugar <em>en la tierra.</em>" },
+    { "type": "textarea", "id": "map_lead", "label": "Descripción del mapa", "default": "Cada punto es un árbol editorial de la Finca Tres Esquinas. Los ámbar ya tienen guardián. Toca uno libre: ese será tu árbol, con su número, su lote y su historia." },
+    { "type": "text", "id": "map_editorial_note", "label": "Nota editorial del mapa", "default": "Experiencia visual · los estados no representan disponibilidad real" },
+    { "type": "inline_richtext", "id": "plant_title", "label": "Título de siembra", "default": "Mantén presionado. <em>Siente cómo arraiga.</em>" },
+    { "type": "textarea", "id": "plant_lead", "label": "Descripción de siembra", "default": "Sembrar un cafeto toma un gesto y años de paciencia. Aquí solo te pedimos el gesto: presiona y no sueltes hasta que la tierra lo reciba." },
+    { "type": "text", "id": "planted_message", "label": "Mensaje después de sembrar", "default": "Tu árbol ya está en la tierra. Ahora, dale un nombre." },
+    { "type": "inline_richtext", "id": "name_title", "label": "Título del nombre", "default": "Todo origen <em>tiene un guardián.</em>" },
+    { "type": "textarea", "id": "name_lead", "label": "Descripción del nombre", "default": "Tu nombre quedará en el certificado de tradición de este árbol. Si lo adoptas para alguien más, escribe el suyo: es un regalo con historia, número y cosecha." },
+    { "type": "text", "id": "guardian_placeholder", "label": "Placeholder guardián", "default": "Ej. María Fernanda López" },
+    { "type": "text", "id": "tree_name_placeholder", "label": "Placeholder nombre árbol", "default": "Ej. Raíz, Aurora, Abuelo Jairo…" },
+    { "type": "text", "id": "name_helper", "label": "Ayuda del formulario", "default": "Prometemos menos, cumplimos siempre: café del lote donde vive tu árbol, cosecha tras cosecha." },
+    { "type": "inline_richtext", "id": "certificate_title", "label": "Título certificado", "default": "Este árbol <em>ya tiene guardián.</em>" },
+    { "type": "inline_richtext", "id": "certificate_heading", "label": "Título interno certificado", "default": "Este árbol ya tiene <em>guardián.</em>" },
+    { "type": "text", "id": "certificate_note", "label": "Nota certificado", "default": "Vista previa. El certificado numerado definitivo se emite al activar la adopción." },
+    { "type": "text", "id": "adoption_product_handle", "label": "Handle del producto real", "default": "adopcion-digital-tueste-tree", "info": "El precio y el enlace salen de la variante disponible de este producto." },
+    { "type": "text", "id": "price_suffix", "label": "Texto del precio", "default": "por árbol · pago único" },
+    { "type": "textarea", "id": "purchase_lead", "label": "Descripción de compra", "default": "Entrar ahora te hace socio fundador, no solo adoptante. Los primeros 10.200 árboles cofundan Tueste Tree y participan de lo que el proyecto construya." },
+    { "type": "textarea", "id": "benefits", "label": "Beneficios, separados por ||", "default": "Certificado digital numerado y acceso a la comunidad privada en 48 horas.||Foto o video de tu lote en el primer mes: el origen empieza a tener rostro.||Actualizaciones cada temporada con su frecuencia sonora: germinación, floración, cosecha, tostión.||El café del lote donde vive tu árbol, cosecha tras cosecha, con acceso preferencial.||Participación proporcional en el proyecto y voz en la comunidad fundadora." },
+    { "type": "text", "id": "quantity_hint", "label": "Ayuda cantidad", "default": "Hasta 30 árboles por adopción en línea. A partir del Nivel 2 (30 árboles) entras como socio fundador." },
+    { "type": "textarea", "id": "agent_body", "label": "Texto agente", "default": "Los niveles mayores se estructuran uno a uno con nuestro equipo." },
+    { "type": "text", "id": "cta_label", "label": "Texto CTA", "default": "Activar mi árbol" },
+    { "type": "url", "id": "cta_link", "label": "Enlace CTA" },
+    { "type": "text", "id": "secure_note", "label": "Nota de seguridad", "default": "Pagos seguros procesados por Shopify · Envío del café incluido en Colombia" },
+    { "type": "textarea", "id": "disclaimer", "label": "Disclaimer de adopción", "default": "La adopción es simbólica, cultural y comunitaria. No implica propiedad legal sobre tierra, finca, árbol o producción específica. Los beneficios de socio fundador están sujetos a la estructuración legal del modelo." },
+    { "type": "inline_richtext", "id": "badges_title", "label": "Título insignias", "default": "Cuatro tarjetas. <em>Cuatro formas de fundar.</em>" },
+    { "type": "textarea", "id": "badges_lead", "label": "Descripción insignias", "default": "Cada adopción recibe una insignia digital numerada según cuántos árboles sembró. Es la marca de tu lugar en el origen." },
+    { "type": "inline_richtext", "id": "chapters_title", "label": "Título capítulos", "default": "Tu árbol te va a escribir. <em>Y tú vas a estar ahí.</em>" },
+    { "type": "textarea", "id": "chapters_lead", "label": "Descripción capítulos", "default": "Adoptar no es comprar un café que llega en una caja. Es tener un lugar exacto en una montaña de Colombia y sentir cómo un árbol se convierte en taza." },
+    { "type": "textarea", "id": "chapters_quote", "label": "Cita de capítulos", "default": "No prometemos el café de un árbol exacto, sino el café del lote donde vive tu árbol —o un beneficio equivalente—. Así la promesa se mantiene cumplible ante cualquier variación de clima, cosecha o logística." },
+    { "type": "textarea", "id": "footer_disclaimer", "label": "Disclaimer del footer", "default": "Esta página es de carácter informativo y experiencial y no constituye una oferta pública de valores ni una promesa de rendimiento económico. Las cifras son de referencia, no garantizadas." }
+  ],
+  "blocks": [
+    {
+      "type": "badge",
+      "name": "Insignia",
+      "settings": [
+        { "type": "select", "id": "image_key", "label": "Imagen", "options": [{ "value": "seed", "label": "Semilla" }, { "value": "silver", "label": "Plata" }, { "value": "gold", "label": "Oro" }, { "value": "holographic", "label": "Holográfica" }], "default": "seed" },
+        { "type": "text", "id": "threshold", "label": "Umbral", "default": "1 árbol" },
+        { "type": "text", "id": "badge_label", "label": "Etiqueta", "default": "Insignia" },
+        { "type": "text", "id": "name", "label": "Nombre", "default": "Semilla" },
+        { "type": "textarea", "id": "description", "label": "Descripción", "default": "La primera raíz. Un árbol con tu nombre en el lote fundacional." }
+      ]
+    },
+    {
+      "type": "chapter",
+      "name": "Capítulo",
+      "settings": [
+        { "type": "select", "id": "image_key", "label": "Imagen", "options": [{ "value": "cap1", "label": "Capítulo 1 · Lluvia" }, { "value": "cap2", "label": "Capítulo 2 · Flor" }, { "value": "cap3", "label": "Capítulo 3 · Cosecha" }, { "value": "cap4", "label": "Capítulo 4 · Taza" }], "default": "cap1" },
+        { "type": "text", "id": "image_alt", "label": "Texto alternativo", "default": "La primera lluvia" },
+        { "type": "text", "id": "label", "label": "Etiqueta", "default": "Capítulo 1 · Semanas 1 a 4" },
+        { "type": "text", "id": "title", "label": "Título", "default": "La primera lluvia" },
+        { "type": "textarea", "id": "body", "label": "Descripción", "default": "Un brote de dos hojas rompe la tierra a 1.840 metros. La niebla del cañón lo cubre cada mañana y cada tarde el sol lo despeja." },
+        { "type": "text", "id": "deliverable_label", "label": "Etiqueta entrega", "default": "Te llega" },
+        { "type": "textarea", "id": "deliverable", "label": "Entrega", "default": "Tu certificado numerado en 48 horas y la primera foto o video de tu lote desde la finca." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tueste Tree landing",
+      "blocks": [
+        { "type": "badge", "settings": { "image_key": "seed", "threshold": "1 árbol", "name": "Semilla", "description": "La primera raíz. Un árbol con tu nombre en el lote fundacional." } },
+        { "type": "badge", "settings": { "image_key": "silver", "threshold": "10 árboles", "name": "Plata", "description": "Una hilera propia. Diez árboles y una voz clara en la comunidad." } },
+        { "type": "badge", "settings": { "image_key": "gold", "threshold": "20 árboles", "name": "Oro", "description": "Un surco entero. Veinte árboles y acceso preferencial a cada cosecha." } },
+        { "type": "badge", "settings": { "image_key": "holographic", "threshold": "30+ árboles", "name": "Holográfica", "description": "Socio fundador. Treinta árboles o más y participación en el proyecto." } },
+        { "type": "chapter", "settings": { "image_key": "cap1", "image_alt": "La primera lluvia", "label": "Capítulo 1 · Semanas 1 a 4", "title": "La primera lluvia", "body": "Un brote de dos hojas rompe la tierra a 1.840 metros. La niebla del cañón lo cubre cada mañana y cada tarde el sol lo despeja.", "deliverable": "Tu certificado numerado en 48 horas y la primera foto o video de tu lote desde la finca." } },
+        { "type": "chapter", "settings": { "image_key": "cap2", "image_alt": "La noche en que florece", "label": "Capítulo 2 · La floración", "title": "La noche en que florece", "body": "Una vez al año la ladera se llena de flores blancas y durante tres días la finca huele a jazmín. Esa noche te la mandamos.", "deliverable": "Video del lote en flor y la frecuencia sonora de la temporada." } },
+        { "type": "chapter", "settings": { "image_key": "cap3", "image_alt": "Cuando enrojece", "label": "Capítulo 3 · La cosecha", "title": "Cuando enrojece", "body": "Las cerezas pasan de verde a lima, de lima a naranja y de naranja a rojo. Se recogen a mano, una por una, en la pendiente.", "deliverable": "La actualización de cosecha y acceso preferencial al café del lote." } },
+        { "type": "chapter", "settings": { "image_key": "cap4", "image_alt": "La taza con tu nombre", "label": "Capítulo 4 · La taza", "title": "La taza con tu nombre", "body": "Tostamos el lote y el café vuelve a ti: el mismo suelo que viste en la primera foto, en tu taza.", "deliverable": "El café del lote, el balance del año y la invitación a renovar." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

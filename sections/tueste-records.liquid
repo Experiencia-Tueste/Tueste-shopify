@@ -1,0 +1,99 @@
+<section class="universo-page tu-records" data-tueste-records id="TuesteRecords-{{ section.id }}">
+  {% render 'universo-tueste', current: 'records', theme: 'records' %}
+
+  <div class="tu-wrap tu-section">
+    <div class="tu-records__intro">
+      <div><p class="tu-kicker">Tueste Records · música de origen</p><h1>{{ section.settings.title }}</h1></div>
+      <p class="tu-records__hero-note">{{ section.settings.intro }}</p>
+    </div>
+  </div>
+
+  <div class="tu-wrap tu-section" id="lanzamientos">
+    <div class="tu-home-block__heading"><div><p class="tu-kicker">Lanzamientos</p><h2>El origen también se escucha.</h2></div><p class="tu-lead">{{ section.settings.releases_intro }}</p></div>
+    <div class="tu-records__filters" role="group" aria-label="Filtrar lanzamientos">
+      <button class="tu-records__filter is-active" type="button" data-record-filter="all" aria-pressed="true">Todos</button>
+      <button class="tu-records__filter" type="button" data-record-filter="album" aria-pressed="false">Álbumes</button>
+      <button class="tu-records__filter" type="button" data-record-filter="ep" aria-pressed="false">EP</button>
+      <button class="tu-records__filter" type="button" data-record-filter="single" aria-pressed="false">Singles</button>
+    </div>
+    <div class="tu-records__grid" data-record-grid>
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'release' -%}
+          <article class="tu-release" data-release-type="{{ block.settings.type }}" {{ block.shopify_attributes }}>
+            <div class="tu-release__art" style="--release-color: {{ block.settings.color }}">
+              {%- if block.settings.image != blank -%}
+                {{ block.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '360,540,720,900', sizes: '(min-width: 990px) 30vw, 80vw', alt: block.settings.title }}
+              {%- else -%}
+                <img src="{{ 'banner_lanzamiento.png' | asset_url }}" alt="{{ block.settings.title | escape }}" loading="lazy" width="900" height="506">
+              {%- endif -%}
+              <strong>{{ block.settings.art_label }}</strong>
+            </div>
+            <div class="tu-release__meta"><span>{{ block.settings.type }} · {{ block.settings.year }}</span><span>{{ block.settings.status }}</span></div>
+            <h2>{{ block.settings.title }}</h2>
+            <p>{{ block.settings.description }}</p>
+            {%- if block.settings.link != blank -%}<a class="tu-button tu-button--ghost" href="{{ block.settings.link }}" target="_blank" rel="noopener">{{ block.settings.link_label }} <span aria-hidden="true">↗</span></a>{%- endif -%}
+          </article>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+
+  <div class="tu-wrap tu-section" id="plataformas">
+    <div class="tu-home-block__heading"><div><p class="tu-kicker">Dónde escuchar</p><h2>Elige tu frecuencia.</h2></div></div>
+    <div class="tu-records__platforms">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'platform' -%}
+          {%- if block.settings.url != blank -%}<a class="tu-platform" href="{{ block.settings.url }}" target="_blank" rel="noopener" {{ block.shopify_attributes }}><strong>{{ block.settings.name }}</strong><span>{{ block.settings.description }}</span></a>{%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+
+  <div class="tu-wrap tu-section" id="suscribete">
+    <div class="tu-records__newsletter">
+      <div><p class="tu-kicker">Lista del sello</p><h2>{{ section.settings.newsletter_title }}</h2></div>
+      <div class="tu-panel">
+        {%- render 'newsletter-form', section_id: section.id, context: 'tueste-records', classes: 'tu-form' -%}
+        <p class="tu-form__message">{{ section.settings.newsletter_note }}</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ 'tueste-records.js' | asset_url }}" defer></script>
+</section>
+
+{% schema %}
+{
+  "name": "Tueste Records",
+  "tag": "section",
+  "class": "section-tueste-records",
+  "limit": 1,
+  "settings": [
+    { "type": "inline_richtext", "id": "title", "label": "Título", "default": "Tueste <em>Records.</em>" },
+    { "type": "textarea", "id": "intro", "label": "Introducción", "default": "El sello discográfico de Tueste: lanzamientos, artistas y las frecuencias creadas con los sonidos reales del origen." },
+    { "type": "textarea", "id": "releases_intro", "label": "Introducción lanzamientos", "default": "Cada release nace entre la finca, la escucha y la taza." },
+    { "type": "text", "id": "newsletter_title", "label": "Título newsletter", "default": "Lo nuevo llega primero a la escucha." },
+    { "type": "textarea", "id": "newsletter_note", "label": "Nota newsletter", "default": "Una lista breve: lanzamientos, sesiones y noticias del sello." }
+  ],
+  "blocks": [
+    { "type": "release", "name": "Lanzamiento", "settings": [
+      { "type": "select", "id": "type", "label": "Tipo", "options": [{ "value": "album", "label": "Álbum" }, { "value": "ep", "label": "EP" }, { "value": "single", "label": "Single" }], "default": "album" },
+      { "type": "text", "id": "year", "label": "Año", "default": "2026" },
+      { "type": "text", "id": "status", "label": "Estado", "default": "Disponible" },
+      { "type": "text", "id": "art_label", "label": "Texto de arte", "default": "Origen\nTostado" },
+      { "type": "image_picker", "id": "image", "label": "Imagen del lanzamiento" },
+      { "type": "text", "id": "title", "label": "Título", "default": "Origen Tostado" },
+      { "type": "textarea", "id": "description", "label": "Descripción", "default": "Una escucha construida con territorio, café y memoria." },
+      { "type": "color", "id": "color", "label": "Color de arte", "default": "#312817" },
+      { "type": "url", "id": "link", "label": "Enlace de escucha" },
+      { "type": "text", "id": "link_label", "label": "Texto del enlace", "default": "Escuchar" }
+    ] },
+    { "type": "platform", "name": "Plataforma", "settings": [
+      { "type": "text", "id": "name", "label": "Nombre", "default": "Spotify" },
+      { "type": "text", "id": "description", "label": "Descripción", "default": "Perfil del sello" },
+      { "type": "url", "id": "url", "label": "URL real" }
+    ] }
+  ],
+  "presets": [{ "name": "Tueste Records", "blocks": [{ "type": "release" }, { "type": "release", "settings": { "type": "single", "title": "Coffee in Frequencies" } }, { "type": "platform", "settings": { "name": "Spotify" } }, { "type": "platform", "settings": { "name": "YouTube" } }] }]
+}
+{% endschema %}

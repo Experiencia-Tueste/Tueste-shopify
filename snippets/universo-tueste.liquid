@@ -1,0 +1,37 @@
+{%- doc -%}
+  Shared navigation for the four Tueste experiences.
+
+  @param {string} [current] - Active experience: tienda, tree, unity or records
+  @param {string} [theme] - Optional visual variant, such as records
+{%- enddoc -%}
+
+{%- liquid
+  assign tree_page = pages['tueste-tree']
+  assign unity_page = pages['tueste-unity']
+  assign records_page = pages['tueste-records']
+  assign tree_url = tree_page.url | default: '/pages/tueste-tree'
+  assign unity_url = unity_page.url | default: '/pages/tueste-unity'
+  assign records_url = records_page.url | default: '/pages/tueste-records'
+  assign current_experience = current | default: 'tienda'
+-%}
+
+<nav class="tu-universe tu-universe--{{ theme | default: 'tueste' }}" aria-label="Universo Tueste">
+  <div class="tu-universe__inner">
+    <p class="tu-universe__kicker">Universo Tueste</p>
+    <p class="tu-universe__intro">Un origen, cuatro caminos.</p>
+    <div class="tu-universe__links" role="list">
+      <a class="tu-universe__link{% if current_experience == 'tienda' %} is-active{% endif %}" href="{{ routes.root_url }}"{% if current_experience == 'tienda' %} aria-current="page"{% endif %} role="listitem">
+        <span class="tu-universe__number">01</span><span>Tienda</span>
+      </a>
+      <a class="tu-universe__link{% if current_experience == 'tree' %} is-active{% endif %}" href="{{ tree_url }}"{% if current_experience == 'tree' %} aria-current="page"{% endif %} role="listitem">
+        <span class="tu-universe__number">02</span><span>Tueste Tree</span>
+      </a>
+      <a class="tu-universe__link{% if current_experience == 'unity' %} is-active{% endif %}" href="{{ unity_url }}"{% if current_experience == 'unity' %} aria-current="page"{% endif %} role="listitem">
+        <span class="tu-universe__number">03</span><span>Tueste Unity</span>
+      </a>
+      <a class="tu-universe__link{% if current_experience == 'records' %} is-active{% endif %}" href="{{ records_url }}"{% if current_experience == 'records' %} aria-current="page"{% endif %} role="listitem">
+        <span class="tu-universe__number">04</span><span>Tueste Records</span>
+      </a>
+    </div>
+  </div>
+</nav>

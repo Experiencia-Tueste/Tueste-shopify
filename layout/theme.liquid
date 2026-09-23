@@ -42,10 +42,69 @@
       render 'css-variables'
       echo 'theme.css' | asset_url | stylesheet_tag: preload: true
 
+      if template.suffix == 'tienda-editorial'
+        echo 'tienda-editorial.css' | asset_url | stylesheet_tag
+      endif
+
+      if request.page_type == 'index'
+        echo 'tienda-editorial.css' | asset_url | stylesheet_tag
+      endif
+
+      if template.suffix == 'tueste-tree' or template.suffix == 'tueste-unity' or template.suffix == 'tueste-records'
+        echo 'universo-tueste.css' | asset_url | stylesheet_tag
+      endif
+
       if direction == 'rtl'
         echo 'rtl.css' | asset_url | stylesheet_tag: preload: true
       endif
     -%}
+
+    {%- if template.suffix == 'tienda-editorial' or template.suffix == 'tueste-tree' or template.suffix == 'tueste-unity' or template.suffix == 'tueste-records' or request.page_type == 'index' -%}
+      <style>
+        @font-face {
+          font-family: "Tueste Typeface";
+          src: url('{{ 'tueste-typeface.ttf' | asset_url }}') format('truetype');
+          font-display: swap;
+          font-weight: 400 900;
+          font-style: normal;
+        }
+        @font-face {
+          font-family: "Archivo Black";
+          src: url('{{ 'archivo-black.ttf' | asset_url }}') format('truetype');
+          font-display: swap;
+          font-weight: 900;
+          font-style: normal;
+        }
+        @font-face {
+          font-family: Poppins;
+          src: url('{{ 'poppins-regular.ttf' | asset_url }}') format('truetype');
+          font-display: swap;
+          font-weight: 400;
+          font-style: normal;
+        }
+        @font-face {
+          font-family: Poppins;
+          src: url('{{ 'poppins-semibold.ttf' | asset_url }}') format('truetype');
+          font-display: swap;
+          font-weight: 600 800;
+          font-style: normal;
+        }
+        @font-face {
+          font-family: Lora;
+          src: url('{{ 'lora-italic.ttf' | asset_url }}') format('truetype');
+          font-display: swap;
+          font-weight: 400 700;
+          font-style: italic;
+        }
+        @font-face {
+          font-family: "DM Mono";
+          src: url('{{ 'dm-mono-regular.ttf' | asset_url }}') format('truetype');
+          font-display: swap;
+          font-weight: 400 500;
+          font-style: normal;
+        }
+      </style>
+    {%- endif -%}
 
     <link rel="stylesheet" href="{{ 'apps.css' | asset_url }}" media="print" fetchpriority="low" onload="this.media='all'">
 
@@ -65,7 +124,7 @@
     {%- render 'js-variables' -%}
   </head>
 
-  <body class="template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}{% if request.path == '/challenge' %} template-challange{% endif %}" data-rounded-button="{{ settings.rounded_button }}" data-rounded-input="{{ settings.rounded_input }}" data-rounded-block="{{ settings.rounded_block }}" data-rounded-card="{{ settings.rounded_card }}" data-button-hover="{{ settings.buttons_hover }}"{% if settings.enable_page_transition %} data-page-transition{% endif %}{% if settings.enable_lazy_image %} data-lazy-image{% endif %} data-title-animation data-page-rendering>
+  <body class="template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}{% if template.suffix == 'tienda-editorial' %} template-tienda-editorial{% endif %}{% if request.page_type == 'index' %} template-tueste-home{% endif %}{% if request.path == '/challenge' %} template-challange{% endif %}" data-rounded-button="{{ settings.rounded_button }}" data-rounded-input="{{ settings.rounded_input }}" data-rounded-block="{{ settings.rounded_block }}" data-rounded-card="{{ settings.rounded_card }}" data-button-hover="{{ settings.buttons_hover }}"{% if settings.enable_page_transition %} data-page-transition{% endif %}{% if settings.enable_lazy_image %} data-lazy-image{% endif %} data-title-animation data-page-rendering>
     <a class="sr-only skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
 
     {%- liquid

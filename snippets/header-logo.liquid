@@ -18,7 +18,22 @@
 -%}
 
 {%- capture logo_content -%}
-  {%- if logo != blank -%}
+  {%- if template.suffix == 'tienda-editorial' -%}
+    <a
+      href="{{ routes.root_url }}"
+      itemprop="url"
+      class="header__logo-link header__logo-link--tueste-editorial flex items-center relative"
+    >
+      <img
+        src="{{ 'tueste-logo-glass.png' | asset_url }}"
+        alt="Tueste"
+        width="700"
+        height="242"
+        class="logo"
+        loading="eager"
+      >
+    </a>
+  {%- elsif logo != blank -%}
     <a
       href="{{ routes.root_url }}"
       itemprop="url"
