@@ -178,8 +178,8 @@ body.template-tienda-editorial .header__logo-link--tueste-editorial img {
 /* --- Barra --- */
 .te-preview__header {
   position: sticky;
-  top: 0;
-  z-index: 40;
+  top: var(--sticky-header-height, 0px);
+  z-index: 30;
   background: rgba(21, 19, 15, 0.72);
   border-bottom: 1px solid var(--te-line);
   -webkit-backdrop-filter: blur(14px);
