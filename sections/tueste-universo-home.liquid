@@ -79,7 +79,7 @@
         <div class="te-preview__hero-bg" style="background-image:url('{{ 'banner_hodie.png' | asset_url }}');background-position:center 50%" aria-hidden="true"></div>
         <div class="te-preview__wrap te-preview__hero-copy">
           <span class="te-preview__eyebrow">03 / Piezas limitadas</span>
-          <div class="te-preview__actions"><a class="te-preview__button" href="#piezas">Comprar el hoodie</a><a class="te-preview__button te-preview__button--secondary" href="#piezas">Ver todas las piezas</a></div>
+          <div class="te-preview__actions"><a class="te-preview__button" href="{{ hoodie_product.url | default: '#piezas' }}">Comprar el hoodie</a><a class="te-preview__button te-preview__button--secondary" href="#piezas">Ver todas las piezas</a></div>
         </div>
       </article>
 
@@ -87,7 +87,7 @@
         <div class="te-preview__hero-bg" style="background-image:url('{{ 'banner_lanzamiento.png' | asset_url }}');background-position:center 50%" aria-hidden="true"></div>
         <div class="te-preview__wrap te-preview__hero-copy">
           <span class="te-preview__eyebrow">04 / Tueste Selection · Tueste Records</span>
-          <div class="te-preview__actions"><a class="te-preview__button" href="{{ records_link }}">Ver el lanzamiento</a><a class="te-preview__button te-preview__button--secondary" href="{{ records_link }}">Entrar al sello</a></div>
+          <div class="te-preview__actions"><a class="te-preview__button" href="{{ records_link }}#lanzamientos">Ver el lanzamiento</a><a class="te-preview__button te-preview__button--secondary" href="{{ records_link }}">Entrar al sello</a></div>
         </div>
       </article>
 
