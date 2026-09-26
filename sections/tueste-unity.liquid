@@ -2,6 +2,9 @@
   assign unity_logo = 'tueste-unity-logo.png' | asset_url
   assign tree_page = pages['tueste-tree']
   assign tree_url = tree_page.url | default: '/pages/tueste-tree'
+  unless tree_url contains 'view=tueste-tree'
+    assign tree_url = tree_url | append: '?view=tueste-tree'
+  endunless
   assign tree_badge_image = 'tueste-tree-insignia-30-holografica.webp' | asset_url
   assign form_id = 'TuesteUnityContact-' | append: section.id
   assign path_blocks = section.blocks | where: 'type', 'path'

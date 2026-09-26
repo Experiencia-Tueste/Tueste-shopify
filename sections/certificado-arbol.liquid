@@ -43,6 +43,9 @@
     {%- if metaobject -%}
       {%- liquid
         assign tree_page_url = pages['tueste-tree'].url | default: '/pages/tueste-tree'
+        unless tree_page_url contains 'view=tueste-tree'
+          assign tree_page_url = tree_page_url | append: '?view=tueste-tree'
+        endunless
         assign tree_logo = 'tueste-tree-logo-crema.png' | asset_url
         assign certificate_image = 'tueste-tree-card1-ref.webp' | asset_url
 

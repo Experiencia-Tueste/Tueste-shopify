@@ -8,6 +8,15 @@
   assign tree_link = section.settings.tree_url | default: tree_link
   assign unity_link = section.settings.unity_url | default: unity_link
   assign records_link = section.settings.records_url | default: records_link
+  unless tree_link contains 'view=tueste-tree'
+    assign tree_link = tree_link | append: '?view=tueste-tree'
+  endunless
+  unless unity_link contains 'view=tueste-unity'
+    assign unity_link = unity_link | append: '?view=tueste-unity'
+  endunless
+  unless records_link contains 'view=tueste-records'
+    assign records_link = records_link | append: '?view=tueste-records'
+  endunless
   assign spotify_link = section.settings.spotify_url | default: 'https://open.spotify.com/album/3QORX6JtWw22nwDNMy9jLp'
   assign ritual_product = all_products['ritual-de-adopcion-fundador-001']
   assign taza_rosada_product = all_products['taza-efimero-rosada']

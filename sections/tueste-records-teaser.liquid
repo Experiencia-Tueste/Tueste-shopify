@@ -1,5 +1,8 @@
 {%- assign records_page = pages['tueste-records'] -%}
 {%- assign records_url = records_page.url | default: '/pages/tueste-records' -%}
+{%- unless records_url contains 'view=tueste-records' -%}
+  {%- assign records_url = records_url | append: '?view=tueste-records' -%}
+{%- endunless -%}
 {{ 'universo-tueste.css' | asset_url | stylesheet_tag }}
 
 <section class="universo-page tu-home-block tu-section" id="tueste-records-{{ section.id }}">

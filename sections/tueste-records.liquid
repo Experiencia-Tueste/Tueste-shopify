@@ -3,6 +3,12 @@
   assign unity_page = pages['tueste-unity']
   assign tree_url = tree_page.url | default: '/pages/tueste-tree'
   assign unity_url = unity_page.url | default: '/pages/tueste-unity'
+  unless tree_url contains 'view=tueste-tree'
+    assign tree_url = tree_url | append: '?view=tueste-tree'
+  endunless
+  unless unity_url contains 'view=tueste-unity'
+    assign unity_url = unity_url | append: '?view=tueste-unity'
+  endunless
 -%}
 <section class="universo-page tu-records" data-tueste-records id="TuesteRecords-{{ section.id }}">
   <header class="tu-records__nav">
