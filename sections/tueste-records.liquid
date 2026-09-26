@@ -1,13 +1,27 @@
 {%- liquid
   assign universe_page = pages['casa-cantara']
-  assign tree_url = universe_page.url | default: '/pages/casa-cantara'
-  assign unity_url = universe_page.url | default: '/pages/casa-cantara'
-  unless tree_url contains 'view=tueste-tree'
-    assign tree_url = tree_url | append: '?view=tueste-tree'
-  endunless
-  unless unity_url contains 'view=tueste-unity'
-    assign unity_url = unity_url | append: '?view=tueste-unity'
-  endunless
+  assign tree_url = pages['tueste-tree'].url
+  assign unity_url = pages['tueste-unity'].url
+  if tree_url == blank
+    assign tree_url = universe_page.url | default: '/pages/casa-cantara'
+    unless tree_url contains 'view=tueste-tree'
+      assign tree_url = tree_url | append: '?view=tueste-tree'
+    endunless
+  elsif tree_url contains '/pages/tueste-tree'
+    unless tree_url contains 'view=tueste-tree'
+      assign tree_url = tree_url | append: '?view=tueste-tree'
+    endunless
+  endif
+  if unity_url == blank
+    assign unity_url = universe_page.url | default: '/pages/casa-cantara'
+    unless unity_url contains 'view=tueste-unity'
+      assign unity_url = unity_url | append: '?view=tueste-unity'
+    endunless
+  elsif unity_url contains '/pages/tueste-unity'
+    unless unity_url contains 'view=tueste-unity'
+      assign unity_url = unity_url | append: '?view=tueste-unity'
+    endunless
+  endif
 -%}
 <section class="universo-page tu-records" data-tueste-records id="TuesteRecords-{{ section.id }}">
   <section class="tu-records__hero" id="top" data-hero aria-roledescription="carrusel" aria-label="Lo que se viene">
@@ -217,6 +231,7 @@
   </div>
 
   {% render 'universo-tueste', current: 'records', theme: 'records' %}
+  {% render 'tueste-universo-footer' %}
 
   <script src="{{ 'tueste-records.js' | asset_url }}" defer></script>
 </section>

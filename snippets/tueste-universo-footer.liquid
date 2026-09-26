@@ -5,18 +5,39 @@
 {%- liquid
   assign universe_page = pages['casa-cantara']
   assign universe_url = universe_page.url | default: '/pages/casa-cantara'
-  assign tree_url = universe_url
-  assign unity_url = universe_url
-  assign records_url = universe_url
-  unless tree_url contains 'view=tueste-tree'
-    assign tree_url = tree_url | append: '?view=tueste-tree'
-  endunless
-  unless unity_url contains 'view=tueste-unity'
-    assign unity_url = unity_url | append: '?view=tueste-unity'
-  endunless
-  unless records_url contains 'view=tueste-records'
-    assign records_url = records_url | append: '?view=tueste-records'
-  endunless
+  assign tree_url = pages['tueste-tree'].url
+  assign unity_url = pages['tueste-unity'].url
+  assign records_url = pages['tueste-records'].url
+  if tree_url == blank
+    assign tree_url = universe_url
+    unless tree_url contains 'view=tueste-tree'
+      assign tree_url = tree_url | append: '?view=tueste-tree'
+    endunless
+  elsif tree_url contains '/pages/tueste-tree'
+    unless tree_url contains 'view=tueste-tree'
+      assign tree_url = tree_url | append: '?view=tueste-tree'
+    endunless
+  endif
+  if unity_url == blank
+    assign unity_url = universe_url
+    unless unity_url contains 'view=tueste-unity'
+      assign unity_url = unity_url | append: '?view=tueste-unity'
+    endunless
+  elsif unity_url contains '/pages/tueste-unity'
+    unless unity_url contains 'view=tueste-unity'
+      assign unity_url = unity_url | append: '?view=tueste-unity'
+    endunless
+  endif
+  if records_url == blank
+    assign records_url = universe_url
+    unless records_url contains 'view=tueste-records'
+      assign records_url = records_url | append: '?view=tueste-records'
+    endunless
+  elsif records_url contains '/pages/tueste-records'
+    unless records_url contains 'view=tueste-records'
+      assign records_url = records_url | append: '?view=tueste-records'
+    endunless
+  endif
 -%}
 
 <div class="tu-universe__spectrum" aria-hidden="true">

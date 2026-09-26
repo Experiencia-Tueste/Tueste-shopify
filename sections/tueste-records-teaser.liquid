@@ -1,8 +1,15 @@
 {%- assign universe_page = pages['casa-cantara'] -%}
-{%- assign records_url = universe_page.url | default: '/pages/casa-cantara' -%}
-{%- unless records_url contains 'view=tueste-records' -%}
-  {%- assign records_url = records_url | append: '?view=tueste-records' -%}
-{%- endunless -%}
+{%- assign records_url = pages['tueste-records'].url -%}
+{%- if records_url == blank -%}
+  {%- assign records_url = universe_page.url | default: '/pages/casa-cantara' -%}
+  {%- unless records_url contains 'view=tueste-records' -%}
+    {%- assign records_url = records_url | append: '?view=tueste-records' -%}
+  {%- endunless -%}
+{%- elsif records_url contains '/pages/tueste-records' -%}
+  {%- unless records_url contains 'view=tueste-records' -%}
+    {%- assign records_url = records_url | append: '?view=tueste-records' -%}
+  {%- endunless -%}
+{%- endif -%}
 {{ 'universo-tueste.css' | asset_url | stylesheet_tag }}
 
 <section class="universo-page tu-home-block tu-section" id="tueste-records-{{ section.id }}">

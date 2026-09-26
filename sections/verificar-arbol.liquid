@@ -81,10 +81,17 @@
   if certificate_type != blank
     assign is_configured = true
   endif
-  assign tree_page_url = pages['casa-cantara'].url | default: '/pages/casa-cantara'
-  unless tree_page_url contains 'view=tueste-tree'
-    assign tree_page_url = tree_page_url | append: '?view=tueste-tree'
-  endunless
+  assign tree_page_url = pages['tueste-tree'].url
+  if tree_page_url == blank
+    assign tree_page_url = pages['casa-cantara'].url | default: '/pages/casa-cantara'
+    unless tree_page_url contains 'view=tueste-tree'
+      assign tree_page_url = tree_page_url | append: '?view=tueste-tree'
+    endunless
+  elsif tree_page_url contains '/pages/tueste-tree'
+    unless tree_page_url contains 'view=tueste-tree'
+      assign tree_page_url = tree_page_url | append: '?view=tueste-tree'
+    endunless
+  endif
   assign certificate_url_handle = section.settings.certificate_url_handle | strip
   if certificate_url_handle == blank
     assign certificate_url_handle = 'certificado-arbol'

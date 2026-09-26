@@ -43,6 +43,22 @@
   data-badge-holographic="{{ badge_holographic }}"
   style="--tt-hero-image: url('{{ hero_image }}'); --tt-siembra-image: url('{{ siembra_image }}');"
 >
+  <header class="tt-bar" aria-label="Progreso de Tueste Tree">
+    <div class="tt-container tt-bar-row">
+      <a class="tt-bar-logo" href="{{ routes.root_url }}" aria-label="Tueste, inicio">
+        <img src="{{ 'tueste-logo-glass.png' | asset_url }}" alt="Tueste" width="700" height="242">
+      </a>
+      <div class="tt-steps" aria-label="Progreso del ritual" role="list">
+        <i class="is-current" data-step-dot="0" role="listitem"></i>
+        <i data-step-dot="1" role="listitem"></i>
+        <i data-step-dot="2" role="listitem"></i>
+        <i data-step-dot="3" role="listitem"></i>
+        <i data-step-dot="4" role="listitem"></i>
+      </div>
+      <div class="tt-bar-count"><strong data-founder-count>{{ founder_count_display }}</strong> de {{ founder_total_display }} fundadores</div>
+    </div>
+  </header>
+
   <div class="tt-hero tt-section-pad" data-step="0">
     <div class="tt-hero-image" role="img" aria-label="Amanecer sobre el cafetal de la Finca Tres Esquinas"></div>
     <div class="tt-hero-overlay" aria-hidden="true"></div>
@@ -52,7 +68,7 @@
       <p class="tt-lead">{{ section.settings.hero_lead | escape | newline_to_br }}</p>
       <div class="tt-button-row">
         <button class="tt-button tt-button--primary" type="button" data-enter-finca>{{ section.settings.hero_button | escape }} <span aria-hidden="true">→</span></button>
-        <a class="tt-text-link" href="#tt-chapters">{{ section.settings.hero_secondary_link | escape }}</a>
+        <a class="tt-text-link" href="#promesa">{{ section.settings.hero_secondary_link | escape }}</a>
       </div>
       <div class="tt-founder-meter" aria-live="polite">
         <div class="tt-founder-numbers"><span><strong data-founder-count>{{ founder_count_display }}</strong> {{ section.settings.founder_label | escape }}</span><span>{{ founder_total_display }}</span></div>
@@ -229,7 +245,7 @@
     </div>
   </div>
 
-  <section class="tt-badges tt-section-pad" id="tt-badges">
+  <section class="tt-badges tt-section-pad" id="insignias" data-section="tt-badges">
     <div class="tt-container">
       <div class="tt-section-heading">
         <p class="tt-kicker">Las insignias del proyecto</p>
@@ -255,7 +271,7 @@
     </div>
   </section>
 
-  <section class="tt-chapters tt-section-pad" id="tt-chapters">
+  <section class="tt-chapters tt-section-pad" id="promesa" data-section="tt-chapters">
     <div class="tt-container">
       <div class="tt-section-heading">
         <p class="tt-kicker">Vivir el café · el año de tu árbol</p>
@@ -283,7 +299,6 @@
     </div>
   </section>
 
-  {% render 'tueste-universo-footer' %}
   <div class="tt-toast" data-toast role="status" aria-live="polite"></div>
 </section>
 

@@ -103,7 +103,7 @@
 }
 
 .tt-bar-logo img {
-  height: 2rem;
+  height: 26px;
   width: auto;
 }
 
@@ -220,17 +220,19 @@
 
 .tt-hero h1,
 .tt-section-heading h2 {
-  font-family: var(--tt-font-serif);
-  font-style: italic;
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  line-height: 0.98;
+  font-family: var(--tu-display);
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.015em;
+  line-height: 1.06;
   margin: 0;
+  text-transform: uppercase;
 }
 
 .tt-hero h1 {
-  font-size: clamp(2.8rem, 7vw, 6.8rem);
-  max-width: 11ch;
+  color: var(--tt-cream);
+  font-size: clamp(2rem, 5.4vw, 4.4rem);
+  max-width: 14ch;
   text-shadow: 0 2px 18px rgba(21, 19, 15, 0.65);
 }
 
@@ -239,6 +241,10 @@
 .tt-certificate h3 em {
   color: var(--tt-amber);
   font-style: normal;
+}
+
+.tt-section-heading h2 {
+  font-size: clamp(1.5rem, 3.6vw, 2.6rem);
 }
 
 .tt-lead {
