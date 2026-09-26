@@ -63,6 +63,23 @@
 .tu-universe__enter { margin-top: .5rem; color: var(--tu-cream-soft); font: .7rem/1.2 var(--tu-mono); letter-spacing: .16em; text-transform: uppercase; }
 .tu-universe__card:hover .tu-universe__enter, .tu-universe__card.is-active .tu-universe__enter { color: var(--tu-amber); }
 
+/* Footer parity with the local Universo Tueste reference. */
+.tu-universe__spectrum { display: grid; grid-template-columns: repeat(5, 1fr); height: 6px; margin-top: 3rem; }
+.tu-universe__spectrum-segment { display: block; min-width: 0; }
+.tu-universe__spectrum-segment--amber { background: var(--tu-amber); }
+.tu-universe__spectrum-segment--coral { background: #e23a5a; }
+.tu-universe__spectrum-segment--green { background: var(--tu-green); }
+.tu-universe__spectrum-segment--lilac { background: #b694ff; }
+.tu-universe__spectrum-segment--cream { background: var(--tu-cream); }
+.tu-universe__footer { border-top: 1px solid var(--tu-line); background: var(--tu-bg); }
+.tu-universe__footer-inner { width: min(var(--tu-wrap), calc(100% - 40px)); margin: auto; display: grid; grid-template-columns: 1.35fr .9fr 1fr 1.25fr; gap: 2rem; align-items: start; padding: 3.5rem 0 4rem; }
+.tu-universe__footer-brand img { width: 122px; height: auto; }
+.tu-universe__footer-brand p, .tu-universe__footer-contact, .tu-universe__footer-copy { margin: 1rem 0 0; color: var(--tu-muted); font: .68rem/1.8 var(--tu-mono); letter-spacing: .14em; text-transform: uppercase; }
+.tu-universe__footer-links, .tu-universe__footer-contact { display: grid; gap: .65rem; }
+.tu-universe__footer a { color: var(--tu-muted); text-decoration: none; }
+.tu-universe__footer a:hover, .tu-universe__footer a:focus-visible { color: var(--tu-cream); text-decoration: underline; text-underline-offset: .2em; }
+.tu-universe__footer-copy { margin-top: 0; text-align: right; }
+
 /* Shared editorial hero */
 .tu-hero { position: relative; isolation: isolate; min-height: min(660px, 78vh); display: grid; align-items: end; overflow: hidden; background: var(--tu-bg); }
 .tu-hero__image { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; opacity: .7; }
@@ -101,8 +118,12 @@
 .tu-unity__intro h1, .tu-records__intro h1 { margin: 0; color: rgba(255, 232, 191, .92); font: clamp(2.7rem, 7vw, 5.5rem)/.98 var(--tu-serif); font-style: italic; letter-spacing: -.03em; }
 .tu-unity__intro h1 em, .tu-records__intro h1 em { color: var(--tu-amber); }
 .tu-unity__logo { width: min(280px, 68vw); height: auto; margin: 0 0 1.5rem; }
+.tu-unity__intro-art { display: grid; justify-items: start; align-content: end; }
+.tu-unity__hero-image { width: min(250px, 64vw); max-height: 290px; margin: 0 0 1.4rem; object-fit: contain; object-position: center bottom; filter: drop-shadow(0 24px 34px rgba(0,0,0,.35)); }
 .tu-unity__paths { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 3rem; }
 .tu-unity__path { display: grid; gap: .8rem; padding: 1.3rem; border: 1px solid var(--tu-line); border-radius: var(--tu-radius); background: rgba(255, 232, 191, .055); }
+.tu-unity__path-art { aspect-ratio: 1.35; overflow: hidden; border-radius: 16px; background: var(--tu-surface-light); }
+.tu-unity__path-art img { width: 100%; height: 100%; object-fit: cover; }
 .tu-unity__path h2 { margin: 0; font: 1.3rem/1.15 var(--tu-display); text-transform: uppercase; }
 .tu-unity__path p { margin: 0; color: var(--tu-muted); font-size: .9rem; }
 .tu-unity__workbench { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, .8fr); gap: 1rem; margin-top: 3rem; }
@@ -174,6 +195,8 @@
   .tu-universe__link { flex: 0 0 148px; scroll-snap-align: start; }
   .tu-universe__cards { display: flex; overflow-x: auto; padding-bottom: .5rem; scroll-snap-type: x proximity; }
   .tu-universe__card { flex: 0 0 min(78vw, 280px); scroll-snap-align: start; }
+  .tu-universe__footer-inner { grid-template-columns: 1fr; gap: 1.5rem; padding-block: 2.5rem 3rem; }
+  .tu-universe__footer-copy { text-align: left; }
   .tu-hero { min-height: 620px; }
   .tu-hero::after { background: linear-gradient(0deg, var(--tu-bg) 5%, rgba(21,19,15,.3) 70%, rgba(21,19,15,.42)); }
   .tu-hero__content { padding-bottom: 2.6rem; }

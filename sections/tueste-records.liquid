@@ -1,33 +1,19 @@
 {%- liquid
-  assign tree_page = pages['tueste-tree']
-  assign unity_page = pages['tueste-unity']
-  assign tree_url = tree_page.url | default: '/pages/tueste-tree'
-  assign unity_url = unity_page.url | default: '/pages/tueste-unity'
+  assign universe_page = pages['casa-cantara']
+  assign tree_url = universe_page.url | default: '/pages/casa-cantara'
+  assign unity_url = universe_page.url | default: '/pages/casa-cantara'
+  unless tree_url contains 'view=tueste-tree'
+    assign tree_url = tree_url | append: '?view=tueste-tree'
+  endunless
+  unless unity_url contains 'view=tueste-unity'
+    assign unity_url = unity_url | append: '?view=tueste-unity'
+  endunless
 -%}
 <section class="universo-page tu-records" data-tueste-records id="TuesteRecords-{{ section.id }}">
-  <header class="tu-records__nav">
-    <div class="tu-wrap tu-records__nav-inner">
-      <a class="tu-records__nav-brand" href="#top">
-        <img src="{{ 'tueste-logo-glass.png' | asset_url }}" alt="" width="700" height="242" loading="eager">
-        <span>Tueste Records</span>
-      </a>
-      <nav aria-label="Secciones de Tueste Records">
-        <ul class="tu-records__nav-links">
-          <li><a href="#lanzamientos">Lanzamientos</a></li>
-          <li><a href="#plataformas">Plataformas</a></li>
-          <li><a href="#playlists">Playlists</a></li>
-          <li><a href="#noticias">Noticias</a></li>
-          <li><a href="#suscribete">Suscríbete</a></li>
-        </ul>
-      </nav>
-      <div class="tu-records__nav-badge"><span>Respaldado por</span> Logik Pro</div>
-    </div>
-  </header>
-
   <section class="tu-records__hero" id="top" data-hero aria-roledescription="carrusel" aria-label="Lo que se viene">
     <div class="tu-records__hero-slides" data-hero-slides>
       <article class="tu-records__hero-slide is-active" data-seed="7" role="group" aria-roledescription="diapositiva" aria-label="1 de 3" aria-labelledby="tu-records-hero-title-1-{{ section.id }}">
-        <div class="tu-records__hero-art"><canvas aria-hidden="true"></canvas></div>
+        <div class="tu-records__hero-art"><img src="{{ 'banner_lanzamiento.png' | asset_url }}" alt="Arte del lanzamiento Cañón del Barbas" width="1600" height="900" loading="eager"><canvas aria-hidden="true"></canvas></div>
         <div class="tu-wrap tu-records__hero-copy">
           <div class="tu-records__hero-meta">
             <span class="tu-records__hero-eyebrow"><span class="tu-records__hero-live-dot" aria-hidden="true"></span>Próximo lanzamiento</span>
@@ -43,7 +29,7 @@
         </div>
       </article>
       <article class="tu-records__hero-slide" data-seed="21" role="group" aria-roledescription="diapositiva" aria-label="2 de 3" aria-labelledby="tu-records-hero-title-2-{{ section.id }}" aria-hidden="true" inert>
-        <div class="tu-records__hero-art"><canvas aria-hidden="true"></canvas></div>
+        <div class="tu-records__hero-art"><img src="{{ 'banner_2.png' | asset_url }}" alt="Arte del lanzamiento Primera lluvia" width="1600" height="900" loading="lazy"><canvas aria-hidden="true"></canvas></div>
         <div class="tu-wrap tu-records__hero-copy">
           <div class="tu-records__hero-meta">
             <span class="tu-records__hero-eyebrow"><span class="tu-records__hero-live-dot" aria-hidden="true"></span>Ya disponible</span>
@@ -58,7 +44,7 @@
         </div>
       </article>
       <article class="tu-records__hero-slide" data-seed="42" role="group" aria-roledescription="diapositiva" aria-label="3 de 3" aria-labelledby="tu-records-hero-title-3-{{ section.id }}" aria-hidden="true" inert>
-        <div class="tu-records__hero-art"><canvas aria-hidden="true"></canvas></div>
+        <div class="tu-records__hero-art"><img src="{{ 'banner_hodie.png' | asset_url }}" alt="Arte de Sesión trilladora 001" width="1600" height="900" loading="lazy"><canvas aria-hidden="true"></canvas></div>
         <div class="tu-wrap tu-records__hero-copy">
           <div class="tu-records__hero-meta">
             <span class="tu-records__hero-eyebrow"><span class="tu-records__hero-live-dot" aria-hidden="true"></span>Solo aquí</span>
@@ -100,12 +86,12 @@
         {%- if block.type == 'release' -%}
           {%- assign release_index = release_index | plus: 1 -%}
           {%- case release_index -%}
-            {%- when 1 -%}{%- assign release_fallback = 'tueste-tree-hero-vitral.webp' -%}
-            {%- when 2 -%}{%- assign release_fallback = 'tueste-tree-cap1-lluvia.webp' -%}
-            {%- when 3 -%}{%- assign release_fallback = 'tueste-tree-cap2-flor.webp' -%}
-            {%- when 4 -%}{%- assign release_fallback = 'tueste-tree-cap3-cosecha.webp' -%}
+            {%- when 1 -%}{%- assign release_fallback = 'banner_lanzamiento.png' -%}
+            {%- when 2 -%}{%- assign release_fallback = 'banner_2.png' -%}
+            {%- when 3 -%}{%- assign release_fallback = 'aures-conscious.png' -%}
+            {%- when 4 -%}{%- assign release_fallback = 'combo-sonora.jpg' -%}
             {%- when 5 -%}{%- assign release_fallback = 'cafe-1840.png' -%}
-            {%- else -%}{%- assign release_fallback = 'tueste-tree-siembra-vitral.webp' -%}
+            {%- else -%}{%- assign release_fallback = 'banner_hodie.png' -%}
           {%- endcase -%}
           {%- assign has_links = false -%}
           {%- if block.settings.link_url_1 != blank or block.settings.link_url_2 != blank or block.settings.link_url_3 != blank -%}
@@ -205,7 +191,7 @@
     </div>
     <div class="tu-records__news">
       <article class="tu-records__news-main">
-        <div class="tu-records__news-cover"><canvas data-seed="99" aria-hidden="true"></canvas></div>
+        <div class="tu-records__news-cover"><img src="{{ 'banner_lanzamiento.png' | asset_url }}" alt="Arte de Tueste Records" width="1600" height="900" loading="lazy"><canvas data-seed="99" aria-hidden="true"></canvas></div>
         <p class="tu-kicker">Entrevista</p>
         <h3>«El café y el sonido se tuestan igual: con paciencia»</h3>
         <p>Conversación con el productor detrás de Cañón del Barbas EP sobre grabar en la finca, trabajar con ruido de fondo y por qué el sello nace dentro de una tostadora.</p>
@@ -231,36 +217,6 @@
   </div>
 
   {% render 'universo-tueste', current: 'records', theme: 'records' %}
-
-  <div class="tu-wrap tu-section tu-records__footer">
-    <div class="tu-records__footer-brand">
-      <img src="{{ 'tueste-logo-glass.png' | asset_url }}" alt="Tueste Records" width="700" height="242" loading="lazy">
-      <p>Sello discográfico de Tueste. Música que nace en Armenia, Quindío, entre cafetales y una tostadora.</p>
-    </div>
-    <div class="tu-records__footer-col">
-      <h5>Sello</h5>
-      <ul>
-        <li><a href="#lanzamientos">Lanzamientos</a></li>
-        <li><a href="#playlists">Playlists</a></li>
-        <li><a href="#noticias">Noticias</a></li>
-        <li><a href="#">Artistas</a></li>
-        <li><a href="#">Enviar demo</a></li>
-      </ul>
-    </div>
-    <div class="tu-records__footer-col">
-      <h5>Tueste</h5>
-      <ul>
-        <li><a href="{{ routes.root_url }}">tueste.co</a></li>
-        <li><a href="{{ tree_url }}">Tueste Tree</a></li>
-        <li><a href="{{ unity_url }}">Tueste Unity</a></li>
-        <li><a href="#">Instagram</a></li>
-        <li><a href="#">YouTube</a></li>
-      </ul>
-    </div>
-    <div class="tu-records__footer-backed">
-      <span>Respaldado por Logik Pro · Sello registrado en plataformas digitales desde 2012</span>
-    </div>
-  </div>
 
   <script src="{{ 'tueste-records.js' | asset_url }}" defer></script>
 </section>

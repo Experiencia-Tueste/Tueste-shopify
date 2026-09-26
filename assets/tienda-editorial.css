@@ -186,6 +186,13 @@ body.template-tienda-editorial .header__logo-link--tueste-editorial img {
   backdrop-filter: blur(14px);
 }
 
+/* Subpages reuse the editorial header without competing with their own
+   Tree or Records navigation bars. */
+.te-universe-header--subpage {
+  position: relative;
+  top: auto;
+}
+
 .te-preview__header-inner {
   display: flex;
   align-items: center;

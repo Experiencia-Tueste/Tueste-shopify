@@ -1,13 +1,21 @@
 {%- liquid
-  assign tree_page = pages['tueste-tree']
-  assign unity_page = pages['tueste-unity']
-  assign records_page = pages['tueste-records']
-  assign tree_link = tree_page.url | default: '/pages/tueste-tree'
-  assign unity_link = unity_page.url | default: '/pages/tueste-unity'
-  assign records_link = records_page.url | default: '/pages/tueste-records'
+  assign universe_page = pages['casa-cantara']
+  assign universe_url = universe_page.url | default: '/pages/casa-cantara'
+  assign tree_link = universe_url
+  assign unity_link = universe_url
+  assign records_link = universe_url
   assign tree_link = section.settings.tree_url | default: tree_link
   assign unity_link = section.settings.unity_url | default: unity_link
   assign records_link = section.settings.records_url | default: records_link
+  unless tree_link contains 'view=tueste-tree'
+    assign tree_link = tree_link | append: '?view=tueste-tree'
+  endunless
+  unless unity_link contains 'view=tueste-unity'
+    assign unity_link = unity_link | append: '?view=tueste-unity'
+  endunless
+  unless records_link contains 'view=tueste-records'
+    assign records_link = records_link | append: '?view=tueste-records'
+  endunless
   assign spotify_link = section.settings.spotify_url | default: 'https://open.spotify.com/album/3QORX6JtWw22nwDNMy9jLp'
   assign ritual_product = all_products['ritual-de-adopcion-fundador-001']
   assign taza_rosada_product = all_products['taza-efimero-rosada']
@@ -25,23 +33,7 @@
 -%}
 
 <div class="te-preview tueste-home" id="tueste-universo-home-{{ section.id }}" data-tree-total="{{ section.settings.tree_total }}">
-  <header class="te-preview__header">
-    <div class="te-preview__wrap te-preview__header-inner">
-      <a class="te-preview__brand" href="#inicio" aria-label="Tueste, inicio">
-        <img class="te-preview__brand-logo" src="{{ 'tueste-logo-glass.png' | asset_url }}" alt="Tueste" width="700" height="242">
-      </a>
-      <nav class="te-preview__nav" aria-label="Navegación principal">
-        <a href="#cafe">Café</a>
-        <a href="#piezas">Piezas</a>
-        <a href="#tree">Tueste Tree</a>
-        <a href="{{ unity_link }}">Tueste Unity</a>
-        <a href="{{ records_link }}">Tueste Records</a>
-        <a href="#ritual">Escuchar</a>
-        <span class="te-preview__bar-count"><b data-taken>{{ tree_taken_display }}</b> / {{ tree_total_display }} fundadores</span>
-        <a class="te-preview__cart-button" href="{{ routes.cart_url }}" aria-label="Abrir carrito, {{ cart.item_count }} productos">Carrito {{ cart.item_count }}</a>
-      </nav>
-    </div>
-  </header>
+  {% render 'tueste-universo-header', current: 'tienda', tree_taken: tree_taken_display, tree_total: tree_total_display, tree_link: tree_link, unity_link: unity_link, records_link: records_link %}
 
   <div id="inicio">
     <section class="te-preview__hero" data-hero aria-roledescription="carrusel" aria-label="Tueste en portada">

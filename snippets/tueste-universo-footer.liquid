@@ -1,0 +1,48 @@
+{% doc %}
+  Renders the shared footer for the Tueste universe experiences.
+{% enddoc %}
+
+{%- liquid
+  assign universe_page = pages['casa-cantara']
+  assign universe_url = universe_page.url | default: '/pages/casa-cantara'
+  assign tree_url = universe_url
+  assign unity_url = universe_url
+  assign records_url = universe_url
+  unless tree_url contains 'view=tueste-tree'
+    assign tree_url = tree_url | append: '?view=tueste-tree'
+  endunless
+  unless unity_url contains 'view=tueste-unity'
+    assign unity_url = unity_url | append: '?view=tueste-unity'
+  endunless
+  unless records_url contains 'view=tueste-records'
+    assign records_url = records_url | append: '?view=tueste-records'
+  endunless
+-%}
+
+<div class="tu-universe__spectrum" aria-hidden="true">
+  <span class="tu-universe__spectrum-segment tu-universe__spectrum-segment--amber"></span>
+  <span class="tu-universe__spectrum-segment tu-universe__spectrum-segment--coral"></span>
+  <span class="tu-universe__spectrum-segment tu-universe__spectrum-segment--green"></span>
+  <span class="tu-universe__spectrum-segment tu-universe__spectrum-segment--lilac"></span>
+  <span class="tu-universe__spectrum-segment tu-universe__spectrum-segment--cream"></span>
+</div>
+<footer class="tu-universe__footer">
+  <div class="tu-universe__footer-inner">
+    <div class="tu-universe__footer-brand">
+      <a href="{{ routes.root_url }}#inicio" aria-label="Tueste, inicio">
+        <img src="{{ 'tueste-logo-glass.png' | asset_url }}" alt="Tueste" width="700" height="242" loading="lazy">
+      </a>
+      <p>Café fresco · música · ritual · comunidad</p>
+    </div>
+    <nav class="tu-universe__footer-links" aria-label="Universo Tueste">
+      <a href="{{ tree_url }}">Tueste Tree</a>
+      <a href="{{ unity_url }}">Tueste Unity</a>
+      <a href="{{ records_url }}">Tueste Records</a>
+    </nav>
+    <div class="tu-universe__footer-contact">
+      <a href="mailto:tuesteunity@tueste.co">tuesteunity@tueste.co</a>
+      <a href="tel:+573102690145">+57 310 269 0145</a>
+    </div>
+    <p class="tu-universe__footer-copy">© Tueste · Monacua Global Company S.A.S.</p>
+  </div>
+</footer>

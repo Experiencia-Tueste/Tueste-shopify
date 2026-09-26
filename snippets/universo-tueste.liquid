@@ -6,12 +6,20 @@
 {%- enddoc -%}
 
 {%- liquid
-  assign tree_page = pages['tueste-tree']
-  assign unity_page = pages['tueste-unity']
-  assign records_page = pages['tueste-records']
-  assign tree_url = tree_page.url | default: '/pages/tueste-tree'
-  assign unity_url = unity_page.url | default: '/pages/tueste-unity'
-  assign records_url = records_page.url | default: '/pages/tueste-records'
+  assign universe_page = pages['casa-cantara']
+  assign universe_url = universe_page.url | default: '/pages/casa-cantara'
+  assign tree_url = universe_url
+  assign unity_url = universe_url
+  assign records_url = universe_url
+  unless tree_url contains 'view=tueste-tree'
+    assign tree_url = tree_url | append: '?view=tueste-tree'
+  endunless
+  unless unity_url contains 'view=tueste-unity'
+    assign unity_url = unity_url | append: '?view=tueste-unity'
+  endunless
+  unless records_url contains 'view=tueste-records'
+    assign records_url = records_url | append: '?view=tueste-records'
+  endunless
   assign current_experience = current | default: 'tienda'
 -%}
 
@@ -43,4 +51,5 @@
       </a>
     </div>
   </div>
+  {% render 'tueste-universo-footer' %}
 </section>
