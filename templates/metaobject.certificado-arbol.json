@@ -1,9 +1,0 @@
-{
-  "sections": {
-    "certificado_arbol": {
-      "type": "certificado-arbol",
-      "settings": {}
-    }
-  },
-  "order": ["certificado_arbol"]
-}
