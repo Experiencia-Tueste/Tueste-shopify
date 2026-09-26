@@ -172,6 +172,7 @@
   isolation: isolate;
   min-height: 78vh;
   overflow: hidden;
+  padding-block: 0;
   position: relative;
 }
 
@@ -238,7 +239,7 @@
 .tt-hero h1 {
   color: var(--tt-cream);
   font-size: clamp(2rem, 5.4vw, 4.4rem);
-  max-width: 11ch;
+  max-width: 14ch;
   text-shadow: 0 2px 18px rgba(21, 19, 15, 0.65);
 }
 
