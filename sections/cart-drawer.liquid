@@ -172,14 +172,14 @@
                                   {%- assign property_first_char = property.first | slice: 0 -%}
                                   {%- if property.last != blank and property_first_char != '_' -%}
                                     <div class="text-xs text-opacity leading-tight">
-                                      <dt class="inline">{{ property.first }}:&nbsp;</dt>
+                                      <dt class="inline">{{ property.first | escape }}:&nbsp;</dt>
                                       <dd class="inline">
                                         {%- if property.last contains '/uploads/' -%}
-                                          <a href="{{ property.last }}" class="link" target="_blank" aria-describedby="a11y-new-window-message">
-                                            {{- property.last | split: '/' | last -}}
+                                          <a href="{{ property.last | escape }}" class="link" target="_blank" aria-describedby="a11y-new-window-message">
+                                            {{- property.last | split: '/' | last | escape -}}
                                           </a>
                                         {%- else -%}
-                                          {{- property.last -}}
+                                          {{- property.last | escape -}}
                                         {%- endif -%}
                                       </dd>
                                     </div>

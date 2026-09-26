@@ -1,0 +1,29 @@
+{%- doc -%}
+  Formats a whole number using a period as the thousands separator
+  (es-CO style), e.g. 10200 -> "10.200". Numbers below 1000 are left as-is.
+  Used to pre-render counters server-side so the number doesn't flash
+  unformatted before JavaScript runs.
+
+  @param {number} number - Value to format
+
+  @example
+  {%- capture tree_total_display -%}
+    {%- render 'format-thousands', number: tree_total_number -%}
+  {%- endcapture -%}
+{%- enddoc -%}
+
+{%- liquid
+  assign value = number | plus: 0
+  assign display = value
+  if value >= 1000
+    assign thousands = value | divided_by: 1000
+    assign remainder = value | modulo: 1000 | append: ''
+    if remainder.size == 1
+      assign remainder = '00' | append: remainder
+    elsif remainder.size == 2
+      assign remainder = '0' | append: remainder
+    endif
+    assign display = thousands | append: '.' | append: remainder
+  endif
+  echo display
+-%}

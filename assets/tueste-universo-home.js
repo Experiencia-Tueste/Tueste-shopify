@@ -38,6 +38,15 @@
           dot.classList.toggle('is-on', i === current);
           dot.setAttribute('aria-selected', String(i === current));
         });
+
+        /* La barra de fundadores se vuelve a llenar cada vez que entra su slide. */
+        var slideMeters = slides[current].querySelectorAll('[data-meter]');
+        if (slideMeters.length) {
+          Array.prototype.forEach.call(slideMeters, function (bar) { bar.style.width = '0'; });
+          window.setTimeout(function () {
+            Array.prototype.forEach.call(slideMeters, function (bar) { bar.style.width = percentage + '%'; });
+          }, 260);
+        }
       }
 
       function stop() { if (timer) { window.clearInterval(timer); timer = null; } }
@@ -63,8 +72,36 @@
       hero.addEventListener('mouseleave', start);
       hero.addEventListener('focusin', stop);
       hero.addEventListener('focusout', start);
+
+      hero.addEventListener('keydown', function (event) {
+        if (event.key === 'ArrowRight') { show(current + 1); restart(); }
+        if (event.key === 'ArrowLeft') { show(current - 1); restart(); }
+      });
+
+      /* Deslizar en móvil */
+      var touchStartX = null;
+      hero.addEventListener('touchstart', function (event) {
+        touchStartX = event.touches[0].clientX;
+        stop();
+      }, { passive: true });
+      hero.addEventListener('touchend', function (event) {
+        if (touchStartX === null) return;
+        var delta = event.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(delta) > 45) show(current + (delta < 0 ? 1 : -1));
+        touchStartX = null;
+        start();
+      }, { passive: true });
+
       show(0);
-      start();
+
+      /* Sin autoplay mientras el hero no se ve. */
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) { entry.isIntersecting ? start() : stop(); });
+        }, { threshold: 0.2 }).observe(hero);
+      } else {
+        start();
+      }
     }
 
     Array.prototype.forEach.call(root.querySelectorAll('[data-rail]'), function (rail) {
@@ -72,7 +109,11 @@
       var previous = root.querySelector('[data-rail-prev="' + name + '"]');
       var next = root.querySelector('[data-rail-next="' + name + '"]');
       var card = rail.firstElementChild;
-      function step() { return card ? card.getBoundingClientRect().width + 20 : rail.clientWidth * 0.8; }
+      function step() {
+        if (!card) return rail.clientWidth * 0.8;
+        var gap = parseFloat(getComputedStyle(rail).columnGap || getComputedStyle(rail).gap) || 0;
+        return card.getBoundingClientRect().width + gap;
+      }
       function sync() {
         var max = rail.scrollWidth - rail.clientWidth - 2;
         if (previous) previous.disabled = rail.scrollLeft <= 2;
@@ -82,8 +123,38 @@
       if (next) next.addEventListener('click', function () { rail.scrollBy({ left: step(), behavior: 'smooth' }); });
       rail.addEventListener('scroll', sync, { passive: true });
       window.addEventListener('resize', sync);
+      rail.addEventListener('keydown', function (event) {
+        if (event.key === 'ArrowRight') { rail.scrollBy({ left: step(), behavior: 'smooth' }); event.preventDefault(); }
+        if (event.key === 'ArrowLeft') { rail.scrollBy({ left: -step(), behavior: 'smooth' }); event.preventDefault(); }
+      });
       sync();
     });
+
+    var reveals = root.querySelectorAll('.te-preview__reveal');
+    var revealReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function revealAll() {
+      Array.prototype.forEach.call(reveals, function (node) { node.classList.add('is-in'); });
+    }
+
+    if (!revealReduced && 'IntersectionObserver' in window) {
+      document.documentElement.classList.add('te-armed');
+
+      var revealObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-in');
+          revealObserver.unobserve(entry.target);
+        });
+      }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
+
+      Array.prototype.forEach.call(reveals, function (node) { revealObserver.observe(node); });
+
+      /* Salvavidas: si algo impide que el observador dispare, nada queda oculto. */
+      window.setTimeout(revealAll, 6000);
+    } else {
+      revealAll();
+    }
   }
 
   function boot() {

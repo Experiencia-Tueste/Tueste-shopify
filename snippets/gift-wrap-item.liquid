@@ -63,9 +63,9 @@
   data-line-item-index="{{ line_item.index | plus: 1 }}"
   data-section-id="{{ section_id }}"
 >
-  <script type="application/json" data-line-item>{{ line_item | json }}</script>
+  <script type="application/json" data-line-item>{{ line_item | json | replace: '</', '<\/' }}</script>
   {%- if gift_line_item -%}
-    <script type="application/json" data-gift-item>{{ gift_line_item | json }}</script>
+    <script type="application/json" data-gift-item>{{ gift_line_item | json | replace: '</', '<\/' }}</script>
   {%- endif -%}
   {%- liquid
     if settings.gift_wrap_per_product_type == 'checkbox'

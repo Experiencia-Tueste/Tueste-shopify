@@ -1,0 +1,27 @@
+/* Página de un certificado Tueste Tree individual
+   (templates/metaobject.certificado-arbol.json, sections/certificado-arbol.liquid).
+   Reutiliza los tokens y las clases .tt-certificate* ya definidas en
+   tueste-tree-landing.css — este archivo solo cubre el contenedor de la
+   página y el enlace de vuelta. */
+
+.tc-page {
+  background: var(--tt-bg);
+  color: var(--tt-cream);
+  min-height: 60vh;
+  padding: clamp(3rem, 8vw, 6rem) 1.25rem;
+}
+
+.tc-container {
+  margin: 0 auto;
+  max-width: 640px;
+  text-align: center;
+}
+
+.tc-container .tt-certificate {
+  margin: 0 auto;
+  max-width: 460px;
+}
+
+.tc-back {
+  margin-top: 2rem;
+}

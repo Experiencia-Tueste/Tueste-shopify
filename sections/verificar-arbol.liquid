@@ -1,0 +1,168 @@
+{%- comment -%}
+  Búsqueda pública de un certificado Tueste Tree por número de árbol.
+
+  REDISEÑO — reemplaza la versión anterior de esta sección, que embebía
+  TODAS las entradas del metaobject `certificado-arbol` como JSON en esta
+  misma página para que la búsqueda por `?numero=` corriera en el
+  navegador. Esa versión tenía dos problemas confirmados:
+    1. CRÍTICO (funcional): `shop.metaobjects['certificado-arbol'].values`
+       está limitado por Shopify a un máximo de 50 entradas sin
+       `{% paginate %}`. Con miles de árboles ya adoptados, la gran
+       mayoría de certificados nunca se podían mostrar.
+    2. HIGH (seguridad): esas hasta-50 entradas se embebían completas
+       (nombre de guardián, número, insignia, fecha) en el HTML público
+       para cualquier visitante sin autenticar — alcanzaba con "ver código
+       fuente", sin necesidad de conocer ningún número.
+
+  Diseño nuevo: esta página NUNCA carga ni imprime datos de certificados.
+  Su único trabajo es tomar el número que escribe la persona y armar la
+  URL de la página propia de esa entrada (Shopify "storefront pages" para
+  metaobjects) — Shopify resuelve esa URL contra la entrada real (existe o
+  no, está publicada o no) sin pasar por acá. Ver sections/certificado-arbol.liquid
+  para esa página, que es la única que efectivamente muestra un
+  certificado, y solo muestra UNO por carga.
+
+  Esto además resuelve de raíz, no solo para esta página, el problema de
+  fondo: Liquid no tiene forma de leer el query string en el servidor (no
+  hay `request.query_params` genérico para templates de página), así que
+  la versión anterior no podía filtrar `?numero=` del lado del servidor y
+  por eso embebía todo. Acá el "filtro" lo hace el propio ruteo de Shopify
+  a partir del path de la URL, no un query param — por eso no hace falta
+  que Liquid lo lea.
+
+  ────────────────────────────────────────────────────────────────────────
+  CONFIGURACIÓN MANUAL REQUERIDA EN SHOPIFY ADMIN (reemplaza los pasos
+  documentados antes para el diseño viejo):
+
+  1. Definición del metaobject (sin cambios de campos):
+     Configuración → Datos personalizados → Metaobjects → certificado-arbol.
+     Un metaobject por adopción pagada. El HANDLE de cada entrada es el
+     número de árbol en texto plano (ej. "4821"), sin ceros a la izquierda
+     ni prefijos — ese handle es lo que arma la URL de cada certificado.
+     Campos (keys exactas, minúsculas, sin acentos):
+       numero    (Single line text)
+       guardian  (Single line text)
+       insignia  (Single line text)
+       fecha     (Date)
+
+  2. Activar la página propia por entrada (esto es lo nuevo):
+     Dentro de esa misma definición → pestaña/sección "Storefronts" (el
+     nombre exacto puede variar según la versión del Admin) → activar la
+     opción para agregar una página de Online Store por cada entrada de
+     este tipo → definir un "URL handle" para el tipo.
+     Shopify muestra la URL resultante al guardar (algo del estilo
+     "/<url-handle>/<handle-de-la-entrada>") — confirmar ahí el patrón
+     EXACTO antes de publicar cualquier enlace. Si el handle elegido no es
+     "certificado-arbol", actualizar el ajuste "URL handle de
+     certificados" de esta sección (abajo, en el editor de temas) para que
+     coincida — el valor que se use acá y el que se configuró en Admin
+     tienen que ser el mismo texto.
+
+  3. Publicar cada entrada al canal Online Store:
+     Igual que un producto, cada entrada del metaobject (las que ya
+     existen y las que se creen de acá en más) necesita quedar publicada
+     al canal "Online Store" para que su página exista. Si un certificado
+     nuevo no se ve, este es el primer lugar para revisar.
+
+  4. Si la tienda no ofrece la opción de "Storefronts"/páginas por entrada
+     para metaobjects (depende del plan/versión de Shopify): esta página
+     debe quedar deshabilitada (sacar `templates/page.verificar.json` de
+     cualquier navegación/enlace, o redirigir a `pages['tueste-tree']`)
+     hasta tener un App Proxy o función serverless propia. No restaurar el
+     listado embebido de la versión anterior como solución intermedia:
+     eso reintroduce los dos problemas de arriba.
+  ────────────────────────────────────────────────────────────────────────
+{%- endcomment -%}
+
+{%- liquid
+  assign metaobject_type = 'certificado-arbol'
+  assign certificate_type = shop.metaobjects[metaobject_type]
+  assign is_configured = false
+  if certificate_type != blank
+    assign is_configured = true
+  endif
+  assign tree_page_url = pages['tueste-tree'].url | default: '/pages/tueste-tree'
+  assign certificate_url_handle = section.settings.certificate_url_handle | strip
+  if certificate_url_handle == blank
+    assign certificate_url_handle = 'certificado-arbol'
+  endif
+-%}
+
+{{ 'tueste-tree-landing.css' | asset_url | stylesheet_tag }}
+{{ 'tueste-tree-verificar.css' | asset_url | stylesheet_tag }}
+
+<section
+  class="tv-page"
+  data-tree-verificar
+  data-configured="{{ is_configured }}"
+  data-tree-url="{{ tree_page_url }}"
+  data-certificate-base="/{{ certificate_url_handle | url_escape }}"
+>
+  <div class="tv-container">
+    <p class="tt-kicker">Tueste Tree</p>
+    <h1>{{ section.settings.heading | escape }}</h1>
+    <p class="tv-lead">{{ section.settings.lead | escape }}</p>
+
+    {%- if is_configured -%}
+      <form class="tv-prompt" data-state="prompt" method="get" action="">
+        <label for="TreeVerificarNumero-{{ section.id }}">{{ section.settings.prompt_label | escape }}</label>
+        <div class="tv-prompt-row">
+          <input
+            type="text"
+            id="TreeVerificarNumero-{{ section.id }}"
+            name="numero"
+            inputmode="numeric"
+            pattern="[0-9]+"
+            title="{{ section.settings.prompt_pattern_hint | escape }}"
+            required
+            autocomplete="off"
+            placeholder="{{ section.settings.prompt_placeholder | escape }}"
+            data-numero-input
+          >
+          <button type="submit" class="tt-button tt-button--primary">{{ section.settings.prompt_button | escape }}</button>
+        </div>
+      </form>
+
+      <div class="tv-state" data-state="redirecting" hidden>
+        <p>{{ section.settings.loading_label | escape }}</p>
+      </div>
+    {%- else -%}
+      <div class="tv-state" data-state="not-configured">
+        <h2>{{ section.settings.not_configured_heading | escape }}</h2>
+        <p>{{ section.settings.not_configured_body | escape }}</p>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+<script src="{{ 'tueste-tree-verificar.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Verificar árbol",
+  "tag": "section",
+  "class": "section-verificar-arbol",
+  "limit": 1,
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Título", "default": "Verifica tu certificado" },
+    { "type": "textarea", "id": "lead", "label": "Descripción", "default": "Escribe el número de árbol que aparece en tu certificado para confirmar que tu adopción quedó registrada." },
+    { "type": "text", "id": "prompt_label", "label": "Etiqueta del campo", "default": "Número de árbol" },
+    { "type": "text", "id": "prompt_placeholder", "label": "Placeholder del campo", "default": "Ej. 4821" },
+    { "type": "text", "id": "prompt_pattern_hint", "label": "Texto de ayuda si el número no es válido", "default": "Escribe solo números, sin espacios ni letras." },
+    { "type": "text", "id": "prompt_button", "label": "Texto del botón", "default": "Verificar" },
+    { "type": "text", "id": "loading_label", "label": "Texto mientras redirige", "default": "Buscando tu árbol…" },
+    { "type": "text", "id": "not_configured_heading", "label": "Título · aún sin configurar", "default": "La verificación todavía no está lista" },
+    { "type": "textarea", "id": "not_configured_body", "label": "Texto · aún sin configurar", "default": "Falta crear la definición del metaobject certificado-arbol en Shopify Admin. Este mensaje solo lo ve el equipo, no debería quedar visible una vez configurado." },
+    {
+      "type": "text",
+      "id": "certificate_url_handle",
+      "label": "URL handle de certificados",
+      "default": "certificado-arbol",
+      "info": "Tiene que coincidir exactamente con el \"URL handle\" configurado en Shopify Admin al activar páginas de Online Store para el metaobject certificado-arbol (Configuración → Datos personalizados → Metaobjects → certificado-arbol → Storefronts)."
+    }
+  ],
+  "presets": [
+    { "name": "Verificar árbol" }
+  ]
+}
+{% endschema %}

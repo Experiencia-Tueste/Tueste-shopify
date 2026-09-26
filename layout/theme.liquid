@@ -50,8 +50,16 @@
         echo 'tienda-editorial.css' | asset_url | stylesheet_tag
       endif
 
-      if template.suffix == 'tueste-tree' or template.suffix == 'tueste-unity' or template.suffix == 'tueste-records'
+      if template.suffix == 'tienda-editorial' or template.suffix == 'tueste-tree' or template.suffix == 'tueste-unity' or template.suffix == 'tueste-records' or template.suffix == 'verificar' or template.suffix == 'certificado-arbol' or request.page_type == 'index'
         echo 'universo-tueste.css' | asset_url | stylesheet_tag
+      endif
+
+      if template.suffix == 'tueste-records'
+        echo 'tueste-records-extra.css' | asset_url | stylesheet_tag
+      endif
+
+      if template.suffix == 'tueste-unity'
+        echo 'tueste-unity-extra.css' | asset_url | stylesheet_tag
       endif
 
       if direction == 'rtl'
@@ -59,7 +67,7 @@
       endif
     -%}
 
-    {%- if template.suffix == 'tienda-editorial' or template.suffix == 'tueste-tree' or template.suffix == 'tueste-unity' or template.suffix == 'tueste-records' or request.page_type == 'index' -%}
+    {%- if template.suffix == 'tienda-editorial' or template.suffix == 'tueste-tree' or template.suffix == 'tueste-unity' or template.suffix == 'tueste-records' or template.suffix == 'verificar' or template.suffix == 'certificado-arbol' or request.page_type == 'index' -%}
       <style>
         @font-face {
           font-family: "Tueste Typeface";

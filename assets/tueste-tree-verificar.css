@@ -1,0 +1,89 @@
+/* Página de búsqueda de certificados Tueste Tree (/pages/verificar).
+   Reutiliza tokens y clases (.tt-kicker, .tt-button) ya definidos en
+   tueste-tree-landing.css — este archivo solo cubre lo nuevo: el
+   contenedor de la página y los estados del formulario. El certificado
+   en sí ya no vive acá, ver assets/tueste-tree-certificado.css. */
+
+.tv-page {
+  background: var(--tt-bg);
+  color: var(--tt-cream);
+  min-height: 60vh;
+  padding: clamp(3rem, 8vw, 6rem) 1.25rem;
+}
+
+.tv-container {
+  margin: 0 auto;
+  max-width: 640px;
+  text-align: center;
+}
+
+.tv-container h1 {
+  font-family: var(--tt-font-serif);
+  font-size: clamp(1.9rem, 4vw, 2.8rem);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin: 0.4rem 0 0.8rem;
+}
+
+.tv-lead {
+  color: var(--tt-cream-soft);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0 0 2.2rem;
+}
+
+.tv-prompt {
+  margin: 0 auto;
+  max-width: 420px;
+}
+
+.tv-prompt label {
+  display: block;
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
+.tv-prompt-row {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.tv-prompt-row input {
+  background: var(--tt-surface);
+  border: 1px solid var(--tt-line-strong);
+  border-radius: 999px;
+  color: var(--tt-cream);
+  flex: 1 1 auto;
+  font-size: 0.95rem;
+  min-width: 0;
+  padding: 0.8rem 1.1rem;
+}
+
+.tv-prompt-row input::placeholder {
+  color: var(--tt-cream-soft);
+}
+
+.tv-state {
+  margin: 0 auto;
+  max-width: 480px;
+}
+
+.tv-state h2 {
+  font-family: var(--tt-font-serif);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin: 0 0 0.8rem;
+}
+
+.tv-state p {
+  color: var(--tt-cream-soft);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin: 0 0 1.4rem;
+}
+
+@media screen and (max-width: 520px) {
+  .tv-prompt-row {
+    flex-direction: column;
+  }
+}

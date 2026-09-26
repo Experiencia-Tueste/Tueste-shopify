@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "verificar_arbol": {
+      "type": "verificar-arbol",
+      "settings": {}
+    }
+  },
+  "order": ["verificar_arbol"]
+}

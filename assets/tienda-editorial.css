@@ -51,238 +51,13 @@
 
 /* ==========================================================================
    1 · Plantilla Shopify (page.tienda-editorial)
+   La página "tienda editorial" es un clon de Home: comparte la sección
+   Universo Tueste · portada y, por lo tanto, el mismo contrato de marca para
+   el header/footer/botones definido en "3 · Homepage nativa + tienda
+   editorial" más abajo (selector body.template-tueste-home,
+   body.template-tienda-editorial).
+   Lo único realmente propio de esta plantilla es el logo especial del header.
    ========================================================================== */
-
-body.template-tienda-editorial {
-  background: var(--te-bg);
-  color: var(--te-cream);
-  font-family: var(--te-body);
-  --color-base-text: 255 232 191;
-  --color-base-background: 21 19 15;
-  --color-base-button: 251 169 34;
-  --color-base-button-text: 40 40 40;
-  --color-background: var(--te-bg);
-  --color-foreground: var(--te-cream);
-  --font-heading-family: var(--te-display);
-  --font-body-family: var(--te-body);
-  --font-navigation-family: var(--te-body);
-  --font-button-family: var(--te-body);
-  overflow-x: hidden;
-}
-
-body.template-tienda-editorial .page-container,
-body.template-tienda-editorial .main-content {
-  background:
-    radial-gradient(circle at 12% 14%, rgba(251, 169, 34, 0.08), transparent 26rem),
-    radial-gradient(circle at 88% 46%, rgba(63, 191, 90, 0.05), transparent 24rem),
-    radial-gradient(circle at 50% 96%, rgba(182, 148, 255, 0.04), transparent 22rem),
-    var(--te-bg);
-}
-
-/* Barra superior: el único elemento con desenfoque, igual que en la landing. */
-body.template-tienda-editorial :is(.announcement-bar, .header) {
-  background: rgba(21, 19, 15, 0.72) !important;
-  color: var(--te-cream) !important;
-  border-color: var(--te-line) !important;
-  -webkit-backdrop-filter: blur(14px);
-  backdrop-filter: blur(14px);
-  box-shadow: none;
-}
-
-body.template-tienda-editorial .announcement-bar {
-  font-family: var(--te-mono);
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  font-size: 0.62rem;
-  line-height: 1.4;
-}
-
-body.template-tienda-editorial .header :is(a, button, summary),
-body.template-tienda-editorial .header .menu__item {
-  color: var(--te-cream) !important;
-  font-family: var(--te-body);
-}
-
-/* Titulares: Tueste Typeface en mayúsculas. */
-body.template-tienda-editorial :is(h1, h2, .heading, .title) {
-  color: var(--te-cream);
-  font-family: var(--te-display);
-  font-style: normal;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  line-height: 1.06;
-  text-wrap: balance;
-  text-shadow: none;
-}
-
-body.template-tienda-editorial :is(h1, h2) :is(em, strong, b) {
-  color: var(--te-amber);
-  font-style: normal;
-  font-weight: 700;
-}
-
-/* Subtítulos y nombres de pieza: voz emocional en Lora itálica. */
-body.template-tienda-editorial :is(h3, h4) {
-  color: var(--te-cream);
-  font-family: var(--te-serif);
-  font-style: italic;
-  font-weight: 500;
-  letter-spacing: 0;
-  line-height: 1.2;
-  text-transform: none;
-}
-
-body.template-tienda-editorial :is(.section, .page-width) {
-  --color-background: var(--te-bg);
-  --color-foreground: var(--te-cream);
-}
-
-body.template-tienda-editorial .section--rounded,
-body.template-tienda-editorial .rounded,
-body.template-tienda-editorial .card,
-body.template-tienda-editorial .product-card,
-body.template-tienda-editorial .product__media,
-body.template-tienda-editorial .banner,
-body.template-tienda-editorial .tueste-editorial-tree__shell {
-  border-radius: var(--te-radius);
-}
-
-body.template-tienda-editorial .banner,
-body.template-tienda-editorial .slideshow,
-body.template-tienda-editorial .featured-product,
-body.template-tienda-editorial .featured-collections,
-body.template-tienda-editorial .image-with-text,
-body.template-tienda-editorial .rich-text,
-body.template-tienda-editorial .scrolling-text,
-body.template-tienda-editorial .tueste-editorial-tree,
-body.template-tienda-editorial .footer {
-  color: var(--te-cream);
-}
-
-body.template-tienda-editorial .banner__overlay {
-  background:
-    linear-gradient(90deg, rgba(21, 19, 15, 0.78) 0%, rgba(21, 19, 15, 0.55) 38%, rgba(21, 19, 15, 0.05) 70%),
-    linear-gradient(180deg, rgba(21, 19, 15, 0.1) 0%, rgba(21, 19, 15, 0.3) 40%, rgba(21, 19, 15, 0.92) 78%, var(--te-bg) 100%);
-}
-
-body.template-tienda-editorial .slideshow-content,
-body.template-tienda-editorial .banner__box {
-  text-shadow: 0 2px 18px rgba(21, 19, 15, 0.7);
-}
-
-/* Sistema de botones del Anexo CTA. */
-body.template-tienda-editorial :is(.button, .btn, button.button) {
-  border-radius: 999px;
-  font-family: var(--te-body);
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  transition: transform 0.15s ease, background-color 0.2s ease, border-color 0.2s ease;
-}
-
-body.template-tienda-editorial .button--primary {
-  background: var(--te-amber);
-  border-color: var(--te-amber);
-  color: var(--te-ink);
-}
-
-body.template-tienda-editorial .button--primary:hover {
-  background: var(--te-cream);
-  border-color: var(--te-cream);
-}
-
-body.template-tienda-editorial .button--secondary {
-  background: transparent;
-  color: var(--te-cream);
-  border-color: var(--te-line-2);
-}
-
-body.template-tienda-editorial .button--secondary:hover {
-  border-color: var(--te-amber);
-}
-
-body.template-tienda-editorial :is(.rich-text, .image-with-text, .featured-product, .featured-collections, .tueste-editorial-tree) {
-  background: transparent;
-}
-
-body.template-tienda-editorial :is(.featured-product, .featured-collections, .image-with-text) {
-  border-block: 1px solid var(--te-line);
-}
-
-/* Tarjetas: superficie plana, sin vidrio. */
-body.template-tienda-editorial :is(.product-card, .card, .featured-product__media, .product__media) {
-  background: var(--te-surface);
-  border: 1px solid var(--te-line);
-  box-shadow: none;
-  -webkit-backdrop-filter: none;
-  backdrop-filter: none;
-}
-
-body.template-tienda-editorial :is(.product-card, .card) {
-  transition: border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
-}
-
-body.template-tienda-editorial :is(.product-card, .card):hover {
-  border-color: var(--te-amber);
-  box-shadow: var(--te-shadow);
-  transform: translateY(-3px);
-}
-
-body.template-tienda-editorial :is(.product-card__title, .product-card .title, .product__title) {
-  color: var(--te-cream);
-  font-family: var(--te-serif);
-  font-style: italic;
-  font-weight: 500;
-  text-transform: none;
-  letter-spacing: 0;
-}
-
-body.template-tienda-editorial :is(.product-card__price, .price, .product__price) {
-  color: var(--te-amber);
-  font-family: var(--te-mono);
-  font-size: 0.78rem;
-  letter-spacing: 0.06em;
-}
-
-body.template-tienda-editorial :is(.rte, .rich-text__text, .product-card__vendor, .text-opacity) {
-  color: var(--te-cream-2);
-}
-
-body.template-tienda-editorial .scrolling-text {
-  color: var(--te-amber);
-  font-family: var(--te-display);
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-}
-
-body.template-tienda-editorial .footer,
-body.template-tienda-editorial .footer-copyright {
-  background: var(--te-bg-2) !important;
-  color: var(--te-cream) !important;
-  border-color: var(--te-line) !important;
-}
-
-body.template-tienda-editorial .footer :is(a, button, input),
-body.template-tienda-editorial .footer-copyright :is(a, button) {
-  color: var(--te-cream) !important;
-}
-
-body.template-tienda-editorial :is(input, select, textarea) {
-  background: var(--te-surface);
-  color: var(--te-cream);
-  border-color: var(--te-line-2);
-  border-radius: 999px;
-}
-
-body.template-tienda-editorial :is(input, select, textarea):focus {
-  border-color: var(--te-amber);
-  box-shadow: 0 0 0 3px rgba(251, 169, 34, 0.2);
-}
-
-body.template-tienda-editorial :is(a, button):focus-visible {
-  outline: 2.5px solid var(--te-amber);
-  outline-offset: 3px;
-}
 
 body.template-tienda-editorial .header__logo-link--tueste-editorial {
   min-height: 44px;
@@ -293,16 +68,6 @@ body.template-tienda-editorial .header__logo-link--tueste-editorial img {
   display: block;
   width: clamp(150px, 13vw, 175px);
   height: auto;
-}
-
-@media screen and (max-width: 767px) {
-  body.template-tienda-editorial .section--padding {
-    padding-block: clamp(2.5rem, 10vw, 4.5rem);
-  }
-
-  body.template-tienda-editorial .tueste-editorial-tree__shell {
-    padding: 1.25rem;
-  }
 }
 
 /* ==========================================================================
@@ -571,8 +336,9 @@ body.template-tienda-editorial .header__logo-link--tueste-editorial img {
   visibility: visible;
 }
 
-.te-preview__hero-bg {
+.te-preview .te-preview__hero-bg {
   position: absolute;
+  display: block;
   inset: 0;
   z-index: -2;
   background-position: center 40%;
@@ -1565,6 +1331,7 @@ html.te-armed .te-preview__reveal.is-in {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  body.template-tueste-home *,
   body.template-tienda-editorial *,
   .te-preview * {
     scroll-behavior: auto !important;
@@ -1583,8 +1350,15 @@ html.te-armed .te-preview__reveal.is-in {
   }
 }
 
-/* The native homepage uses the same visual contract as the local editorial preview. */
-body.template-tueste-home {
+/* ==========================================================================
+   3 · Homepage nativa + tienda editorial (chrome del theme)
+   Ambas plantillas renderizan la misma sección (Universo Tueste · portada),
+   así que comparten el mismo contrato visual para el header/footer/botones
+   del theme. Ver también "1 · Plantilla Shopify" más arriba.
+   ========================================================================== */
+
+body.template-tueste-home,
+body.template-tienda-editorial {
   background: var(--te-bg);
   color: var(--te-cream);
   font-family: var(--te-body);
@@ -1592,14 +1366,17 @@ body.template-tueste-home {
 }
 
 body.template-tueste-home .page-container,
-body.template-tueste-home .main-content {
+body.template-tueste-home .main-content,
+body.template-tienda-editorial .page-container,
+body.template-tienda-editorial .main-content {
   background:
     radial-gradient(circle at 12% 14%, rgba(251, 169, 34, 0.08), transparent 26rem),
     radial-gradient(circle at 88% 46%, rgba(63, 191, 90, 0.05), transparent 24rem),
     var(--te-bg);
 }
 
-body.template-tueste-home :is(.announcement-bar, .header) {
+body.template-tueste-home :is(.announcement-bar, .header),
+body.template-tienda-editorial :is(.announcement-bar, .header) {
   background: rgba(21, 19, 15, 0.82) !important;
   color: var(--te-cream) !important;
   border-color: var(--te-line) !important;
@@ -1609,18 +1386,29 @@ body.template-tueste-home :is(.announcement-bar, .header) {
 }
 
 body.template-tueste-home .header :is(a, button, summary),
-body.template-tueste-home .header .menu__item {
+body.template-tueste-home .header .menu__item,
+body.template-tienda-editorial .header :is(a, button, summary),
+body.template-tienda-editorial .header .menu__item {
   color: var(--te-cream) !important;
   font-family: var(--te-body);
 }
 
-body.template-tueste-home :is(.button, .btn, button.button) {
+body.template-tueste-home :is(.button, .btn, button.button),
+body.template-tienda-editorial :is(.button, .btn, button.button) {
   border-radius: 999px;
   font-family: var(--te-body);
 }
 
+/* Foco de teclado visible sobre el fondo oscuro (antes solo cubría tienda-editorial). */
+body.template-tueste-home :is(a, button):focus-visible,
+body.template-tienda-editorial :is(a, button):focus-visible {
+  outline: 2.5px solid var(--te-amber);
+  outline-offset: 3px;
+}
+
 @media (prefers-reduced-transparency: reduce) {
-  body.template-tueste-home :is(.announcement-bar, .header) {
+  body.template-tueste-home :is(.announcement-bar, .header),
+  body.template-tienda-editorial :is(.announcement-bar, .header) {
     background: var(--te-surface) !important;
     -webkit-backdrop-filter: none;
     backdrop-filter: none;

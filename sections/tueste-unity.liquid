@@ -2,12 +2,24 @@
   assign unity_logo = 'tueste-unity-logo.png' | asset_url
   assign tree_page = pages['tueste-tree']
   assign tree_url = tree_page.url | default: '/pages/tueste-tree'
+  assign tree_badge_image = 'tueste-tree-insignia-30-holografica.webp' | asset_url
   assign form_id = 'TuesteUnityContact-' | append: section.id
+  assign path_blocks = section.blocks | where: 'type', 'path'
+  assign timeline_blocks = section.blocks | where: 'type', 'timeline_step'
+  assign hero_badges = section.settings.hero_badges | split: '||'
+  assign hero_checklist = section.settings.hero_checklist | split: '||'
+  assign crew_range = section.settings.crew_range | split: '||'
+  assign tree_wa_text = 'Hola, quiero sumar árboles de Tueste Tree para mi empresa' | url_encode
+  assign tree_wa_href = 'https://wa.me/' | append: section.settings.tree_whatsapp_number | append: '?text=' | append: tree_wa_text
+  assign crew_wa_1_text = 'Hola Tueste Crew, quiero cotizar una ' | append: section.settings.crew_format_1_title | url_encode
+  assign crew_wa_1_href = 'https://wa.me/' | append: section.settings.whatsapp_number | append: '?text=' | append: crew_wa_1_text
+  assign crew_wa_2_text = 'Hola Tueste Crew, quiero cotizar una ' | append: section.settings.crew_format_2_title | url_encode
+  assign crew_wa_2_href = 'https://wa.me/' | append: section.settings.whatsapp_number | append: '?text=' | append: crew_wa_2_text
+  assign crew_wa_3_text = 'Hola Tueste Crew, quiero cotizar una experiencia de café a la medida. Cuéntame la fecha, el lugar y cuántas personas.' | url_encode
+  assign crew_wa_3_href = 'https://wa.me/' | append: section.settings.whatsapp_number | append: '?text=' | append: crew_wa_3_text
 -%}
 
-{{ 'universo-tueste.css' | asset_url | stylesheet_tag }}
-
-<section class="universo-page tu-unity" data-tueste-unity id="TuesteUnity-{{ section.id }}" data-whatsapp="{{ section.settings.whatsapp_number | escape }}" data-email="{{ section.settings.contact_email | escape }}" data-tree-url="{{ tree_url }}">
+<section class="universo-page tu-unity" data-tueste-unity id="TuesteUnity-{{ section.id }}" data-whatsapp="{{ section.settings.whatsapp_number | escape }}" data-email="{{ section.settings.contact_email | escape }}" data-tree-url="{{ tree_url | escape }}">
   {% render 'universo-tueste', current: 'unity' %}
 
   <div class="tu-wrap tu-section">
@@ -15,102 +27,285 @@
       <div>
         <p class="tu-kicker">Tueste Unity · marcas con origen</p>
         <h1>{{ section.settings.title }}</h1>
-        <p class="tu-lead">{{ section.settings.intro }}</p>
+        <p class="tu-lead">{{ section.settings.intro | escape }}</p>
         <div class="tu-hero__actions">
-          <a class="tu-button tu-button--primary" href="#taller">{{ section.settings.primary_cta }} <span aria-hidden="true">→</span></a>
-          <a class="tu-button tu-button--ghost" href="#contacto">Hablar con Unity</a>
+          <a class="tu-button tu-button--primary" href="#taller">{{ section.settings.primary_cta | escape }} <span aria-hidden="true">→</span></a>
+          <a class="tu-button tu-button--ghost" href="#caminos">{{ section.settings.paths_cta_label | escape }}</a>
+          <a class="tu-button tu-button--ghost" href="#taller" data-unity-goto-step="5">Hablar con Unity</a>
         </div>
+        {%- if hero_badges.size > 0 -%}
+          <ul class="tu-unity__specs" aria-label="Datos del café">
+            {%- for badge in hero_badges -%}<li>{{ badge | strip | escape }}</li>{%- endfor -%}
+          </ul>
+        {%- endif -%}
       </div>
       <div>
         <img class="tu-unity__logo" src="{{ unity_logo }}" alt="Tueste Unity" width="700" height="242" loading="eager">
-        <p class="tu-lead">{{ section.settings.promise }}</p>
+        <p class="tu-lead">{{ section.settings.promise | escape }}</p>
       </div>
     </div>
 
+    {%- if hero_checklist.size > 0 -%}
+      <ul class="tu-unity__checklist" aria-label="Qué incluye Tueste Unity">
+        {%- for item in hero_checklist -%}
+          <li><span class="tu-unity__checklist-icon" aria-hidden="true">✓</span>{{ item | strip | escape }}</li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+
     <div class="tu-unity__paths" id="caminos">
-      <article class="tu-unity__path"><span class="tu-kicker">01 · Entrada</span><h2>Tu sello, rápido</h2><p>Tueste listo para vestir con tu nombre y llevarlo a tu comunidad.</p></article>
-      <article class="tu-unity__path"><span class="tu-kicker">02 · Insignia</span><h2>Tu marca en bolsa</h2><p>Una edición de café de origen con empaque y narrativa propia.</p></article>
-      <article class="tu-unity__path"><span class="tu-kicker">03 · Estudio</span><h2>Tu blend y empaque</h2><p>Diseñamos fórmula, lenguaje, sonido y experiencia alrededor de tu marca.</p></article>
+      {%- for block in path_blocks -%}
+        <article class="tu-unity__path{% if block.settings.featured %} tu-unity__path--featured{% endif %}" {{ block.shopify_attributes }}>
+          {%- if block.settings.featured -%}<span class="tu-unity__path-badge">Recomendado</span>{%- endif -%}
+          <span class="tu-kicker">{{ block.settings.kicker | escape }}</span>
+          <h2>{{ block.settings.title | escape }}</h2>
+          <p>{{ block.settings.description | escape }}</p>
+          <dl class="tu-unity__path-specs">
+            <div><dt>Café</dt><dd>{{ block.settings.coffee_spec | escape }}</dd></div>
+            <div><dt>Bolsa</dt><dd>{{ block.settings.bag_spec | escape }}</dd></div>
+            <div><dt>Mínimo</dt><dd>{{ block.settings.minimum_spec | escape }}</dd></div>
+            {%- if block.settings.includes != blank -%}<div><dt>Incluye</dt><dd>{{ block.settings.includes | escape }}</dd></div>{%- endif -%}
+          </dl>
+          <a class="tu-button {% if block.settings.featured %}tu-button--primary{% else %}tu-button--ghost{% endif %}" href="#taller" data-path-jump="{{ block.id }}">{{ block.settings.cta_label | escape }} <span aria-hidden="true">→</span></a>
+        </article>
+      {%- endfor -%}
     </div>
   </div>
 
   <div class="tu-wrap tu-section" id="taller">
     <div class="tu-home-block__heading"><div><p class="tu-kicker">Taller de brief</p><h2>Una primera versión de tu universo.</h2></div><p class="tu-lead">Configura una dirección inicial. El equipo la revisa contigo antes de convertirla en producción.</p></div>
     <div class="tu-unity__workbench">
-      <div class="tu-panel">
-        <h2>Cuéntanos qué estás imaginando</h2>
-        <div class="tu-form" data-unity-config>
-          <div class="tu-form__row">
-            <label>Empresa<input type="text" data-config="company" maxlength="80" placeholder="Nombre de tu empresa"></label>
-            <label>Nombre del proyecto<input type="text" data-config="project" maxlength="80" placeholder="Ej. Café de la casa"></label>
+      <div class="tu-panel tu-unity__wizard" data-unity-wizard>
+        <div class="tu-unity__step" data-step="0">
+          <h3><span class="tu-unity__step-number" aria-hidden="true">1</span> El camino</h3>
+          <div class="tu-unity__step-options" data-config="path" role="group" aria-label="Camino">
+            {%- for block in path_blocks -%}
+              <button type="button" class="tu-unity__option" data-path-option="{{ block.id }}" data-title="{{ block.settings.title | escape }}" data-min="{{ block.settings.minimum_qty }}" data-qty-step="{{ block.settings.qty_step }}" data-unit="{{ block.settings.qty_unit | escape }}" data-color="{{ block.settings.bag_color }}" aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}">
+                <strong>{{ block.settings.title | escape }}</strong><small>desde {{ block.settings.minimum_spec | escape }}</small>
+              </button>
+            {%- endfor -%}
           </div>
-          <div class="tu-form__row">
-            <label>Camino<select data-config="path"><option value="Tu sello, rápido">Tu sello, rápido</option><option value="Tu marca en bolsa insignia">Tu marca en bolsa insignia</option><option value="Tu blend y empaque">Tu blend y empaque</option></select></label>
-            <label>Volumen aproximado<select data-config="quantity"><option value="Prueba inicial">Prueba inicial</option><option value="50–100 unidades">50–100 unidades</option><option value="100–500 unidades">100–500 unidades</option><option value="Más de 500 unidades">Más de 500 unidades</option></select></label>
+        </div>
+
+        <div class="tu-unity__step" data-step="1" hidden>
+          <h3><span class="tu-unity__step-number" aria-hidden="true">2</span> Marca en la bolsa</h3>
+          <label>Nombre de tu marca o empresa<input type="text" data-config="company" maxlength="40" placeholder="Ej. Casa Niebla" autocomplete="organization"></label>
+          <div class="tu-unity__field">
+            <p class="tu-unity__field-label" id="TuUnityLogoLabel-{{ section.id }}">Logo para la vista previa (opcional, no se envía ni se almacena)</p>
+            <div class="tu-unity__upload">
+              <label class="tu-button tu-button--ghost" for="TuUnityLogo-{{ section.id }}">Subir logo</label>
+              <input type="file" id="TuUnityLogo-{{ section.id }}" accept="image/png,image/jpeg,image/svg+xml,image/webp" hidden data-logo-input aria-labelledby="TuUnityLogoLabel-{{ section.id }}" aria-describedby="TuUnityLogoHint-{{ section.id }}">
+              <span class="tu-unity__hint" id="TuUnityLogoHint-{{ section.id }}" data-logo-hint>PNG o SVG con fondo transparente se ve mejor.</span>
+              <button type="button" class="tu-button tu-button--ghost" data-logo-clear hidden aria-label="Quitar el logo subido">Quitar</button>
+            </div>
           </div>
-          <div class="tu-form__row">
-            <label>Perfil sensorial<select data-config="mood"><option value="Dulce y redondo">Dulce y redondo</option><option value="Brillante y frutal">Brillante y frutal</option><option value="Profundo y especiado">Profundo y especiado</option><option value="Lo definimos juntos">Lo definimos juntos</option></select></label>
-            <label>Firma sonora<select data-config="sound"><option value="Orgánica">Orgánica</option><option value="Nocturna">Nocturna</option><option value="Ritual">Ritual</option><option value="Experimental">Experimental</option></select></label>
+        </div>
+
+        <div class="tu-unity__step" data-step="2" hidden>
+          <h3><span class="tu-unity__step-number" aria-hidden="true">3</span> La taza</h3>
+          <p class="tu-unity__hint">Elige la atmósfera de tu marca. Es el punto de partida de la catación, no la receta final.</p>
+          <div class="tu-unity__step-options" data-config="mood" role="group" aria-label="Atmósfera" data-mood-options></div>
+          <div class="tu-unity__profile" aria-live="polite">
+            <div class="tu-unity__notes" data-mood-notes></div>
+            <div class="tu-unity__bars" data-mood-bars></div>
           </div>
-          <div class="tu-form__row">
-            <label>Color de bolsa<select data-config="color"><option value="Verde bosque" data-color="#2e6347">Verde bosque</option><option value="Ámbar tostado" data-color="#a96520">Ámbar tostado</option><option value="Azul noche" data-color="#263653">Azul noche</option><option value="Terracota" data-color="#8d493d">Terracota</option></select></label>
-            <label>Estilo de empaque<select data-config="style"><option value="Clásica">Clásica</option><option value="Editorial mate">Editorial mate</option><option value="Nocturna">Nocturna</option></select></label>
+        </div>
+
+        <div class="tu-unity__step" data-step="3" hidden>
+          <h3><span class="tu-unity__step-number" aria-hidden="true">4</span> La firma sonora</h3>
+          <p class="tu-unity__hint">Tu firma nace de las letras de tu nombre: cada una cae en una nota. Elige el timbre y escúchala.</p>
+          <div class="tu-unity__step-options" data-config="timbre" role="group" aria-label="Timbre" data-timbre-options></div>
+          <div class="tu-unity__play-row">
+            <button type="button" class="tu-button tu-button--primary" data-play-signature><span aria-hidden="true">▶</span> Escuchar mi firma</button>
+            <span class="tu-unity__notes-read" data-notes-read aria-live="polite"></span>
           </div>
-          <label>Logo para vista previa (no se envía ni se almacena)<input type="file" accept="image/*" data-logo-input></label>
-          <label>Notas<textarea data-config="notes" maxlength="700" placeholder="Cuéntanos el contexto, la fecha o lo que no debería faltar."></textarea></label>
-          <label class="tu-form__check"><input type="checkbox" data-config="trees"><span>Quiero sumar una conversación sobre Tueste Tree.</span></label>
+          <p class="tu-form__message" data-audio-status role="status"></p>
+        </div>
+
+        <div class="tu-unity__step" data-step="4" hidden>
+          <h3><span class="tu-unity__step-number" aria-hidden="true">5</span> Volumen</h3>
+          <div class="tu-unity__stepper" role="group" aria-label="Cantidad de bolsas">
+            <button type="button" data-qty-minus aria-label="Reducir la cantidad de bolsas">−</button>
+            <input type="number" data-config="quantity" min="50" max="5000" step="10" value="100" inputmode="numeric" aria-label="Cantidad de bolsas">
+            <button type="button" data-qty-plus aria-label="Aumentar la cantidad de bolsas">+</button>
+          </div>
+          <p class="tu-unity__hint" data-qty-hint>Mínimo del camino: 50 bolsas.</p>
+          <label class="tu-form__check"><input type="checkbox" data-config="trees"><span>Quiero sumar árboles de Tueste Tree a mi edición (regalo para mi equipo o mis clientes).</span></label>
+          <p class="tu-unity__hint" data-trees-hint hidden>Cada árbol lleva nombre, número y certificado. <a data-trees-link href="#siembra">Conocer Tueste Tree →</a></p>
+        </div>
+
+        <div class="tu-unity__step" data-step="5" hidden id="contacto">
+          <h3><span class="tu-unity__step-number" aria-hidden="true">6</span> Habla con un asesor</h3>
+          <p class="tu-unity__hint">Envíanos el brief o continúa la conversación por WhatsApp con el resumen listo.</p>
+          <div data-unity-form>
+            {%- form 'contact', id: form_id, class: 'tu-form' -%}
+              <input type="hidden" name="contact[Origen]" value="Tueste Unity">
+              <input type="hidden" name="contact[Brief]" data-brief-field value="">
+              {%- if form.posted_successfully? -%}<p class="tu-form__message tu-form__message--success" role="status">{{ section.settings.success_message | escape }}</p>{%- endif -%}
+              {%- if form.errors -%}<div class="tu-form__message tu-form__message--error" role="alert">{{ form.errors | default_errors }}</div>{%- endif -%}
+              <div class="tu-form__row"><label>Tu nombre<input type="text" name="contact[Nombre]" required autocomplete="name" value="{{ form.name | escape }}"></label><label>Empresa<input type="text" name="contact[Empresa]" required data-contact-company></label></div>
+              <div class="tu-form__row"><label>Teléfono<input type="tel" name="contact[Teléfono]" required autocomplete="tel"></label><label>Ciudad<input type="text" name="contact[Ciudad]" required autocomplete="address-level2"></label></div>
+              <label>Correo<input type="email" name="contact[email]" required autocomplete="email" value="{{ form.email | escape }}"></label>
+              <div class="tu-form__row">
+                <label for="TuUnityWhen-{{ section.id }}">¿Para cuándo lo necesitas?
+                  <select id="TuUnityWhen-{{ section.id }}" name="contact[Cuándo]">
+                    <option value="Este mes">Este mes</option>
+                    <option value="1 a 3 meses" selected>1-3 meses</option>
+                    <option value="Más de 3 meses">+3 meses</option>
+                    <option value="Solo estoy explorando">Solo explorando</option>
+                  </select>
+                </label>
+                <fieldset class="tu-unity__pill-group">
+                  <legend>Eres</legend>
+                  <label class="tu-unity__pill"><input type="radio" name="contact[Eres]" value="Una marca" checked><span>Una marca</span></label>
+                  <label class="tu-unity__pill"><input type="radio" name="contact[Eres]" value="Una empresa"><span>Una empresa</span></label>
+                  <label class="tu-unity__pill"><input type="radio" name="contact[Eres]" value="Una persona"><span>Una persona</span></label>
+                </fieldset>
+              </div>
+              <label>Mensaje<textarea name="contact[body]" rows="5" data-contact-message>{{ form.body | escape }}</textarea></label>
+              <label class="tu-form__check"><input type="checkbox" name="contact[Consentimiento]" value="Acepto el contacto de Tueste Unity" required><span>Acepto que Tueste (Monacua Global Company S.A.S.) use estos datos para responder a esta solicitud.</span></label>
+              <button class="tu-button tu-button--primary" type="submit">Enviar brief <span aria-hidden="true">→</span></button>
+            {%- endform -%}
+          </div>
+          <div class="tu-hero__actions">
+            <a class="tu-button tu-button--ghost" data-whatsapp-link href="https://wa.me/{{ section.settings.whatsapp_number | remove: ' ' | remove: '+' }}" target="_blank" rel="noopener">Abrir WhatsApp</a>
+            <a class="tu-button tu-button--ghost" data-email-link href="mailto:{{ section.settings.contact_email | escape }}">Escribir por correo</a>
+          </div>
+        </div>
+
+        <div class="tu-unity__wizard-nav">
+          <button type="button" class="tu-button tu-button--ghost" data-wizard-prev>← Atrás</button>
+          <div class="tu-unity__dots" data-wizard-dots role="group" aria-label="Progreso del taller"></div>
+          <button type="button" class="tu-button tu-button--primary" data-wizard-next>Siguiente →</button>
         </div>
       </div>
 
       <aside class="tu-panel" aria-live="polite">
         <h2>Así se ve el brief</h2>
         <div class="tu-bag-preview" data-bag-preview>
-          <div class="tu-bag-preview__body"><img data-logo-preview hidden alt="Vista previa del logo" width="180" height="80"><span class="tu-bag-preview__label" data-bag-label>Tu marca</span></div>
+          <div class="tu-unity-bag" data-unity-bag aria-hidden="true">
+            <div class="tu-unity-bag__fold"></div>
+            <div class="tu-unity-bag__body">
+              <div class="tu-unity-bag__texture"></div>
+              <div class="tu-unity-bag__valve"></div>
+              <div class="tu-unity-bag__label">
+                <img data-logo-preview hidden alt="" width="140" height="70">
+                <span class="tu-unity-bag__brand" data-bag-label>Tu marca</span>
+                <span class="tu-unity-bag__meta" data-bag-meta>Café de origen</span>
+              </div>
+            </div>
+            <div class="tu-unity-bag__seam"></div>
+          </div>
+          <span class="tu-bag-preview__stamp" data-bag-stamp>Vista previa · <strong>Tu sello, rápido</strong></span>
         </div>
         <dl class="tu-config-summary">
-          <div><dt>Empresa</dt><dd data-summary="company">—</dd></div>
-          <div><dt>Proyecto</dt><dd data-summary="project">—</dd></div>
-          <div><dt>Camino</dt><dd data-summary="path">Tu sello, rápido</dd></div>
-          <div><dt>Volumen</dt><dd data-summary="quantity">Prueba inicial</dd></div>
-          <div><dt>Perfil</dt><dd data-summary="mood">Dulce y redondo</dd></div>
-          <div><dt>Sonido</dt><dd data-summary="sound">Orgánica</dd></div>
-          <div><dt>Bolsa</dt><dd data-summary="color">Verde bosque</dd></div>
-          <div><dt>Estilo</dt><dd data-summary="style">Clásica</dd></div>
-          <div><dt>Tree</dt><dd data-summary="trees">No por ahora</dd></div>
+          <div><dt>Camino</dt><dd data-summary="path">—</dd></div>
+          <div><dt>Marca</dt><dd data-summary="company">—</dd></div>
+          <div><dt>Logo</dt><dd data-summary="logo">Sin logo por ahora</dd></div>
+          <div><dt>Taza</dt><dd data-summary="mood">—</dd></div>
+          <div><dt>Firma sonora</dt><dd data-summary="signature">—</dd></div>
+          <div><dt>Volumen</dt><dd data-summary="quantity">—</dd></div>
+          <div><dt>Tueste Tree</dt><dd data-summary="trees">No por ahora</dd></div>
         </dl>
       </aside>
     </div>
   </div>
 
-  <div class="tu-wrap tu-section" id="contacto">
-    <div class="tu-unity__workbench">
-      <div>
-        <p class="tu-kicker">Siguiente paso</p>
-        <h2 class="tu-display" style="font-size:clamp(2rem,5vw,4rem);line-height:1">Hagamos que tu café tenga una firma.</h2>
-        <p class="tu-lead">Envíanos el brief o continúa la conversación por WhatsApp con el resumen listo.</p>
-        <div class="tu-hero__actions"><a class="tu-button tu-button--ghost" data-whatsapp-link href="https://wa.me/{{ section.settings.whatsapp_number | remove: ' ' | remove: '+' }}" target="_blank" rel="noopener">Abrir WhatsApp</a><a class="tu-button tu-button--ghost" data-email-link href="mailto:{{ section.settings.contact_email | escape }}">Escribir por correo</a></div>
+  <div class="tu-wrap tu-section" id="sonoro">
+    <div class="tu-unity__sound">
+      <div class="tu-unity__sound-art" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
       </div>
-      <div class="tu-panel">
-        <div data-unity-form>
-        {%- form 'contact', id: form_id, class: 'tu-form' -%}
-          <input type="hidden" name="contact[Origen]" value="Tueste Unity">
-          <input type="hidden" name="contact[Brief]" data-brief-field value="">
-          {%- if form.posted_successfully? -%}<p class="tu-form__message tu-form__message--success" role="status">{{ section.settings.success_message }}</p>{%- endif -%}
-          {%- if form.errors -%}<div class="tu-form__message tu-form__message--error" role="alert">{{ form.errors | default_errors }}</div>{%- endif -%}
-          <div class="tu-form__row"><label>Tu nombre<input type="text" name="contact[Nombre]" required autocomplete="name" value="{{ form.name | escape }}"></label><label>Empresa<input type="text" name="contact[Empresa]" required data-contact-company></label></div>
-          <div class="tu-form__row"><label>Teléfono<input type="tel" name="contact[Teléfono]" required autocomplete="tel"></label><label>Ciudad<input type="text" name="contact[Ciudad]" required autocomplete="address-level2"></label></div>
-          <label>Correo<input type="email" name="contact[email]" required autocomplete="email" value="{{ form.email | escape }}"></label>
-          <label>Mensaje<textarea name="contact[body]" rows="5" data-contact-message>{{ form.body | escape }}</textarea></label>
-          <label class="tu-form__check"><input type="checkbox" name="contact[Consentimiento]" value="Acepto el contacto de Tueste Unity" required><span>Acepto que Tueste use estos datos para responder a esta solicitud.</span></label>
-          <button class="tu-button tu-button--primary" type="submit">Enviar brief <span aria-hidden="true">→</span></button>
-        {%- endform -%}
-        </div>
+      <div>
+        <p class="tu-kicker">Branding sonoro</p>
+        <h2 class="tu-unity__sound-title">{{ section.settings.sound_title }}</h2>
+        <p class="tu-lead">{{ section.settings.sound_lead | escape }}</p>
+        <ul class="tu-unity__feature-list">
+          <li>
+            <span class="tu-unity__feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h2M7 8v8M11 5v14M15 9v6M19 11v2"/></svg></span>
+            <div><strong>{{ section.settings.sound_feature_1_title | escape }}</strong><span>{{ section.settings.sound_feature_1_body | escape }}</span></div>
+          </li>
+          <li>
+            <span class="tu-unity__feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.5"/></svg></span>
+            <div><strong>{{ section.settings.sound_feature_2_title | escape }}</strong><span>{{ section.settings.sound_feature_2_body | escape }}</span></div>
+          </li>
+          <li>
+            <span class="tu-unity__feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg></span>
+            <div><strong>{{ section.settings.sound_feature_3_title | escape }}</strong><span>{{ section.settings.sound_feature_3_body | escape }}</span></div>
+          </li>
+          <li>
+            <span class="tu-unity__feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3zM5 11a7 7 0 0 0 14 0M12 18v3"/></svg></span>
+            <div><strong>{{ section.settings.sound_feature_4_title | escape }}</strong><span>{{ section.settings.sound_feature_4_body | escape }}</span></div>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
 
   <div class="tu-wrap tu-section" id="proceso">
-    <div class="tu-unity__steps"><div class="tu-step-card"><strong>01 · Escuchar</strong><span>Entendemos la marca y el contexto.</span></div><div class="tu-step-card"><strong>02 · Mezclar</strong><span>Construimos café, empaque y sonido.</span></div><div class="tu-step-card"><strong>03 · Probar</strong><span>Revisas una primera dirección.</span></div><div class="tu-step-card"><strong>04 · Lanzar</strong><span>Tu edición sale al mundo.</span></div></div>
+    <div class="tu-home-block__heading"><div><p class="tu-kicker">Cómo trabajamos</p><h2 class="tu-unity__sound-title">{{ section.settings.proceso_title }}</h2></div></div>
+    <ol class="tu-unity__timeline">
+      {%- for block in timeline_blocks -%}
+        <li class="tu-unity__timeline-item" {{ block.shopify_attributes }}>
+          <span class="tu-unity__timeline-number">{{ forloop.index }}</span>
+          <span class="tu-unity__timeline-when">{{ block.settings.when | escape }}</span>
+          <h3>{{ block.settings.title | escape }}</h3>
+          <p>{{ block.settings.description | escape }}</p>
+        </li>
+      {%- endfor -%}
+    </ol>
+    <div class="tu-unity__terms">
+      <div><strong>Pago</strong><span>{{ section.settings.terms_payment | escape }}</span></div>
+      <div><strong>Despacho</strong><span>{{ section.settings.terms_dispatch | escape }}</span></div>
+      <div><strong>Envío</strong><span>{{ section.settings.terms_shipping | escape }}</span></div>
+      <div><strong>Garantía</strong><span>{{ section.settings.terms_warranty | escape }}</span></div>
+    </div>
+  </div>
+
+  <div class="tu-wrap tu-section" id="experiencias">
+    <div class="tu-unity__crew-head">
+      <p class="tu-kicker">Experiencias · Tueste Crew</p>
+      <h2 class="tu-unity__sound-title">{{ section.settings.crew_title }}</h2>
+      <p class="tu-lead">{{ section.settings.crew_lead | escape }}</p>
+      {%- if crew_range.size > 0 -%}
+        <ul class="tu-unity__chip-list" aria-label="Lo que hacemos">
+          {%- for item in crew_range -%}<li>{{ item | strip | escape }}</li>{%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+    <div class="tu-unity__format-grid">
+      <article class="tu-unity__format-card">
+        <span class="tu-unity__crew-flag">100 % Tueste Crew</span>
+        <h3>{{ section.settings.crew_format_1_title | escape }}</h3>
+        <p>{{ section.settings.crew_format_1_body | escape }}</p>
+        <a class="tu-button tu-button--ghost" href="{{ crew_wa_1_href }}" target="_blank" rel="noopener">Cotizar esta cata</a>
+      </article>
+      <article class="tu-unity__format-card">
+        <span class="tu-unity__crew-flag">100 % Tueste Crew</span>
+        <h3>{{ section.settings.crew_format_2_title | escape }}</h3>
+        <p>{{ section.settings.crew_format_2_body | escape }}</p>
+        <a class="tu-button tu-button--ghost" href="{{ crew_wa_2_href }}" target="_blank" rel="noopener">Cotizar esta fiesta</a>
+      </article>
+    </div>
+    <div class="tu-unity__quote-cta">
+      <div><strong>{{ section.settings.crew_quote_title | escape }}</strong><span>{{ section.settings.crew_quote_body | escape }}</span></div>
+      <a class="tu-button tu-button--primary" href="{{ crew_wa_3_href }}" target="_blank" rel="noopener">Cotizar mi experiencia</a>
+    </div>
+  </div>
+
+  <div class="tu-wrap tu-section" id="siembra">
+    <div class="tu-unity__siembra">
+      <img class="tu-unity__siembra-badge" src="{{ tree_badge_image }}" alt="Insignia holográfica de Tueste Tree, para 30 árboles o más" loading="lazy" width="440" height="607">
+      <div>
+        <p class="tu-kicker">Tueste Tree × Unity</p>
+        <h2 class="tu-unity__sound-title">{{ section.settings.siembra_title }}</h2>
+        <p class="tu-lead">{{ section.settings.siembra_lead | escape }}</p>
+        <div class="tu-hero__actions">
+          <a class="tu-button tu-button--primary" href="{{ tree_wa_href }}" target="_blank" rel="noopener">Hablar con el agente</a>
+          <a class="tu-button tu-button--ghost" href="{{ tree_url | escape }}">Conocer Tueste Tree</a>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script src="{{ 'tueste-unity.js' | asset_url }}" defer></script>
@@ -127,10 +322,84 @@
     { "type": "textarea", "id": "intro", "label": "Introducción", "default": "Tueste Unity convierte el café de origen en una herramienta de marca: empaque, fórmula, contenido y una firma sonora que la gente recuerda." },
     { "type": "textarea", "id": "promise", "label": "Promesa", "default": "Una propuesta hecha a la medida, con el mismo origen que sostiene todo el Universo Tueste." },
     { "type": "text", "id": "primary_cta", "label": "CTA principal", "default": "Configurar una idea" },
+    { "type": "text", "id": "paths_cta_label", "label": "CTA secundario del hero", "default": "Ver los tres caminos" },
+    { "type": "textarea", "id": "hero_badges", "label": "Datos de confianza del hero, separados por ||", "default": "89 puntos SCA||Cañón de Aures · 1.840 msnm||Tostado al pedido · 15 días||Firma sonora incluida" },
+    { "type": "textarea", "id": "hero_checklist", "label": "Checklist del hero, separado por ||", "default": "Logo en la 1840||Fórmula propia||Empaque completo||Firma sonora||Experiencias Tueste Crew" },
     { "type": "text", "id": "whatsapp_number", "label": "WhatsApp con código de país", "default": "573102690145" },
+    { "type": "text", "id": "tree_whatsapp_number", "label": "WhatsApp del agente Tueste Tree", "default": "573102682677" },
     { "type": "text", "id": "contact_email", "label": "Correo de contacto", "default": "tuesteunity@tueste.co" },
-    { "type": "text", "id": "success_message", "label": "Mensaje de éxito", "default": "Recibimos tu brief. Te contactaremos para darle forma." }
+    { "type": "text", "id": "success_message", "label": "Mensaje de éxito", "default": "Recibimos tu brief. Te contactaremos para darle forma." },
+    { "type": "inline_richtext", "id": "sound_title", "label": "Sonoro · título", "default": "El café <em>también se escucha</em>" },
+    { "type": "textarea", "id": "sound_lead", "label": "Sonoro · introducción", "default": "Grabamos los sonidos reales del café en el origen y con ellos componemos la voz de tu marca." },
+    { "type": "text", "id": "sound_feature_1_title", "label": "Sonoro · feature 1 título", "default": "Firma y logo sonoro" },
+    { "type": "textarea", "id": "sound_feature_1_body", "label": "Sonoro · feature 1 texto", "default": "Un motivo corto y reconocible para tus videos, tu tienda y tus lanzamientos." },
+    { "type": "text", "id": "sound_feature_2_title", "label": "Sonoro · feature 2 título", "default": "Playlist oficial curada por Tueste" },
+    { "type": "textarea", "id": "sound_feature_2_body", "label": "Sonoro · feature 2 texto", "default": "En Spotify o la plataforma que uses, con enlace desde tueste.co y actualizaciones periódicas." },
+    { "type": "text", "id": "sound_feature_3_title", "label": "Sonoro · feature 3 título", "default": "Música para contenido y puntos físicos" },
+    { "type": "textarea", "id": "sound_feature_3_body", "label": "Sonoro · feature 3 texto", "default": "Ambientes para tu local, tus redes y tus activaciones." },
+    { "type": "text", "id": "sound_feature_4_title", "label": "Sonoro · feature 4 título", "default": "Biblioteca de sonidos de origen" },
+    { "type": "textarea", "id": "sound_feature_4_body", "label": "Sonoro · feature 4 texto", "default": "Cosecha, despulpado, lluvia en el cafetal: sonido grabado por nuestro equipo en la finca." },
+    { "type": "inline_richtext", "id": "proceso_title", "label": "Proceso · título", "default": "Del brief a la <em>primera taza</em>" },
+    { "type": "textarea", "id": "terms_payment", "label": "Términos · pago", "default": "70 % para iniciar producción, saldo contra entrega." },
+    { "type": "textarea", "id": "terms_dispatch", "label": "Términos · despacho", "default": "15 días desde la confirmación de cada pedido." },
+    { "type": "textarea", "id": "terms_shipping", "label": "Términos · envío", "default": "Por cuenta del cliente, a todo el país." },
+    { "type": "textarea", "id": "terms_warranty", "label": "Términos · garantía", "default": "Reponemos bolsas con defecto reportadas el día de recibo." },
+    { "type": "inline_richtext", "id": "crew_title", "label": "Crew · título", "default": "Experiencias <em>alrededor del café</em>" },
+    { "type": "textarea", "id": "crew_lead", "label": "Crew · introducción", "default": "Desarrollamos experiencias para marcas, empresas y eventos: desde catas personalizadas hasta catering de café. Todo lo diseña, produce y vive con tu gente el Tueste Crew." },
+    { "type": "textarea", "id": "crew_range", "label": "Crew · qué hacemos, separado por ||", "default": "Catas personalizadas||Barras y catering de café||Activaciones de marca||Eventos corporativos||Lanzamientos" },
+    { "type": "text", "id": "crew_format_1_title", "label": "Crew · formato 1 título", "default": "Cata sensorial experiencial" },
+    { "type": "textarea", "id": "crew_format_1_body", "label": "Crew · formato 1 texto", "default": "Un recorrido guiado por el café del Cañón de Aures con los cinco sentidos: aroma, sabor, textura y sonido. Íntima, didáctica y pensada para conectar a tu equipo o tus clientes con el origen." },
+    { "type": "text", "id": "crew_format_2_title", "label": "Crew · formato 2 título", "default": "Experiencia tipo fiesta" },
+    { "type": "textarea", "id": "crew_format_2_body", "label": "Crew · formato 2 texto", "default": "Café, música y celebración en un mismo lugar: barra de café, set musical y ambiente de fiesta, producidos de principio a fin por nuestro equipo." },
+    { "type": "text", "id": "crew_quote_title", "label": "Crew · cierre título", "default": "¿Tienes otra idea?" },
+    { "type": "textarea", "id": "crew_quote_body", "label": "Crew · cierre texto", "default": "Cuéntanos la fecha, el lugar y cuántas personas; armamos la experiencia a tu medida." },
+    { "type": "inline_richtext", "id": "siembra_title", "label": "Siembra · título", "default": "Tu marca <em>también siembra</em>" },
+    { "type": "textarea", "id": "siembra_lead", "label": "Siembra · texto", "default": "Suma árboles del lote fundacional de Tueste Tree a tu edición: cada árbol lleva un nombre, un número y un certificado. Es la forma de regalarle a tu equipo o a tus clientes un lugar en el origen de tu café." }
   ],
-  "presets": [{ "name": "Tueste Unity" }]
+  "blocks": [
+    {
+      "type": "path",
+      "name": "Camino",
+      "settings": [
+        { "type": "text", "id": "kicker", "label": "Kicker", "default": "01 · Entrada" },
+        { "type": "text", "id": "title", "label": "Título", "default": "Tu sello, rápido" },
+        { "type": "textarea", "id": "description", "label": "Descripción", "default": "Café, bolsa y una etiqueta con tu marca. La forma más ágil de lanzar una edición propia para un evento, un regalo corporativo o una prueba de mercado." },
+        { "type": "text", "id": "coffee_spec", "label": "Café", "default": "±86 SCA, molido" },
+        { "type": "text", "id": "bag_spec", "label": "Bolsa", "default": "desde 200 g" },
+        { "type": "text", "id": "minimum_spec", "label": "Mínimo (texto visible en la tarjeta)", "default": "50 bolsas" },
+        { "type": "text", "id": "includes", "label": "Incluye (opcional)", "default": "" },
+        { "type": "number", "id": "minimum_qty", "label": "Mínimo (número, para el paso de volumen)", "default": 50 },
+        { "type": "number", "id": "qty_step", "label": "Incremento del contador", "default": 10 },
+        { "type": "text", "id": "qty_unit", "label": "Unidad (para el paso de volumen)", "default": "bolsas por pedido" },
+        { "type": "color", "id": "bag_color", "label": "Color de bolsa en la vista previa", "default": "#8d493d" },
+        { "type": "text", "id": "cta_label", "label": "Texto del botón", "default": "Armar esta edición" },
+        { "type": "checkbox", "id": "featured", "label": "Destacar este camino", "default": false }
+      ]
+    },
+    {
+      "type": "timeline_step",
+      "name": "Paso de la línea de tiempo",
+      "settings": [
+        { "type": "text", "id": "when", "label": "Cuándo", "default": "Semana 1" },
+        { "type": "text", "id": "title", "label": "Título", "default": "El brief" },
+        { "type": "textarea", "id": "description", "label": "Descripción", "default": "Concepto, público y atmósfera de tu marca. Elegimos juntos el camino." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tueste Unity",
+      "blocks": [
+        { "type": "path", "settings": { "kicker": "01 · Entrada", "title": "Tu sello, rápido", "description": "Café, bolsa y una etiqueta con tu marca. La forma más ágil de lanzar una edición propia para un evento, un regalo corporativo o una prueba de mercado.", "coffee_spec": "±86 SCA, molido", "bag_spec": "desde 200 g", "minimum_spec": "50 bolsas", "includes": "", "minimum_qty": 50, "qty_step": 10, "qty_unit": "bolsas por pedido", "bag_color": "#8d493d", "cta_label": "Armar esta edición", "featured": false } },
+        { "type": "path", "settings": { "kicker": "02 · Insignia", "title": "Tu marca, nuestra bolsa insignia", "description": "El café Aures 1840 de 89 puntos con tu identidad en la bolsa. Nosotros tostamos, empacamos y controlamos cada lote; tú vendes una línea propia sin montar infraestructura.", "coffee_spec": "Aures 1840 · 89 SCA", "bag_spec": "340 g con válvula", "minimum_spec": "100 bolsas / mes", "includes": "playlist oficial de tu marca", "minimum_qty": 100, "qty_step": 50, "qty_unit": "bolsas al mes", "bag_color": "#a96520", "cta_label": "Armar mi línea", "featured": true } },
+        { "type": "path", "settings": { "kicker": "03 · Estudio", "title": "Tu blend, tu empaque", "description": "Te hacemos preguntas sobre tu concepto, tu público y tu atmósfera, y con eso diseñamos un perfil de taza que nadie más tiene. La bolsa se diseña completa, a tu estilo.", "coffee_spec": "más de 90 SCA", "bag_spec": "100 % personalizada", "minimum_spec": "500 bolsas", "includes": "", "minimum_qty": 500, "qty_step": 100, "qty_unit": "bolsas por pedido", "bag_color": "#2e6347", "cta_label": "Diseñar mi fórmula", "featured": false } },
+        { "type": "timeline_step", "settings": { "when": "Semana 1", "title": "El brief", "description": "Concepto, público y atmósfera de tu marca. Elegimos juntos el camino." } },
+        { "type": "timeline_step", "settings": { "when": "Semana 1-2", "title": "La taza", "description": "Curaduría del perfil y muestras para catar. En fórmula propia, diseñamos el blend." } },
+        { "type": "timeline_step", "settings": { "when": "Semana 2-3", "title": "Bolsa y sonido", "description": "Adaptamos tu identidad al empaque, preparamos impresión y componemos tu firma sonora." } },
+        { "type": "timeline_step", "settings": { "when": "15 días por pedido", "title": "Tueste al momento", "description": "Cada pedido se tuesta cuando se produce, para que llegue fresco." } },
+        { "type": "timeline_step", "settings": { "when": "Lanzamiento", "title": "Tu café en el mundo", "description": "Presencia en tueste.co, en las redes de Tueste y en nuestro contenido." } }
+      ]
+    }
+  ]
 }
 {% endschema %}

@@ -1,37 +1,137 @@
+{%- liquid
+  assign tree_page = pages['tueste-tree']
+  assign unity_page = pages['tueste-unity']
+  assign tree_url = tree_page.url | default: '/pages/tueste-tree'
+  assign unity_url = unity_page.url | default: '/pages/tueste-unity'
+-%}
 <section class="universo-page tu-records" data-tueste-records id="TuesteRecords-{{ section.id }}">
-  {% render 'universo-tueste', current: 'records', theme: 'records' %}
-
-  <div class="tu-wrap tu-section">
-    <div class="tu-records__intro">
-      <div><p class="tu-kicker">Tueste Records · música de origen</p><h1>{{ section.settings.title }}</h1></div>
-      <p class="tu-records__hero-note">{{ section.settings.intro }}</p>
+  <header class="tu-records__nav">
+    <div class="tu-wrap tu-records__nav-inner">
+      <a class="tu-records__nav-brand" href="#top">
+        <img src="{{ 'tueste-logo-glass.png' | asset_url }}" alt="" width="700" height="242" loading="eager">
+        <span>Tueste Records</span>
+      </a>
+      <nav aria-label="Secciones de Tueste Records">
+        <ul class="tu-records__nav-links">
+          <li><a href="#lanzamientos">Lanzamientos</a></li>
+          <li><a href="#plataformas">Plataformas</a></li>
+          <li><a href="#playlists">Playlists</a></li>
+          <li><a href="#noticias">Noticias</a></li>
+          <li><a href="#suscribete">Suscríbete</a></li>
+        </ul>
+      </nav>
+      <div class="tu-records__nav-badge"><span>Respaldado por</span> Logik Pro</div>
     </div>
-  </div>
+  </header>
+
+  <section class="tu-records__hero" id="top" data-hero aria-roledescription="carrusel" aria-label="Lo que se viene">
+    <div class="tu-records__hero-slides" data-hero-slides>
+      <article class="tu-records__hero-slide is-active" data-seed="7" role="group" aria-roledescription="diapositiva" aria-label="1 de 3" aria-labelledby="tu-records-hero-title-1-{{ section.id }}">
+        <div class="tu-records__hero-art"><canvas aria-hidden="true"></canvas></div>
+        <div class="tu-wrap tu-records__hero-copy">
+          <div class="tu-records__hero-meta">
+            <span class="tu-records__hero-eyebrow"><span class="tu-records__hero-live-dot" aria-hidden="true"></span>Próximo lanzamiento</span>
+            <span class="tu-records__hero-tag tu-records__hero-tag--hot">Exclusivo</span>
+            <span class="tu-records__hero-tag">03 · Oct · 2026</span>
+          </div>
+          <h1 id="tu-records-hero-title-1-{{ section.id }}">Cañón del Barbas EP</h1>
+          <p class="tu-records__hero-note">Cuatro piezas grabadas entre la niebla del cañón y la trilladora. Frecuencias de campo, bajo profundo y un tueste lento. Primer lanzamiento oficial del sello.</p>
+          <div class="tu-records__hero-actions">
+            <a class="tu-button tu-button--primary" href="#suscribete">Pre-guardar <span aria-hidden="true">→</span></a>
+            <a class="tu-button tu-button--ghost" href="#lanzamientos">Ver catálogo</a>
+          </div>
+        </div>
+      </article>
+      <article class="tu-records__hero-slide" data-seed="21" role="group" aria-roledescription="diapositiva" aria-label="2 de 3" aria-labelledby="tu-records-hero-title-2-{{ section.id }}" aria-hidden="true" inert>
+        <div class="tu-records__hero-art"><canvas aria-hidden="true"></canvas></div>
+        <div class="tu-wrap tu-records__hero-copy">
+          <div class="tu-records__hero-meta">
+            <span class="tu-records__hero-eyebrow"><span class="tu-records__hero-live-dot" aria-hidden="true"></span>Ya disponible</span>
+            <span class="tu-records__hero-tag">Single</span>
+          </div>
+          <h1 id="tu-records-hero-title-2-{{ section.id }}">Primera lluvia</h1>
+          <p class="tu-records__hero-note">El single que abre la temporada. Disponible en todas las plataformas digitales desde hoy.</p>
+          <div class="tu-records__hero-actions">
+            <a class="tu-button tu-button--primary" href="#plataformas">Escuchar ahora <span aria-hidden="true">→</span></a>
+            <a class="tu-button tu-button--ghost" href="#noticias">Leer la historia</a>
+          </div>
+        </div>
+      </article>
+      <article class="tu-records__hero-slide" data-seed="42" role="group" aria-roledescription="diapositiva" aria-label="3 de 3" aria-labelledby="tu-records-hero-title-3-{{ section.id }}" aria-hidden="true" inert>
+        <div class="tu-records__hero-art"><canvas aria-hidden="true"></canvas></div>
+        <div class="tu-wrap tu-records__hero-copy">
+          <div class="tu-records__hero-meta">
+            <span class="tu-records__hero-eyebrow"><span class="tu-records__hero-live-dot" aria-hidden="true"></span>Solo aquí</span>
+            <span class="tu-records__hero-tag tu-records__hero-tag--hot">Exclusivo</span>
+            <span class="tu-records__hero-tag">Sesión en vivo</span>
+          </div>
+          <h1 id="tu-records-hero-title-3-{{ section.id }}">Sesión trilladora 001</h1>
+          <p class="tu-records__hero-note">Grabación en vivo dentro de la trilladora de Tueste, sin público y sin repetir tomas. Solo para suscriptores del sello.</p>
+          <div class="tu-records__hero-actions">
+            <a class="tu-button tu-button--primary" href="#suscribete">Acceder <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </article>
+    </div>
+    <div class="tu-records__hero-ui">
+      <button class="tu-records__hero-toggle" type="button" data-hero-toggle aria-pressed="false">
+        <span aria-hidden="true" data-hero-toggle-icon>⏸</span>
+        <span class="sr-only" data-hero-toggle-label>Pausar autoplay</span>
+      </button>
+      <span class="tu-records__hero-counter" data-hero-counter aria-hidden="true">01 / 03</span>
+      <div class="tu-records__hero-dots" data-hero-dots role="group" aria-label="Ir a una diapositiva"></div>
+      <button class="tu-records__hero-arrow" type="button" data-hero-prev aria-label="Diapositiva anterior">‹</button>
+      <button class="tu-records__hero-arrow" type="button" data-hero-next aria-label="Diapositiva siguiente">›</button>
+    </div>
+  </section>
 
   <div class="tu-wrap tu-section" id="lanzamientos">
-    <div class="tu-home-block__heading"><div><p class="tu-kicker">Lanzamientos</p><h2>El origen también se escucha.</h2></div><p class="tu-lead">{{ section.settings.releases_intro }}</p></div>
+    <div class="tu-home-block__heading"><div><p class="tu-kicker">Lanzamientos</p><h2>El origen también se escucha.</h2></div><p class="tu-lead">{{ section.settings.releases_intro | escape }}</p></div>
     <div class="tu-records__filters" role="group" aria-label="Filtrar lanzamientos">
       <button class="tu-records__filter is-active" type="button" data-record-filter="all" aria-pressed="true">Todos</button>
       <button class="tu-records__filter" type="button" data-record-filter="album" aria-pressed="false">Álbumes</button>
       <button class="tu-records__filter" type="button" data-record-filter="ep" aria-pressed="false">EP</button>
       <button class="tu-records__filter" type="button" data-record-filter="single" aria-pressed="false">Singles</button>
+      <button class="tu-records__filter" type="button" data-record-filter="soon" aria-pressed="false">Próximos</button>
     </div>
     <div class="tu-records__grid" data-record-grid>
+      {%- assign release_index = 0 -%}
       {%- for block in section.blocks -%}
         {%- if block.type == 'release' -%}
-          <article class="tu-release" data-release-type="{{ block.settings.type }}" {{ block.shopify_attributes }}>
+          {%- assign release_index = release_index | plus: 1 -%}
+          {%- case release_index -%}
+            {%- when 1 -%}{%- assign release_fallback = 'tueste-tree-hero-vitral.webp' -%}
+            {%- when 2 -%}{%- assign release_fallback = 'tueste-tree-cap1-lluvia.webp' -%}
+            {%- when 3 -%}{%- assign release_fallback = 'tueste-tree-cap2-flor.webp' -%}
+            {%- when 4 -%}{%- assign release_fallback = 'tueste-tree-cap3-cosecha.webp' -%}
+            {%- when 5 -%}{%- assign release_fallback = 'cafe-1840.png' -%}
+            {%- else -%}{%- assign release_fallback = 'tueste-tree-siembra-vitral.webp' -%}
+          {%- endcase -%}
+          {%- assign has_links = false -%}
+          {%- if block.settings.link_url_1 != blank or block.settings.link_url_2 != blank or block.settings.link_url_3 != blank -%}
+            {%- assign has_links = true -%}
+          {%- endif -%}
+          <article class="tu-release" data-release-type="{{ block.settings.type }}" data-release-soon="{{ block.settings.soon }}" {{ block.shopify_attributes }}>
             <div class="tu-release__art" style="--release-color: {{ block.settings.color }}">
               {%- if block.settings.image != blank -%}
                 {{ block.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '360,540,720,900', sizes: '(min-width: 990px) 30vw, 80vw', alt: block.settings.title }}
               {%- else -%}
-                <img src="{{ 'banner_lanzamiento.png' | asset_url }}" alt="{{ block.settings.title | escape }}" loading="lazy" width="900" height="506">
+                <img src="{{ release_fallback | asset_url }}" alt="{{ block.settings.title | escape }}" loading="lazy" width="900" height="506">
               {%- endif -%}
-              <strong>{{ block.settings.art_label }}</strong>
+              {%- if block.settings.catalog_number != blank -%}<span class="tu-release__catalog">{{ block.settings.catalog_number }}</span>{%- endif -%}
+              <strong>{{ block.settings.art_label | escape | newline_to_br | strip_newlines }}</strong>
             </div>
             <div class="tu-release__meta"><span>{{ block.settings.type }} · {{ block.settings.year }}</span><span>{{ block.settings.status }}</span></div>
             <h2>{{ block.settings.title }}</h2>
+            {%- if block.settings.artist != blank -%}<p class="tu-release__artist">{{ block.settings.artist }}</p>{%- endif -%}
             <p>{{ block.settings.description }}</p>
-            {%- if block.settings.link != blank -%}<a class="tu-button tu-button--ghost" href="{{ block.settings.link }}" target="_blank" rel="noopener">{{ block.settings.link_label }} <span aria-hidden="true">↗</span></a>{%- endif -%}
+            {%- if has_links -%}
+              <div class="tu-release__links">
+                {%- if block.settings.link_url_1 != blank -%}<a class="tu-button tu-button--ghost" href="{{ block.settings.link_url_1 }}" target="_blank" rel="noopener">{{ block.settings.link_label_1 | default: 'Escuchar' }} <span aria-hidden="true">↗</span></a>{%- endif -%}
+                {%- if block.settings.link_url_2 != blank -%}<a class="tu-button tu-button--ghost" href="{{ block.settings.link_url_2 }}" target="_blank" rel="noopener">{{ block.settings.link_label_2 | default: 'Escuchar' }} <span aria-hidden="true">↗</span></a>{%- endif -%}
+                {%- if block.settings.link_url_3 != blank -%}<a class="tu-button tu-button--ghost" href="{{ block.settings.link_url_3 }}" target="_blank" rel="noopener">{{ block.settings.link_label_3 | default: 'Escuchar' }} <span aria-hidden="true">↗</span></a>{%- endif -%}
+              </div>
+            {%- endif -%}
           </article>
         {%- endif -%}
       {%- endfor -%}
@@ -39,23 +139,126 @@
   </div>
 
   <div class="tu-wrap tu-section" id="plataformas">
-    <div class="tu-home-block__heading"><div><p class="tu-kicker">Dónde escuchar</p><h2>Elige tu frecuencia.</h2></div></div>
+    <div class="tu-home-block__heading"><div><p class="tu-kicker">Dónde escuchar</p><h2>Elige tu frecuencia.</h2></div><p class="tu-records__platforms-eyebrow">Catálogo distribuido por Logik Pro desde 2012</p></div>
     <div class="tu-records__platforms">
       {%- for block in section.blocks -%}
         {%- if block.type == 'platform' -%}
-          {%- if block.settings.url != blank -%}<a class="tu-platform" href="{{ block.settings.url }}" target="_blank" rel="noopener" {{ block.shopify_attributes }}><strong>{{ block.settings.name }}</strong><span>{{ block.settings.description }}</span></a>{%- endif -%}
+          {%- if block.settings.url != blank -%}
+            <a class="tu-platform" href="{{ block.settings.url }}" target="_blank" rel="noopener" {{ block.shopify_attributes }}>
+              <span class="tu-platform__icon" aria-hidden="true">{%- render 'icon-brand', icon: block.settings.icon, size: 'sm' -%}</span>
+              <strong>{{ block.settings.name }}</strong><span>{{ block.settings.description }}</span>
+            </a>
+          {%- endif -%}
         {%- endif -%}
       {%- endfor -%}
+    </div>
+    <p class="tu-form__message">Cada lanzamiento aparece en todas las plataformas el mismo día. Los enlaces de arriba llevan al perfil del sello; los de cada lanzamiento llevan directo a la pieza.</p>
+  </div>
+
+  <div class="tu-wrap tu-section" id="playlists">
+    <div class="tu-home-block__heading">
+      <div><p class="tu-kicker">Playlists</p><h2>Sigue nuestras playlists</h2></div>
+      <a class="tu-button tu-button--ghost" href="https://open.spotify.com/playlist/4yw3gSoVGBoODGiYhGcFLd?si=b459fc85d0da4979" target="_blank" rel="noopener">Abrir en Spotify</a>
+    </div>
+    <div class="tu-records__playlists">
+      <article class="tu-playlist">
+        <a class="tu-playlist__media" href="https://open.spotify.com/playlist/4yw3gSoVGBoODGiYhGcFLd?si=b459fc85d0da4979" target="_blank" rel="noopener" aria-label="Abrir Origen Frequencies en Spotify">
+          <img src="{{ 'combo-sonora.jpg' | asset_url }}" alt="" loading="lazy" width="600" height="600">
+        </a>
+        <div class="tu-playlist__body">
+          <span class="tu-playlist__meta">Playlist · Spotify · 01</span>
+          <h3>Origen Frequencies</h3>
+          <p>Frecuencias creadas con los sonidos reales del cafetal. Para escuchar mientras el café pasa.</p>
+          <a class="tu-button tu-button--ghost" href="https://open.spotify.com/playlist/4yw3gSoVGBoODGiYhGcFLd?si=b459fc85d0da4979" target="_blank" rel="noopener">Seguir en Spotify <span aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+      <article class="tu-playlist">
+        <a class="tu-playlist__media" href="https://open.spotify.com/playlist/3zl55ovP0Wr4mvhnUo0oEo?si=8b245dcc92d641a9" target="_blank" rel="noopener" aria-label="Abrir #TUESTE en Spotify">
+          <img src="{{ 'banner_2.png' | asset_url }}" alt="" loading="lazy" width="600" height="600">
+        </a>
+        <div class="tu-playlist__body">
+          <span class="tu-playlist__meta">Playlist · Spotify · 02</span>
+          <h3>#TUESTE</h3>
+          <p>Lo que suena en el tostador: la selección electrónica de la casa, siempre en movimiento.</p>
+          <a class="tu-button tu-button--ghost" href="https://open.spotify.com/playlist/3zl55ovP0Wr4mvhnUo0oEo?si=8b245dcc92d641a9" target="_blank" rel="noopener">Seguir en Spotify <span aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+      <article class="tu-playlist">
+        <a class="tu-playlist__media" href="https://open.spotify.com/playlist/0H82655qMXbmOZHv1BC0jn?si=22c3bd050dea4452" target="_blank" rel="noopener" aria-label="Abrir #TUESTE CLASSICS en Spotify">
+          <img src="{{ 'aures-conscious.png' | asset_url }}" alt="" loading="lazy" width="600" height="600">
+        </a>
+        <div class="tu-playlist__body">
+          <span class="tu-playlist__meta">Playlist · Spotify · 03</span>
+          <h3>#TUESTE CLASSICS</h3>
+          <p>Los clásicos que nos trajeron hasta aquí, con Café Aures 1840 de fondo.</p>
+          <a class="tu-button tu-button--ghost" href="https://open.spotify.com/playlist/0H82655qMXbmOZHv1BC0jn?si=22c3bd050dea4452" target="_blank" rel="noopener">Seguir en Spotify <span aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+    </div>
+    <p class="tu-form__message">Tres selecciones vivas del sello: se actualizan con cada sesión, cada lanzamiento y cada lote. Síguelas para que el café te llegue también por los oídos.</p>
+  </div>
+
+  <div class="tu-wrap tu-section" id="noticias">
+    <div class="tu-home-block__heading">
+      <div><p class="tu-kicker">Noticias</p><h2>En lo que estamos</h2></div>
+      <a class="tu-button tu-button--ghost" href="#suscribete">Recibir novedades</a>
+    </div>
+    <div class="tu-records__news">
+      <article class="tu-records__news-main">
+        <div class="tu-records__news-cover"><canvas data-seed="99" aria-hidden="true"></canvas></div>
+        <p class="tu-kicker">Entrevista</p>
+        <h3>«El café y el sonido se tuestan igual: con paciencia»</h3>
+        <p>Conversación con el productor detrás de Cañón del Barbas EP sobre grabar en la finca, trabajar con ruido de fondo y por qué el sello nace dentro de una tostadora.</p>
+        <a class="tu-button tu-button--ghost" href="#">Leer la entrevista</a>
+      </article>
+      <div class="tu-records__news-list">
+        <div class="tu-records__news-item"><time datetime="2026-09-18">18 sep 2026</time><div><p class="tu-kicker">Estudio</p><h4>Sesión trilladora 001 ya está grabada</h4><p>Dos horas de toma única. Estamos mezclando; sale primero para suscriptores.</p></div></div>
+        <div class="tu-records__news-item"><time datetime="2026-09-12">12 sep 2026</time><div><p class="tu-kicker">Sello</p><h4>Tueste Records abre convocatoria de demos</h4><p>Buscamos proyectos de la región. Escribe a demos@tueste.co con dos piezas y una línea sobre ti.</p></div></div>
+        <div class="tu-records__news-item"><time datetime="2026-09-05">05 sep 2026</time><div><p class="tu-kicker">Contenido</p><h4>Serie: frecuencias de temporada</h4><p>Grabaciones de campo de la finca en cada etapa del cultivo. Primer capítulo: la floración.</p></div></div>
+        <div class="tu-records__news-item"><time datetime="2026-08-28">28 ago 2026</time><div><p class="tu-kicker">Artistas</p><h4>Nuevo integrante del roster</h4><p>Lo presentamos en octubre junto con su primer single en el sello.</p></div></div>
+      </div>
     </div>
   </div>
 
   <div class="tu-wrap tu-section" id="suscribete">
     <div class="tu-records__newsletter">
-      <div><p class="tu-kicker">Lista del sello</p><h2>{{ section.settings.newsletter_title }}</h2></div>
+      <div><p class="tu-kicker">Lista del sello</p><h2>{{ section.settings.newsletter_title | escape }}</h2></div>
       <div class="tu-panel">
         {%- render 'newsletter-form', section_id: section.id, context: 'tueste-records', classes: 'tu-form' -%}
-        <p class="tu-form__message">{{ section.settings.newsletter_note }}</p>
+        <p class="tu-form__message">{{ section.settings.newsletter_note | escape }}</p>
       </div>
+    </div>
+  </div>
+
+  {% render 'universo-tueste', current: 'records', theme: 'records' %}
+
+  <div class="tu-wrap tu-section tu-records__footer">
+    <div class="tu-records__footer-brand">
+      <img src="{{ 'tueste-logo-glass.png' | asset_url }}" alt="Tueste Records" width="700" height="242" loading="lazy">
+      <p>Sello discográfico de Tueste. Música que nace en Armenia, Quindío, entre cafetales y una tostadora.</p>
+    </div>
+    <div class="tu-records__footer-col">
+      <h5>Sello</h5>
+      <ul>
+        <li><a href="#lanzamientos">Lanzamientos</a></li>
+        <li><a href="#playlists">Playlists</a></li>
+        <li><a href="#noticias">Noticias</a></li>
+        <li><a href="#">Artistas</a></li>
+        <li><a href="#">Enviar demo</a></li>
+      </ul>
+    </div>
+    <div class="tu-records__footer-col">
+      <h5>Tueste</h5>
+      <ul>
+        <li><a href="{{ routes.root_url }}">tueste.co</a></li>
+        <li><a href="{{ tree_url }}">Tueste Tree</a></li>
+        <li><a href="{{ unity_url }}">Tueste Unity</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">YouTube</a></li>
+      </ul>
+    </div>
+    <div class="tu-records__footer-backed">
+      <span>Respaldado por Logik Pro · Sello registrado en plataformas digitales desde 2012</span>
     </div>
   </div>
 
@@ -69,31 +272,46 @@
   "class": "section-tueste-records",
   "limit": 1,
   "settings": [
-    { "type": "inline_richtext", "id": "title", "label": "Título", "default": "Tueste <em>Records.</em>" },
-    { "type": "textarea", "id": "intro", "label": "Introducción", "default": "El sello discográfico de Tueste: lanzamientos, artistas y las frecuencias creadas con los sonidos reales del origen." },
     { "type": "textarea", "id": "releases_intro", "label": "Introducción lanzamientos", "default": "Cada release nace entre la finca, la escucha y la taza." },
-    { "type": "text", "id": "newsletter_title", "label": "Título newsletter", "default": "Lo nuevo llega primero a la escucha." },
-    { "type": "textarea", "id": "newsletter_note", "label": "Nota newsletter", "default": "Una lista breve: lanzamientos, sesiones y noticias del sello." }
+    { "type": "text", "id": "newsletter_title", "label": "Título newsletter", "default": "Entérate antes que las plataformas" },
+    { "type": "textarea", "id": "newsletter_note", "label": "Nota newsletter", "default": "Lanzamientos exclusivos, sesiones en vivo y preguardado antes de la fecha oficial. Un correo por lanzamiento, nada más." }
   ],
   "blocks": [
     { "type": "release", "name": "Lanzamiento", "settings": [
+      { "type": "text", "id": "catalog_number", "label": "Número de catálogo", "default": "TR-001" },
       { "type": "select", "id": "type", "label": "Tipo", "options": [{ "value": "album", "label": "Álbum" }, { "value": "ep", "label": "EP" }, { "value": "single", "label": "Single" }], "default": "album" },
+      { "type": "checkbox", "id": "soon", "label": "Próximo lanzamiento", "info": "Lo suma también al filtro \"Próximos\", sin importar el tipo.", "default": false },
       { "type": "text", "id": "year", "label": "Año", "default": "2026" },
       { "type": "text", "id": "status", "label": "Estado", "default": "Disponible" },
-      { "type": "text", "id": "art_label", "label": "Texto de arte", "default": "Origen\nTostado" },
-      { "type": "image_picker", "id": "image", "label": "Imagen del lanzamiento" },
-      { "type": "text", "id": "title", "label": "Título", "default": "Origen Tostado" },
+      { "type": "text", "id": "title", "label": "Título", "default": "Nuevo lanzamiento" },
+      { "type": "text", "id": "artist", "label": "Artista", "default": "Tueste Records" },
       { "type": "textarea", "id": "description", "label": "Descripción", "default": "Una escucha construida con territorio, café y memoria." },
+      { "type": "image_picker", "id": "image", "label": "Imagen del lanzamiento", "info": "Si se deja vacío, se usa un arte de respaldo del catálogo." },
+      { "type": "text", "id": "art_label", "label": "Texto de arte", "info": "Usa un salto de línea para partirlo en dos.", "default": "Origen\nTostado" },
       { "type": "color", "id": "color", "label": "Color de arte", "default": "#312817" },
-      { "type": "url", "id": "link", "label": "Enlace de escucha" },
-      { "type": "text", "id": "link_label", "label": "Texto del enlace", "default": "Escuchar" }
+      { "type": "text", "id": "link_label_1", "label": "Enlace 1 · texto", "default": "Spotify" },
+      { "type": "url", "id": "link_url_1", "label": "Enlace 1 · URL" },
+      { "type": "text", "id": "link_label_2", "label": "Enlace 2 · texto", "default": "Apple Music" },
+      { "type": "url", "id": "link_url_2", "label": "Enlace 2 · URL" },
+      { "type": "text", "id": "link_label_3", "label": "Enlace 3 · texto", "default": "YouTube" },
+      { "type": "url", "id": "link_url_3", "label": "Enlace 3 · URL" }
     ] },
     { "type": "platform", "name": "Plataforma", "settings": [
+      { "type": "select", "id": "icon", "label": "Ícono", "options": [
+          { "value": "spotify", "label": "Spotify" },
+          { "value": "apple", "label": "Apple Music" },
+          { "value": "youtube", "label": "YouTube" },
+          { "value": "deezer", "label": "Deezer" },
+          { "value": "amazon", "label": "Amazon Music" },
+          { "value": "tidal", "label": "Tidal" },
+          { "value": "soundcloud", "label": "SoundCloud" },
+          { "value": "bandcamp", "label": "Bandcamp" }
+        ], "default": "spotify" },
       { "type": "text", "id": "name", "label": "Nombre", "default": "Spotify" },
       { "type": "text", "id": "description", "label": "Descripción", "default": "Perfil del sello" },
       { "type": "url", "id": "url", "label": "URL real" }
     ] }
   ],
-  "presets": [{ "name": "Tueste Records", "blocks": [{ "type": "release" }, { "type": "release", "settings": { "type": "single", "title": "Coffee in Frequencies" } }, { "type": "platform", "settings": { "name": "Spotify" } }, { "type": "platform", "settings": { "name": "YouTube" } }] }]
+  "presets": [{ "name": "Tueste Records", "blocks": [{ "type": "release" }, { "type": "release", "settings": { "type": "single" } }, { "type": "platform", "settings": { "name": "Spotify", "icon": "spotify" } }, { "type": "platform", "settings": { "name": "YouTube", "icon": "youtube" } }] }]
 }
 {% endschema %}

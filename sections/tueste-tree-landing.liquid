@@ -2,19 +2,27 @@
   assign hero_image = 'tueste-tree-hero-vitral.webp' | asset_url
   assign siembra_image = 'tueste-tree-siembra-vitral.webp' | asset_url
   assign certificate_image = 'tueste-tree-card1-ref.webp' | asset_url
+  assign tree_logo = 'tueste-tree-logo-crema.png' | asset_url
   assign badge_seed = 'tueste-tree-insignia-1-semilla.webp' | asset_url
   assign badge_silver = 'tueste-tree-insignia-10-plata.webp' | asset_url
   assign badge_gold = 'tueste-tree-insignia-20-oro.webp' | asset_url
   assign badge_holographic = 'tueste-tree-insignia-30-holografica.webp' | asset_url
   assign benefits = section.settings.benefits | split: '||'
   assign adoption_price_label = 'Consultar'
-  assign adoption_cta_link = section.settings.cta_link | default: '/products/adopcion-digital-tueste-tree'
   assign adoption_product = all_products[section.settings.adoption_product_handle]
+  assign product_form_id = 'TuesteTreeForm-' | append: section.id
+  assign founder_count_number = section.settings.founder_count | plus: 0
+  assign founder_total_number = section.settings.founder_total | plus: 0
+  capture founder_count_display
+    render 'format-thousands', number: founder_count_number
+  endcapture
+  capture founder_total_display
+    render 'format-thousands', number: founder_total_number
+  endcapture
   if adoption_product != blank
     assign adoption_variant = adoption_product.selected_or_first_available_variant
     assign adoption_price_value = adoption_variant.price | divided_by: 100
     assign adoption_price_label = adoption_price_value | append: ' ' | append: shop.currency
-    assign adoption_cta_link = adoption_product.url | append: '?variant=' | append: adoption_variant.id
   endif
 -%}
 
@@ -28,20 +36,24 @@
   data-total-founders="{{ section.settings.founder_total | escape }}"
   data-initial-founders="{{ section.settings.founder_count | escape }}"
   data-storage-key="tueste-tree-guardian"
+  data-whatsapp="{{ section.settings.whatsapp_number | escape }}"
   data-badge-seed="{{ badge_seed }}"
   data-badge-silver="{{ badge_silver }}"
   data-badge-gold="{{ badge_gold }}"
   data-badge-holographic="{{ badge_holographic }}"
   style="--tt-hero-image: url('{{ hero_image }}'); --tt-siembra-image: url('{{ siembra_image }}');"
 >
-  <div class="tt-progress-bar" data-progress-bar>
-    <div class="tt-progress-copy">
-      <span>Fundadores</span>
-      <strong><span data-founder-count>{{ section.settings.founder_count | escape }}</span> {{ section.settings.progress_suffix | escape }}</strong>
+  <header class="tt-bar" data-tt-header>
+    <div class="tt-container tt-bar-row">
+      <a class="tt-bar-logo" href="{{ routes.root_url }}" aria-label="Tueste">
+        <img src="{{ tree_logo }}" alt="Tueste Tree" width="132" height="46" loading="eager">
+      </a>
+      <div class="tt-steps" data-tt-steps aria-hidden="true">
+        <i data-step-dot="0"></i><i data-step-dot="1"></i><i data-step-dot="2"></i><i data-step-dot="3"></i><i data-step-dot="4"></i>
+      </div>
+      <div class="tt-bar-count"><strong data-founder-count>{{ founder_count_display }}</strong> <span>{{ section.settings.progress_suffix | escape }}</span></div>
     </div>
-    <div class="tt-progress-track" aria-hidden="true"><span data-progress-meter></span></div>
-    <span class="tt-progress-total">{{ section.settings.founder_total | escape }}</span>
-  </div>
+  </header>
 
   <div class="tt-hero tt-section-pad" data-step="0">
     <div class="tt-hero-image" role="img" aria-label="Amanecer sobre el cafetal de la Finca Tres Esquinas"></div>
@@ -55,7 +67,7 @@
         <a class="tt-text-link" href="#tt-chapters">{{ section.settings.hero_secondary_link | escape }}</a>
       </div>
       <div class="tt-founder-meter" aria-live="polite">
-        <div class="tt-founder-numbers"><span><strong data-founder-count>{{ section.settings.founder_count | escape }}</strong> {{ section.settings.founder_label | escape }}</span><span>{{ section.settings.founder_total | escape }}</span></div>
+        <div class="tt-founder-numbers"><span><strong data-founder-count>{{ founder_count_display }}</strong> {{ section.settings.founder_label | escape }}</span><span>{{ founder_total_display }}</span></div>
         <div class="tt-meter" aria-hidden="true"><span data-progress-meter></span></div>
         <p>{{ section.settings.founder_note | escape }}</p>
       </div>
@@ -77,24 +89,7 @@
             <span><i class="tt-legend-dot tt-legend-dot--free"></i>Libre</span>
             <span><i class="tt-legend-dot tt-legend-dot--mine"></i>El tuyo</span>
           </div>
-          <div class="tt-tree-grid" role="group" aria-label="Mapa editorial del lote fundacional">
-            {%- for tree in (1..60) -%}
-              {%- assign tree_mod = tree | modulo: 7 -%}
-              {%- assign tree_taken = false -%}
-              {%- if tree_mod == 0 or tree_mod == 3 -%}{%- assign tree_taken = true -%}{%- endif -%}
-              <button
-                class="tt-tree-node{% if tree_taken %} is-taken{% else %} is-free{% endif %}"
-                type="button"
-                data-tree-node
-                data-tree-number="{{ tree }}"
-                data-tree-status="{% if tree_taken %}taken{% else %}free{% endif %}"
-                {% if tree_taken %}disabled aria-disabled="true"{% endif %}
-                aria-label="{% if tree_taken %}Con guardián{% else %}Libre{% endif %} · árbol {{ tree }}"
-              >
-                <span class="tt-sr-only">Árbol {{ tree }}</span>
-              </button>
-            {%- endfor -%}
-          </div>
+          <div class="tt-tree-grid" role="group" aria-label="Mapa editorial del lote fundacional" data-tree-grid></div>
           <p class="tt-editorial-note">{{ section.settings.map_editorial_note | escape }}</p>
         </div>
         <div class="tt-selection-card" data-selection-card>
@@ -163,7 +158,7 @@
         <article class="tt-certificate" data-certificate>
           <div class="tt-certificate-dots tt-certificate-dots--left" aria-hidden="true"><i></i><i></i><i></i></div>
           <div class="tt-certificate-dots tt-certificate-dots--right" aria-hidden="true"><i></i><i></i><i></i></div>
-          <p class="tt-certificate-brand">TUESTE TREE</p>
+          <img class="tt-certificate-logo" src="{{ tree_logo }}" alt="Tueste Tree" width="160" height="55" loading="lazy">
           <p class="tt-certificate-kicker">Certificado de tradición</p>
           <p class="tt-certificate-subtitle">Tueste Tree · Adopción de origen</p>
           <h3>{{ section.settings.certificate_heading }}</h3>
@@ -179,6 +174,7 @@
             <div><dt>Origen</dt><dd>Finca Tres Esquinas · Cañón de Aures · 1.840 msnm</dd></div>
           </dl>
           <p class="tt-certificate-note">{{ section.settings.certificate_note | escape }}</p>
+          <button type="button" class="tt-button tt-button--secondary tt-certificate-download" data-download-certificate>Descargar certificado <span aria-hidden="true">↓</span></button>
         </article>
 
         <aside class="tt-adoption-panel">
@@ -188,28 +184,56 @@
           <ul class="tt-benefits">
             {%- for benefit in benefits -%}<li>{{ benefit | escape }}</li>{%- endfor -%}
           </ul>
-          <div class="tt-quantity-card">
-            <p class="tt-kicker">Paso 5 · La cantidad</p>
-            <label for="TuesteTreeQuantity-{{ section.id }}">¿Cuántos árboles adoptas?</label>
-            <div class="tt-quantity-row">
-              <div class="tt-stepper" role="group" aria-label="Cantidad de árboles">
-                <button type="button" data-quantity-minus aria-label="Un árbol menos">−</button>
-                <input id="TuesteTreeQuantity-{{ section.id }}" type="number" min="1" max="1000" value="1" inputmode="numeric" data-quantity aria-label="Cantidad">
-                <button type="button" data-quantity-plus aria-label="Un árbol más">+</button>
+          {%- comment -%}
+            El <form> real necesita envolver la tarjeta de cantidad y el botón
+            de compra para que sean descendientes de verdad: el custom
+            element product-form (theme.js) busca su botón submit con
+            this.querySelector('[type="submit"]'), que solo mira dentro del
+            form, no un control asociado solo por atributo form="". Liquid
+            exige anidamiento estricto (if/form no pueden interleavearse), así
+            que este bloque se captura una sola vez y se imprime dentro del
+            form cuando hay producto real, o suelto (sin form, botón
+            deshabilitado) cuando el handle del schema todavía no existe.
+          {%- endcomment -%}
+          {%- capture buy_widget -%}
+            <div class="tt-quantity-card">
+              <label for="TuesteTreeQuantity-{{ section.id }}">¿Cuántos árboles adoptas?</label>
+              <div class="tt-quantity-row">
+                <div class="tt-stepper" role="group" aria-label="Cantidad de árboles">
+                  <button type="button" data-quantity-minus aria-label="Un árbol menos">−</button>
+                  <input id="TuesteTreeQuantity-{{ section.id }}" type="number" name="quantity" min="1" max="30" value="1" inputmode="numeric" data-quantity aria-label="Cantidad">
+                  <button type="button" data-quantity-plus aria-label="Un árbol más">+</button>
+                </div>
+              <div class="tt-total"><strong data-quantity-total>{{ adoption_price_label | escape }}</strong><span data-quantity-label>· 1 árbol fundacional</span></div>
               </div>
-            <div class="tt-total"><strong data-quantity-total>{{ adoption_price_label | escape }}</strong><span data-quantity-label>· 1 árbol fundacional</span></div>
+              <div class="tt-current-badge" data-current-badge>
+                <img src="{{ badge_seed }}" alt="Insignia Tueste Tree" width="440" height="607" data-current-badge-image loading="lazy">
+                <div><span>Tu insignia</span><strong data-current-badge-name>SEMILLA</strong><p data-current-badge-description></p></div>
+              </div>
+              <p class="tt-quantity-hint">{{ section.settings.quantity_hint | escape }}</p>
+              <div class="tt-agent-note" data-agent-note hidden>
+                <strong>¿Quieres más de 30 árboles?</strong>
+                <p>{{ section.settings.agent_body | escape }}</p>
+                <a class="tt-button tt-button--secondary" data-whatsapp-link href="https://wa.me/{{ section.settings.whatsapp_number | remove: ' ' | remove: '+' }}" target="_blank" rel="noopener">Hablar con nuestro agente <span aria-hidden="true">→</span></a>
+              </div>
             </div>
-            <div class="tt-current-badge" data-current-badge>
-              <img src="{{ badge_seed }}" alt="Insignia Tueste Tree" width="440" height="607" data-current-badge-image loading="lazy">
-              <div><span>Tu insignia</span><strong data-current-badge-name>SEMILLA</strong><p data-current-badge-description></p></div>
+            <div class="tt-button-row">
+              <button type="submit" name="add" class="tt-button tt-button--primary" data-buy-link{% if adoption_variant == blank %} disabled aria-disabled="true"{% endif %}>{{ section.settings.cta_label | escape }} <span aria-hidden="true">→</span></button>
+              <button class="tt-button tt-button--secondary" type="button" data-share>Compartir mi árbol</button>
             </div>
-            <p class="tt-quantity-hint">{{ section.settings.quantity_hint | escape }}</p>
-            <div class="tt-agent-note" data-agent-note hidden><strong>¿Quieres más de 30 árboles?</strong><p>{{ section.settings.agent_body | escape }}</p></div>
-          </div>
-          <div class="tt-button-row">
-            <a class="tt-button tt-button--primary" href="{{ adoption_cta_link }}" data-buy-link>{{ section.settings.cta_label | escape }} <span aria-hidden="true">→</span></a>
-            <button class="tt-button tt-button--secondary" type="button" data-share>Compartir mi árbol</button>
-          </div>
+          {%- endcapture -%}
+          {%- if adoption_variant != blank -%}
+            {%- form 'product', adoption_product, id: product_form_id, is: 'product-form', class: 'tt-buy-form', data-tree-buy-form: true -%}
+              <input type="hidden" name="id" value="{{ adoption_variant.id }}" disabled>
+              <input type="hidden" name="properties[Guardián]" value="" data-property-guardian>
+              <input type="hidden" name="properties[Número de árbol]" value="" data-property-tree-number>
+              <input type="hidden" name="properties[Insignia]" value="" data-property-badge>
+              <div class="product-form__error-message alert alert--error tt-form-error" role="alert" hidden></div>
+              {{ buy_widget }}
+            {%- endform -%}
+          {%- else -%}
+            {{ buy_widget }}
+          {%- endif -%}
           <p class="tt-secure-note">{{ section.settings.secure_note | escape }}</p>
           <p class="tt-legal-note">{{ section.settings.disclaimer | escape }}</p>
         </aside>
@@ -273,6 +297,7 @@
 
   <footer class="tt-editorial-footer">
     <div class="tt-container">
+      <img class="tt-editorial-footer-logo" src="{{ tree_logo }}" alt="Tueste Tree" width="132" height="46" loading="lazy">
       <p>Tueste Tree · Un proyecto de Monacua Global Company S.A.S. · Paisaje Cultural Cafetero, Colombia</p>
       <small>{{ section.settings.footer_disclaimer | escape }}</small>
     </div>
@@ -280,6 +305,7 @@
   <div class="tt-toast" data-toast role="status" aria-live="polite"></div>
 </section>
 
+<script src="{{ 'tueste-tree-certificate.js' | asset_url }}" defer></script>
 <script src="{{ 'tueste-tree-landing.js' | asset_url }}" defer></script>
 
 {% schema %}
@@ -290,8 +316,8 @@
   "limit": 1,
   "settings": [
     { "type": "text", "id": "progress_suffix", "label": "Texto después del contador", "default": "ya tienen su árbol" },
-    { "type": "text", "id": "founder_count", "label": "Fundadores actuales", "default": "3.570" },
-    { "type": "text", "id": "founder_total", "label": "Total de fundadores", "default": "10.200" },
+    { "type": "number", "id": "founder_count", "label": "Fundadores actuales", "default": 3570 },
+    { "type": "number", "id": "founder_total", "label": "Total de fundadores", "default": 10200 },
     { "type": "text", "id": "founder_label", "label": "Etiqueta del avance", "default": "fundadores ya tienen su árbol" },
     { "type": "text", "id": "founder_note", "label": "Nota del avance", "default": "El 35 % del lote fundacional ya tiene guardián. La ventana fundacional no se vuelve a abrir." },
     { "type": "text", "id": "hero_eyebrow", "label": "Eyebrow del hero", "default": "Finca Tres Esquinas · Cañón de Aures · 1.840 msnm" },
@@ -319,8 +345,8 @@
     { "type": "textarea", "id": "benefits", "label": "Beneficios, separados por ||", "default": "Certificado digital numerado y acceso a la comunidad privada en 48 horas.||Foto o video de tu lote en el primer mes: el origen empieza a tener rostro.||Actualizaciones cada temporada con su frecuencia sonora: germinación, floración, cosecha, tostión.||El café del lote donde vive tu árbol, cosecha tras cosecha, con acceso preferencial.||Participación proporcional en el proyecto y voz en la comunidad fundadora." },
     { "type": "text", "id": "quantity_hint", "label": "Ayuda cantidad", "default": "Hasta 30 árboles por adopción en línea. A partir del Nivel 2 (30 árboles) entras como socio fundador." },
     { "type": "textarea", "id": "agent_body", "label": "Texto agente", "default": "Los niveles mayores se estructuran uno a uno con nuestro equipo." },
+    { "type": "text", "id": "whatsapp_number", "label": "WhatsApp con código de país", "default": "573102682677" },
     { "type": "text", "id": "cta_label", "label": "Texto CTA", "default": "Activar mi árbol" },
-    { "type": "url", "id": "cta_link", "label": "Enlace CTA" },
     { "type": "text", "id": "secure_note", "label": "Nota de seguridad", "default": "Pagos seguros procesados por Shopify · Envío del café incluido en Colombia" },
     { "type": "textarea", "id": "disclaimer", "label": "Disclaimer de adopción", "default": "La adopción es simbólica, cultural y comunitaria. No implica propiedad legal sobre tierra, finca, árbol o producción específica. Los beneficios de socio fundador están sujetos a la estructuración legal del modelo." },
     { "type": "inline_richtext", "id": "badges_title", "label": "Título insignias", "default": "Cuatro tarjetas. <em>Cuatro formas de fundar.</em>" },

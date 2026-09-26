@@ -1,0 +1,113 @@
+{%- comment -%}
+  Página pública de UN certificado Tueste Tree — una sola entrada del
+  metaobject `certificado-arbol`.
+
+  Cómo llega tráfico acá: esta sección vive en
+  templates/metaobject.certificado-arbol.json, que Shopify usa
+  automáticamente como "storefront page" de cada entrada del metaobject
+  `certificado-arbol`, siempre que esa función esté activada en la
+  definición del metaobject (ver instrucciones completas en
+  sections/verificar-arbol.liquid, que además arma el enlace hacia acá).
+  Shopify resuelve la URL -> entrada por su cuenta, antes de que este
+  Liquid corra: por eso este archivo nunca recorre `.values` ni recibe un
+  query param — solo dibuja LA entrada que Shopify ya eligió, expuesta acá
+  como el objeto global `metaobject`.
+
+  Esto es intencional y es la corrección de dos problemas de la versión
+  anterior (que vivía toda en /pages/verificar):
+    1. `shop.metaobjects['certificado-arbol'].values` está limitado por
+       Shopify a 50 entradas sin `{% paginate %}` — con miles de árboles
+       adoptados, la mayoría de certificados no se podían ver nunca.
+    2. Esa versión embebía TODAS las entradas (hasta el límite de 50)
+       completas en el HTML público para cualquier visitante, sin
+       necesidad de conocer ningún número.
+  Acá no hay loop ni JSON embebido de ningún tipo: cada página solo puede
+  mostrar la única entrada que Shopify ya resolvió por su URL, y todos los
+  campos se imprimen escapados como HTML normal (no dentro de un
+  <script type="application/json">, que es otro vector distinto que
+  también había que evitar).
+
+  Campos del metaobject (sin cambios respecto al diseño anterior):
+    numero    (Single line text) — el número de árbol, también usado como
+              handle de la entrada (ver sections/verificar-arbol.liquid).
+    guardian  (Single line text)
+    insignia  (Single line text)
+    fecha     (Date)
+{%- endcomment -%}
+
+{{ 'tueste-tree-landing.css' | asset_url | stylesheet_tag }}
+{{ 'tueste-tree-certificado.css' | asset_url | stylesheet_tag }}
+
+<section class="tc-page">
+  <div class="tc-container">
+    {%- if metaobject -%}
+      {%- liquid
+        assign tree_page_url = pages['tueste-tree'].url | default: '/pages/tueste-tree'
+        assign tree_logo = 'tueste-tree-logo-crema.png' | asset_url
+        assign certificate_image = 'tueste-tree-card1-ref.webp' | asset_url
+
+        assign numero_str = metaobject.numero.value | append: ''
+        assign numero_padded = numero_str
+        case numero_str.size
+          when 1
+            assign numero_padded = '00000' | append: numero_str
+          when 2
+            assign numero_padded = '0000' | append: numero_str
+          when 3
+            assign numero_padded = '000' | append: numero_str
+          when 4
+            assign numero_padded = '00' | append: numero_str
+          when 5
+            assign numero_padded = '0' | append: numero_str
+        endcase
+      -%}
+      <article class="tt-certificate" data-certificate>
+        <div class="tt-certificate-dots tt-certificate-dots--left" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="tt-certificate-dots tt-certificate-dots--right" aria-hidden="true"><i></i><i></i><i></i></div>
+        <img class="tt-certificate-logo" src="{{ tree_logo }}" alt="Tueste Tree" width="160" height="55" loading="lazy">
+        <p class="tt-certificate-kicker">Certificado de tradición</p>
+        <p class="tt-certificate-subtitle">Tueste Tree · Adopción de origen</p>
+        <h1>{{ section.settings.found_heading }}</h1>
+        <img src="{{ certificate_image }}" alt="Ilustración Tueste Tree" width="640" height="853" loading="lazy">
+        <hr>
+        <p class="tt-certificate-lot">Lote fundacional · Founders</p>
+        <p class="tt-certificate-number" data-certificate-number>ÁRBOL N.° {{ numero_padded | escape }}</p>
+        <dl>
+          <div><dt>Guardián</dt><dd data-certificate-name>{{ metaobject.guardian.value | escape }}</dd></div>
+          <div><dt>Insignia</dt><dd data-certificate-badge>{{ metaobject.insignia.value | escape }}</dd></div>
+          <div><dt>Fecha de siembra</dt><dd data-certificate-date data-fecha-iso="{{ metaobject.fecha.value | escape }}">—</dd></div>
+          <div><dt>Origen</dt><dd>Finca Tres Esquinas · Cañón de Aures · 1.840 msnm</dd></div>
+        </dl>
+        <p class="tt-certificate-note">{{ section.settings.found_note | escape }}</p>
+        <button type="button" class="tt-button tt-button--secondary tt-certificate-download" data-download-certificate>{{ section.settings.download_label | escape }} <span aria-hidden="true">↓</span></button>
+      </article>
+      <p class="tc-back"><a class="tt-button tt-button--secondary" href="{{ tree_page_url }}">{{ section.settings.back_link_label | escape }}</a></p>
+    {%- elsif request.design_mode -%}
+      <div class="tv-state">
+        <h2>Elegí una entrada para previsualizar</h2>
+        <p>Esta sección solo muestra un certificado real cuando Shopify la resuelve para una entrada publicada del metaobject certificado-arbol. Seleccioná una entrada desde el editor de temas para ver el resultado.</p>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+<script src="{{ 'tueste-tree-certificate.js' | asset_url }}" defer></script>
+<script src="{{ 'tueste-tree-certificado.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Certificado árbol",
+  "tag": "section",
+  "class": "section-certificado-arbol",
+  "limit": 1,
+  "settings": [
+    { "type": "inline_richtext", "id": "found_heading", "label": "Título del certificado", "default": "Este árbol ya tiene <em>guardián.</em>" },
+    { "type": "text", "id": "found_note", "label": "Nota del certificado", "default": "Certificado verificado. Emitido por Tueste Tree al confirmarse la adopción." },
+    { "type": "text", "id": "download_label", "label": "Texto del botón de descarga", "default": "Descargar certificado" },
+    { "type": "text", "id": "back_link_label", "label": "Texto del enlace de vuelta", "default": "Volver a Tueste Tree" }
+  ],
+  "presets": [
+    { "name": "Certificado árbol" }
+  ]
+}
+{% endschema %}
