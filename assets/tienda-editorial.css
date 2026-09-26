@@ -1078,39 +1078,12 @@ body.template-tienda-editorial .header__logo-link--tueste-editorial img {
   margin: 0;
 }
 
-/* --- Unity --- */
+/* --- Unity / Records --- */
 .te-preview__unity {
   display: grid;
   grid-template-columns: 0.95fr 1.05fr;
   gap: clamp(2rem, 6vw, 5rem);
   align-items: start;
-}
-
-.te-preview__unity-art {
-  grid-column: 1 / -1;
-  min-height: clamp(120px, 18vw, 230px);
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-  border: 1px solid rgba(255,232,191,.22);
-  border-radius: 22px;
-  background: rgba(255,232,191,.06);
-}
-
-.te-preview__unity-art img {
-  display: block;
-  width: min(100%, 560px);
-  height: min(100%, 210px);
-  object-fit: contain;
-  opacity: .9;
-}
-
-.te-preview__records-art img {
-  width: 100%;
-  height: 100%;
-  max-height: 280px;
-  object-fit: cover;
-  opacity: .78;
 }
 
 .te-preview__unity p {
@@ -1125,27 +1098,39 @@ body.template-tienda-editorial .header__logo-link--tueste-editorial img {
   background: var(--te-bg-2);
 }
 
-.te-preview__rainbow {
-  height: 4px;
-  background: linear-gradient(90deg, var(--te-amber) 0 22%, var(--te-cherry) 22% 40%, var(--te-leaf) 40% 60%, var(--te-lilac) 60% 78%, var(--te-cream) 78%);
-}
-
 .te-preview__footer-inner {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(180px, 1.35fr) repeat(2, minmax(150px, .8fr)) minmax(190px, 1fr);
   align-items: flex-start;
-  justify-content: space-between;
-  gap: 1.5rem;
-  padding-block: 3rem;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  padding-block: clamp(3.5rem, 8vw, 6rem);
 }
 
 .te-preview__footer p {
-  margin: 0.4rem 0 0;
+  margin: .6rem 0 0;
   font-family: var(--te-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.14em;
+  font-size: .68rem;
+  letter-spacing: .13em;
   text-transform: uppercase;
   color: var(--te-muted);
   line-height: 1.6;
+}
+
+.te-preview__footer p + p {
+  margin-top: .85rem;
+}
+
+.te-preview__footer a {
+  color: var(--te-cream-2);
+  text-decoration: none;
+  text-underline-offset: .2em;
+  transition: color 180ms ease, text-decoration-color 180ms ease;
+}
+
+.te-preview__footer a:hover,
+.te-preview__footer a:focus-visible {
+  color: var(--te-amber-soft);
+  text-decoration: underline;
 }
 
 /* --- Carrito --- */
@@ -1326,7 +1311,9 @@ html.te-armed .te-preview__reveal.is-in {
   }
 
   .te-preview__footer-inner {
-    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.2rem;
+    padding-block: 3.5rem;
   }
 }
 
