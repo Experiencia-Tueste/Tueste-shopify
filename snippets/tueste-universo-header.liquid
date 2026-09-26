@@ -1,0 +1,56 @@
+{% doc %}
+  Renders the shared editorial header for the Tueste universe experiences.
+
+  @param {string} current - Current experience: tienda, tree, unity, or records.
+  @param {string} [tree_link] - Optional configured Tree destination.
+  @param {string} [unity_link] - Optional configured Unity destination.
+  @param {string} [records_link] - Optional configured Records destination.
+  @param {string} [tree_taken] - Formatted Tree founder count.
+  @param {string} [tree_total] - Formatted Tree founder total.
+{% enddoc %}
+
+{%- liquid
+  assign current = current | default: 'tienda'
+  assign tree_page = pages['tueste-tree']
+  assign unity_page = pages['tueste-unity']
+  assign records_page = pages['tueste-records']
+  assign tree_link = tree_link | default: tree_page.url | default: '/pages/tueste-tree'
+  assign unity_link = unity_link | default: unity_page.url | default: '/pages/tueste-unity'
+  assign records_link = records_link | default: records_page.url | default: '/pages/tueste-records'
+
+  unless tree_link contains 'view=tueste-tree'
+    assign tree_link = tree_link | append: '?view=tueste-tree'
+  endunless
+  unless unity_link contains 'view=tueste-unity'
+    assign unity_link = unity_link | append: '?view=tueste-unity'
+  endunless
+  unless records_link contains 'view=tueste-records'
+    assign records_link = records_link | append: '?view=tueste-records'
+  endunless
+
+  assign tree_taken = tree_taken | default: '3.570'
+  assign tree_total = tree_total | default: '10.200'
+  assign home_url = routes.root_url
+  assign is_home = false
+  if current == 'tienda'
+    assign is_home = true
+  endif
+-%}
+
+<header class="te-preview__header{% unless is_home %} te-universe-header--subpage{% endunless %}">
+  <div class="te-preview__wrap te-preview__header-inner">
+    <a class="te-preview__brand" href="{% if is_home %}#inicio{% else %}{{ home_url }}#inicio{% endif %}" aria-label="Tueste, inicio">
+      <img class="te-preview__brand-logo" src="{{ 'tueste-logo-glass.png' | asset_url }}" alt="Tueste" width="700" height="242">
+    </a>
+    <nav class="te-preview__nav" aria-label="Navegación principal">
+      <a href="{% if is_home %}#cafe{% else %}{{ home_url }}#cafe{% endif %}">Café</a>
+      <a href="{% if is_home %}#piezas{% else %}{{ home_url }}#piezas{% endif %}">Piezas</a>
+      <a href="{% if is_home %}#tree{% else %}{{ home_url }}#tree{% endif %}">Tueste Tree</a>
+      <a href="{{ unity_link }}">Tueste Unity</a>
+      <a href="{{ records_link }}">Tueste Records</a>
+      <a href="{% if is_home %}#ritual{% else %}{{ home_url }}#ritual{% endif %}">Escuchar</a>
+      <span class="te-preview__bar-count"><b data-taken>{{ tree_taken }}</b> / {{ tree_total }} fundadores</span>
+      <a class="te-preview__cart-button" href="{{ routes.cart_url }}" aria-label="Abrir carrito, {{ cart.item_count }} productos">Carrito {{ cart.item_count }}</a>
+    </nav>
+  </div>
+</header>

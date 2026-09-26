@@ -34,23 +34,7 @@
 -%}
 
 <div class="te-preview tueste-home" id="tueste-universo-home-{{ section.id }}" data-tree-total="{{ section.settings.tree_total }}">
-  <header class="te-preview__header">
-    <div class="te-preview__wrap te-preview__header-inner">
-      <a class="te-preview__brand" href="#inicio" aria-label="Tueste, inicio">
-        <img class="te-preview__brand-logo" src="{{ 'tueste-logo-glass.png' | asset_url }}" alt="Tueste" width="700" height="242">
-      </a>
-      <nav class="te-preview__nav" aria-label="Navegación principal">
-        <a href="#cafe">Café</a>
-        <a href="#piezas">Piezas</a>
-        <a href="#tree">Tueste Tree</a>
-        <a href="{{ unity_link }}">Tueste Unity</a>
-        <a href="{{ records_link }}">Tueste Records</a>
-        <a href="#ritual">Escuchar</a>
-        <span class="te-preview__bar-count"><b data-taken>{{ tree_taken_display }}</b> / {{ tree_total_display }} fundadores</span>
-        <a class="te-preview__cart-button" href="{{ routes.cart_url }}" aria-label="Abrir carrito, {{ cart.item_count }} productos">Carrito {{ cart.item_count }}</a>
-      </nav>
-    </div>
-  </header>
+  {% render 'tueste-universo-header', current: 'tienda', tree_taken: tree_taken_display, tree_total: tree_total_display, tree_link: tree_link, unity_link: unity_link, records_link: records_link %}
 
   <div id="inicio">
     <section class="te-preview__hero" data-hero aria-roledescription="carrusel" aria-label="Tueste en portada">
