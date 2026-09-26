@@ -136,13 +136,20 @@
     <a class="sr-only skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
 
     {%- liquid
+      assign tueste_universe_shell = false
+      if template.suffix == 'tienda-editorial' or request.page_type == 'index'
+        assign tueste_universe_shell = true
+      endif
+
       if settings.enable_page_transition
         render 'loading-bar'
       endif
       
       render 'mouse-cursor'
 
-      sections 'header-group'
+      unless tueste_universe_shell
+        sections 'header-group'
+      endunless
       sections 'overlay-group'
     -%}
 
@@ -151,9 +158,11 @@
         {{ content_for_layout }}
       </main>
 
-      <footer class="footer-group block w-full" is="footer-group">
-        {%- sections 'footer-group' -%}
-      </footer>
+      {%- unless tueste_universe_shell -%}
+        <footer class="footer-group block w-full" is="footer-group">
+          {%- sections 'footer-group' -%}
+        </footer>
+      {%- endunless -%}
     </div>
 
     <ul hidden>
