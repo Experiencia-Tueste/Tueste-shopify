@@ -52,6 +52,7 @@
     var wizard = root.querySelector('[data-unity-wizard]');
     var form = root.querySelector('form');
     if (!wizard || !form) return;
+    var staticWorkbench = wizard.hasAttribute('data-unity-static');
 
     var steps = Array.from(wizard.querySelectorAll('.tu-unity__step'));
     var dotsHost = wizard.querySelector('[data-wizard-dots]');
@@ -69,7 +70,7 @@
     function showStep(index, options) {
       options = options || {};
       currentStep = Math.max(0, Math.min(steps.length - 1, index));
-      steps.forEach(function (step, i) { step.hidden = i !== currentStep; });
+      if (!staticWorkbench) steps.forEach(function (step, i) { step.hidden = i !== currentStep; });
       dots.forEach(function (dot, i) {
         dot.classList.toggle('is-active', i === currentStep);
         if (i === currentStep) dot.setAttribute('aria-current', 'step');

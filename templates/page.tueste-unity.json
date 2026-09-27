@@ -7,7 +7,7 @@
         "path_entry": {
           "type": "path",
           "settings": {
-            "kicker": "01 · Entrada",
+            "kicker": "EDICIÓN CON ETIQUETA",
             "title": "Tu sello, rápido",
             "description": "Café, bolsa y una etiqueta con tu marca. La forma más ágil de lanzar una edición propia para un evento, un regalo corporativo o una prueba de mercado.",
             "coffee_spec": "±86 SCA, molido",
@@ -25,7 +25,7 @@
         "path_signature": {
           "type": "path",
           "settings": {
-            "kicker": "02 · Insignia",
+            "kicker": "TU LOGO EN LA 1840",
             "title": "Tu marca, nuestra bolsa insignia",
             "description": "El café Aures 1840 de 89 puntos con tu identidad en la bolsa. Nosotros tostamos, empacamos y controlamos cada lote; tú vendes una línea propia sin montar infraestructura.",
             "coffee_spec": "Aures 1840 · 89 SCA",
@@ -43,7 +43,7 @@
         "path_studio": {
           "type": "path",
           "settings": {
-            "kicker": "03 · Estudio",
+            "kicker": "FÓRMULA PROPIA",
             "title": "Tu blend, tu empaque",
             "description": "Te hacemos preguntas sobre tu concepto, tu público y tu atmósfera, y con eso diseñamos un perfil de taza que nadie más tiene. La bolsa se diseña completa, a tu estilo.",
             "coffee_spec": "más de 90 SCA",
@@ -69,7 +69,7 @@
         "timeline_cup": {
           "type": "timeline_step",
           "settings": {
-            "when": "Semana 1-2",
+            "when": "Semana 1–2",
             "title": "La taza",
             "description": "Curaduría del perfil y muestras para catar. En fórmula propia, diseñamos el blend."
           }

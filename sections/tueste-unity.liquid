@@ -47,13 +47,12 @@
   <div class="tu-wrap tu-section">
     <div class="tu-unity__intro">
       <div>
-        <p class="tu-kicker">Tueste Unity · marcas con origen</p>
+        <p class="tu-kicker">Tueste Unity · estudio de café, marca y sonido</p>
         <h1 aria-label="Tu café. Nuestro origen."><span>Tu café.</span><em>Nuestro origen.</em></h1>
-        <p class="tu-lead">{{ section.settings.intro | escape }}</p>
+        <p class="tu-lead">Para marcas, empresas y personas que quieren vender su propio café. Ponemos tu logo en la bolsa Aures 1840 o diseñamos contigo una fórmula propia con empaque completo. Y como el café también se escucha, le damos a tu marca una firma sonora.</p>
         <div class="tu-hero__actions">
-          <a class="tu-button tu-button--primary" href="#taller">{{ section.settings.primary_cta | escape }} <span aria-hidden="true">→</span></a>
+          <a class="tu-button tu-button--primary" href="#taller">Arma tu café <span aria-hidden="true">→</span></a>
           <a class="tu-button tu-button--ghost" href="#caminos">{{ section.settings.paths_cta_label | escape }}</a>
-          <a class="tu-button tu-button--ghost" href="#taller" data-unity-goto-step="5">Hablar con Unity</a>
         </div>
         {%- if hero_badges.size > 0 -%}
           <ul class="tu-unity__specs" aria-label="Datos del café">
@@ -79,21 +78,39 @@
     <div class="tu-unity__paths-heading">
       <p class="tu-kicker">Tres caminos · el mismo origen</p>
       <h2>Elige cómo quieres <em>contar tu café.</em></h2>
+      <p class="tu-lead">Todos salen de la misma finca, con el mismo control de calidad y el respaldo de Tueste. Cambia cuánto de la bolsa, y de la taza, es tuyo.</p>
     </div>
     <div class="tu-unity__paths" id="caminos">
       {%- for block in path_blocks -%}
         {%- case forloop.index -%}
-          {%- when 1 -%}{%- assign path_image = 'combo-unity.jpg' -%}
-          {%- when 2 -%}{%- assign path_image = 'cafe-1840.png' -%}
-          {%- else -%}{%- assign path_image = 'tueste-tree-siembra-vitral.webp' -%}
+          {%- when 1 -%}{%- assign path_image = 'tueste-unity-path-label.webp' -%}
+          {%- when 2 -%}{%- assign path_image = 'tueste-unity-path-1840.webp' -%}
+          {%- else -%}{%- assign path_image = blank -%}
         {%- endcase -%}
         <article class="tu-unity__path{% if block.settings.featured %} tu-unity__path--featured{% endif %}" {{ block.shopify_attributes }}>
-          {%- if block.settings.featured -%}<span class="tu-unity__path-badge">Recomendado</span>{%- endif -%}
           <div class="tu-unity__path-art">
             {%- if block.settings.image != blank -%}
               {{ block.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '360,540,720,900', sizes: '(min-width: 990px) 30vw, 80vw', alt: block.settings.title }}
+            {%- elsif path_image != blank -%}
+              <img src="{{ path_image | asset_url }}" alt="{% if forloop.index == 1 %}Una mano sella la etiqueta de una bolsa de café{% else %}Catación: dos manos sostienen la cuchara sobre la taza, rodeadas de notas de sabor{% endif %}" width="640" height="640" loading="lazy">
             {%- else -%}
-              <img src="{{ path_image | asset_url }}" alt="{{ block.settings.title | escape }}" width="900" height="620" loading="lazy">
+              <div class="tu-unity__formula-art" aria-hidden="true">
+                <svg viewBox="0 0 594 1289" role="img" aria-label="Bolsa de café de fórmula propia">
+                  <defs>
+                    <linearGradient id="unity-bag-bg-{{ section.id }}" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#1b3b2a"/><stop offset="1" stop-color="#102219"/></linearGradient>
+                    <linearGradient id="unity-bag-label-{{ section.id }}" x1="0" x2="1"><stop offset="0" stop-color="#f4a51c"/><stop offset="1" stop-color="#ffe8bf"/></linearGradient>
+                  </defs>
+                  <path d="M104 38h386l36 1061c2 65-48 111-112 111H179c-64 0-114-46-112-111L104 38Z" fill="url(#unity-bag-bg-{{ section.id }})" stroke="#ffe8bf" stroke-width="9"/>
+                  <path d="M105 39h384l-18 84H122l-17-84Z" fill="#0c1710" stroke="#ffe8bf" stroke-width="7"/>
+                  <circle cx="297" cy="470" r="155" fill="none" stroke="#f4a51c" stroke-width="12" opacity=".8"/>
+                  <circle cx="297" cy="470" r="118" fill="none" stroke="#ffe8bf" stroke-width="4" opacity=".65"/>
+                  <text x="297" y="390" text-anchor="middle" fill="#ffe8bf" font-family="monospace" font-size="25" letter-spacing="5">BLEND ÚNICO</text>
+                  <rect x="100" y="530" width="394" height="190" rx="12" fill="url(#unity-bag-label-{{ section.id }})" opacity=".95"/>
+                  <text x="297" y="650" text-anchor="middle" fill="#15130f" font-family="Arial, sans-serif" font-size="60" font-weight="800">TU MARCA</text>
+                  <text x="297" y="785" text-anchor="middle" fill="#ffe8bf" font-family="monospace" font-size="25" letter-spacing="4">TU PERFIL · TU ATMÓSFERA</text>
+                  <text x="297" y="1045" text-anchor="middle" fill="#ffe8bf" font-family="monospace" font-size="24" letter-spacing="4">340 G · BY TUESTE</text>
+                </svg>
+              </div>
             {%- endif -%}
           </div>
           <span class="tu-kicker">{{ block.settings.kicker | escape }}</span>
@@ -112,9 +129,9 @@
   </div>
 
   <div class="tu-wrap tu-section" id="taller">
-    <div class="tu-home-block__heading"><div><p class="tu-kicker">Taller de brief</p><h2>Una primera versión de tu universo.</h2></div><p class="tu-lead">Configura una dirección inicial. El equipo la revisa contigo antes de convertirla en producción.</p></div>
+    <div class="tu-home-block__heading"><div><p class="tu-kicker">El taller · arma tu café en seis pasos</p><h2>Mira tu bolsa antes de que exista</h2></div><p class="tu-lead">Elige un camino, escribe el nombre de tu marca y escucha cómo suena. Al final te conectamos con un asesor por WhatsApp, con tu elección ya escrita.</p></div>
     <div class="tu-unity__workbench">
-      <div class="tu-panel tu-unity__wizard" data-unity-wizard>
+      <div class="tu-panel tu-unity__wizard" data-unity-wizard data-unity-static>
         <div class="tu-unity__step" data-step="0">
           <h3><span class="tu-unity__step-number" aria-hidden="true">1</span> El camino</h3>
           <div class="tu-unity__step-options" data-config="path" role="group" aria-label="Camino">
@@ -126,7 +143,7 @@
           </div>
         </div>
 
-        <div class="tu-unity__step" data-step="1" hidden>
+        <div class="tu-unity__step" data-step="1">
           <h3><span class="tu-unity__step-number" aria-hidden="true">2</span> Marca en la bolsa</h3>
           <label>Nombre de tu marca o empresa<input type="text" data-config="company" maxlength="40" placeholder="Ej. Casa Niebla" autocomplete="organization"></label>
           <div class="tu-unity__field">
@@ -140,7 +157,7 @@
           </div>
         </div>
 
-        <div class="tu-unity__step" data-step="2" hidden>
+        <div class="tu-unity__step" data-step="2">
           <h3><span class="tu-unity__step-number" aria-hidden="true">3</span> La taza</h3>
           <p class="tu-unity__hint">Elige la atmósfera de tu marca. Es el punto de partida de la catación, no la receta final.</p>
           <div class="tu-unity__step-options" data-config="mood" role="group" aria-label="Atmósfera" data-mood-options></div>
@@ -150,7 +167,7 @@
           </div>
         </div>
 
-        <div class="tu-unity__step" data-step="3" hidden>
+        <div class="tu-unity__step" data-step="3">
           <h3><span class="tu-unity__step-number" aria-hidden="true">4</span> La firma sonora</h3>
           <p class="tu-unity__hint">Tu firma nace de las letras de tu nombre: cada una cae en una nota. Elige el timbre y escúchala.</p>
           <div class="tu-unity__step-options" data-config="timbre" role="group" aria-label="Timbre" data-timbre-options></div>
@@ -161,7 +178,7 @@
           <p class="tu-form__message" data-audio-status role="status"></p>
         </div>
 
-        <div class="tu-unity__step" data-step="4" hidden>
+        <div class="tu-unity__step" data-step="4">
           <h3><span class="tu-unity__step-number" aria-hidden="true">5</span> Volumen</h3>
           <div class="tu-unity__stepper" role="group" aria-label="Cantidad de bolsas">
             <button type="button" data-qty-minus aria-label="Reducir la cantidad de bolsas">−</button>
@@ -173,7 +190,7 @@
           <p class="tu-unity__hint" data-trees-hint hidden>Cada árbol lleva nombre, número y certificado. <a data-trees-link href="#siembra">Conocer Tueste Tree →</a></p>
         </div>
 
-        <div class="tu-unity__step" data-step="5" hidden id="contacto">
+        <div class="tu-unity__step" data-step="5" id="contacto">
           <h3><span class="tu-unity__step-number" aria-hidden="true">6</span> Habla con un asesor</h3>
           <p class="tu-unity__hint">Envíanos el brief o continúa la conversación por WhatsApp con el resumen listo.</p>
           <div data-unity-form>
@@ -375,9 +392,9 @@
   "limit": 1,
   "settings": [
     { "type": "inline_richtext", "id": "title", "label": "Título", "default": "Tu café, <em>tu firma.</em>" },
-    { "type": "textarea", "id": "intro", "label": "Introducción", "default": "Tueste Unity convierte el café de origen en una herramienta de marca: empaque, fórmula, contenido y una firma sonora que la gente recuerda." },
+    { "type": "textarea", "id": "intro", "label": "Introducción", "default": "Para marcas, empresas y personas que quieren vender su propio café. Ponemos tu logo en la bolsa Aures 1840 o diseñamos contigo una fórmula propia con empaque completo. Y como el café también se escucha, le damos a tu marca una firma sonora." },
     { "type": "textarea", "id": "promise", "label": "Promesa", "default": "Una propuesta hecha a la medida, con el mismo origen que sostiene todo el Universo Tueste." },
-    { "type": "text", "id": "primary_cta", "label": "CTA principal", "default": "Configurar una idea" },
+    { "type": "text", "id": "primary_cta", "label": "CTA principal", "default": "Arma tu café" },
     { "type": "text", "id": "paths_cta_label", "label": "CTA secundario del hero", "default": "Ver los tres caminos" },
     { "type": "textarea", "id": "hero_badges", "label": "Datos de confianza del hero, separados por ||", "default": "89 puntos SCA||Cañón de Aures · 1.840 msnm||Tostado al pedido · 15 días||Firma sonora incluida" },
     { "type": "textarea", "id": "hero_checklist", "label": "Checklist del hero, separado por ||", "default": "Logo en la 1840||Fórmula propia||Empaque completo||Firma sonora||Experiencias Tueste Crew" },
@@ -389,7 +406,7 @@
     { "type": "textarea", "id": "sound_lead", "label": "Sonoro · introducción", "default": "Grabamos los sonidos reales del café en el origen y con ellos componemos la voz de tu marca." },
     { "type": "text", "id": "sound_feature_1_title", "label": "Sonoro · feature 1 título", "default": "Firma y logo sonoro" },
     { "type": "textarea", "id": "sound_feature_1_body", "label": "Sonoro · feature 1 texto", "default": "Un motivo corto y reconocible para tus videos, tu tienda y tus lanzamientos." },
-    { "type": "text", "id": "sound_feature_2_title", "label": "Sonoro · feature 2 título", "default": "Playlist oficial curada por Tueste" },
+    { "type": "text", "id": "sound_feature_2_title", "label": "Sonoro · feature 2 título", "default": "Playlist oficial curado por Tueste" },
     { "type": "textarea", "id": "sound_feature_2_body", "label": "Sonoro · feature 2 texto", "default": "En Spotify o la plataforma que uses, con enlace desde tueste.co y actualizaciones periódicas." },
     { "type": "text", "id": "sound_feature_3_title", "label": "Sonoro · feature 3 título", "default": "Música para contenido y puntos físicos" },
     { "type": "textarea", "id": "sound_feature_3_body", "label": "Sonoro · feature 3 texto", "default": "Ambientes para tu local, tus redes y tus activaciones." },
@@ -417,7 +434,7 @@
       "type": "path",
       "name": "Camino",
       "settings": [
-        { "type": "text", "id": "kicker", "label": "Kicker", "default": "01 · Entrada" },
+        { "type": "text", "id": "kicker", "label": "Kicker", "default": "EDICIÓN CON ETIQUETA" },
         { "type": "text", "id": "title", "label": "Título", "default": "Tu sello, rápido" },
         { "type": "textarea", "id": "description", "label": "Descripción", "default": "Café, bolsa y una etiqueta con tu marca. La forma más ágil de lanzar una edición propia para un evento, un regalo corporativo o una prueba de mercado." },
         { "type": "text", "id": "coffee_spec", "label": "Café", "default": "±86 SCA, molido" },
@@ -447,11 +464,11 @@
     {
       "name": "Tueste Unity",
       "blocks": [
-        { "type": "path", "settings": { "kicker": "01 · Entrada", "title": "Tu sello, rápido", "description": "Café, bolsa y una etiqueta con tu marca. La forma más ágil de lanzar una edición propia para un evento, un regalo corporativo o una prueba de mercado.", "coffee_spec": "±86 SCA, molido", "bag_spec": "desde 200 g", "minimum_spec": "50 bolsas", "includes": "", "minimum_qty": 50, "qty_step": 10, "qty_unit": "bolsas por pedido", "bag_color": "#8d493d", "cta_label": "Armar esta edición", "featured": false } },
-        { "type": "path", "settings": { "kicker": "02 · Insignia", "title": "Tu marca, nuestra bolsa insignia", "description": "El café Aures 1840 de 89 puntos con tu identidad en la bolsa. Nosotros tostamos, empacamos y controlamos cada lote; tú vendes una línea propia sin montar infraestructura.", "coffee_spec": "Aures 1840 · 89 SCA", "bag_spec": "340 g con válvula", "minimum_spec": "100 bolsas / mes", "includes": "playlist oficial de tu marca", "minimum_qty": 100, "qty_step": 50, "qty_unit": "bolsas al mes", "bag_color": "#a96520", "cta_label": "Armar mi línea", "featured": true } },
-        { "type": "path", "settings": { "kicker": "03 · Estudio", "title": "Tu blend, tu empaque", "description": "Te hacemos preguntas sobre tu concepto, tu público y tu atmósfera, y con eso diseñamos un perfil de taza que nadie más tiene. La bolsa se diseña completa, a tu estilo.", "coffee_spec": "más de 90 SCA", "bag_spec": "100 % personalizada", "minimum_spec": "500 bolsas", "includes": "", "minimum_qty": 500, "qty_step": 100, "qty_unit": "bolsas por pedido", "bag_color": "#2e6347", "cta_label": "Diseñar mi fórmula", "featured": false } },
+        { "type": "path", "settings": { "kicker": "EDICIÓN CON ETIQUETA", "title": "Tu sello, rápido", "description": "Café, bolsa y una etiqueta con tu marca. La forma más ágil de lanzar una edición propia para un evento, un regalo corporativo o una prueba de mercado.", "coffee_spec": "±86 SCA, molido", "bag_spec": "desde 200 g", "minimum_spec": "50 bolsas", "includes": "", "minimum_qty": 50, "qty_step": 10, "qty_unit": "bolsas por pedido", "bag_color": "#8d493d", "cta_label": "Armar esta edición", "featured": false } },
+        { "type": "path", "settings": { "kicker": "TU LOGO EN LA 1840", "title": "Tu marca, nuestra bolsa insignia", "description": "El café Aures 1840 de 89 puntos con tu identidad en la bolsa. Nosotros tostamos, empacamos y controlamos cada lote; tú vendes una línea propia sin montar infraestructura.", "coffee_spec": "Aures 1840 · 89 SCA", "bag_spec": "340 g con válvula", "minimum_spec": "100 bolsas / mes", "includes": "playlist oficial de tu marca", "minimum_qty": 100, "qty_step": 50, "qty_unit": "bolsas al mes", "bag_color": "#a96520", "cta_label": "Armar mi línea", "featured": true } },
+        { "type": "path", "settings": { "kicker": "FÓRMULA PROPIA", "title": "Tu blend, tu empaque", "description": "Te hacemos preguntas sobre tu concepto, tu público y tu atmósfera, y con eso diseñamos un perfil de taza que nadie más tiene. La bolsa se diseña completa, a tu estilo.", "coffee_spec": "más de 90 SCA", "bag_spec": "100 % personalizada", "minimum_spec": "500 bolsas", "includes": "", "minimum_qty": 500, "qty_step": 100, "qty_unit": "bolsas por pedido", "bag_color": "#2e6347", "cta_label": "Diseñar mi fórmula", "featured": false } },
         { "type": "timeline_step", "settings": { "when": "Semana 1", "title": "El brief", "description": "Concepto, público y atmósfera de tu marca. Elegimos juntos el camino." } },
-        { "type": "timeline_step", "settings": { "when": "Semana 1-2", "title": "La taza", "description": "Curaduría del perfil y muestras para catar. En fórmula propia, diseñamos el blend." } },
+        { "type": "timeline_step", "settings": { "when": "Semana 1–2", "title": "La taza", "description": "Curaduría del perfil y muestras para catar. En fórmula propia, diseñamos el blend." } },
         { "type": "timeline_step", "settings": { "when": "Semana 2-3", "title": "Bolsa y sonido", "description": "Adaptamos tu identidad al empaque, preparamos impresión y componemos tu firma sonora." } },
         { "type": "timeline_step", "settings": { "when": "15 días por pedido", "title": "Tueste al momento", "description": "Cada pedido se tuesta cuando se produce, para que llegue fresco." } },
         { "type": "timeline_step", "settings": { "when": "Lanzamiento", "title": "Tu café en el mundo", "description": "Presencia en tueste.co, en las redes de Tueste y en nuestro contenido." } }
