@@ -8,48 +8,75 @@
 {%- liquid
   assign universe_page = pages['casa-cantara']
   assign universe_url = universe_page.url | default: '/pages/casa-cantara'
-  assign tree_url = universe_url
-  assign unity_url = universe_url
-  assign records_url = universe_url
-  unless tree_url contains 'view=tueste-tree'
-    assign tree_url = tree_url | append: '?view=tueste-tree'
+  unless universe_url contains 'view='
+    if universe_url contains '?'
+      assign universe_url = universe_url | append: '&view=tienda-editorial'
+    else
+      assign universe_url = universe_url | append: '?view=tienda-editorial'
+    endif
   endunless
-  unless unity_url contains 'view=tueste-unity'
-    assign unity_url = unity_url | append: '?view=tueste-unity'
-  endunless
-  unless records_url contains 'view=tueste-records'
-    assign records_url = records_url | append: '?view=tueste-records'
-  endunless
+  assign tree_url = pages['tueste-tree'].url
+  assign unity_url = pages['tueste-unity'].url
+  assign records_url = pages['tueste-records'].url
+  if tree_url == blank
+    assign tree_url = universe_url
+    unless tree_url contains 'view=tueste-tree'
+      assign tree_url = tree_url | append: '?view=tueste-tree'
+    endunless
+  elsif tree_url contains '/pages/tueste-tree'
+    unless tree_url contains 'view=tueste-tree'
+      assign tree_url = tree_url | append: '?view=tueste-tree'
+    endunless
+  endif
+  if unity_url == blank
+    assign unity_url = universe_url
+    unless unity_url contains 'view=tueste-unity'
+      assign unity_url = unity_url | append: '?view=tueste-unity'
+    endunless
+  elsif unity_url contains '/pages/tueste-unity'
+    unless unity_url contains 'view=tueste-unity'
+      assign unity_url = unity_url | append: '?view=tueste-unity'
+    endunless
+  endif
+  if records_url == blank
+    assign records_url = universe_url
+    unless records_url contains 'view=tueste-records'
+      assign records_url = records_url | append: '?view=tueste-records'
+    endunless
+  elsif records_url contains '/pages/tueste-records'
+    unless records_url contains 'view=tueste-records'
+      assign records_url = records_url | append: '?view=tueste-records'
+    endunless
+  endif
   assign current_experience = current | default: 'tienda'
 -%}
 
-<section class="tu-universe tu-universe--{{ theme | default: 'tueste' }}" aria-labelledby="tu-universe-title-{{ current_experience }}">
-  <div class="tu-universe__inner">
-    <p class="tu-universe__kicker">Universo Tueste</p>
-    <h2 class="tu-universe__title" id="tu-universe-title-{{ current_experience }}">Un origen, <em>cuatro caminos</em>.</h2>
-    <p class="tu-universe__intro">Todo nace en el mismo cafetal del Cañón de Aures: el café que compras, el árbol que siembras, la marca que creas con nosotros y la música que lo cuenta.</p>
-    <div class="tu-universe__cards" role="list">
-      <a class="tu-universe__card{% if current_experience == 'tienda' %} is-active{% endif %}" href="{{ routes.root_url }}#inicio"{% if current_experience == 'tienda' %} aria-current="page"{% endif %} role="listitem" aria-label="Tienda Tueste">
-        <div class="tu-universe__card-top"><span class="tu-universe__number">01</span>{% if current_experience == 'tienda' %}<b>Estás aquí</b>{% endif %}</div>
-        <div class="tu-universe__logo"><img src="{{ 'tueste-logo-glass.png' | asset_url }}" alt="Tueste" loading="lazy" width="700" height="242"></div>
-        <p>Café de origen, piezas y ritual. La casa de todo lo que hacemos.</p><span class="tu-universe__enter">Entrar →</span>
+<section class="tu-universe tu-universe--{{ theme | default: 'tueste' }}" data-tu-here="{{ current_experience }}" data-theme="{{ theme | default: 'tueste' }}" aria-labelledby="tu-universe-title-{{ current_experience }}">
+  <div class="tu-wrap">
+    <p class="tu-kicker">Universo Tueste</p>
+    <h2 id="tu-universe-title-{{ current_experience }}">Un origen, <em>cuatro caminos</em>.</h2>
+    <p class="tu-intro">Todo nace en el mismo cafetal del Cañón de Aures: el café que compras, el árbol que siembras, la marca que creas con nosotros y la música que lo cuenta.</p>
+    <div class="tu-grid" role="list">
+      <a class="tu-card{% if current_experience == 'tienda' %} is-here{% endif %}" data-tu="tienda" href="{{ universe_url }}#inicio"{% if current_experience == 'tienda' %} aria-current="page"{% endif %} role="listitem" aria-label="Tienda Tueste">
+        <div class="tu-n"><span>01</span><b>Estás aquí</b></div>
+        <div class="tu-logo"><img class="tu-logo-tienda" src="{{ 'tueste-logo-glass.png' | asset_url }}" alt="Tueste" loading="lazy" width="700" height="242"></div>
+        <p>Café de origen, piezas y ritual. La casa de todo lo que hacemos.</p><span>Entrar →</span>
       </a>
-      <a class="tu-universe__card{% if current_experience == 'tree' %} is-active{% endif %}" href="{{ tree_url }}"{% if current_experience == 'tree' %} aria-current="page"{% endif %} role="listitem" aria-label="Tueste Tree">
-        <div class="tu-universe__card-top"><span class="tu-universe__number">02</span>{% if current_experience == 'tree' %}<b>Estás aquí</b>{% endif %}</div>
-        <div class="tu-universe__logo"><img src="{{ 'tueste-universo-tree.png' | asset_url }}" alt="Tueste Tree" loading="lazy" width="610" height="294"></div>
-        <p>Siembra un árbol en la Finca Tres Esquinas y cofunda un origen.</p><span class="tu-universe__enter">Entrar →</span>
+      <a class="tu-card{% if current_experience == 'tree' %} is-here{% endif %}" data-tu="tree" href="{{ tree_url }}"{% if current_experience == 'tree' %} aria-current="page"{% endif %} role="listitem" aria-label="Tueste Tree">
+        <div class="tu-n"><span>02</span><b>Estás aquí</b></div>
+        <div class="tu-logo"><img class="tu-logo-tree" src="{{ 'tueste-universo-tree.png' | asset_url }}" alt="Tueste Tree" loading="lazy" width="610" height="294"></div>
+        <p>Siembra un árbol en la Finca Tres Esquinas y cofunda un origen.</p><span>Entrar →</span>
       </a>
-      <a class="tu-universe__card{% if current_experience == 'unity' %} is-active{% endif %}" href="{{ unity_url }}"{% if current_experience == 'unity' %} aria-current="page"{% endif %} role="listitem" aria-label="Tueste Unity">
-        <div class="tu-universe__card-top"><span class="tu-universe__number">03</span>{% if current_experience == 'unity' %}<b>Estás aquí</b>{% endif %}</div>
-        <div class="tu-universe__logo"><img src="{{ 'tueste-universo-unity.webp' | asset_url }}" alt="Tueste Unity" loading="lazy" width="700" height="242"></div>
-        <p>Tu marca de café con nuestro origen y una firma sonora.</p><span class="tu-universe__enter">Entrar →</span>
+      <a class="tu-card{% if current_experience == 'unity' %} is-here{% endif %}" data-tu="unity" href="{{ unity_url }}"{% if current_experience == 'unity' %} aria-current="page"{% endif %} role="listitem" aria-label="Tueste Unity">
+        <div class="tu-n"><span>03</span><b>Estás aquí</b></div>
+        <div class="tu-logo"><img class="tu-logo-unity" src="{{ 'tueste-universo-unity.webp' | asset_url }}" alt="Tueste Unity" loading="lazy" width="700" height="242"></div>
+        <p>Tu marca de café con nuestro origen y una firma sonora.</p><span>Entrar →</span>
       </a>
-      <a class="tu-universe__card{% if current_experience == 'records' %} is-active{% endif %}" href="{{ records_url }}"{% if current_experience == 'records' %} aria-current="page"{% endif %} role="listitem" aria-label="Tueste Records">
-        <div class="tu-universe__card-top"><span class="tu-universe__number">04</span>{% if current_experience == 'records' %}<b>Estás aquí</b>{% endif %}</div>
-        <div class="tu-universe__logo"><img src="{{ 'tueste-universo-records.webp' | asset_url }}" alt="Tueste Records" loading="lazy" width="700" height="242"></div>
-        <p>El sello: lanzamientos, artistas y dónde escuchar el café.</p><span class="tu-universe__enter">Entrar →</span>
+      <a class="tu-card{% if current_experience == 'records' %} is-here{% endif %}" data-tu="records" href="{{ records_url }}"{% if current_experience == 'records' %} aria-current="page"{% endif %} role="listitem" aria-label="Tueste Records">
+        <div class="tu-n"><span>04</span><b>Estás aquí</b></div>
+        <div class="tu-logo"><img class="tu-logo-records" src="{{ 'tueste-universo-records.webp' | asset_url }}" alt="Tueste Records" loading="lazy" width="700" height="242"></div>
+        <p>El sello: lanzamientos, artistas y dónde escuchar el café.</p><span>Entrar →</span>
       </a>
     </div>
   </div>
-  {% render 'tueste-universo-footer' %}
 </section>

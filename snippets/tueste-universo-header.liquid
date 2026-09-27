@@ -11,25 +11,53 @@
 
 {%- liquid
   assign current = current | default: 'tienda'
+  assign tree_link = tree_link | default: pages['tueste-tree'].url
+  assign unity_link = unity_link | default: pages['tueste-unity'].url
+  assign records_link = records_link | default: pages['tueste-records'].url
   assign universe_page = pages['casa-cantara']
   assign universe_url = universe_page.url | default: '/pages/casa-cantara'
-  assign tree_link = tree_link | default: universe_url
-  assign unity_link = unity_link | default: universe_url
-  assign records_link = records_link | default: universe_url
+  unless universe_url contains 'view='
+    if universe_url contains '?'
+      assign universe_url = universe_url | append: '&view=tienda-editorial'
+    else
+      assign universe_url = universe_url | append: '?view=tienda-editorial'
+    endif
+  endunless
 
-  unless tree_link contains 'view=tueste-tree'
-    assign tree_link = tree_link | append: '?view=tueste-tree'
-  endunless
-  unless unity_link contains 'view=tueste-unity'
-    assign unity_link = unity_link | append: '?view=tueste-unity'
-  endunless
-  unless records_link contains 'view=tueste-records'
-    assign records_link = records_link | append: '?view=tueste-records'
-  endunless
+  if tree_link == blank
+    assign tree_link = universe_url
+    unless tree_link contains 'view=tueste-tree'
+      assign tree_link = tree_link | append: '?view=tueste-tree'
+    endunless
+  elsif tree_link contains '/pages/tueste-tree'
+    unless tree_link contains 'view=tueste-tree'
+      assign tree_link = tree_link | append: '?view=tueste-tree'
+    endunless
+  endif
+  if unity_link == blank
+    assign unity_link = universe_url
+    unless unity_link contains 'view=tueste-unity'
+      assign unity_link = unity_link | append: '?view=tueste-unity'
+    endunless
+  elsif unity_link contains '/pages/tueste-unity'
+    unless unity_link contains 'view=tueste-unity'
+      assign unity_link = unity_link | append: '?view=tueste-unity'
+    endunless
+  endif
+  if records_link == blank
+    assign records_link = universe_url
+    unless records_link contains 'view=tueste-records'
+      assign records_link = records_link | append: '?view=tueste-records'
+    endunless
+  elsif records_link contains '/pages/tueste-records'
+    unless records_link contains 'view=tueste-records'
+      assign records_link = records_link | append: '?view=tueste-records'
+    endunless
+  endif
 
   assign tree_taken = tree_taken | default: '3.570'
   assign tree_total = tree_total | default: '10.200'
-  assign home_url = routes.root_url
+  assign home_url = universe_url
   assign is_home = false
   if current == 'tienda'
     assign is_home = true

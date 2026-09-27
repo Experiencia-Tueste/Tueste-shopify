@@ -1,11 +1,5 @@
 {
   "sections": {
-    "tueste_universe": {
-      "type": "tueste-universe",
-      "settings": {
-        "current_experience": "tree"
-      }
-    },
     "tueste_tree_landing": {
       "type": "tueste-tree-landing",
       "blocks": {
@@ -109,21 +103,9 @@
         "chapter_cup"
       ],
       "settings": {}
-    },
-    "tueste_tree_extras": {
-      "type": "tueste-tree-extras",
-      "blocks": {
-        "faq_1": { "type": "faq", "settings": { "question": "¿La adopción me hace dueño de un árbol o de la finca?", "answer": "No. Es una adopción simbólica, cultural y comunitaria; no implica propiedad legal sobre tierra, finca, árbol o producción específica." } },
-        "faq_2": { "type": "faq", "settings": { "question": "¿Puedo adoptar más de un árbol?", "answer": "Sí. La experiencia actualiza cantidad e insignia de manera editorial; la compra final usa el producto real configurado por la tienda." } },
-        "faq_3": { "type": "faq", "settings": { "question": "¿Qué recibo durante el año?", "answer": "El certificado y las comunicaciones editoriales descritas en cada capítulo, sujetas a la evolución del proyecto." } }
-      },
-      "block_order": ["faq_1", "faq_2", "faq_3"],
-      "settings": {}
     }
   },
   "order": [
-    "tueste_universe",
-    "tueste_tree_landing",
-    "tueste_tree_extras"
+    "tueste_tree_landing"
   ]
 }

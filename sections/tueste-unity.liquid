@@ -1,10 +1,17 @@
 {%- liquid
   assign unity_logo = 'tueste-unity-logo.png' | asset_url
   assign universe_page = pages['casa-cantara']
-  assign tree_url = universe_page.url | default: '/pages/casa-cantara'
-  unless tree_url contains 'view=tueste-tree'
-    assign tree_url = tree_url | append: '?view=tueste-tree'
-  endunless
+  assign tree_url = pages['tueste-tree'].url
+  if tree_url == blank
+    assign tree_url = universe_page.url | default: '/pages/casa-cantara'
+    unless tree_url contains 'view=tueste-tree'
+      assign tree_url = tree_url | append: '?view=tueste-tree'
+    endunless
+  elsif tree_url contains '/pages/tueste-tree'
+    unless tree_url contains 'view=tueste-tree'
+      assign tree_url = tree_url | append: '?view=tueste-tree'
+    endunless
+  endif
   assign tree_badge_image = 'tueste-tree-insignia-30-holografica.webp' | asset_url
   assign form_id = 'TuesteUnityContact-' | append: section.id
   assign path_blocks = section.blocks | where: 'type', 'path'
@@ -23,8 +30,6 @@
 -%}
 
 <section class="universo-page tu-unity" data-tueste-unity id="TuesteUnity-{{ section.id }}" data-whatsapp="{{ section.settings.whatsapp_number | escape }}" data-email="{{ section.settings.contact_email | escape }}" data-tree-url="{{ tree_url | escape }}">
-  {% render 'universo-tueste', current: 'unity' %}
-
   <div class="tu-wrap tu-section">
     <div class="tu-unity__intro">
       <div>
@@ -230,6 +235,7 @@
   <div class="tu-wrap tu-section" id="sonoro">
     <div class="tu-unity__sound">
       <div class="tu-unity__sound-art" aria-hidden="true">
+        <img src="{{ 'combo-sonora.jpg' | asset_url }}" alt="" width="640" height="640" loading="lazy">
         <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
       </div>
       <div>
@@ -278,7 +284,7 @@
     </div>
   </div>
 
-  <div class="tu-wrap tu-section" id="experiencias">
+  <div class="tu-wrap tu-section" id="rituales" data-section="experiencias">
     <div class="tu-unity__crew-head">
       <p class="tu-kicker">Experiencias · Tueste Crew</p>
       <h2 class="tu-unity__sound-title">{{ section.settings.crew_title }}</h2>
@@ -303,6 +309,9 @@
         <a class="tu-button tu-button--ghost" href="{{ crew_wa_2_href }}" target="_blank" rel="noopener">Cotizar esta fiesta</a>
       </article>
     </div>
+    <div class="tu-unity__crew-art">
+      <img src="{{ 'banner_hodie.png' | asset_url }}" alt="Sesión de Tueste Crew alrededor del café" width="1600" height="900" loading="lazy">
+    </div>
     <div class="tu-unity__quote-cta">
       <div><strong>{{ section.settings.crew_quote_title | escape }}</strong><span>{{ section.settings.crew_quote_body | escape }}</span></div>
       <a class="tu-button tu-button--primary" href="{{ crew_wa_3_href }}" target="_blank" rel="noopener">Cotizar mi experiencia</a>
@@ -323,6 +332,19 @@
       </div>
     </div>
   </div>
+
+  <div class="tu-wrap tu-section tu-unity__close" id="unity-cierre">
+    <img src="{{ unity_logo }}" alt="Tueste Unity" width="700" height="242" loading="lazy">
+    <h2 class="tu-unity__sound-title">Hagamos juntos un café <em>que suene a tu marca</em></h2>
+    <div class="tu-hero__actions">
+      <a class="tu-button tu-button--primary" href="#taller">Armar mi café</a>
+      <a class="tu-button tu-button--ghost" href="https://wa.me/{{ section.settings.whatsapp_number | remove: ' ' | remove: '+' }}" target="_blank" rel="noopener">WhatsApp +57 310 269 0145</a>
+      <a class="tu-button tu-button--ghost" href="mailto:{{ section.settings.contact_email | escape }}">{{ section.settings.contact_email | escape }}</a>
+    </div>
+  </div>
+
+  {% render 'universo-tueste', current: 'unity' %}
+  {% render 'tueste-universo-footer' %}
 
   <script src="{{ 'tueste-unity.js' | asset_url }}" defer></script>
 </section>

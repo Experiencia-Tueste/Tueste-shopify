@@ -42,10 +42,17 @@
   <div class="tc-container">
     {%- if metaobject -%}
       {%- liquid
-        assign tree_page_url = pages['casa-cantara'].url | default: '/pages/casa-cantara'
-        unless tree_page_url contains 'view=tueste-tree'
-          assign tree_page_url = tree_page_url | append: '?view=tueste-tree'
-        endunless
+        assign tree_page_url = pages['tueste-tree'].url
+        if tree_page_url == blank
+          assign tree_page_url = pages['casa-cantara'].url | default: '/pages/casa-cantara'
+          unless tree_page_url contains 'view=tueste-tree'
+            assign tree_page_url = tree_page_url | append: '?view=tueste-tree'
+          endunless
+        elsif tree_page_url contains '/pages/tueste-tree'
+          unless tree_page_url contains 'view=tueste-tree'
+            assign tree_page_url = tree_page_url | append: '?view=tueste-tree'
+          endunless
+        endif
         assign tree_logo = 'tueste-tree-logo-crema.png' | asset_url
         assign certificate_image = 'tueste-tree-card1-ref.webp' | asset_url
 

@@ -115,16 +115,19 @@
 
 /* ---------- El café también se escucha ---------- */
 .tu-unity__sound { display: grid; grid-template-columns: minmax(220px, .8fr) minmax(0, 1.2fr); gap: clamp(2rem, 5vw, 4rem); align-items: center; }
-.tu-unity__sound-art { display: grid; grid-template-columns: repeat(8, 1fr); align-items: end; gap: .5rem; height: 220px; padding: 1.5rem; border: 1px solid var(--tu-line); border-radius: var(--tu-radius); background: radial-gradient(circle at 30% 20%, rgba(63, 191, 90, .16), transparent 55%), var(--tu-bg-soft); }
+.tu-unity__sound-art { position: relative; display: grid; grid-template-columns: repeat(8, 1fr); align-items: end; gap: .5rem; height: 220px; padding: 1.5rem; overflow: hidden; border: 1px solid var(--tu-line); border-radius: var(--tu-radius); background: radial-gradient(circle at 30% 20%, rgba(63, 191, 90, .16), transparent 55%), var(--tu-bg-soft); }
+.tu-unity__sound-art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .34; mix-blend-mode: screen; filter: saturate(.8) contrast(1.05); }
+.tu-unity__sound-art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(21, 19, 15, .08), rgba(21, 19, 15, .7)); pointer-events: none; }
 .tu-unity__sound-art span { display: block; border-radius: 999px; background: linear-gradient(180deg, var(--tu-amber), rgba(251, 169, 34, .25)); animation: tu-unity-wave 2.4s ease-in-out infinite; }
-.tu-unity__sound-art span:nth-child(1) { height: 35%; animation-delay: -1.9s; }
-.tu-unity__sound-art span:nth-child(2) { height: 70%; animation-delay: -1.6s; }
-.tu-unity__sound-art span:nth-child(3) { height: 45%; animation-delay: -1.3s; }
-.tu-unity__sound-art span:nth-child(4) { height: 90%; animation-delay: -1s; }
-.tu-unity__sound-art span:nth-child(5) { height: 55%; animation-delay: -.7s; }
-.tu-unity__sound-art span:nth-child(6) { height: 80%; animation-delay: -.4s; }
-.tu-unity__sound-art span:nth-child(7) { height: 40%; animation-delay: -.2s; }
-.tu-unity__sound-art span:nth-child(8) { height: 65%; animation-delay: 0s; }
+.tu-unity__sound-art span { position: relative; z-index: 1; }
+.tu-unity__sound-art span:nth-of-type(1) { height: 35%; animation-delay: -1.9s; }
+.tu-unity__sound-art span:nth-of-type(2) { height: 70%; animation-delay: -1.6s; }
+.tu-unity__sound-art span:nth-of-type(3) { height: 45%; animation-delay: -1.3s; }
+.tu-unity__sound-art span:nth-of-type(4) { height: 90%; animation-delay: -1s; }
+.tu-unity__sound-art span:nth-of-type(5) { height: 55%; animation-delay: -.7s; }
+.tu-unity__sound-art span:nth-of-type(6) { height: 80%; animation-delay: -.4s; }
+.tu-unity__sound-art span:nth-of-type(7) { height: 40%; animation-delay: -.2s; }
+.tu-unity__sound-art span:nth-of-type(8) { height: 65%; animation-delay: 0s; }
 .tu-unity__feature-list { display: grid; gap: 1.1rem; margin: 1.6rem 0 0; padding: 0; list-style: none; }
 .tu-unity__feature-list li { display: flex; gap: .9rem; }
 .tu-unity__feature-list strong { display: block; margin-bottom: .2rem; color: var(--tu-cream); font-size: .95rem; }
@@ -148,6 +151,8 @@
 .tu-unity__chip-list { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.4rem 0 0; padding: 0; list-style: none; }
 .tu-unity__chip-list li { padding: .4rem .9rem; border: 1px solid var(--tu-line-strong); border-radius: 999px; color: var(--tu-cream-soft); font-size: .78rem; }
 .tu-unity__format-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 2.2rem; }
+.tu-unity__crew-art { margin-top: 1.2rem; overflow: hidden; border: 1px solid var(--tu-line); border-radius: var(--tu-radius); aspect-ratio: 16 / 6; background: var(--tu-surface); }
+.tu-unity__crew-art img { width: 100%; height: 100%; object-fit: cover; opacity: .72; filter: saturate(.8); }
 .tu-unity__format-card { display: grid; align-content: start; gap: .7rem; padding: 1.4rem; border: 1px solid var(--tu-line); border-radius: var(--tu-radius); background: rgba(255, 232, 191, .045); }
 .tu-unity__crew-flag { justify-self: start; padding: .25rem .65rem; border-radius: 999px; background: rgba(63, 191, 90, .16); color: var(--tu-green); font: 700 .62rem/1.2 var(--tu-mono); letter-spacing: .08em; text-transform: uppercase; }
 .tu-unity__format-card h3 { margin: 0; font: 1.2rem/1.2 var(--tu-serif); font-style: italic; }
@@ -160,6 +165,9 @@
 /* ---------- Tu marca también siembra ---------- */
 .tu-unity__siembra { display: grid; grid-template-columns: minmax(160px, .5fr) minmax(0, 1.5fr); gap: clamp(2rem, 5vw, 4rem); align-items: center; }
 .tu-unity__siembra-badge { width: min(220px, 100%); margin: 0 auto; filter: drop-shadow(0 20px 40px rgba(0, 0, 0, .4)); }
+.tu-unity__close { display: grid; justify-items: start; gap: 1.2rem; text-align: left; }
+.tu-unity__close > img { width: min(180px, 50vw); height: auto; }
+.tu-unity__close .tu-unity__sound-title { max-width: 18ch; }
 
 @keyframes tu-unity-pulse {
   0%, 100% { transform: translateY(-2px); }
