@@ -2,7 +2,113 @@
   "sections": {
     "tueste_unity": {
       "type": "tueste-unity",
-      "settings": {}
+      "settings": {},
+      "blocks": {
+        "path_entry": {
+          "type": "path",
+          "settings": {
+            "kicker": "01 · Entrada",
+            "title": "Tu sello, rápido",
+            "description": "Café, bolsa y una etiqueta con tu marca. La forma más ágil de lanzar una edición propia para un evento, un regalo corporativo o una prueba de mercado.",
+            "coffee_spec": "±86 SCA, molido",
+            "bag_spec": "desde 200 g",
+            "minimum_spec": "50 bolsas",
+            "includes": "",
+            "minimum_qty": 50,
+            "qty_step": 10,
+            "qty_unit": "bolsas por pedido",
+            "bag_color": "#8d493d",
+            "cta_label": "Armar esta edición",
+            "featured": false
+          }
+        },
+        "path_signature": {
+          "type": "path",
+          "settings": {
+            "kicker": "02 · Insignia",
+            "title": "Tu marca, nuestra bolsa insignia",
+            "description": "El café Aures 1840 de 89 puntos con tu identidad en la bolsa. Nosotros tostamos, empacamos y controlamos cada lote; tú vendes una línea propia sin montar infraestructura.",
+            "coffee_spec": "Aures 1840 · 89 SCA",
+            "bag_spec": "340 g con válvula",
+            "minimum_spec": "100 bolsas / mes",
+            "includes": "playlist oficial de tu marca",
+            "minimum_qty": 100,
+            "qty_step": 50,
+            "qty_unit": "bolsas al mes",
+            "bag_color": "#a96520",
+            "cta_label": "Armar mi línea",
+            "featured": true
+          }
+        },
+        "path_studio": {
+          "type": "path",
+          "settings": {
+            "kicker": "03 · Estudio",
+            "title": "Tu blend, tu empaque",
+            "description": "Te hacemos preguntas sobre tu concepto, tu público y tu atmósfera, y con eso diseñamos un perfil de taza que nadie más tiene. La bolsa se diseña completa, a tu estilo.",
+            "coffee_spec": "más de 90 SCA",
+            "bag_spec": "100 % personalizada",
+            "minimum_spec": "500 bolsas",
+            "includes": "",
+            "minimum_qty": 500,
+            "qty_step": 100,
+            "qty_unit": "bolsas por pedido",
+            "bag_color": "#2e6347",
+            "cta_label": "Diseñar mi fórmula",
+            "featured": false
+          }
+        },
+        "timeline_brief": {
+          "type": "timeline_step",
+          "settings": {
+            "when": "Semana 1",
+            "title": "El brief",
+            "description": "Concepto, público y atmósfera de tu marca. Elegimos juntos el camino."
+          }
+        },
+        "timeline_cup": {
+          "type": "timeline_step",
+          "settings": {
+            "when": "Semana 1-2",
+            "title": "La taza",
+            "description": "Curaduría del perfil y muestras para catar. En fórmula propia, diseñamos el blend."
+          }
+        },
+        "timeline_pack": {
+          "type": "timeline_step",
+          "settings": {
+            "when": "Semana 2-3",
+            "title": "Bolsa y sonido",
+            "description": "Adaptamos tu identidad al empaque, preparamos impresión y componemos tu firma sonora."
+          }
+        },
+        "timeline_roast": {
+          "type": "timeline_step",
+          "settings": {
+            "when": "15 días por pedido",
+            "title": "Tueste al momento",
+            "description": "Cada pedido se tuesta cuando se produce, para que llegue fresco."
+          }
+        },
+        "timeline_launch": {
+          "type": "timeline_step",
+          "settings": {
+            "when": "Lanzamiento",
+            "title": "Tu café en el mundo",
+            "description": "Presencia en tueste.co, en las redes de Tueste y en nuestro contenido."
+          }
+        }
+      },
+      "block_order": [
+        "path_entry",
+        "path_signature",
+        "path_studio",
+        "timeline_brief",
+        "timeline_cup",
+        "timeline_pack",
+        "timeline_roast",
+        "timeline_launch"
+      ]
     }
   },
   "order": ["tueste_unity"]
