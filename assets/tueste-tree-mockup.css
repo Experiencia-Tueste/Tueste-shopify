@@ -11,7 +11,7 @@ img{max-width:100%;display:block}
 a{color:inherit}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 :focus-visible{outline:2.5px solid var(--amber);outline-offset:3px;border-radius:999px}
-.wrap{width:min(1100px,100%);margin-inline:auto;padding-inline:20px}
+.wrap{width:min(1440px,100%);margin-inline:auto;padding-inline:20px}
 .kicker{font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--amber);display:inline-flex;align-items:center;gap:.6em}
 .kicker::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--amber);box-shadow:0 0 0 3px rgba(251,169,34,.18)}
 h1,h2,h3{margin:0;font-weight:700;text-wrap:balance}
@@ -42,11 +42,11 @@ h1,h2,h3{margin:0;font-weight:700;text-wrap:balance}
 @media (max-width:640px){.bar .count{display:none}}
 
 /* hero */
-.hero{position:relative;min-height:78vh;display:grid;align-items:end;isolation:isolate;overflow:hidden}
-.hero .bgimg{position:absolute;inset:0;z-index:-2;background:none center 40%/cover no-repeat;transform:scale(1.04);animation:drift 22s ease-in-out infinite alternate}
-.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(21,19,15,.78) 0%,rgba(21,19,15,.55) 38%,rgba(21,19,15,.05) 70%),linear-gradient(180deg,rgba(21,19,15,.1) 0%,rgba(21,19,15,.3) 40%,rgba(21,19,15,.92) 78%,var(--bg) 100%)}
+.hero{position:relative;min-height:calc(100svh - 68px);display:grid;align-items:end;isolation:isolate;overflow:hidden}
+.hero .bgimg{position:absolute;inset:0;z-index:-1;background:none center 40%/cover no-repeat;transform:scale(1.04);animation:drift 22s ease-in-out infinite alternate}
+.hero::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(90deg,rgba(21,19,15,.68) 0%,rgba(21,19,15,.5) 38%,rgba(21,19,15,.18) 70%),linear-gradient(180deg,rgba(21,19,15,.18) 0%,rgba(21,19,15,.34) 42%,rgba(21,19,15,.88) 80%,var(--bg) 100%)}
 .hero h1,.hero .lead,.hero .kicker{text-shadow:0 2px 18px rgba(21,19,15,.7)}
-.hero .wrap{padding-block:4.5rem 3rem;display:grid;gap:1.2rem}
+.hero .wrap{position:relative;z-index:1;padding-block:4.5rem 3rem;display:grid;gap:1.2rem}
 .hero h1{font-size:clamp(2rem,5.4vw,4.4rem);max-width:14ch}
 .hero h1 em{font-style:normal;color:var(--amber)}
 .hero .cta{display:flex;gap:1rem;flex-wrap:wrap;align-items:center;margin-top:.4rem}
