@@ -259,6 +259,11 @@ body.template-tueste-tree .main-content,
 }
 .tueste-tree-mockup .hero .bgimg{
   z-index:0!important;
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  object-position:center 40%!important;
   background-position:center 40%!important;
   background-size:cover!important;
   background-repeat:no-repeat!important;
