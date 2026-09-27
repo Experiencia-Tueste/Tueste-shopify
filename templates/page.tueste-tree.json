@@ -5,5 +5,7 @@
       "settings": {}
     }
   },
-  "order": ["tueste_tree_mockup"]
+  "order": [
+    "tueste_tree_mockup"
+  ]
 }
