@@ -215,3 +215,75 @@ footer small{max-width:56rem;color:var(--muted);font-size:.72rem;line-height:1.5
 .toast{position:fixed;left:50%;bottom:calc(1.4rem + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(20px);background:var(--cream);color:var(--ink);padding:.7rem 1.1rem;border-radius:999px;font-size:.85rem;font-weight:500;opacity:0;pointer-events:none;transition:.3s;z-index:60}
 .toast.show{opacity:1;transform:translateX(-50%)}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01ms!important}.hero .bgimg{animation:none}}
+
+/* Theme collision guard: Tree owns its visual system inside the mockup only. */
+body.template-tueste-tree,
+body.template-tueste-tree .page-container,
+body.template-tueste-tree .main-content,
+.tueste-tree-mockup{
+  background:#15130F!important;
+  color:#FFE8BF!important;
+}
+.tueste-tree-mockup,
+.tueste-tree-mockup *{
+  box-sizing:border-box;
+}
+.tueste-tree-mockup img.logo{
+  display:block!important;
+  width:auto!important;
+  max-width:none!important;
+  object-fit:contain!important;
+}
+.tueste-tree-mockup .bar .logo{
+  height:26px!important;
+}
+.tueste-tree-mockup .cert .logo{
+  height:34px!important;
+}
+.tueste-tree-mockup footer .logo{
+  height:30px!important;
+}
+.tueste-tree-mockup h1,
+.tueste-tree-mockup h2,
+.tueste-tree-mockup h3,
+.tueste-tree-mockup p,
+.tueste-tree-mockup span,
+.tueste-tree-mockup small,
+.tueste-tree-mockup li,
+.tueste-tree-mockup dt,
+.tueste-tree-mockup dd{
+  color:inherit;
+}
+.tueste-tree-mockup .hero{
+  background:#15130F!important;
+}
+.tueste-tree-mockup .hero .bgimg{
+  background-position:center 40%!important;
+  background-size:cover!important;
+  background-repeat:no-repeat!important;
+  opacity:1!important;
+}
+.tueste-tree-mockup .hero::after{
+  background:
+    linear-gradient(90deg,rgba(21,19,15,.68) 0%,rgba(21,19,15,.5) 38%,rgba(21,19,15,.18) 70%),
+    linear-gradient(180deg,rgba(21,19,15,.18) 0%,rgba(21,19,15,.34) 42%,rgba(21,19,15,.88) 80%,#15130F 100%)!important;
+}
+.tueste-tree-mockup .disp,
+.tueste-tree-mockup .hero h1,
+.tueste-tree-mockup .step h2{
+  color:#FFE8BF!important;
+  font-family:"Tueste Typeface","Archivo Black","Poppins",sans-serif!important;
+}
+.tueste-tree-mockup .hero h1 em,
+.tueste-tree-mockup .step h2 em{
+  color:#FBA922!important;
+}
+.tueste-tree-mockup .lead,
+.tueste-tree-mockup .muted,
+.tueste-tree-mockup .hero .lead,
+.tueste-tree-mockup .facts,
+.tueste-tree-mockup .chap p,
+.tueste-tree-mockup .quote,
+.tueste-tree-mockup footer small{
+  color:#F3DFB6!important;
+}
