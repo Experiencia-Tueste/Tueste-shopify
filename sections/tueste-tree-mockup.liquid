@@ -1,0 +1,317 @@
+{%- liquid
+  assign adoption_product = all_products[section.settings.adoption_product_handle]
+  assign adoption_variant = adoption_product.selected_or_first_available_variant
+  assign price_value = adoption_variant.price | divided_by: 100.0
+  assign price_label = adoption_variant.price | money_without_trailing_zeros
+  if adoption_variant == blank
+    assign price_value = 100
+    assign price_label = 'USD 100'
+  endif
+  assign hero_image = 'tueste-tree-mockup-hero.webp' | asset_url
+  assign siembra_image = 'tueste-tree-mockup-siembra.webp' | asset_url
+  assign logo_image = 'tueste-tree-mockup-logo.png' | asset_url
+  assign sprout_image = 'tueste-tree-mockup-sprout.png' | asset_url
+  assign certificate_logo_image = 'tueste-tree-mockup-certificate-logo.png' | asset_url
+  assign certificate_art_image = 'tueste-tree-mockup-certificate-art.png' | asset_url
+  assign badge_seed_image = 'tueste-tree-mockup-badge-seed.webp' | asset_url
+  assign badge_silver_image = 'tueste-tree-mockup-badge-silver.webp' | asset_url
+  assign badge_gold_image = 'tueste-tree-mockup-badge-gold.webp' | asset_url
+  assign badge_holographic_image = 'tueste-tree-mockup-badge-holographic.webp' | asset_url
+  assign cap1_image = 'tueste-tree-mockup-cap1.webp' | asset_url
+  assign cap2_image = 'tueste-tree-mockup-cap2.webp' | asset_url
+  assign cap3_image = 'tueste-tree-mockup-cap3.webp' | asset_url
+  assign cap4_image = 'tueste-tree-mockup-cap4.webp' | asset_url
+  assign home_url = routes.root_url
+-%}
+{{ 'tueste-tree-mockup.css' | asset_url | stylesheet_tag }}
+
+<div
+  class="tueste-tree-mockup"
+  data-tueste-tree-mockup
+  data-total="{{ section.settings.founder_total }}"
+  data-taken="{{ section.settings.founder_count }}"
+  data-variant="{{ adoption_variant.id }}"
+  data-price="{{ price_value }}"
+  data-price-label="{{ price_label | escape }}"
+  data-currency="{{ shop.currency }}"
+  data-whatsapp="{{ section.settings.whatsapp_number | escape }}"
+  data-cart-url="{{ routes.cart_url }}"
+>
+<header class="bar">
+  <div class="wrap">
+    <a href="{{ home_url }}" aria-label="Tueste"><img class="logo" src="{{ logo_image }}" alt="Tueste" width="700" height="242"></a>
+    <div class="steps" aria-label="Progreso del ritual"><i class="on" data-s="0"></i><i data-s="1"></i><i data-s="2"></i><i data-s="3"></i><i data-s="4"></i></div>
+    <div class="count"><b id="cTop">3.570</b> de 10.200 fundadores</div>
+  </div>
+</header>
+
+<section class="hero" id="s0">
+  <div class="bgimg" style="background-image:url('{{ hero_image }}')" role="img" aria-label="Amanecer sobre el cafetal de la Finca Tres Esquinas"></div>
+  <div class="wrap">
+    <span class="kicker">Finca Tres Esquinas · Cañón de Aures · 1.840 msnm</span>
+    <h1 class="disp">Siembra un árbol.<br><em>Cofunda un origen.</em></h1>
+    <p class="lead">Los primeros <strong>10.200 árboles</strong> de Tueste Tree son fundacionales: quienes entran ahora no adoptan, cofundan. Entra a la finca, elige tu lugar en el lote y siembra con tus manos el árbol que llevará tu nombre.</p>
+    <div class="cta">
+      <button class="btn btn-primary" id="enter">Entrar a la finca →</button>
+      <a class="btn-tertiary" href="#promesa">Qué recibe un fundador</a>
+    </div>
+    <div class="founders" aria-live="polite">
+      <div class="num"><span><b id="cHero">3.570</b> fundadores ya tienen su árbol</span><span>10.200</span></div>
+      <div class="meter"><i id="meter"></i></div>
+      <span class="muted" style="font-size:.8rem">El 35 % del lote fundacional ya tiene guardián. La ventana fundacional no se vuelve a abrir.</span>
+    </div>
+  </div>
+</section>
+
+<section class="step" id="s1" hidden>
+  <div class="wrap">
+    <div class="head">
+      <span class="kicker">Paso 1 · El lote</span>
+      <h2 class="disp">Elige tu lugar <em>en la tierra.</em></h2>
+      <p class="lead">Cada punto es un árbol real de la Finca Tres Esquinas. Los ámbar ya tienen guardián. Toca uno libre: ese será tu árbol, con su número, su lote y su historia.</p>
+    </div>
+    <div class="two">
+      <div class="lote">
+        <div class="terrace"></div>
+        <div class="legend"><span><i style="background:var(--amber)"></i>Con guardián</span><span><i style="background:rgba(255,232,191,.3)"></i>Libre</span><span><i style="background:var(--leaf)"></i>El tuyo</span></div>
+        <div class="grid" id="grid" role="group" aria-label="Mapa del lote fundacional"></div>
+      </div>
+      <div>
+        <div class="sel" id="sel">
+          <div class="n"><small>Tu árbol</small><span id="selNum"><span class="ph">Toca un punto libre</span></span></div>
+          <ul class="facts">
+            <li><span>Lote</span><span>Fundacional · 10.200 árboles</span></li>
+            <li><span>Finca</span><span>Tres Esquinas, hogar de Casa Cántara</span></li>
+            <li><span>Altura</span><span>1.840 msnm · Paisaje Cultural Cafetero</span></li>
+            <li><span>Variedad</span><span id="selVar">—</span></li>
+          </ul>
+          <button class="btn btn-primary" id="toPlant" disabled style="margin-top:.6rem">Ir a sembrar →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="step" id="s2" hidden>
+  <div class="wrap">
+    <div class="head">
+      <span class="kicker">Paso 2 · La siembra</span>
+      <h2 class="disp">Mantén presionado. <em>Siente cómo arraiga.</em></h2>
+      <p class="lead">Sembrar un cafeto toma un gesto y años de paciencia. Aquí solo te pedimos el gesto: presiona y no sueltes hasta que la tierra lo reciba.</p>
+    </div>
+    <div class="siembra" id="siembra" style="background-image:url('{{ siembra_image }}')">
+      <canvas class="seeds" id="seeds"></canvas>
+      <button class="hold" id="hold" aria-label="Mantén presionado para sembrar">
+        <svg viewBox="0 0 196 196" aria-hidden="true"><circle class="track" cx="98" cy="98" r="91"/><circle class="prog" id="prog" cx="98" cy="98" r="91"/></svg>
+        <div class="core"><div><b>Sembrar</b>mantén<br>presionado</div></div>
+      </button>
+      <div class="sprout" aria-hidden="true"><img src="{{ sprout_image }}" alt="" width="725" height="900"></div>
+    </div>
+    <div class="sembrado">
+      <span class="kicker">Sembrado</span>
+      <p>«Tu árbol ya está en la tierra. Ahora, dale un nombre.»</p>
+      <button class="btn btn-primary" id="toName">Ponerle nombre →</button>
+    </div>
+  </div>
+</section>
+
+<section class="step" id="s3" hidden>
+  <div class="wrap">
+    <div class="head">
+      <span class="kicker">Paso 3 · El nombre</span>
+      <h2 class="disp">Todo origen <em>tiene un guardián.</em></h2>
+      <p class="lead">Tu nombre quedará en el certificado de tradición de este árbol. Si lo adoptas para alguien más, escribe el suyo: es un regalo con historia, número y cosecha.</p>
+    </div>
+    <div class="form">
+      <div class="field"><label for="guardian">Nombre del guardián</label><input id="guardian" type="text" maxlength="40" placeholder="Ej. María Fernanda López" autocomplete="name"></div>
+      <div class="field"><label for="treename">Nombre del árbol (opcional)</label><input id="treename" type="text" maxlength="30" placeholder="Ej. Raíz, Aurora, Abuelo Jairo…"></div>
+      <div class="row">
+        <button class="btn btn-primary" id="toCert" disabled>Ver mi certificado →</button>
+        <span class="sample">Prometemos menos, cumplimos siempre: café del lote donde vive tu árbol, cosecha tras cosecha.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="step" id="s4" hidden>
+  <div class="wrap">
+    <div class="head">
+      <span class="kicker">Paso 4 · Tu certificado</span>
+      <h2 class="disp">Este árbol <em>ya tiene guardián.</em></h2>
+    </div>
+    <div class="two">
+      <div class="cert" id="cert">
+        <div class="dots l"><i style="background:var(--lilac)"></i><i style="background:var(--amber)"></i><i style="background:var(--cherry)"></i></div>
+        <div class="dots r"><i style="background:var(--cherry)"></i><i style="background:var(--lilac)"></i><i style="background:var(--leaf)"></i></div>
+        <img class="logo" src="{{ certificate_logo_image }}" alt="Tueste" width="700" height="242">
+        <div class="t1">CERTIFICADO DE TRADICIÓN</div>
+        <div class="t2">TUESTE TREE · ADOPCIÓN DE ORIGEN</div>
+        <h3>Este árbol ya tiene <em>guardián.</em></h3>
+        <img class="art" src="{{ certificate_art_image }}" alt="Ilustración Tueste Tree" width="672" height="900">
+        <hr>
+        <div class="lote-l">LOTE FUNDACIONAL · FOUNDERS</div>
+        <div class="num" id="certNum">ÁRBOL N.° 000000</div>
+        <dl>
+          <dt id="certNumL" hidden></dt><dt>Guardián</dt><dd id="certName">—</dd>
+          <dt>Nombre del árbol</dt><dd id="certTree">—</dd>
+          <dt>Fecha de siembra</dt><dd id="certDate">—</dd>
+          <dt>Origen</dt><dd>Finca Tres Esquinas · Cañón de Aures · 1.840 msnm</dd>
+          <dt>Opera</dt><dd>Tueste · Monacua Global Company S.A.S.</dd>
+        </dl>
+        <p class="foot">Vista previa. El certificado numerado definitivo se emite al activar la adopción.</p>
+        <div class="rainbow"></div>
+      </div>
+      <div class="buy">
+        <span class="kicker">Activa tu árbol fundacional</span>
+          <div class="price"><span class="p">{{ price_label }}</span><small>por árbol · pago único</small></div>
+        <p class="lead" style="font-size:.98rem">Entrar ahora te hace <strong>socio fundador</strong>, no solo adoptante. Los primeros 10.200 árboles cofundan Tueste Tree y participan de lo que el proyecto construya.</p>
+        <ul>
+          <li>Certificado digital numerado y acceso a la comunidad privada en 48 horas.</li>
+          <li>Foto o video de tu lote en el primer mes: el origen empieza a tener rostro.</li>
+          <li>Actualizaciones cada temporada con su frecuencia sonora: germinación, floración, cosecha, tostión.</li>
+          <li>El café del lote donde vive tu árbol, cosecha tras cosecha, con acceso preferencial.</li>
+          <li>Participación proporcional en el proyecto y voz en la comunidad fundadora.</li>
+        </ul>
+        <div class="qty" id="qty">
+          <span class="lbl">¿Cuántos árboles adoptas?</span>
+          <div class="row">
+            <div class="stepper" role="group" aria-label="Cantidad de árboles">
+              <button type="button" id="qMinus" aria-label="Un árbol menos">−</button>
+              <input id="qInput" type="number" inputmode="numeric" min="1" max="30" value="1" aria-label="Cantidad">
+              <button type="button" id="qPlus" aria-label="Un árbol más">+</button>
+            </div>
+              <div class="total"><b id="qTotal">{{ price_label }}</b><span id="qLabel">· 1 árbol fundacional</span></div>
+          </div>
+          <div class="tier" id="tier">
+            <img id="tierImg" src="{{ badge_seed_image }}" alt="Insignia" width="440" height="607">
+            <div>
+              <div class="tl">Tu insignia</div>
+              <div class="tn" id="tierName">SEMILLA</div>
+              <div class="td" id="tierDesc">Con 1 árbol. <b>Faltan 9</b> para la insignia Plata.</div>
+            </div>
+          </div>
+          <span class="hint">Hasta 30 árboles por adopción en línea. A partir del Nivel 2 (30 árboles) entras como socio fundador con participación en el proyecto. <a href="https://wa.me/{{ section.settings.whatsapp_number }}?text=Hola%2C%20quiero%20adoptar%20m%C3%A1s%20de%2030%20%C3%A1rboles%20en%20Tueste%20Tree" target="_blank" rel="noopener">¿Más de 30? Habla con nuestro agente</a>.</span>
+          <div class="agent">
+            <p><strong>¿Quieres más de 30 árboles?</strong> Los niveles Inversionista medio, estratégico, mayorista y ancla (50 a 1.000+ árboles) se estructuran uno a uno con nuestro equipo.</p>
+            <a class="btn btn-secondary" id="agentBtn" href="https://wa.me/{{ section.settings.whatsapp_number }}?text=Hola%2C%20quiero%20adoptar%20m%C3%A1s%20de%2030%20%C3%A1rboles%20en%20Tueste%20Tree" target="_blank" rel="noopener">Hablar con nuestro agente →</a>
+          </div>
+        </div>
+        <div class="actions">
+          <a class="btn btn-primary" id="buy" href="{{ routes.cart_url }}" target="_top" rel="noopener">Activar mi árbol · {{ price_label }}</a>
+          <button class="btn btn-secondary" id="share">Compartir mi árbol</button>
+        </div>
+        <span class="secure"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Pagos seguros procesados por Shopify · Envío del café incluido en Colombia</span>
+        <span class="muted" style="font-size:.78rem">La adopción es simbólica, cultural y comunitaria. No implica propiedad legal sobre tierra, finca, árbol o producción específica. Los beneficios de socio fundador están sujetos a la estructuración legal del modelo.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="step" id="insignias">
+  <div class="wrap">
+    <div class="head">
+      <span class="kicker">Las insignias del proyecto</span>
+      <h2 class="disp">Cuatro tarjetas. <em>Cuatro formas de fundar.</em></h2>
+      <p class="lead">Cada adopción recibe una insignia digital numerada según cuántos árboles sembró. Es la marca de tu lugar en el origen: se muestra en tu certificado, en la comunidad fundadora y en cada actualización que recibes.</p>
+    </div>
+    <div class="badges" id="badges">
+      <div class="badge" data-tier="0" data-q="1"><img src="{{ badge_seed_image }}" alt="Insignia Semilla" width="440" height="607"><div class="bq">1 árbol<small>Insignia</small></div><div class="bn">Semilla</div><div class="bd">La primera raíz. Un árbol con tu nombre en el lote fundacional.</div></div>
+      <div class="badge" data-tier="1" data-q="10"><img src="{{ badge_silver_image }}" alt="Insignia Plata" width="440" height="605"><div class="bq">10 árboles<small>Insignia</small></div><div class="bn">Plata</div><div class="bd">Una hilera propia. Diez árboles y una voz clara en la comunidad.</div></div>
+      <div class="badge" data-tier="2" data-q="20"><img src="{{ badge_gold_image }}" alt="Insignia Oro" width="440" height="603"><div class="bq">20 árboles<small>Insignia</small></div><div class="bn">Oro</div><div class="bd">Un surco entero. Veinte árboles y acceso preferencial a cada cosecha.</div></div>
+      <div class="badge" data-tier="3" data-q="30"><img src="{{ badge_holographic_image }}" alt="Insignia Holográfica" width="440" height="605"><div class="bq">30+ árboles<small>Insignia</small></div><div class="bn">Holográfica</div><div class="bd">Socio fundador. Treinta árboles o más y participación en el proyecto.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="step" id="promesa">
+  <div class="wrap">
+    <div class="head">
+      <span class="kicker">Vivir el café · el año de tu árbol</span>
+      <h2 class="disp">Tu árbol te va a escribir. <em>Y tú vas a estar ahí.</em></h2>
+      <p class="lead">Adoptar no es comprar un café que llega en una caja. Es tener un lugar exacto en una montaña de Colombia y sentir, desde donde estés, cómo un árbol se convierte en taza. Así se vive un año en la Finca Tres Esquinas.</p>
+    </div>
+    <div class="chapters" id="chapters">
+      <article class="chap">
+        <div class="art"><img src="{{ cap1_image }}" alt="La primera lluvia" loading="lazy" width="420" height="420"></div>
+        <div class="cn">Capítulo 1 · Semanas 1 a 4</div>
+        <h3>La primera lluvia</h3>
+        <p>Un brote de dos hojas rompe la tierra a 1.840 metros. La niebla del cañón lo cubre cada mañana y cada tarde el sol lo despeja. Ese es tu árbol: pequeño, terco, con tu nombre.</p>
+        <div class="get"><span>Te llega</span>Tu certificado numerado en 48 horas y, en el primer mes, la primera foto o video de tu lote desde la finca.</div>
+      </article>
+      <article class="chap">
+        <div class="art"><img src="{{ cap2_image }}" alt="La noche en que florece" loading="lazy" width="420" height="420"></div>
+        <div class="cn">Capítulo 2 · La floración</div>
+        <h3>La noche en que florece</h3>
+        <p>Una vez al año la ladera se llena de flores blancas y durante tres días la finca huele a jazmín. Los vecinos lo saben antes de verlo, porque el aire cambia. Esa noche te la mandamos.</p>
+        <div class="get"><span>Te llega</span>Video del lote en flor y la frecuencia sonora de la temporada, grabada allí mismo.</div>
+      </article>
+      <article class="chap">
+        <div class="art"><img src="{{ cap3_image }}" alt="Cuando enrojece" loading="lazy" width="420" height="420"></div>
+        <div class="cn">Capítulo 3 · La cosecha</div>
+        <h3>Cuando enrojece</h3>
+        <p>Las cerezas pasan de verde a lima, de lima a naranja y de naranja a rojo. Se recogen a mano, una por una, en la pendiente. Tú sabes el día en que empieza, porque te avisamos.</p>
+        <div class="get"><span>Te llega</span>La actualización de cosecha y acceso preferencial al café del lote donde vive tu árbol, antes que nadie.</div>
+      </article>
+      <article class="chap">
+        <div class="art"><img src="{{ cap4_image }}" alt="La taza con tu nombre" loading="lazy" width="420" height="420"></div>
+        <div class="cn">Capítulo 4 · La taza</div>
+        <h3>La taza con tu nombre</h3>
+        <p>Tostamos el lote y el café vuelve a ti: el mismo suelo que viste en la primera foto, en tu taza. Cierras el año sabiendo exactamente de dónde viene lo que tomas, y con el derecho a seguir.</p>
+        <div class="get"><span>Te llega</span>El café del lote con acceso preferencial cada cosecha, el balance del año y la invitación a renovar a precio de fundador.</div>
+      </article>
+    </div>
+    <div class="quote" style="margin-top:2rem">No prometemos el café de un árbol exacto, sino el café del lote donde vive tu árbol —o un beneficio equivalente—. Así la promesa se mantiene cumplible ante cualquier variación de clima, cosecha o logística.</div>
+  </div>
+</section>
+
+<footer>
+  <img class="logo" src="{{ logo_image }}" alt="Tueste" width="700" height="242">
+  <p>Tueste Tree · Un proyecto de Monacua Global Company S.A.S. · Paisaje Cultural Cafetero, Colombia</p>
+  <small>Esta página es de carácter informativo y experiencial y no constituye una oferta pública de valores ni una promesa de rendimiento económico. La participación de socios fundadores está sujeta a la estructuración legal correspondiente conforme a la normativa colombiana. Las cifras son de referencia, no garantizadas.</small>
+</footer>
+<div class="toast" id="toast" role="status"></div>
+</div>
+<script src="{{ 'tueste-tree-mockup.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Tueste Tree mockup",
+  "tag": "section",
+  "class": "section-tueste-tree-mockup",
+  "settings": [
+    {
+      "type": "text",
+      "id": "adoption_product_handle",
+      "label": "Handle del producto de adopción",
+      "default": "adopcion-digital-tueste-tree",
+      "info": "El precio, la variante y el carrito salen del producto real."
+    },
+    {
+      "type": "number",
+      "id": "founder_count",
+      "label": "Árboles con guardián",
+      "default": 3570,
+      "min": 0
+    },
+    {
+      "type": "number",
+      "id": "founder_total",
+      "label": "Total del lote fundacional",
+      "default": 10200,
+      "min": 1
+    },
+    {
+      "type": "text",
+      "id": "whatsapp_number",
+      "label": "WhatsApp del agente",
+      "default": "573102682677",
+      "info": "Solo dígitos, con código de país."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tueste Tree · Mockup literal"
+    }
+  ]
+}
+{% endschema %}
