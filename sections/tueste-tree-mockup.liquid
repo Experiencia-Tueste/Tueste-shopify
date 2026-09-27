@@ -23,8 +23,6 @@
   assign cap4_image = 'tueste-tree-mockup-cap4.webp' | asset_url
   assign home_url = routes.root_url
 -%}
-{{ 'tueste-tree-mockup.css' | asset_url | stylesheet_tag }}
-
 <div
   class="tueste-tree-mockup"
   data-tueste-tree-mockup
@@ -271,7 +269,6 @@
 </footer>
 <div class="toast" id="toast" role="status"></div>
 </div>
-<script src="{{ 'tueste-tree-mockup.js' | asset_url }}" defer></script>
 
 {% schema %}
 {

@@ -54,6 +54,10 @@
         echo 'universo-tueste.css' | asset_url | stylesheet_tag
       endif
 
+      if template.suffix == 'tueste-tree'
+        echo 'tueste-tree-mockup.css' | asset_url | stylesheet_tag
+      endif
+
       if template.suffix == 'tueste-records'
         echo 'tueste-records-extra.css' | asset_url | stylesheet_tag
       endif
@@ -115,6 +119,10 @@
     {%- endif -%}
 
     <link rel="stylesheet" href="{{ 'apps.css' | asset_url }}" media="print" fetchpriority="low" onload="this.media='all'">
+
+    {%- if template.suffix == 'tueste-tree' -%}
+      <script src="{{ 'tueste-tree-mockup.js' | asset_url }}" defer></script>
+    {%- endif -%}
 
     {{ content_for_header }}
 
