@@ -189,7 +189,26 @@ body.template-tueste-unity .tu-unity__sound-art::after {
 }
 
 body.template-tueste-unity .tu-unity__sound-art span {
-  display: none;
+  position: absolute;
+  bottom: 12%;
+  z-index: 1;
+  display: block;
+  width: 8%;
+  height: 45%;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(251, 169, 34, .95), rgba(251, 169, 34, .2));
+  box-shadow: 0 0 1.2rem rgba(251, 169, 34, .18);
+  transform-origin: center bottom;
+}
+
+body.template-tueste-unity .tu-unity__sound-art span:nth-of-type(1) { left: 10%; height: 28%; }
+body.template-tueste-unity .tu-unity__sound-art span:nth-of-type(2) { left: 21%; height: 58%; }
+body.template-tueste-unity .tu-unity__sound-art span:nth-of-type(3) { left: 32%; height: 40%; }
+body.template-tueste-unity .tu-unity__sound-art span:nth-of-type(4) { left: 43%; height: 76%; }
+body.template-tueste-unity .tu-unity__sound-art span:nth-of-type(5) { left: 54%; height: 49%; }
+body.template-tueste-unity .tu-unity__sound-art span:nth-of-type(6) { left: 65%; height: 67%; }
+body.template-tueste-unity .tu-unity__sound-art span:nth-of-type(7) { left: 76%; height: 34%; }
+body.template-tueste-unity .tu-unity__sound-art span:nth-of-type(8) { left: 87%; height: 54%; }
 }
 
 body.template-tueste-unity .tu-unity__timeline {
