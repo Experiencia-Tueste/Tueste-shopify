@@ -24,6 +24,22 @@
   endif
 -%}
 <section class="universo-page tu-records" data-tueste-records id="TuesteRecords-{{ section.id }}">
+  <header class="tu-local-bar tu-records-bar" id="top-records">
+    <div class="tu-local-bar__inner">
+      <a class="tu-local-bar__brand" href="#top-records" aria-label="Tueste Records, inicio">
+        <img src="{{ 'tueste-logo-glass.png' | asset_url }}" alt="Tueste" width="240" height="88" loading="eager">
+        <span>Records</span>
+      </a>
+      <nav class="tu-local-bar__nav" aria-label="Tueste Records">
+        <a href="#lanzamientos">Lanzamientos</a>
+        <a href="#plataformas">Plataformas</a>
+        <a href="#playlists">Playlists</a>
+        <a href="#noticias">Noticias</a>
+        <a href="#suscribete">Suscríbete</a>
+      </nav>
+      <span class="tu-records-bar__backed">Respaldado por Logik Pro</span>
+    </div>
+  </header>
   <section class="tu-records__hero" id="top" data-hero aria-roledescription="carrusel" aria-label="Lo que se viene">
     <div class="tu-records__hero-slides" data-hero-slides>
       <article class="tu-records__hero-slide is-active" data-seed="7" role="group" aria-roledescription="diapositiva" aria-label="1 de 3" aria-labelledby="tu-records-hero-title-1-{{ section.id }}">
@@ -113,6 +129,7 @@
           {%- endif -%}
           <article class="tu-release" data-release-type="{{ block.settings.type }}" data-release-soon="{{ block.settings.soon }}" {{ block.shopify_attributes }}>
             <div class="tu-release__art" style="--release-color: {{ block.settings.color }}">
+              <canvas data-seed="{{ release_index | times: 17 }}" aria-hidden="true"></canvas>
               {%- if block.settings.image != blank -%}
                 {{ block.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '360,540,720,900', sizes: '(min-width: 990px) 30vw, 80vw', alt: block.settings.title }}
               {%- else -%}

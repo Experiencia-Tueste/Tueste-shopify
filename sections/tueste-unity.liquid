@@ -30,11 +30,25 @@
 -%}
 
 <section class="universo-page tu-unity" data-tueste-unity id="TuesteUnity-{{ section.id }}" data-whatsapp="{{ section.settings.whatsapp_number | escape }}" data-email="{{ section.settings.contact_email | escape }}" data-tree-url="{{ tree_url | escape }}">
+  <header class="tu-local-bar tu-unity-bar" id="top-unity">
+    <div class="tu-local-bar__inner">
+      <a class="tu-local-bar__brand" href="#top-unity" aria-label="Tueste Unity, inicio">
+        <img src="{{ unity_logo }}" alt="Tueste Unity" width="280" height="97" loading="eager">
+      </a>
+      <nav class="tu-local-bar__nav" aria-label="Tueste Unity">
+        <a href="#caminos">Caminos</a>
+        <a href="#taller">Arma tu café</a>
+        <a href="#sonoro">Sonido</a>
+        <a href="#rituales">Experiencias</a>
+        <a class="tu-local-bar__cta" href="#taller">Armar mi café</a>
+      </nav>
+    </div>
+  </header>
   <div class="tu-wrap tu-section">
     <div class="tu-unity__intro">
       <div>
         <p class="tu-kicker">Tueste Unity · marcas con origen</p>
-        <h1>{{ section.settings.title }}</h1>
+        <h1 aria-label="Tu café. Nuestro origen."><span>Tu café.</span><em>Nuestro origen.</em></h1>
         <p class="tu-lead">{{ section.settings.intro | escape }}</p>
         <div class="tu-hero__actions">
           <a class="tu-button tu-button--primary" href="#taller">{{ section.settings.primary_cta | escape }} <span aria-hidden="true">→</span></a>
@@ -62,6 +76,10 @@
       </ul>
     {%- endif -%}
 
+    <div class="tu-unity__paths-heading">
+      <p class="tu-kicker">Tres caminos · el mismo origen</p>
+      <h2>Elige cómo quieres <em>contar tu café.</em></h2>
+    </div>
     <div class="tu-unity__paths" id="caminos">
       {%- for block in path_blocks -%}
         {%- case forloop.index -%}

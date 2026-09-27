@@ -120,6 +120,10 @@
 
     <link rel="stylesheet" href="{{ 'apps.css' | asset_url }}" media="print" fetchpriority="low" onload="this.media='all'">
 
+    {%- if template.suffix == 'tueste-unity' or template.suffix == 'tueste-records' -%}
+      <link rel="stylesheet" href="{{ 'tueste-parity.css' | asset_url }}">
+    {%- endif -%}
+
     {%- if template.suffix == 'tueste-tree' -%}
       <script src="{{ 'tueste-tree-mockup.js' | asset_url }}" defer></script>
     {%- endif -%}

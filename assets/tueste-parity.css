@@ -1,0 +1,120 @@
+/* Tueste Unity + Records visual parity layer.
+   These pages deliberately own their navigation and presentation so they do not
+   inherit the generic universe shell used by the store landing. */
+
+body.template-tueste-unity .te-preview__header,
+body.template-tueste-records .te-preview__header { display: none !important; }
+
+.tu-local-bar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  border-bottom: 1px solid rgba(236, 232, 224, .14);
+  background: rgba(12, 12, 12, .9);
+  backdrop-filter: blur(16px);
+}
+.tu-local-bar__inner {
+  width: min(1180px, calc(100% - 2.5rem));
+  min-height: 68px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+.tu-local-bar__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  flex: none;
+  color: #f0e8dc;
+  text-decoration: none;
+  font: 700 .78rem/1 var(--tu-mono);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.tu-local-bar__brand img { display: block; width: auto; height: 34px; object-fit: contain; }
+.tu-local-bar__brand span { color: #c29a55; }
+.tu-local-bar__nav { display: flex; align-items: center; justify-content: flex-end; gap: clamp(.7rem, 2vw, 1.6rem); flex-wrap: wrap; }
+.tu-local-bar__nav a { color: #a7a19a; font: .68rem/1.2 var(--tu-mono); letter-spacing: .1em; text-decoration: none; text-transform: uppercase; transition: color .2s ease; }
+.tu-local-bar__nav a:hover, .tu-local-bar__nav a:focus-visible { color: #f0e8dc; }
+.tu-local-bar__cta { padding: .6rem .8rem; border: 1px solid #c29a55; color: #c29a55 !important; }
+.tu-records-bar__backed { flex: none; color: #7e786f; font: .6rem/1.3 var(--tu-mono); letter-spacing: .1em; text-transform: uppercase; }
+
+/* Unity: the local reference is an image-led stained-glass hero followed by
+   a clean three-path editorial section. */
+body.template-tueste-unity,
+body.template-tueste-unity .page-container,
+body.template-tueste-unity .main-content { background: #15130f !important; }
+body.template-tueste-unity .tu-unity { background: #15130f; color: #f2dfbc; }
+body.template-tueste-unity .tu-unity > .tu-wrap:first-of-type { width: 100%; max-width: none; padding: 0; }
+.tu-unity__intro { position: relative; min-height: min(720px, 82vh); display: grid; grid-template-columns: minmax(0, 1fr); align-items: center; padding: clamp(4rem, 9vw, 7.5rem) max(1.25rem, calc((100vw - 1120px) / 2)); overflow: hidden; border-top: 0; }
+.tu-unity__intro::before { content: ""; position: absolute; inset: 0; z-index: 0; background: #16351e url("https://cdn.shopify.com/s/files/1/0936/0601/9360/files/tueste-unity-hero-vitral-1840.png") center / cover no-repeat; filter: saturate(.94) contrast(1.06); }
+.tu-unity__intro::after { content: ""; position: absolute; inset: 0; z-index: 0; background: linear-gradient(90deg, rgba(9, 13, 10, .82) 0%, rgba(9, 13, 10, .6) 42%, rgba(9, 13, 10, .08) 82%), linear-gradient(0deg, rgba(8, 10, 8, .88), transparent 42%); pointer-events: none; }
+.tu-unity__intro > div:first-child { position: relative; z-index: 1; width: min(620px, 100%); }
+.tu-unity__intro .tu-kicker { color: #f4a51c; }
+.tu-unity__intro h1 { margin: 0; color: #fff0d0; font: clamp(3.3rem, 8vw, 7.4rem)/.88 var(--tu-display); letter-spacing: -.04em; text-transform: uppercase; text-shadow: 0 2px 18px rgba(0,0,0,.28); }
+.tu-unity__intro h1 span, .tu-unity__intro h1 em { display: block; }
+.tu-unity__intro h1 em { color: #f4a51c; font-style: normal; }
+.tu-unity__intro .tu-lead { max-width: 60ch; color: #f0e8dc; font-size: clamp(1rem, 1.6vw, 1.22rem); }
+.tu-unity__intro-art { display: none; }
+.tu-unity__specs { position: relative; z-index: 1; }
+.tu-unity__checklist { width: min(1120px, calc(100% - 2.5rem)); margin: 0 auto; border-radius: 0; border-inline: 0; background: rgba(255, 232, 191, .035); }
+.tu-unity__paths-heading { width: min(1120px, calc(100% - 2.5rem)); margin: 0 auto; padding: clamp(4.5rem, 9vw, 8rem) 0 1.2rem; }
+.tu-unity__paths-heading h2 { max-width: 13ch; margin: 0; color: #fff0d0; font: clamp(2.8rem, 6vw, 5.9rem)/.9 var(--tu-display); text-transform: uppercase; }
+.tu-unity__paths-heading h2 em { color: #f4a51c; font-style: normal; }
+.tu-unity__paths { width: min(1120px, calc(100% - 2.5rem)); margin: 0 auto; grid-template-columns: repeat(3, 1fr); gap: 1.1rem; }
+.tu-unity__path { min-height: 100%; padding: 0 0 1.25rem; gap: .85rem; border-radius: 0; border-color: rgba(236, 232, 224, .17); background: #1e1d18; overflow: hidden; }
+.tu-unity__path--featured { border-color: #c29a55; }
+.tu-unity__path-art { aspect-ratio: 1; border-radius: 0; background: #101410; }
+.tu-unity__path-art img { object-fit: cover; }
+.tu-unity__path > .tu-kicker, .tu-unity__path > h2, .tu-unity__path > p, .tu-unity__path > dl, .tu-unity__path > a { margin-inline: 1.2rem; }
+.tu-unity__path > .tu-kicker { margin-top: .5rem; color: #c29a55; }
+.tu-unity__path h2 { color: #fff0d0; font: 1.45rem/1 var(--tu-display); text-transform: uppercase; }
+.tu-unity__path p, .tu-unity__path dd { color: #bcb4a7; }
+.tu-unity .tu-home-block__heading h2, .tu-unity h2, .tu-unity h3 { color: #fff0d0; }
+.tu-unity .tu-section { background: #15130f; }
+
+/* Records: the local reference uses a dark label layout and four equal visual
+   releases; the old fallback photos are hidden in favor of the seeded artwork. */
+body.template-tueste-records,
+body.template-tueste-records .page-container,
+body.template-tueste-records .main-content { background: #0a0a0b !important; }
+body.template-tueste-records .tu-records { background: #0a0a0b; color: #ece8e0; }
+.tu-records__hero { min-height: min(760px, 86vh); }
+.tu-records__hero-slides { min-height: min(760px, 86vh); }
+.tu-records__hero-art img { display: none; }
+.tu-records__hero-art canvas { opacity: .72; filter: saturate(.7) contrast(1.08); }
+.tu-records__hero-copy { width: min(1120px, calc(100% - 2.5rem)); max-width: none; margin: 0 auto; padding-block: 5rem 5rem; }
+.tu-records__hero-slide h1 { max-width: 12ch; color: #f1eadf; font: clamp(3.2rem, 8vw, 7.2rem)/.88 var(--tu-display); font-style: normal; letter-spacing: -.04em; text-transform: uppercase; }
+.tu-records__hero-note { max-width: 62ch; color: #d4cdc1; font-size: clamp(1rem, 1.5vw, 1.15rem); }
+.tu-records .tu-section { background: #0a0a0b; }
+.tu-records .tu-home-block__heading h2 { color: #ece8e0; font: clamp(2.5rem, 5vw, 5rem)/.92 var(--tu-display); font-style: normal; text-transform: uppercase; }
+.tu-records__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.15rem; }
+.tu-release { padding: 0; border-radius: 0; border-color: rgba(236, 232, 224, .17); background: #141416; overflow: hidden; }
+.tu-release__art { min-height: 280px; padding: 0; border-radius: 0; background: #111214; }
+.tu-release__art img { display: none; }
+.tu-release__art canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.tu-release__art strong, .tu-release__catalog { z-index: 1; }
+.tu-release__meta, .tu-release__artist, .tu-release > h2, .tu-release > p, .tu-release__links { margin-inline: 1rem; }
+.tu-release__meta { margin-top: 1rem; }
+.tu-release > h2 { color: #ece8e0; font-family: var(--tu-sans); font-style: normal; }
+.tu-release > p { color: #bcb7ac; line-height: 1.55; }
+.tu-records__news-cover img { display: none; }
+
+@media (max-width: 900px) {
+  .tu-local-bar__inner { width: min(100% - 1.5rem, 680px); min-height: 60px; }
+  .tu-local-bar__nav { gap: .65rem .9rem; }
+  .tu-local-bar__nav a { font-size: .6rem; }
+  .tu-records-bar__backed { display: none; }
+  .tu-unity__paths, .tu-records__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .tu-local-bar__inner { align-items: flex-start; padding-block: .7rem; }
+  .tu-local-bar__nav { justify-content: flex-end; }
+  .tu-local-bar__nav a:not(.tu-local-bar__cta) { display: none; }
+  .tu-unity__intro { min-height: 680px; padding-inline: 1.25rem; }
+  .tu-unity__intro h1, .tu-records__hero-slide h1 { font-size: clamp(3rem, 15vw, 5.2rem); }
+  .tu-unity__paths, .tu-records__grid { grid-template-columns: 1fr; }
+  .tu-records__hero-copy { width: calc(100% - 2.5rem); }
+}
