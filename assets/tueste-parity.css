@@ -118,3 +118,115 @@ body.template-tueste-records .tu-records { background: #0a0a0b; color: #ece8e0; 
   .tu-unity__paths, .tu-records__grid { grid-template-columns: 1fr; }
   .tu-records__hero-copy { width: calc(100% - 2.5rem); }
 }
+
+/* Unity artifact parity: keep the editorial hierarchy and the interactive
+   workshop composition from the local reference instead of the generic theme
+   defaults. These rules are intentionally scoped to Unity. */
+body.template-tueste-unity .tu-unity .tu-lead,
+body.template-tueste-unity .tu-unity__intro .tu-lead,
+body.template-tueste-unity .tu-unity__paths-heading .tu-lead,
+body.template-tueste-unity .tu-unity__sound > div > .tu-lead,
+body.template-tueste-unity .tu-unity__crew-head .tu-lead,
+body.template-tueste-unity .tu-unity__siembra .tu-lead {
+  font-family: var(--tu-sans);
+  font-style: normal;
+}
+
+body.template-tueste-unity .tu-unity__workbench {
+  grid-template-columns: minmax(0, 1fr) minmax(280px, .9fr);
+  gap: clamp(1.5rem, 4vw, 2.5rem);
+  align-items: start;
+}
+
+body.template-tueste-unity .tu-unity__workbench > aside {
+  position: sticky;
+  top: 5rem;
+  align-self: start;
+}
+
+body.template-tueste-unity [data-unity-static] .tu-unity__step {
+  display: grid !important;
+  gap: .9rem;
+  padding: 1.3rem;
+  border: 1px solid var(--tu-line);
+  border-radius: 20px;
+  background: var(--tu-surface);
+}
+
+body.template-tueste-unity [data-unity-static] .tu-unity__step + .tu-unity__step {
+  margin-top: .9rem;
+}
+
+body.template-tueste-unity [data-unity-static] .tu-unity__step h3 {
+  margin-bottom: 0;
+}
+
+body.template-tueste-unity .tu-unity__sound {
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+  gap: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+body.template-tueste-unity .tu-unity__sound-art {
+  display: block;
+  height: auto;
+  aspect-ratio: 1;
+  padding: 0;
+  background: var(--tu-surface);
+}
+
+body.template-tueste-unity .tu-unity__sound-art img {
+  opacity: 1;
+  mix-blend-mode: normal;
+  filter: none;
+}
+
+body.template-tueste-unity .tu-unity__sound-art::after {
+  background: linear-gradient(180deg, rgba(21, 19, 15, .06), rgba(21, 19, 15, .28));
+}
+
+body.template-tueste-unity .tu-unity__sound-art span {
+  display: none;
+}
+
+body.template-tueste-unity .tu-unity__timeline {
+  gap: 0;
+  border: 1px solid var(--tu-line);
+  border-radius: 22px;
+  overflow: hidden;
+  background: var(--tu-surface);
+}
+
+body.template-tueste-unity .tu-unity__timeline-item {
+  min-width: 0;
+  padding: 1.3rem 1.1rem 1.4rem;
+  border-top: 2px solid var(--tu-amber);
+  border-right: 1px solid var(--tu-line);
+}
+
+body.template-tueste-unity .tu-unity__timeline-item:last-child {
+  border-right: 0;
+}
+
+@media (max-width: 900px) {
+  body.template-tueste-unity .tu-unity__workbench {
+    grid-template-columns: 1fr;
+  }
+
+  body.template-tueste-unity .tu-unity__workbench > aside {
+    position: relative;
+    top: auto;
+  }
+
+  body.template-tueste-unity .tu-unity__sound-art {
+    aspect-ratio: 16 / 9;
+  }
+
+  body.template-tueste-unity .tu-unity__timeline-item {
+    border-right: 0;
+    border-bottom: 1px solid var(--tu-line);
+  }
+
+  body.template-tueste-unity .tu-unity__timeline-item:last-child {
+    border-bottom: 0;
+  }
+}
