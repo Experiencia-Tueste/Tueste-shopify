@@ -175,7 +175,7 @@ h1,h2,h3{margin:0;font-weight:700;text-wrap:balance}
 .tier .td{font-size:.78rem;color:var(--muted)}
 .tier .td b{color:var(--amber);font-weight:600}
 .badges{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.2rem;margin-top:2rem}
-.badge{position:relative;display:grid;grid-template-columns:minmax(0,1fr);min-width:0;gap:.6rem;padding:1.2rem 1rem 1.3rem;border:1px solid var(--line);border-radius:22px;background:var(--surface);text-align:center;cursor:pointer;transition:border-color .3s,transform .3s}
+.badge{position:relative;display:grid;grid-template-columns:minmax(0,1fr);width:100%;min-width:0;gap:.6rem;padding:1.2rem 1rem 1.3rem;border:1px solid var(--line);border-radius:22px;background:var(--surface);text-align:center;cursor:pointer;transition:border-color .3s,transform .3s}
 .badge img{width:min(100%,220px);height:auto;margin:0 auto;filter:drop-shadow(0 18px 30px rgba(0,0,0,.55));transition:transform .5s ease}
 .badge:hover img{transform:translateY(-6px) rotate(-1.5deg)}
 .badge .bq{font-family:var(--disp);font-size:clamp(1.1rem,2.1vw,1.5rem);white-space:nowrap;letter-spacing:.04em;color:var(--amber);line-height:1}
