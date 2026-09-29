@@ -29,6 +29,17 @@
             if p.id == product.id
               assign is_current = true
             endif
+            assign p_url = p.url
+            case p.handle
+              when 'cafe-aures-1840-conscious'
+                assign p_url = p_url | append: '?view=tueste-cafe-conscious'
+              when 'cafe-aures-1840-amour'
+                assign p_url = p_url | append: '?view=tueste-cafe-amour'
+              when 'taza-efimero-amarilla', 'taza-efimero-gris', 'taza-efimero-morada', 'taza-efimero-rosada', 'taza-artesanal-splash-edicion-limitada'
+                assign p_url = p_url | append: '?view=tueste-taza'
+              when 'origin-grey-hoodie-n-1840-ltd'
+                assign p_url = p_url | append: '?view=tueste-hoodie'
+            endcase
           -%}
           <li class="tp-rel__card{% if is_current %} is-current{% endif %}" {{ block.shopify_attributes }}>
             {%- if is_current -%}<span class="tp-rel__here">{{ section.settings.here_label | escape }}</span>{%- endif -%}
@@ -43,7 +54,7 @@
                 <span class="tp-swatch" style="--sw: {{ block.settings.swatch | default: 'transparent' }}" aria-hidden="true"></span>
               {%- endif -%}
             </div>
-            <h3 class="tp-rel__title"><a href="{{ p.url }}"{% if is_current %} aria-current="page"{% endif %}>{{ block.settings.title | default: p.title | escape }}</a></h3>
+            <h3 class="tp-rel__title"><a href="{{ p_url }}"{% if is_current %} aria-current="page"{% endif %}>{{ block.settings.title | default: p.title | escape }}</a></h3>
             {%- if block.settings.note != blank -%}
               <p style="margin:0;font-size:.85rem;color:var(--tp-cream-2)">{{ block.settings.note | escape }}</p>
             {%- endif -%}

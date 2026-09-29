@@ -43,6 +43,22 @@
   assign taza_morada_product = all_products['taza-efimero-morada']
   assign taza_splash_product = all_products['taza-artesanal-splash-edicion-limitada']
   assign hoodie_product = all_products['origin-grey-hoodie-n-1840-ltd']
+  assign taza_rosada_url = taza_rosada_product.url
+  assign taza_morada_url = taza_morada_product.url
+  assign taza_splash_url = taza_splash_product.url
+  assign hoodie_url = hoodie_product.url
+  if taza_rosada_product != blank
+    assign taza_rosada_url = taza_rosada_url | append: '?view=tueste-taza'
+  endif
+  if taza_morada_product != blank
+    assign taza_morada_url = taza_morada_url | append: '?view=tueste-taza'
+  endif
+  if taza_splash_product != blank
+    assign taza_splash_url = taza_splash_url | append: '?view=tueste-taza'
+  endif
+  if hoodie_product != blank
+    assign hoodie_url = hoodie_url | append: '?view=tueste-hoodie'
+  endif
   assign tree_total_number = section.settings.tree_total | plus: 0
   assign tree_taken_number = section.settings.tree_taken | plus: 0
   capture tree_total_display
@@ -92,7 +108,7 @@
         <div class="te-preview__hero-bg" style="background-image:url('{{ 'banner_hodie.png' | asset_url }}');background-position:center 50%" aria-hidden="true"></div>
         <div class="te-preview__wrap te-preview__hero-copy">
           <span class="te-preview__eyebrow">03 / Piezas limitadas</span>
-          <div class="te-preview__actions"><a class="te-preview__button" href="{{ hoodie_product.url | default: '#piezas' }}">Comprar el hoodie</a><a class="te-preview__button te-preview__button--secondary" href="#piezas">Ver todas las piezas</a></div>
+          <div class="te-preview__actions"><a class="te-preview__button" href="{{ hoodie_url | default: '#piezas' }}">Comprar el hoodie</a><a class="te-preview__button te-preview__button--secondary" href="#piezas">Ver todas las piezas</a></div>
         </div>
       </article>
 
@@ -159,9 +175,19 @@
                 {%- assign cafe_button_class = 'te-preview__button te-preview__button--secondary' -%}
                 {%- assign cafe_cta_label = 'Avísame' -%}
               {%- endif -%}
+              {%- assign selected_product_url = blank -%}
+              {%- if selected_product != blank -%}
+                {%- assign selected_product_url = selected_product.url -%}
+                {%- case selected_product.handle -%}
+                  {%- when 'cafe-aures-1840-conscious' -%}
+                    {%- assign selected_product_url = selected_product_url | append: '?view=tueste-cafe-conscious' -%}
+                  {%- when 'cafe-aures-1840-amour' -%}
+                    {%- assign selected_product_url = selected_product_url | append: '?view=tueste-cafe-amour' -%}
+                {%- endcase -%}
+              {%- endif -%}
               <article class="te-preview__cafe" {{ block.shopify_attributes }}>
                 <div class="{{ cafe_art_class }}"><img src="{{ image_source }}" alt="{{ block.settings.title | escape }}" loading="lazy" width="900" height="675"></div>
-                <div class="te-preview__cafe-body"><span class="te-preview__meta">{{ block.settings.meta | escape }}</span><h3>{{ block.settings.title | escape }}</h3><p class="te-preview__card-note">{{ block.settings.description | escape }}</p><p class="te-preview__card-price">{% if selected_product != blank %}{{ selected_product.price | money }}{% else %}{{ block.settings.price | escape }}{% endif %}{% if block.settings.sold_out %} <b class="te-preview__chip">Agotado</b>{% endif %}</p><a class="{{ cafe_button_class }}" href="{% if selected_product != blank %}{{ selected_product.url }}{% else %}#cafe{% endif %}">{{ cafe_cta_label | escape }}</a></div>
+                <div class="te-preview__cafe-body"><span class="te-preview__meta">{{ block.settings.meta | escape }}</span><h3>{{ block.settings.title | escape }}</h3><p class="te-preview__card-note">{{ block.settings.description | escape }}</p><p class="te-preview__card-price">{% if selected_product != blank %}{{ selected_product.price | money }}{% else %}{{ block.settings.price | escape }}{% endif %}{% if block.settings.sold_out %} <b class="te-preview__chip">Agotado</b>{% endif %}</p><a class="{{ cafe_button_class }}" href="{{ selected_product_url | default: '#cafe' }}">{{ cafe_cta_label | escape }}</a></div>
               </article>
             {% endif %}
           {% endfor %}
@@ -170,10 +196,10 @@
     </section>
 
     <section class="te-preview__section" id="piezas"><div class="te-preview__wrap te-preview__reveal"><div class="te-preview__section-heading"><span class="te-preview__eyebrow">03 / Piezas · Café · Ritual</span><h2>Objetos <em>con origen</em>.</h2></div><div class="te-preview__cards">
-      <article class="te-preview__card"><div class="te-preview__card-image"><img src="{{ 'taza-rosada.png' | asset_url }}" alt="Taza efímero rosada" loading="lazy" width="900" height="900"></div><div class="te-preview__card-body"><h3>Taza efímero rosada</h3><p class="te-preview__card-price">$145.000 COP <b class="te-preview__chip">Agotado</b></p><p class="te-preview__card-note">Pieza limitada, torneada a mano.</p><a class="te-preview__button te-preview__button--secondary" href="{{ taza_rosada_product.url | default: '#piezas' }}">Avísame</a></div></article>
-      <article class="te-preview__card"><div class="te-preview__card-image"><img src="{{ 'taza-morada.png' | asset_url }}" alt="Taza efímero morada" loading="lazy" width="900" height="900"></div><div class="te-preview__card-body"><h3>Taza efímero morada</h3><p class="te-preview__card-price">$145.000 COP</p><p class="te-preview__card-note">Pieza limitada, torneada a mano.</p><a class="te-preview__button" href="{{ taza_morada_product.url | default: '#piezas' }}">Comprar</a></div></article>
-      <article class="te-preview__card"><div class="te-preview__card-image"><img src="{{ 'taza-splash.png' | asset_url }}" alt="Taza Splash" loading="lazy" width="900" height="900"></div><div class="te-preview__card-body"><h3>Taza Splash</h3><p class="te-preview__card-price">$145.000 COP</p><p class="te-preview__card-note">Pieza única, hecha a mano · edición limitada.</p><a class="te-preview__button" href="{{ taza_splash_product.url | default: '#piezas' }}">Comprar</a></div></article>
-      <article class="te-preview__card"><div class="te-preview__card-image"><img src="{{ 'hoodie.png' | asset_url }}" alt="Origin Grey Hoodie" loading="lazy" width="900" height="900"></div><div class="te-preview__card-body"><h3>Origin Grey Hoodie</h3><p class="te-preview__card-price">$380.000 COP</p><p class="te-preview__card-note">Edición limitada 1840-LTD · tallas XS a XL.</p><a class="te-preview__button" href="{{ hoodie_product.url | default: '#piezas' }}">Comprar</a></div></article>
+      <article class="te-preview__card"><div class="te-preview__card-image"><img src="{{ 'taza-rosada.png' | asset_url }}" alt="Taza efímero rosada" loading="lazy" width="900" height="900"></div><div class="te-preview__card-body"><h3>Taza efímero rosada</h3><p class="te-preview__card-price">$145.000 COP <b class="te-preview__chip">Agotado</b></p><p class="te-preview__card-note">Pieza limitada, torneada a mano.</p><a class="te-preview__button te-preview__button--secondary" href="{{ taza_rosada_url | default: '#piezas' }}">Avísame</a></div></article>
+      <article class="te-preview__card"><div class="te-preview__card-image"><img src="{{ 'taza-morada.png' | asset_url }}" alt="Taza efímero morada" loading="lazy" width="900" height="900"></div><div class="te-preview__card-body"><h3>Taza efímero morada</h3><p class="te-preview__card-price">$145.000 COP</p><p class="te-preview__card-note">Pieza limitada, torneada a mano.</p><a class="te-preview__button" href="{{ taza_morada_url | default: '#piezas' }}">Comprar</a></div></article>
+      <article class="te-preview__card"><div class="te-preview__card-image"><img src="{{ 'taza-splash.png' | asset_url }}" alt="Taza Splash" loading="lazy" width="900" height="900"></div><div class="te-preview__card-body"><h3>Taza Splash</h3><p class="te-preview__card-price">$145.000 COP</p><p class="te-preview__card-note">Pieza única, hecha a mano · edición limitada.</p><a class="te-preview__button" href="{{ taza_splash_url | default: '#piezas' }}">Comprar</a></div></article>
+      <article class="te-preview__card"><div class="te-preview__card-image"><img src="{{ 'hoodie.png' | asset_url }}" alt="Origin Grey Hoodie" loading="lazy" width="900" height="900"></div><div class="te-preview__card-body"><h3>Origin Grey Hoodie</h3><p class="te-preview__card-price">$380.000 COP</p><p class="te-preview__card-note">Edición limitada 1840-LTD · tallas XS a XL.</p><a class="te-preview__button" href="{{ hoodie_url | default: '#piezas' }}">Comprar</a></div></article>
     </div></div></section>
 
     <section class="te-preview__section" id="tree"><div class="te-preview__wrap te-preview__reveal"><div class="te-preview__section-heading"><span class="te-preview__eyebrow">04 / Tueste Tree</span><h2>Siembra un árbol. <em>Cofunda un origen</em>.</h2><p>Los primeros {{ tree_total_display }} árboles son fundacionales. No compras una planta: entras a un origen vivo y lo sigues durante todo un año.</p></div><div class="te-preview__tree-shell"><div class="te-preview__tree-media"><img src="{{ 'tueste-tree-siembra-vitral.webp' | asset_url }}" alt="Manos sembrando una plántula de café bajo la lluvia" loading="lazy" width="1200" height="900"><span>Finca Tres Esquinas · Lote fundacional</span></div><div class="te-preview__tree-copy"><h3>Tu nombre queda en la tierra.</h3><p>Eliges tu lugar en el lote, siembras tu árbol en pantalla y recibes tu Certificado de Tradición numerado en 48 horas.</p><ul class="te-preview__facts"><li><span>Valor</span><span>USD 100 por árbol fundacional</span></li><li><span>En línea</span><span>De 1 a 30 árboles · más de 30, con nuestro agente</span></li><li><span>Insignia</span><span>Semilla, Plata, Oro u Holográfica según cuántos siembres</span></li></ul><div class="te-preview__founders"><div class="te-preview__founders-num"><span>Ya sembraron</span><span><b data-taken>{{ tree_taken_display }}</b> de {{ tree_total_display }}</span></div><div class="te-preview__meter"><i data-meter style="width:0"></i></div></div><div class="te-preview__actions"><a class="te-preview__button" href="{{ tree_link }}">Entrar a la finca</a><a class="te-preview__button te-preview__button--secondary" href="#insignias">Ver las insignias</a></div><p class="te-preview__disclaimer">Adopción simbólica y cultural · no representa inversión financiera.</p></div></div></div></section>
