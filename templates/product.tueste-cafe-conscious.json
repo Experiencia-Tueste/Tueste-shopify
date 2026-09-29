@@ -1,0 +1,440 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main-product": {
+      "type": "main-product",
+      "blocks": {
+        "breadcrumb_VAEh4z": {
+          "type": "breadcrumb",
+          "settings": {
+            "show_collections_link": true
+          }
+        },
+        "vendor": {
+          "type": "text",
+          "settings": {
+            "icon": "none",
+            "iwidth": "custom",
+            "icon_width": 20,
+            "text": "{{ product.vendor }}",
+            "text_size": "text-base"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "title_size": "product-title-md",
+            "title_size_mobile": "product-title-md",
+            "show_price": true,
+            "show_rating": true
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "show_variant_labels": true,
+            "picker_type": "button",
+            "enable_color_swatches": true,
+            "color_swatch_type": "color",
+            "size_chart": ""
+          }
+        },
+        "inventory": {
+          "type": "inventory",
+          "settings": {
+            "inventory_threshold": 15,
+            "show_inventory_transfer": true,
+            "show_inventory_quantity": "low",
+            "color_scheme": "accent-1"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_quantity_selector": true,
+            "show_price": false,
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true,
+            "enable_back_in_stock": false,
+            "show_back_in_stock_name": false,
+            "show_back_in_stock_phone": false
+          }
+        },
+        "pickup_availability": {
+          "type": "pickup_availability",
+          "settings": {}
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Compartir",
+            "show_help_desk": true,
+            "help_label": "¿Necesitas ayuda?",
+            "help_type": "drawer",
+            "help_page": "",
+            "help_page_external": false
+          }
+        },
+        "text_tueste_1": {
+          "type": "text",
+          "settings": {
+            "icon": "users",
+            "iwidth": "custom",
+            "icon_width": 20,
+            "text": "<strong>Caficultora:</strong> Doña Clara Inés Ríos Ríos",
+            "text_size": "text-base"
+          }
+        },
+        "text_tueste_2": {
+          "type": "text",
+          "settings": {
+            "icon": "organic",
+            "iwidth": "custom",
+            "icon_width": 20,
+            "text": "<strong>Finca:</strong> La Esperanza, Cañón de Aures — Caicedonia, Valle del Cauca",
+            "text_size": "text-base"
+          }
+        },
+        "text_tueste_3": {
+          "type": "text",
+          "settings": {
+            "icon": "none",
+            "iwidth": "custom",
+            "icon_width": 20,
+            "text": "<strong>🚚 Envío gratis</strong> a toda Colombia en compras desde $55.000 — este café ya lo incluye.",
+            "text_size": "text-base"
+          }
+        },
+        "collapsible_desc": {
+          "type": "collapsible_tab",
+          "settings": {
+            "opened": false,
+            "style": "with-border",
+            "icon": "none",
+            "heading": "Descripción completa",
+            "content": "{{ product.description }}",
+            "page": "",
+            "liquid": ""
+          }
+        },
+        "sticky_buy_button": {
+          "type": "sticky_buy_button",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "breadcrumb_VAEh4z",
+        "vendor",
+        "title",
+        "variant_picker",
+        "inventory",
+        "buy_buttons",
+        "pickup_availability",
+        "share",
+        "text_tueste_1",
+        "text_tueste_2",
+        "text_tueste_3",
+        "collapsible_desc",
+        "sticky_buy_button"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "media_size": 60,
+        "gallery_layout": "scroll",
+        "thumbnail_position": "beside",
+        "image_ratio": "adapt",
+        "image_zoom": "none",
+        "hide_variants": true,
+        "enable_video_autoplay": true,
+        "enable_video_looping": true,
+        "mobile_layout": "full_width",
+        "image_ratio_mobile": "square",
+        "mobile_thumbnail": true,
+        "padding_top": 84,
+        "padding_bottom": 84,
+        "divider": false,
+        "full_width": true,
+        "rounded": true
+      }
+    },
+    "frecuencia": {
+      "type": "tueste-producto-frecuencia",
+      "settings": {
+        "kicker": "Un café que se escucha",
+        "heading": "Este lote <em>suena así</em>",
+        "text": "Escanea el QR de la bolsa y escucha mientras preparas tu taza. Cada lote incluye una obra musical original creada con sonidos reales del café — la molienda, el vapor, el goteo, el secado — grabados en finca y transformados en música electrónica por Tueste Unity. Ningún otro café en el mundo suena así.",
+        "voice": "Escúchala mientras preparas tu taza.",
+        "spotify_track": "0FIXGZWj2TQCaEZRieJ1Of",
+        "track_name": "432Hz ASCENT",
+        "album_url": "https://open.spotify.com/album/3QORX6JtWw22nwDNMy9jLp",
+        "album_label": "Coffee in Frequencies · álbum completo",
+        "spotify_label": "Abrir en Spotify",
+        "records_label": "Tueste Records",
+        "accent": "#FBA922",
+        "play_label": "Escuchar la frecuencia",
+        "status_spotify": "Reproduce desde Spotify · 30 s sin sesión, completa con tu cuenta",
+        "status_native": "Obra original del lote · Tueste Unity",
+        "alias_fallback": "Frecuencia del lote",
+        "hz_fallback": 432,
+        "show_qr": true,
+        "qr_text": "En la bolsa va el QR musical del lote: escanéalo con el celular y escucha mientras preparas tu taza."
+      }
+    },
+    "origen": {
+      "type": "tueste-producto-origen",
+      "settings": {
+        "kicker": "Origen con nombre propio",
+        "heading": "Cañón de Aures, <em>1.840 metros</em>",
+        "text": "Cultivado en la Finca La Esperanza, Cañón de Aures — Caicedonia, Valle del Cauca — a 1.840 metros de altura, dentro del Paisaje Cultural Cafetero.",
+        "caficultora": "Doña Clara Inés Ríos Ríos",
+        "caficultora_role": "Caficultora",
+        "finca": "Finca La Esperanza",
+        "region_fallback": "Caicedonia, Valle del Cauca",
+        "altitud_fallback": "1.840 m s. n. m.",
+        "image_alt": "Ladera cafetera del Cañón de Aures",
+        "caption": "Vereda Aures · Caicedonia · Valle del Cauca",
+        "button_label": "Conocer las fincas en Tueste Tree",
+        "button_link": "/pages/tueste-tree#fincas"
+      }
+    },
+    "perfil": {
+      "type": "tueste-producto-perfil",
+      "settings": {
+        "kicker": "Perfil de taza",
+        "heading": "Lo que vas a <em>sentir</em>",
+        "text": "Notas de nueces caramelizadas y chocolate · Acidez cítrica media (naranja) · Cuerpo jugoso · Tueste medio · Proceso lavado · Variedad Castillo.",
+        "voice": "Un café de origen único con 85 puntos SCA.",
+        "acidity_level": 55,
+        "body_level": 70,
+        "intensity_level": 55,
+        "no_radar_text": "La evaluación sensorial de este lote se publica cuando el catador entrega la ficha."
+      }
+    },
+    "ritual": {
+      "type": "tueste-producto-ritual",
+      "blocks": {
+        "paso_1": {
+          "type": "paso",
+          "settings": {
+            "icon": "bag",
+            "title": "Recibe el lote",
+            "text": "Una bolsa de 340 g, numerada, con el QR musical del lote. Despacho en 24–48 h hábiles."
+          }
+        },
+        "paso_2": {
+          "type": "paso",
+          "settings": {
+            "icon": "qr",
+            "title": "Escanea el QR",
+            "text": "Está en la bolsa. Abre la obra del lote en tu celular."
+          }
+        },
+        "paso_3": {
+          "type": "paso",
+          "settings": {
+            "icon": "cup",
+            "title": "Prepara tu taza",
+            "text": "Grano para moler en casa o molienda media lista para tu método."
+          }
+        },
+        "paso_4": {
+          "type": "paso",
+          "settings": {
+            "icon": "headphones",
+            "title": "Escucha mientras cae",
+            "text": "La molienda, el vapor, el goteo y el secado convertidos en música. Ningún otro café suena así."
+          }
+        }
+      },
+      "block_order": [
+        "paso_1",
+        "paso_2",
+        "paso_3",
+        "paso_4"
+      ],
+      "settings": {
+        "kicker": "Cómo vivirlo",
+        "heading": "Del paquete <em>a la taza</em>",
+        "text": "Envío gratis a toda Colombia en compras desde $55.000 — este café ya lo incluye."
+      }
+    },
+    "relacionados": {
+      "type": "tueste-producto-relacionados",
+      "blocks": {
+        "producto_1": {
+          "type": "producto",
+          "settings": {
+            "product": "cafe-aures-1840-conscious",
+            "note": "Lote 01 · 432 Hz · Nueces caramelizadas y chocolate"
+          }
+        },
+        "producto_2": {
+          "type": "producto",
+          "settings": {
+            "product": "cafe-aures-1840-amour",
+            "note": "Lote 02 · 528 Hz · Dulce y afrutado"
+          }
+        },
+        "producto_3": {
+          "type": "producto",
+          "settings": {
+            "product": "combo-cafes-unity",
+            "note": "Dos lotes, dos frecuencias · 680 g"
+          }
+        }
+      },
+      "block_order": [
+        "producto_1",
+        "producto_2",
+        "producto_3"
+      ],
+      "settings": {
+        "kicker": "El otro lote",
+        "heading": "Dos lotes, <em>dos frecuencias</em>",
+        "text": "Cada lote es único y numerado. Cuando se acaba, se acaba — y su música se va con él.",
+        "here_label": "Estás aquí",
+        "available_label": "Disponible",
+        "soldout_label": "Agotado"
+      }
+    },
+    "help-drawer": {
+      "type": "help-drawer",
+      "blocks": {
+        "content-1": {
+          "type": "content",
+          "settings": {
+            "icon": "rocket",
+            "heading": "Envios a nivel e internacional",
+            "text": "<p>Debes tener en cuenta el costo del envio, depende del peso del producto y el lugar de destino.</p>",
+            "highlighted_text": "none",
+            "highlighted_scribble": "circle",
+            "color_text": "#545454",
+            "color_background": "#e0e1fd",
+            "gradient_background": "",
+            "color_highlight": "#ffddbf",
+            "gradient_highlight": ""
+          }
+        },
+        "content_n9dGgw": {
+          "type": "content",
+          "settings": {
+            "icon": "none",
+            "heading": "Information",
+            "text": "<p>Share contact information, store details, and brand content with your customers.</p>",
+            "highlighted_text": "none",
+            "highlighted_scribble": "circle",
+            "color_text": "#fafafa",
+            "color_background": "#1f1f1f",
+            "gradient_background": "",
+            "color_highlight": "#ffddbf",
+            "gradient_highlight": ""
+          }
+        },
+        "content-2": {
+          "type": "content",
+          "settings": {
+            "icon": "headphone",
+            "heading": "Customer Support",
+            "text": "<p>Use this text to answer questions in as much detail as possible for your customers.</p>",
+            "highlighted_text": "none",
+            "highlighted_scribble": "circle",
+            "color_text": "#0369a1",
+            "color_background": "#f0f9ff",
+            "gradient_background": "",
+            "color_highlight": "#ffddbf",
+            "gradient_highlight": ""
+          }
+        }
+      },
+      "block_order": [
+        "content-1",
+        "content_n9dGgw",
+        "content-2"
+      ],
+      "settings": {
+        "heading": "¿Necesitas Ayuda?",
+        "description": "<p>Si tienes alguna pregunta, no dudes en contactarnos. Te responderemos lo antes posible, dentro de nuestro horario de oficina, en un plazo máximo de 24 horas en días hábiles.</p>"
+      }
+    },
+    "universo": {
+      "type": "tueste-universo",
+      "settings": {
+        "kicker": "Universo Tueste",
+        "heading": "Un origen, <em>cuatro caminos</em>.",
+        "intro": "Todo nace en el mismo cafetal del Cañón de Aures: el café que compras, el árbol que siembras, la marca que creas con nosotros y la música que lo cuenta.",
+        "here_label": "Estás aquí",
+        "style": "tueste"
+      },
+      "blocks": {
+        "camino_1": {
+          "type": "camino",
+          "settings": {
+            "brand": "tienda",
+            "show_name": false,
+            "description": "Café de origen, piezas y ritual. La casa de todo lo que hacemos.",
+            "cta": "Entrar →",
+            "current": true,
+            "link": "/"
+          }
+        },
+        "camino_2": {
+          "type": "camino",
+          "settings": {
+            "brand": "tree",
+            "show_name": false,
+            "description": "Siembra un árbol en la Finca Tres Esquinas y cofunda un origen.",
+            "cta": "Entrar →",
+            "current": false,
+            "link": "/pages/tueste-tree"
+          }
+        },
+        "camino_3": {
+          "type": "camino",
+          "settings": {
+            "brand": "unity",
+            "show_name": false,
+            "description": "Tu marca de café con nuestro origen y una firma sonora.",
+            "cta": "Entrar →",
+            "current": false,
+            "link": "/pages/tueste-unity"
+          }
+        },
+        "camino_4": {
+          "type": "camino",
+          "settings": {
+            "brand": "records",
+            "show_name": false,
+            "description": "El sello: lanzamientos, artistas y dónde escuchar el café.",
+            "cta": "Entrar →",
+            "current": false,
+            "link": "/pages/tueste-records"
+          }
+        }
+      },
+      "block_order": [
+        "camino_1",
+        "camino_2",
+        "camino_3",
+        "camino_4"
+      ]
+    }
+  },
+  "order": [
+    "main-product",
+    "frecuencia",
+    "origen",
+    "perfil",
+    "ritual",
+    "relacionados",
+    "help-drawer",
+    "universo"
+  ]
+}

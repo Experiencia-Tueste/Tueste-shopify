@@ -1,0 +1,108 @@
+{%- comment -%}
+  Tueste · Producto · Origen con nombre propio.
+  Ficha técnica desde los metafields custom.* que ya existen en los cafés (region, altitud, variety, process,
+  fermentation, score, type). Caficultora y finca vienen de settings; enlaza a Tueste Tree (las fincas).
+{%- endcomment -%}
+
+{%- liquid
+  assign mf = product.metafields.custom
+  assign sid = section.id
+  assign region = mf.region | default: section.settings.region_fallback
+  assign altitud = mf.altitud | default: section.settings.altitud_fallback
+  assign variety = mf.variety
+  assign process = mf.process
+  assign fermentation = mf.fermentation
+  assign score = mf.score
+  assign tipo = mf.type
+-%}
+
+<div class="tu-producto" id="TuesteProductoOrigen-{{ sid }}">
+  <section class="tp-section" id="origen" aria-labelledby="TuesteProductoOrigenTitle-{{ sid }}">
+    <div class="tp-wrap">
+      <div class="tp-origen">
+        <figure class="tp-origen__art" style="margin:0">
+          {%- if section.settings.image != blank -%}
+            {{ section.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '480, 800, 1200', alt: section.settings.image_alt }}
+          {%- else -%}
+            <div class="tp-arch" role="img" aria-label="{{ section.settings.image_alt | escape }}"></div>
+          {%- endif -%}
+          {%- if section.settings.caption != blank -%}
+            <figcaption class="tp-origen__caption">{{ section.settings.caption | escape }}</figcaption>
+          {%- endif -%}
+        </figure>
+
+        <div>
+          <p class="tp-kicker">{{ section.settings.kicker | escape }}</p>
+          <h2 class="tp-title" id="TuesteProductoOrigenTitle-{{ sid }}">{{ section.settings.heading }}</h2>
+          <p class="tp-lead">{{ section.settings.text | escape }}</p>
+
+          {%- if section.settings.caficultora != blank -%}
+            <div class="tp-caficultora">
+              <span class="tp-avatar" aria-hidden="true">
+                {%- if section.settings.caficultora_image != blank -%}
+                  {{ section.settings.caficultora_image | image_url: width: 160 | image_tag: loading: 'lazy', alt: '' }}
+                {%- else -%}
+                  {{ section.settings.caficultora | slice: 0, 1 }}
+                {%- endif -%}
+              </span>
+              <div>
+                <b>{{ section.settings.caficultora | escape }}</b>
+                <small>{{ section.settings.caficultora_role | escape }}{% if section.settings.finca != blank %} · {{ section.settings.finca | escape }}{% endif %}</small>
+              </div>
+            </div>
+          {%- endif -%}
+
+          <dl class="tp-ficha">
+            {%- if region != blank -%}<div><dt>Región</dt><dd>{{ region | escape }}</dd></div>{%- endif -%}
+            {%- if altitud != blank -%}<div><dt>Altura</dt><dd>{{ altitud | escape }}</dd></div>{%- endif -%}
+            {%- if variety != blank -%}<div><dt>Variedad</dt><dd>{{ variety | escape }}</dd></div>{%- endif -%}
+            {%- if process != blank -%}<div><dt>Proceso</dt><dd>{{ process | escape }}</dd></div>{%- endif -%}
+            {%- if fermentation != blank -%}<div><dt>Fermentación</dt><dd>{{ fermentation | escape }}</dd></div>{%- endif -%}
+            {%- if score != blank -%}<div><dt>Puntaje SCA</dt><dd>{{ score | escape }} puntos</dd></div>{%- endif -%}
+            {%- if tipo != blank -%}<div><dt>Tipo</dt><dd>{{ tipo | escape }}</dd></div>{%- endif -%}
+            {%- if section.settings.extra_label != blank and section.settings.extra_value != blank -%}
+              <div><dt>{{ section.settings.extra_label | escape }}</dt><dd>{{ section.settings.extra_value | escape }}</dd></div>
+            {%- endif -%}
+          </dl>
+
+          <div class="tp-actions">
+            {%- if section.settings.button_label != blank -%}
+              <a class="tp-btn tp-btn--ghost" href="{{ section.settings.button_link | default: '/pages/tueste-tree#fincas' }}">{{ section.settings.button_label | escape }}</a>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Producto · Origen",
+  "tag": "section",
+  "class": "section-tueste-producto-origen",
+  "enabled_on": { "templates": ["product"] },
+  "settings": [
+    { "type": "paragraph", "content": "La ficha lee los metafields custom.region, altitud, variety, process, fermentation, score y type del producto." },
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Origen con nombre propio" },
+    { "type": "inline_richtext", "id": "heading", "label": "Título", "default": "Cañón de Aures, <em>1.840 metros</em>" },
+    { "type": "textarea", "id": "text", "label": "Texto", "default": "Cultivado en la Finca La Esperanza, Cañón de Aures — Caicedonia, Valle del Cauca — a 1.840 metros de altura, dentro del Paisaje Cultural Cafetero." },
+    { "type": "text", "id": "caficultora", "label": "Caficultora", "default": "Doña Clara Inés Ríos Ríos" },
+    { "type": "text", "id": "caficultora_role", "label": "Rol", "default": "Caficultora" },
+    { "type": "image_picker", "id": "caficultora_image", "label": "Foto de la caficultora" },
+    { "type": "text", "id": "finca", "label": "Finca", "default": "Finca La Esperanza" },
+    { "type": "text", "id": "region_fallback", "label": "Región si no hay metafield", "default": "Caicedonia, Valle del Cauca" },
+    { "type": "text", "id": "altitud_fallback", "label": "Altura si no hay metafield", "default": "1.840 m s. n. m." },
+    { "type": "text", "id": "extra_label", "label": "Dato extra · etiqueta" },
+    { "type": "text", "id": "extra_value", "label": "Dato extra · valor" },
+    { "type": "image_picker", "id": "image", "label": "Foto de la finca", "info": "Sin foto se dibuja un arco con los colores del vitral." },
+    { "type": "text", "id": "image_alt", "label": "Texto alternativo", "default": "Ladera cafetera del Cañón de Aures" },
+    { "type": "text", "id": "caption", "label": "Pie de foto", "default": "Vereda Aures · Caicedonia · Valle del Cauca" },
+    { "type": "text", "id": "button_label", "label": "Botón", "default": "Conocer las fincas en Tueste Tree" },
+    { "type": "url", "id": "button_link", "label": "Enlace del botón", "info": "Por defecto /pages/tueste-tree#fincas." }
+  ],
+  "presets": [
+    { "name": "Tueste · Producto · Origen" }
+  ]
+}
+{% endschema %}

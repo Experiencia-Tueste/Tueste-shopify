@@ -1,0 +1,485 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main-product": {
+      "type": "main-product",
+      "blocks": {
+        "breadcrumb_VAEh4z": {
+          "type": "breadcrumb",
+          "settings": {
+            "show_collections_link": true
+          }
+        },
+        "vendor": {
+          "type": "text",
+          "settings": {
+            "icon": "none",
+            "iwidth": "custom",
+            "icon_width": 20,
+            "text": "{{ product.vendor }}",
+            "text_size": "text-base"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "title_size": "product-title-md",
+            "title_size_mobile": "product-title-md",
+            "show_price": true,
+            "show_rating": true
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "show_variant_labels": true,
+            "picker_type": "button",
+            "enable_color_swatches": true,
+            "color_swatch_type": "color",
+            "size_chart": ""
+          }
+        },
+        "inventory": {
+          "type": "inventory",
+          "settings": {
+            "inventory_threshold": 15,
+            "show_inventory_transfer": true,
+            "show_inventory_quantity": "low",
+            "color_scheme": "accent-1"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_quantity_selector": true,
+            "show_price": false,
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true,
+            "enable_back_in_stock": false,
+            "show_back_in_stock_name": false,
+            "show_back_in_stock_phone": false
+          }
+        },
+        "pickup_availability": {
+          "type": "pickup_availability",
+          "settings": {}
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Compartir",
+            "show_help_desk": true,
+            "help_label": "¿Necesitas ayuda?",
+            "help_type": "drawer",
+            "help_page": "",
+            "help_page_external": false
+          }
+        },
+        "text_tueste_1": {
+          "type": "text",
+          "settings": {
+            "icon": "none",
+            "iwidth": "custom",
+            "icon_width": 20,
+            "text": "<strong>Hecha a mano</strong> por artesanos locales · cada pieza es distinta",
+            "text_size": "text-base"
+          }
+        },
+        "text_tueste_2": {
+          "type": "text",
+          "settings": {
+            "icon": "none",
+            "iwidth": "custom",
+            "icon_width": 20,
+            "text": "<strong>Capacidad:</strong> 250 ml aprox. · Cerámica artesanal de alta calidad",
+            "text_size": "text-base"
+          }
+        },
+        "collapsible_desc": {
+          "type": "collapsible_tab",
+          "settings": {
+            "opened": false,
+            "style": "with-border",
+            "icon": "none",
+            "heading": "Descripción completa",
+            "content": "{{ product.description }}",
+            "page": "",
+            "liquid": ""
+          }
+        },
+        "sticky_buy_button": {
+          "type": "sticky_buy_button",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "breadcrumb_VAEh4z",
+        "vendor",
+        "title",
+        "variant_picker",
+        "inventory",
+        "buy_buttons",
+        "pickup_availability",
+        "share",
+        "text_tueste_1",
+        "text_tueste_2",
+        "collapsible_desc",
+        "sticky_buy_button"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "media_size": 60,
+        "gallery_layout": "scroll",
+        "thumbnail_position": "beside",
+        "image_ratio": "adapt",
+        "image_zoom": "none",
+        "hide_variants": true,
+        "enable_video_autoplay": true,
+        "enable_video_looping": true,
+        "mobile_layout": "full_width",
+        "image_ratio_mobile": "square",
+        "mobile_thumbnail": true,
+        "padding_top": 84,
+        "padding_bottom": 84,
+        "divider": false,
+        "full_width": true,
+        "rounded": true
+      }
+    },
+    "detalles": {
+      "type": "tueste-producto-detalles",
+      "blocks": {
+        "dato_1": {
+          "type": "dato",
+          "settings": {
+            "icon": "clay",
+            "label": "Material",
+            "value": "Cerámica artesanal de alta calidad"
+          }
+        },
+        "dato_2": {
+          "type": "dato",
+          "settings": {
+            "icon": "drop",
+            "label": "Capacidad",
+            "value": "250 ml aprox."
+          }
+        },
+        "dato_3": {
+          "type": "dato",
+          "settings": {
+            "icon": "hand",
+            "label": "Proceso",
+            "value": "Hecha a mano · diseño artesanal irrepetible"
+          }
+        },
+        "dato_4": {
+          "type": "dato",
+          "settings": {
+            "icon": "palette",
+            "label": "Color",
+            "value": "Variaciones únicas en cada pieza"
+          }
+        }
+      },
+      "block_order": [
+        "dato_1",
+        "dato_2",
+        "dato_3",
+        "dato_4"
+      ],
+      "settings": {
+        "kicker": "Taza Efímero",
+        "heading": "Hecha a mano, <em>irrepetible</em>",
+        "text": "Hecha a mano con dedicación, cada pieza es distinta, lo que garantiza que tengas en tus manos un objeto exclusivo. Su textura artesanal resalta en cada sorbo.",
+        "voice": "Un objeto para el ritual de cada mañana.",
+        "use_product_image": true,
+        "product_image_index": 2,
+        "image_alt": "Detalle de la Taza Efímero",
+        "image_position": "left",
+        "sello_badge": "HECHA A MANO",
+        "sello_text": "Cerámica artesanal: el tono y la textura varían de una pieza a otra. Ninguna es igual a la de la foto."
+      }
+    },
+    "colores": {
+      "type": "tueste-producto-relacionados",
+      "blocks": {
+        "producto_1": {
+          "type": "producto",
+          "settings": {
+            "product": "taza-efimero-amarilla",
+            "title": "Amarilla",
+            "swatch": "#F2C14E",
+            "prefer_swatch": false
+          }
+        },
+        "producto_2": {
+          "type": "producto",
+          "settings": {
+            "product": "taza-efimero-gris",
+            "title": "Gris",
+            "swatch": "#8E8A83",
+            "prefer_swatch": false
+          }
+        },
+        "producto_3": {
+          "type": "producto",
+          "settings": {
+            "product": "taza-efimero-morada",
+            "title": "Morada",
+            "swatch": "#7A4FB5",
+            "prefer_swatch": false
+          }
+        },
+        "producto_4": {
+          "type": "producto",
+          "settings": {
+            "product": "taza-efimero-rosada",
+            "title": "Rosada",
+            "swatch": "#E9A0B3",
+            "prefer_swatch": false
+          }
+        }
+      },
+      "block_order": [
+        "producto_1",
+        "producto_2",
+        "producto_3",
+        "producto_4"
+      ],
+      "settings": {
+        "kicker": "Elige tu color",
+        "heading": "Cuatro tazas, <em>un mismo gesto</em>",
+        "text": "Misma forma, mismo proceso artesanal. Cambia el color.",
+        "here_label": "Estás aquí",
+        "available_label": "Disponible",
+        "soldout_label": "Agotado"
+      }
+    },
+    "ritual": {
+      "type": "tueste-producto-ritual",
+      "blocks": {
+        "paso_1": {
+          "type": "paso",
+          "settings": {
+            "icon": "hand",
+            "title": "Torneada a mano",
+            "text": "Cada taza sale del torno de artesanos locales."
+          }
+        },
+        "paso_2": {
+          "type": "paso",
+          "settings": {
+            "icon": "wave",
+            "title": "Esmaltada",
+            "text": "El esmalte se aplica pieza por pieza: por eso ninguna es igual."
+          }
+        },
+        "paso_3": {
+          "type": "paso",
+          "settings": {
+            "icon": "cup",
+            "title": "250 ml para tu ritual",
+            "text": "El tamaño justo para un café de origen."
+          }
+        },
+        "paso_4": {
+          "type": "paso",
+          "settings": {
+            "icon": "headphones",
+            "title": "Combínala con un lote",
+            "text": "Café Aures 1840 + Taza Efímero: el ritual completo en casa."
+          }
+        }
+      },
+      "block_order": [
+        "paso_1",
+        "paso_2",
+        "paso_3",
+        "paso_4"
+      ],
+      "settings": {
+        "kicker": "Cómo se hace",
+        "heading": "Del torno <em>a tu mesa</em>",
+        "text": ""
+      }
+    },
+    "combos": {
+      "type": "tueste-producto-relacionados",
+      "blocks": {
+        "producto_1": {
+          "type": "producto",
+          "settings": {
+            "product": "combo-cafe-aures-1840-taza-efimero",
+            "note": "Una bolsa de Café Aures 1840 con QR musical + una Taza Efímero"
+          }
+        },
+        "producto_2": {
+          "type": "producto",
+          "settings": {
+            "product": "cafe-aures-1840-conscious",
+            "note": "Lote 01 · 432 Hz"
+          }
+        },
+        "producto_3": {
+          "type": "producto",
+          "settings": {
+            "product": "cafe-aures-1840-amour",
+            "note": "Lote 02 · 528 Hz"
+          }
+        }
+      },
+      "block_order": [
+        "producto_1",
+        "producto_2",
+        "producto_3"
+      ],
+      "settings": {
+        "kicker": "Completa el ritual",
+        "heading": "Café + taza, <em>en casa</em>",
+        "text": "",
+        "here_label": "Estás aquí",
+        "available_label": "Disponible",
+        "soldout_label": "Agotado"
+      }
+    },
+    "help-drawer": {
+      "type": "help-drawer",
+      "blocks": {
+        "content-1": {
+          "type": "content",
+          "settings": {
+            "icon": "rocket",
+            "heading": "Envios a nivel e internacional",
+            "text": "<p>Debes tener en cuenta el costo del envio, depende del peso del producto y el lugar de destino.</p>",
+            "highlighted_text": "none",
+            "highlighted_scribble": "circle",
+            "color_text": "#545454",
+            "color_background": "#e0e1fd",
+            "gradient_background": "",
+            "color_highlight": "#ffddbf",
+            "gradient_highlight": ""
+          }
+        },
+        "content_n9dGgw": {
+          "type": "content",
+          "settings": {
+            "icon": "none",
+            "heading": "Information",
+            "text": "<p>Share contact information, store details, and brand content with your customers.</p>",
+            "highlighted_text": "none",
+            "highlighted_scribble": "circle",
+            "color_text": "#fafafa",
+            "color_background": "#1f1f1f",
+            "gradient_background": "",
+            "color_highlight": "#ffddbf",
+            "gradient_highlight": ""
+          }
+        },
+        "content-2": {
+          "type": "content",
+          "settings": {
+            "icon": "headphone",
+            "heading": "Customer Support",
+            "text": "<p>Use this text to answer questions in as much detail as possible for your customers.</p>",
+            "highlighted_text": "none",
+            "highlighted_scribble": "circle",
+            "color_text": "#0369a1",
+            "color_background": "#f0f9ff",
+            "gradient_background": "",
+            "color_highlight": "#ffddbf",
+            "gradient_highlight": ""
+          }
+        }
+      },
+      "block_order": [
+        "content-1",
+        "content_n9dGgw",
+        "content-2"
+      ],
+      "settings": {
+        "heading": "¿Necesitas Ayuda?",
+        "description": "<p>Si tienes alguna pregunta, no dudes en contactarnos. Te responderemos lo antes posible, dentro de nuestro horario de oficina, en un plazo máximo de 24 horas en días hábiles.</p>"
+      }
+    },
+    "universo": {
+      "type": "tueste-universo",
+      "settings": {
+        "kicker": "Universo Tueste",
+        "heading": "Un origen, <em>cuatro caminos</em>.",
+        "intro": "Todo nace en el mismo cafetal del Cañón de Aures: el café que compras, el árbol que siembras, la marca que creas con nosotros y la música que lo cuenta.",
+        "here_label": "Estás aquí",
+        "style": "tueste"
+      },
+      "blocks": {
+        "camino_1": {
+          "type": "camino",
+          "settings": {
+            "brand": "tienda",
+            "show_name": false,
+            "description": "Café de origen, piezas y ritual. La casa de todo lo que hacemos.",
+            "cta": "Entrar →",
+            "current": true,
+            "link": "/"
+          }
+        },
+        "camino_2": {
+          "type": "camino",
+          "settings": {
+            "brand": "tree",
+            "show_name": false,
+            "description": "Siembra un árbol en la Finca Tres Esquinas y cofunda un origen.",
+            "cta": "Entrar →",
+            "current": false,
+            "link": "/pages/tueste-tree"
+          }
+        },
+        "camino_3": {
+          "type": "camino",
+          "settings": {
+            "brand": "unity",
+            "show_name": false,
+            "description": "Tu marca de café con nuestro origen y una firma sonora.",
+            "cta": "Entrar →",
+            "current": false,
+            "link": "/pages/tueste-unity"
+          }
+        },
+        "camino_4": {
+          "type": "camino",
+          "settings": {
+            "brand": "records",
+            "show_name": false,
+            "description": "El sello: lanzamientos, artistas y dónde escuchar el café.",
+            "cta": "Entrar →",
+            "current": false,
+            "link": "/pages/tueste-records"
+          }
+        }
+      },
+      "block_order": [
+        "camino_1",
+        "camino_2",
+        "camino_3",
+        "camino_4"
+      ]
+    }
+  },
+  "order": [
+    "main-product",
+    "detalles",
+    "colores",
+    "ritual",
+    "combos",
+    "help-drawer",
+    "universo"
+  ]
+}

@@ -1,0 +1,98 @@
+{%- comment -%}
+  Tueste · Producto · Relacionados ("El otro lote", "Elige tu color", "Completa el ritual").
+  Bloques "producto" con product picker. Muestra imagen, título, precio, disponibilidad y marca el producto actual.
+  Opcionalmente un color de swatch (para las tazas Efímero) cuando no hay imagen.
+{%- endcomment -%}
+
+{%- liquid
+  assign sid = section.id
+  assign cols = section.blocks.size | at_most: 4 | at_least: 2
+-%}
+
+<div class="tu-producto" id="TuesteProductoRelacionados-{{ sid }}">
+  <section class="tp-section" id="relacionados" aria-labelledby="TuesteProductoRelacionadosTitle-{{ sid }}">
+    <div class="tp-wrap">
+      <p class="tp-kicker">{{ section.settings.kicker | escape }}</p>
+      <h2 class="tp-title" id="TuesteProductoRelacionadosTitle-{{ sid }}">{{ section.settings.heading }}</h2>
+      {%- if section.settings.text != blank -%}
+        <p class="tp-lead">{{ section.settings.text | escape }}</p>
+      {%- endif -%}
+
+      <ul class="tp-rel" style="--tp-cols: {{ cols }};">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign p = block.settings.product
+            if p == blank
+              continue
+            endif
+            assign is_current = false
+            if p.id == product.id
+              assign is_current = true
+            endif
+          -%}
+          <li class="tp-rel__card{% if is_current %} is-current{% endif %}" {{ block.shopify_attributes }}>
+            {%- if is_current -%}<span class="tp-rel__here">{{ section.settings.here_label | escape }}</span>{%- endif -%}
+            <div class="tp-rel__media">
+              {%- if block.settings.image != blank -%}
+                {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', widths: '300, 600', alt: p.title }}
+              {%- elsif block.settings.swatch != blank and block.settings.prefer_swatch -%}
+                <span class="tp-swatch" style="--sw: {{ block.settings.swatch }}" aria-hidden="true"></span>
+              {%- elsif p.featured_image != blank -%}
+                {{ p.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', widths: '300, 600', alt: p.featured_image.alt | default: p.title }}
+              {%- else -%}
+                <span class="tp-swatch" style="--sw: {{ block.settings.swatch | default: 'transparent' }}" aria-hidden="true"></span>
+              {%- endif -%}
+            </div>
+            <h3 class="tp-rel__title"><a href="{{ p.url }}"{% if is_current %} aria-current="page"{% endif %}>{{ block.settings.title | default: p.title | escape }}</a></h3>
+            {%- if block.settings.note != blank -%}
+              <p style="margin:0;font-size:.85rem;color:var(--tp-cream-2)">{{ block.settings.note | escape }}</p>
+            {%- endif -%}
+            <div class="tp-rel__meta">
+              <span class="tp-rel__price">{{ p.price | money }}</span>
+              {%- if p.available -%}
+                <span class="tp-rel__tag">{{ section.settings.available_label | escape }}</span>
+              {%- else -%}
+                <span class="tp-rel__tag is-soldout">{{ section.settings.soldout_label | escape }}</span>
+              {%- endif -%}
+            </div>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Producto · Relacionados",
+  "tag": "section",
+  "class": "section-tueste-producto-relacionados",
+  "enabled_on": { "templates": ["product"] },
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "El otro lote" },
+    { "type": "inline_richtext", "id": "heading", "label": "Título", "default": "Dos lotes, <em>dos frecuencias</em>" },
+    { "type": "textarea", "id": "text", "label": "Texto" },
+    { "type": "text", "id": "here_label", "label": "Etiqueta del producto actual", "default": "Estás aquí" },
+    { "type": "text", "id": "available_label", "label": "Etiqueta disponible", "default": "Disponible" },
+    { "type": "text", "id": "soldout_label", "label": "Etiqueta agotado", "default": "Agotado" }
+  ],
+  "blocks": [
+    {
+      "type": "producto",
+      "name": "Producto",
+      "settings": [
+        { "type": "product", "id": "product", "label": "Producto" },
+        { "type": "text", "id": "title", "label": "Título alternativo" },
+        { "type": "text", "id": "note", "label": "Nota corta" },
+        { "type": "image_picker", "id": "image", "label": "Imagen alternativa" },
+        { "type": "color", "id": "swatch", "label": "Color (tazas)" },
+        { "type": "checkbox", "id": "prefer_swatch", "label": "Mostrar el color en vez de la foto", "default": false }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    { "name": "Tueste · Producto · Relacionados" }
+  ]
+}
+{% endschema %}

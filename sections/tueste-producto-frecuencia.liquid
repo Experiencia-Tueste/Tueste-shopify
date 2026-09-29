@@ -1,0 +1,137 @@
+{%- comment -%}
+  Tueste · Producto · Frecuencia del lote.
+  Lee product.metafields.custom.sound_profile (JSON: label, alias, hz, color, audio) — el mismo metafield que ya usa
+  la ficha de cafés — y reproduce la obra del lote:
+    · Si el metafield trae "audio" (URL de un archivo en Shopify Files), usa un reproductor nativo.
+    · Si no, usa el track de Spotify configurado en la sección (Coffee in Frequencies · Origen Tostado) mediante la
+      Spotify iFrame API, con botón propio y visualizador de onda. Si la API no carga, muestra el embed estándar.
+{%- endcomment -%}
+<script src="{{ 'tueste-producto-frecuencia.js' | asset_url }}" defer></script>
+
+{%- liquid
+  assign sp_raw = product.metafields.custom.sound_profile
+  if sp_raw != blank
+    assign sp = sp_raw.value
+  endif
+  assign sp_label = sp.label | default: product.title
+  assign sp_alias = sp.alias | default: section.settings.alias_fallback
+  assign sp_hz = sp.hz | default: section.settings.hz_fallback
+  assign sp_audio = sp.audio | default: ''
+
+  assign track_id = section.settings.spotify_track | strip
+  if track_id contains 'open.spotify.com/'
+    assign track_id = track_id | split: '/track/' | last | split: '?' | first
+  endif
+  assign accent = section.settings.accent | default: '#FBA922'
+  assign sid = section.id
+-%}
+
+<div class="tu-producto" id="TuesteProductoFrecuencia-{{ sid }}">
+  <section class="tp-section" id="frecuencia" aria-labelledby="TuesteProductoFrecuenciaTitle-{{ sid }}">
+    <div class="tp-wrap">
+      <div class="tp-freq">
+        <div class="tp-freq__copy">
+          <p class="tp-kicker">{{ section.settings.kicker | escape }}</p>
+          <h2 class="tp-title" id="TuesteProductoFrecuenciaTitle-{{ sid }}">{{ section.settings.heading }}</h2>
+          <p class="tp-lead">{{ section.settings.text | escape }}</p>
+          {%- if section.settings.voice != blank -%}
+            <p class="tp-voice" style="margin-top:1.25rem">{{ section.settings.voice | escape }}</p>
+          {%- endif -%}
+          {%- if section.settings.show_qr -%}
+            <div class="tp-freq__qr">
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h6v6H3zM15 3h6v6h-6zM3 15h6v6H3zM15 15h2v2h-2zM19 15h2v2h-2zM15 19h2v2h-2zM19 19h2v2h-2z"/></svg>
+              <p>{{ section.settings.qr_text | escape }}</p>
+            </div>
+          {%- endif -%}
+        </div>
+
+        <div class="tp-freq__player" data-tueste-frecuencia
+             data-hz="{{ sp_hz }}"
+             data-accent="{{ accent }}"
+             data-audio="{{ sp_audio | escape }}"
+             data-track="{{ track_id | escape }}"
+             data-label="{{ sp_label | escape }}"
+             style="--tp-accent: {{ accent }};">
+          <div class="tp-freq__head">
+            <span class="tp-freq__name">{{ sp_alias | escape }}</span>
+            <span class="tp-freq__hz">{{ sp_hz }} Hz{% if section.settings.track_name != blank %} · {{ section.settings.track_name | escape }}{% endif %}</span>
+          </div>
+
+          <canvas class="tp-freq__wave" data-wave width="800" height="140" aria-hidden="true"></canvas>
+
+          <div class="tp-freq__controls">
+            <button type="button" class="tp-freq__play" data-play aria-pressed="false" aria-label="{{ section.settings.play_label | escape }}">
+              <svg class="ic-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+              <svg class="ic-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+            </button>
+            <div class="tp-freq__status" aria-live="polite">
+              <b data-status-title>{{ section.settings.play_label | escape }}</b>
+              <small data-status-sub>{% if sp_audio != blank %}{{ section.settings.status_native | escape }}{% else %}{{ section.settings.status_spotify | escape }}{% endif %}</small>
+            </div>
+          </div>
+
+          {%- if sp_audio != blank -%}
+            <audio data-native preload="none" loop crossorigin="anonymous" src="{{ sp_audio }}"></audio>
+          {%- endif -%}
+
+          {%- if track_id != blank -%}
+            <div class="tp-freq__embed" data-embed>
+              <div data-embed-target></div>
+              <noscript><iframe title="{{ sp_alias | escape }} en Spotify" src="https://open.spotify.com/embed/track/{{ track_id }}?theme=0" width="100%" height="80" loading="lazy" allow="encrypted-media"></iframe></noscript>
+            </div>
+          {%- endif -%}
+
+          <div class="tp-freq__links">
+            {%- if track_id != blank -%}
+              <a href="https://open.spotify.com/track/{{ track_id }}" target="_blank" rel="noopener">{{ section.settings.spotify_label | escape }}</a>
+            {%- endif -%}
+            {%- if section.settings.album_url != blank -%}
+              <a href="{{ section.settings.album_url }}" target="_blank" rel="noopener">{{ section.settings.album_label | escape }}</a>
+            {%- endif -%}
+            {%- if section.settings.records_label != blank -%}
+              <a href="{{ section.settings.records_url | default: '/pages/tueste-records' }}">{{ section.settings.records_label | escape }}</a>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Producto · Frecuencia",
+  "tag": "section",
+  "class": "section-tueste-producto-frecuencia",
+  "limit": 1,
+  "enabled_on": { "templates": ["product"] },
+  "settings": [
+    { "type": "paragraph", "content": "Usa el metafield custom.sound_profile del producto (label, alias, hz, audio). Si 'audio' tiene una URL de Shopify Files se reproduce ese archivo; si está vacío se usa el track de Spotify de abajo." },
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Un café que se escucha" },
+    { "type": "inline_richtext", "id": "heading", "label": "Título", "default": "Este lote <em>suena así</em>" },
+    { "type": "textarea", "id": "text", "label": "Texto", "default": "Cada lote incluye una obra musical original creada con sonidos reales del café — la molienda, el vapor, el goteo, el secado — grabados en finca y transformados en música electrónica por Tueste Unity. Ningún otro café en el mundo suena así." },
+    { "type": "text", "id": "voice", "label": "Frase (Lora itálica)", "default": "Escúchala mientras preparas tu taza." },
+    { "type": "header", "content": "Fuente del audio" },
+    { "type": "text", "id": "spotify_track", "label": "Track de Spotify (ID o URL)", "info": "Coffee in Frequencies · Origen Tostado. Se ignora si el metafield trae un archivo de audio." },
+    { "type": "text", "id": "track_name", "label": "Nombre del track", "info": "Se muestra junto a los Hz." },
+    { "type": "url", "id": "album_url", "label": "URL del álbum" },
+    { "type": "text", "id": "album_label", "label": "Etiqueta del enlace al álbum", "default": "Álbum completo" },
+    { "type": "text", "id": "spotify_label", "label": "Etiqueta del enlace a Spotify", "default": "Abrir en Spotify" },
+    { "type": "text", "id": "records_label", "label": "Enlace a Tueste Records · texto", "default": "Tueste Records" },
+    { "type": "url", "id": "records_url", "label": "Enlace a Tueste Records · URL", "info": "Por defecto /pages/tueste-records." },
+    { "type": "header", "content": "Reproductor" },
+    { "type": "color", "id": "accent", "label": "Color de la onda", "default": "#FBA922", "info": "El color del metafield de Conscious es negro; por eso se define aquí." },
+    { "type": "text", "id": "play_label", "label": "Texto del botón", "default": "Escuchar la frecuencia" },
+    { "type": "text", "id": "status_spotify", "label": "Subtexto (Spotify)", "default": "Reproduce desde Spotify · 30 s sin sesión, completa con tu cuenta" },
+    { "type": "text", "id": "status_native", "label": "Subtexto (archivo propio)", "default": "Obra original del lote · Tueste Unity" },
+    { "type": "text", "id": "alias_fallback", "label": "Nombre si no hay metafield", "default": "Frecuencia del lote" },
+    { "type": "number", "id": "hz_fallback", "label": "Hz si no hay metafield", "default": 432 },
+    { "type": "header", "content": "QR de la bolsa" },
+    { "type": "checkbox", "id": "show_qr", "label": "Mostrar nota del QR", "default": true },
+    { "type": "text", "id": "qr_text", "label": "Texto del QR", "default": "En la bolsa va el QR musical del lote: escanéalo con el celular y escucha mientras preparas tu taza." }
+  ],
+  "presets": [
+    { "name": "Tueste · Producto · Frecuencia" }
+  ]
+}
+{% endschema %}

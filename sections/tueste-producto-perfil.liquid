@@ -1,0 +1,152 @@
+{%- comment -%}
+  Tueste · Producto · Perfil de taza.
+  Radar SCA dibujado en SVG a partir de product.metafields.custom.cupping_profile (JSON con score y values),
+  notas desde custom.notes / main_flavor / acidity / body / intensity. Sin librerías externas.
+{%- endcomment -%}
+
+{%- liquid
+  assign mf = product.metafields.custom
+  assign sid = section.id
+  assign cp = mf.cupping_profile.value
+  assign score = mf.score | default: cp.score
+  assign notes = mf.notes
+  assign main_flavor = mf.main_flavor
+  assign acidity = mf.acidity
+  assign body = mf.body
+  assign intensity = mf.intensity
+
+  assign v_fragrance = cp.values.fragrance | default: 0
+  assign v_flavor = cp.values.flavor | default: 0
+  assign v_acidity = cp.values.acidity | default: 0
+  assign v_body = cp.values.body | default: 0
+  assign v_uniformity = cp.values.uniformity | default: 0
+  assign v_clean = cp.values.clean_cup | default: 0
+  assign v_cupper = cp.values.cupper_score | default: 0
+  assign v_after = cp.values.aftertaste | default: 0
+  assign v_balance = cp.values.balance | default: 0
+  assign v_sweet = cp.values.sweetness | default: 0
+  assign has_radar = false
+  if cp.values != blank
+    assign has_radar = true
+  endif
+
+  assign note_list = notes | split: ','
+-%}
+
+<div class="tu-producto" id="TuesteProductoPerfil-{{ sid }}">
+  <section class="tp-section" id="perfil" aria-labelledby="TuesteProductoPerfilTitle-{{ sid }}">
+    <div class="tp-wrap">
+      <div class="tp-perfil">
+        <div>
+          <p class="tp-kicker">{{ section.settings.kicker | escape }}</p>
+          <h2 class="tp-title" id="TuesteProductoPerfilTitle-{{ sid }}">{{ section.settings.heading }}</h2>
+          {%- if score != blank -%}
+            <p class="tp-score"><b>{{ score }}</b><span>puntos SCA</span></p>
+          {%- endif -%}
+          <p class="tp-lead">{{ section.settings.text | escape }}</p>
+
+          {%- if note_list.size > 0 or main_flavor != blank -%}
+            <ul class="tp-notas" aria-label="Notas de cata">
+              {%- if main_flavor != blank -%}<li class="is-accent">{{ main_flavor | escape }}</li>{%- endif -%}
+              {%- for n in note_list -%}
+                {%- assign nn = n | strip -%}
+                {%- if nn != blank -%}<li>{{ nn | escape }}</li>{%- endif -%}
+              {%- endfor -%}
+            </ul>
+          {%- endif -%}
+
+          <div class="tp-meters">
+            {%- if acidity != blank -%}
+              <div class="tp-meter"><span>Acidez</span><i style="--w: {{ section.settings.acidity_level }}%"></i><em>{{ acidity | escape }}</em></div>
+            {%- endif -%}
+            {%- if body != blank -%}
+              <div class="tp-meter"><span>Cuerpo</span><i style="--w: {{ section.settings.body_level }}%"></i><em>{{ body | escape }}</em></div>
+            {%- endif -%}
+            {%- if intensity != blank -%}
+              <div class="tp-meter"><span>Intensidad</span><i style="--w: {{ section.settings.intensity_level }}%"></i><em>{{ intensity | escape }}</em></div>
+            {%- endif -%}
+          </div>
+
+          {%- if section.settings.voice != blank -%}
+            <p class="tp-voice" style="margin-top:1.5rem">{{ section.settings.voice | escape }}</p>
+          {%- endif -%}
+        </div>
+
+        <div>
+          {%- if has_radar -%}
+            <svg class="tp-radar" viewBox="0 0 460 460" role="img" aria-label="Evaluación sensorial SCA del lote"
+                 data-tueste-radar
+                 data-labels='["Fragancia","Sabor","Acidez","Cuerpo","Uniformidad","Taza limpia","Catador","Residual","Balance","Dulzura"]'
+                 data-values='[{{ v_fragrance }},{{ v_flavor }},{{ v_acidity }},{{ v_body }},{{ v_uniformity }},{{ v_clean }},{{ v_cupper }},{{ v_after }},{{ v_balance }},{{ v_sweet }}]'>
+              <g data-grid></g>
+              <polygon class="area" data-area points=""></polygon>
+              <g data-dots></g>
+              <g data-labels-g></g>
+            </svg>
+            <p class="tp-mono" style="text-align:center;margin:1rem 0 0">Escala SCA · 6–10 por atributo</p>
+          {%- else -%}
+            <p class="tp-lead">{{ section.settings.no_radar_text | escape }}</p>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+  (function () {
+    function draw(svg) {
+      if (svg.dataset.tuInit) return; svg.dataset.tuInit = '1';
+      var labels = JSON.parse(svg.dataset.labels), values = JSON.parse(svg.dataset.values);
+      var cx = 230, cy = 230, R = 150, n = labels.length, min = 6, max = 10;
+      var grid = svg.querySelector('[data-grid]'), dots = svg.querySelector('[data-dots]'), lg = svg.querySelector('[data-labels-g]');
+      var NS = 'http://www.w3.org/2000/svg';
+      function pt(i, r) { var a = -Math.PI / 2 + (i / n) * Math.PI * 2; return [cx + r * Math.cos(a), cy + r * Math.sin(a)]; }
+      [0.25, 0.5, 0.75, 1].forEach(function (f) {
+        var p = document.createElementNS(NS, 'polygon'); var s = [];
+        for (var i = 0; i < n; i++) { var q = pt(i, R * f); s.push(q[0].toFixed(1) + ',' + q[1].toFixed(1)); }
+        p.setAttribute('points', s.join(' ')); p.setAttribute('class', 'grid-line'); grid.appendChild(p);
+      });
+      var pts = [];
+      for (var i = 0; i < n; i++) {
+        var ax = document.createElementNS(NS, 'line'); var e = pt(i, R);
+        ax.setAttribute('x1', cx); ax.setAttribute('y1', cy); ax.setAttribute('x2', e[0]); ax.setAttribute('y2', e[1]); ax.setAttribute('class', 'axis'); grid.appendChild(ax);
+        var v = Math.max(min, Math.min(max, Number(values[i]) || min));
+        var r = R * ((v - min) / (max - min));
+        var q = pt(i, r); pts.push(q[0].toFixed(1) + ',' + q[1].toFixed(1));
+        var d = document.createElementNS(NS, 'circle'); d.setAttribute('cx', q[0]); d.setAttribute('cy', q[1]); d.setAttribute('r', 3.5); d.setAttribute('class', 'dot'); dots.appendChild(d);
+        var lp = pt(i, R + 26); var t = document.createElementNS(NS, 'text');
+        t.setAttribute('x', lp[0]); t.setAttribute('y', lp[1]); t.setAttribute('text-anchor', lp[0] < cx - 4 ? 'end' : (lp[0] > cx + 4 ? 'start' : 'middle')); t.setAttribute('dominant-baseline', 'middle'); t.setAttribute('class', 'lbl'); t.textContent = labels[i]; lg.appendChild(t);
+        var tv = document.createElementNS(NS, 'text'); var vp = pt(i, R + 12);
+        tv.setAttribute('x', vp[0]); tv.setAttribute('y', vp[1]); tv.setAttribute('text-anchor', 'middle'); tv.setAttribute('dominant-baseline', 'middle'); tv.setAttribute('class', 'lbl-v'); tv.textContent = v; lg.appendChild(tv);
+      }
+      svg.querySelector('[data-area]').setAttribute('points', pts.join(' '));
+    }
+    function boot(scope) { (scope || document).querySelectorAll('[data-tueste-radar]').forEach(draw); }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { boot(); }); else boot();
+    document.addEventListener('shopify:section:load', function (e) { boot(e.target); });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Producto · Perfil de taza",
+  "tag": "section",
+  "class": "section-tueste-producto-perfil",
+  "enabled_on": { "templates": ["product"] },
+  "settings": [
+    { "type": "paragraph", "content": "Lee custom.cupping_profile (radar), custom.score, notes, main_flavor, acidity, body e intensity del producto." },
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Perfil de taza" },
+    { "type": "inline_richtext", "id": "heading", "label": "Título", "default": "Lo que vas a <em>sentir</em>" },
+    { "type": "textarea", "id": "text", "label": "Texto", "default": "Tueste medio · Proceso lavado · Variedad Castillo." },
+    { "type": "text", "id": "voice", "label": "Frase (Lora itálica)" },
+    { "type": "range", "id": "acidity_level", "label": "Barra de acidez (%)", "min": 10, "max": 100, "step": 5, "default": 55 },
+    { "type": "range", "id": "body_level", "label": "Barra de cuerpo (%)", "min": 10, "max": 100, "step": 5, "default": 65 },
+    { "type": "range", "id": "intensity_level", "label": "Barra de intensidad (%)", "min": 10, "max": 100, "step": 5, "default": 55 },
+    { "type": "text", "id": "no_radar_text", "label": "Texto si no hay cupping_profile", "default": "La evaluación sensorial de este lote se publica cuando el catador entrega la ficha." }
+  ],
+  "presets": [
+    { "name": "Tueste · Producto · Perfil de taza" }
+  ]
+}
+{% endschema %}

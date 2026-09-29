@@ -1,0 +1,80 @@
+{%- comment -%}
+  Tueste · Producto · Cómo vivirlo (pasos del ritual: recibir, escanear el QR, preparar, escuchar).
+  Bloques "paso" con icono de línea.
+{%- endcomment -%}
+
+{%- assign sid = section.id -%}
+
+<div class="tu-producto" id="TuesteProductoRitual-{{ sid }}">
+  <section class="tp-section" id="ritual" aria-labelledby="TuesteProductoRitualTitle-{{ sid }}">
+    <div class="tp-wrap">
+      <p class="tp-kicker">{{ section.settings.kicker | escape }}</p>
+      <h2 class="tp-title" id="TuesteProductoRitualTitle-{{ sid }}">{{ section.settings.heading }}</h2>
+      {%- if section.settings.text != blank -%}
+        <p class="tp-lead">{{ section.settings.text | escape }}</p>
+      {%- endif -%}
+
+      <ol class="tp-pasos">
+        {%- for block in section.blocks -%}
+          <li class="tp-paso" {{ block.shopify_attributes }}>
+            <span class="tp-num">Paso {{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+            <span class="tp-ico" aria-hidden="true">
+              {%- case block.settings.icon -%}
+                {%- when 'bag' -%}<svg viewBox="0 0 24 24"><path d="M6 8h12l1 12H5zM9 8V6a3 3 0 0 1 6 0v2"/></svg>
+                {%- when 'qr' -%}<svg viewBox="0 0 24 24"><path d="M3 3h6v6H3zM15 3h6v6h-6zM3 15h6v6H3zM15 15h2v2h-2zM19 15h2v2h-2zM15 19h2v2h-2zM19 19h2v2h-2z"/></svg>
+                {%- when 'grind' -%}<svg viewBox="0 0 24 24"><path d="M6 4h12v4H6zM8 8v11a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V8M12 2v2"/></svg>
+                {%- when 'cup' -%}<svg viewBox="0 0 24 24"><path d="M4 9h13v6a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5zM17 10h1.5a2.5 2.5 0 0 1 0 5H17M8 3v2M11 2v3M14 3v2"/></svg>
+                {%- when 'wave' -%}<svg viewBox="0 0 24 24"><path d="M2 12h3l2-6 3 12 3-14 3 12 2-6h4"/></svg>
+                {%- when 'headphones' -%}<svg viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0 1 16 0v2M4 14h3v6H5a1 1 0 0 1-1-1zM20 14h-3v6h2a1 1 0 0 0 1-1z"/></svg>
+                {%- when 'hand' -%}<svg viewBox="0 0 24 24"><path d="M8 12V5a1.5 1.5 0 0 1 3 0v6M11 11V4a1.5 1.5 0 0 1 3 0v7M14 11V6a1.5 1.5 0 0 1 3 0v8a6 6 0 0 1-6 6h-1a6 6 0 0 1-5-2.7L3 13a1.6 1.6 0 0 1 2.7-1.7L8 14"/></svg>
+                {%- else -%}<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/></svg>
+              {%- endcase -%}
+            </span>
+            <h3>{{ block.settings.title | escape }}</h3>
+            <p>{{ block.settings.text | escape }}</p>
+          </li>
+        {%- endfor -%}
+      </ol>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Producto · Ritual",
+  "tag": "section",
+  "class": "section-tueste-producto-ritual",
+  "enabled_on": { "templates": ["product"] },
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Cómo vivirlo" },
+    { "type": "inline_richtext", "id": "heading", "label": "Título", "default": "Del paquete <em>a la taza</em>" },
+    { "type": "textarea", "id": "text", "label": "Texto" }
+  ],
+  "blocks": [
+    {
+      "type": "paso",
+      "name": "Paso",
+      "settings": [
+        { "type": "select", "id": "icon", "label": "Icono", "default": "cup", "options": [
+          { "value": "bag", "label": "Bolsa" }, { "value": "qr", "label": "QR" }, { "value": "grind", "label": "Molino" },
+          { "value": "cup", "label": "Taza" }, { "value": "wave", "label": "Onda" }, { "value": "headphones", "label": "Audífonos" }, { "value": "hand", "label": "Mano" }
+        ] },
+        { "type": "text", "id": "title", "label": "Título", "default": "Prepara tu taza" },
+        { "type": "textarea", "id": "text", "label": "Texto", "default": "Molienda media o grano, como lo pediste." }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Tueste · Producto · Ritual",
+      "blocks": [
+        { "type": "paso", "settings": { "icon": "bag", "title": "Recibe el lote", "text": "Una bolsa de 340 g, numerada, con el QR musical del lote. Despacho en 24–48 h hábiles." } },
+        { "type": "paso", "settings": { "icon": "qr", "title": "Escanea el QR", "text": "Está en la bolsa. Abre la obra del lote en tu celular." } },
+        { "type": "paso", "settings": { "icon": "cup", "title": "Prepara tu taza", "text": "Grano para moler en casa o molienda media lista para tu método." } },
+        { "type": "paso", "settings": { "icon": "headphones", "title": "Escucha mientras cae", "text": "La molienda, el vapor, el goteo y el secado convertidos en música. Ningún otro café suena así." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

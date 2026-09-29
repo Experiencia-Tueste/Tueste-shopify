@@ -38,6 +38,11 @@
 
     {%- liquid
       render 'social-meta-tags'
+
+      assign is_tueste_product = false
+      if template.name == 'product' and template.suffix contains 'tueste-'
+        assign is_tueste_product = true
+      endif
       
       render 'css-variables'
       echo 'theme.css' | asset_url | stylesheet_tag: preload: true
@@ -48,6 +53,10 @@
 
       if request.page_type == 'index'
         echo 'tienda-editorial.css' | asset_url | stylesheet_tag
+      endif
+
+      if is_tueste_product
+        echo 'tueste-producto.css' | asset_url | stylesheet_tag
       endif
 
       if template.suffix == 'tienda-editorial' or template.suffix == 'tueste-tree' or template.suffix == 'tueste-unity' or template.suffix == 'tueste-records' or template.suffix == 'verificar' or template.suffix == 'certificado-arbol' or request.page_type == 'index'
@@ -71,7 +80,7 @@
       endif
     -%}
 
-    {%- if template.suffix == 'tienda-editorial' or template.suffix == 'tueste-tree' or template.suffix == 'tueste-unity' or template.suffix == 'tueste-records' or template.suffix == 'verificar' or template.suffix == 'certificado-arbol' or request.page_type == 'index' -%}
+    {%- if template.suffix == 'tienda-editorial' or template.suffix == 'tueste-tree' or template.suffix == 'tueste-unity' or template.suffix == 'tueste-records' or template.suffix == 'verificar' or template.suffix == 'certificado-arbol' or request.page_type == 'index' or is_tueste_product -%}
       {%- render 'tueste-fonts' -%}
       <style>
         @font-face {
@@ -145,7 +154,7 @@
     {%- render 'js-variables' -%}
   </head>
 
-  <body class="template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}{% if template.suffix == 'tienda-editorial' %} template-tienda-editorial{% endif %}{% if template.suffix == 'tueste-tree' %} template-tueste-tree{% endif %}{% if template.suffix == 'tueste-unity' %} template-tueste-unity{% endif %}{% if template.suffix == 'tueste-records' %} template-tueste-records{% endif %}{% if request.page_type == 'index' %} template-tueste-home{% endif %}{% if request.path == '/challenge' %} template-challange{% endif %}" data-rounded-button="{{ settings.rounded_button }}" data-rounded-input="{{ settings.rounded_input }}" data-rounded-block="{{ settings.rounded_block }}" data-rounded-card="{{ settings.rounded_card }}" data-button-hover="{{ settings.buttons_hover }}"{% if settings.enable_page_transition %} data-page-transition{% endif %}{% if settings.enable_lazy_image %} data-lazy-image{% endif %} data-title-animation data-page-rendering>
+  <body class="template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}{% if template.suffix == 'tienda-editorial' %} template-tienda-editorial{% endif %}{% if template.suffix == 'tueste-tree' %} template-tueste-tree{% endif %}{% if template.suffix == 'tueste-unity' %} template-tueste-unity{% endif %}{% if template.suffix == 'tueste-records' %} template-tueste-records{% endif %}{% if is_tueste_product %} template-tueste-producto template-{{ template.suffix }}{% endif %}{% if request.page_type == 'index' %} template-tueste-home{% endif %}{% if request.path == '/challenge' %} template-challange{% endif %}" data-rounded-button="{{ settings.rounded_button }}" data-rounded-input="{{ settings.rounded_input }}" data-rounded-block="{{ settings.rounded_block }}" data-rounded-card="{{ settings.rounded_card }}" data-button-hover="{{ settings.buttons_hover }}"{% if settings.enable_page_transition %} data-page-transition{% endif %}{% if settings.enable_lazy_image %} data-lazy-image{% endif %} data-title-animation data-page-rendering>
     <a class="sr-only skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
 
     {%- liquid

@@ -1,0 +1,124 @@
+{%- comment -%}
+  Tueste · Producto · Detalles (taza, hoodie, merchandising).
+  Bloques "dato" (icono + etiqueta + valor) y sello de edición limitada. Imagen desde image_picker
+  o, por defecto, la segunda imagen del producto.
+{%- endcomment -%}
+
+{%- liquid
+  assign sid = section.id
+  assign media_image = section.settings.image
+  if media_image == blank and section.settings.use_product_image
+    assign idx = section.settings.product_image_index | minus: 1
+    assign media_image = product.images[idx]
+  endif
+-%}
+
+<div class="tu-producto" id="TuesteProductoDetalles-{{ sid }}">
+  <section class="tp-section" id="detalles" aria-labelledby="TuesteProductoDetallesTitle-{{ sid }}">
+    <div class="tp-wrap">
+      <div class="tp-detalles{% if section.settings.image_position == 'right' %} is-reversed{% endif %}">
+        {%- if section.settings.image_position == 'left' -%}
+          <figure class="tp-detalles__media" style="margin:0">
+            {%- if media_image != blank -%}
+              {{ media_image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '480, 800, 1200', alt: section.settings.image_alt }}
+            {%- else -%}
+              <div class="tp-arch" role="img" aria-label="{{ section.settings.image_alt | escape }}"></div>
+            {%- endif -%}
+          </figure>
+        {%- endif -%}
+
+        <div>
+          <p class="tp-kicker">{{ section.settings.kicker | escape }}</p>
+          <h2 class="tp-title" id="TuesteProductoDetallesTitle-{{ sid }}">{{ section.settings.heading }}</h2>
+          <p class="tp-lead">{{ section.settings.text | escape }}</p>
+          {%- if section.settings.voice != blank -%}
+            <p class="tp-voice" style="margin-top:1.25rem">{{ section.settings.voice | escape }}</p>
+          {%- endif -%}
+
+          {%- if section.blocks.size > 0 -%}
+            <ul class="tp-detalles__grid">
+              {%- for block in section.blocks -%}
+                <li {{ block.shopify_attributes }}>
+                  <span class="tp-ico" aria-hidden="true">
+                    {%- case block.settings.icon -%}
+                      {%- when 'clay' -%}<svg viewBox="0 0 24 24"><path d="M5 9h14l-1.5 10a2 2 0 0 1-2 1.8h-7a2 2 0 0 1-2-1.8zM3 9h18M8 5c1-1.5 2-1.5 3 0s2 1.5 3 0 2-1.5 3 0"/></svg>
+                      {%- when 'drop' -%}<svg viewBox="0 0 24 24"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg>
+                      {%- when 'hand' -%}<svg viewBox="0 0 24 24"><path d="M8 12V5a1.5 1.5 0 0 1 3 0v6M11 11V4a1.5 1.5 0 0 1 3 0v7M14 11V6a1.5 1.5 0 0 1 3 0v8a6 6 0 0 1-6 6h-1a6 6 0 0 1-5-2.7L3 13a1.6 1.6 0 0 1 2.7-1.7L8 14"/></svg>
+                      {%- when 'palette' -%}<svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18c1.5 0 2-1 1.5-2s0-2 1.5-2h1.5a4 4 0 0 0 4-4 10 10 0 0 0-8.5-10z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10.5" cy="7" r="1"/><circle cx="15.5" cy="7.5" r="1"/></svg>
+                      {%- when 'cotton' -%}<svg viewBox="0 0 24 24"><path d="M8 3h8l1 3 4 1-2 6h-2v8H7v-8H5L3 7l4-1z"/></svg>
+                      {%- when 'ruler' -%}<svg viewBox="0 0 24 24"><path d="M3 15l12-12 6 6-12 12zM7 11l2 2M10 8l2 2M13 5l2 2"/></svg>
+                      {%- when 'sun' -%}<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg>
+                      {%- when 'star' -%}<svg viewBox="0 0 24 24"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg>
+                      {%- when 'box' -%}<svg viewBox="0 0 24 24"><path d="M3 7l9-4 9 4-9 4zM3 7v10l9 4 9-4V7M12 11v10"/></svg>
+                      {%- else -%}<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/></svg>
+                    {%- endcase -%}
+                  </span>
+                  <div><b>{{ block.settings.label | escape }}</b><span>{{ block.settings.value | escape }}</span></div>
+                </li>
+              {%- endfor -%}
+            </ul>
+          {%- endif -%}
+
+          {%- if section.settings.sello_text != blank -%}
+            <div class="tp-sello">
+              <span class="tp-sello__badge" aria-hidden="true">{{ section.settings.sello_badge | escape | newline_to_br }}</span>
+              <p>{{ section.settings.sello_text | escape }}</p>
+            </div>
+          {%- endif -%}
+        </div>
+
+        {%- if section.settings.image_position == 'right' -%}
+          <figure class="tp-detalles__media" style="margin:0">
+            {%- if media_image != blank -%}
+              {{ media_image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '480, 800, 1200', alt: section.settings.image_alt }}
+            {%- else -%}
+              <div class="tp-arch" role="img" aria-label="{{ section.settings.image_alt | escape }}"></div>
+            {%- endif -%}
+          </figure>
+        {%- endif -%}
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Producto · Detalles",
+  "tag": "section",
+  "class": "section-tueste-producto-detalles",
+  "enabled_on": { "templates": ["product"] },
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Detalles" },
+    { "type": "inline_richtext", "id": "heading", "label": "Título", "default": "Hecha a mano, <em>irrepetible</em>" },
+    { "type": "textarea", "id": "text", "label": "Texto" },
+    { "type": "text", "id": "voice", "label": "Frase (Lora itálica)" },
+    { "type": "header", "content": "Imagen" },
+    { "type": "image_picker", "id": "image", "label": "Imagen" },
+    { "type": "checkbox", "id": "use_product_image", "label": "Si no hay imagen, usar una foto del producto", "default": true },
+    { "type": "range", "id": "product_image_index", "label": "Cuál foto del producto", "min": 1, "max": 6, "step": 1, "default": 2 },
+    { "type": "text", "id": "image_alt", "label": "Texto alternativo" },
+    { "type": "select", "id": "image_position", "label": "Posición de la imagen", "default": "left", "options": [ { "value": "left", "label": "Izquierda" }, { "value": "right", "label": "Derecha" } ] },
+    { "type": "header", "content": "Sello" },
+    { "type": "text", "id": "sello_badge", "label": "Texto del sello (corto)", "default": "EDICIÓN LIMITADA" },
+    { "type": "textarea", "id": "sello_text", "label": "Texto junto al sello" }
+  ],
+  "blocks": [
+    {
+      "type": "dato",
+      "name": "Dato",
+      "settings": [
+        { "type": "select", "id": "icon", "label": "Icono", "default": "star", "options": [
+          { "value": "clay", "label": "Cerámica" }, { "value": "drop", "label": "Gota" }, { "value": "hand", "label": "Mano" }, { "value": "palette", "label": "Color" },
+          { "value": "cotton", "label": "Prenda" }, { "value": "ruler", "label": "Talla / medida" }, { "value": "sun", "label": "Sol" }, { "value": "star", "label": "Estrella" }, { "value": "box", "label": "Caja" }
+        ] },
+        { "type": "text", "id": "label", "label": "Etiqueta", "default": "Material" },
+        { "type": "text", "id": "value", "label": "Valor", "default": "Cerámica artesanal" }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    { "name": "Tueste · Producto · Detalles" }
+  ]
+}
+{% endschema %}
