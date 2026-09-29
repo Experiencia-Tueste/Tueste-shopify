@@ -153,6 +153,13 @@
                 {%- assign selected_product = all_products[selected_product_handle] -%}
               {%- endif -%}
               {%- case forloop.index -%}
+                {%- when 1 -%}{%- assign selected_product = all_products['cafe-aures-1840-conscious'] -%}
+                {%- when 2 -%}{%- assign selected_product = all_products['cafe-aures-1840-amour'] -%}
+                {%- when 3 -%}{%- assign selected_product = all_products['combo-cafes-unity'] -%}
+                {%- when 4 -%}{%- assign selected_product = all_products['combo-cafe-aures-1840-taza-efimero'] -%}
+                {%- when 5 -%}{%- assign selected_product = all_products['cafe-aures-1840-experiencia-sonora-digital'] -%}
+              {%- endcase -%}
+              {%- case forloop.index -%}
                 {%- when 1 -%}{%- assign fallback_image = 'aures-conscious.png' -%}
                 {%- when 2 -%}{%- assign fallback_image = 'aures-amour.png' -%}
                 {%- when 3 -%}{%- assign fallback_image = 'combo-unity.png' -%}
