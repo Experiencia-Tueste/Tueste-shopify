@@ -13,6 +13,7 @@
     endunless
   endif
   assign tree_badge_image = 'tueste-tree-insignia-30-holografica.webp' | asset_url
+  assign tree_card_image = 'tueste-tree-card1-ref.webp' | asset_url
   assign form_id = 'TuesteUnityContact-' | append: section.id
   assign path_blocks = section.blocks | where: 'type', 'path'
   assign timeline_blocks = section.blocks | where: 'type', 'timeline_step'
@@ -136,7 +137,7 @@
           <h3><span class="tu-unity__step-number" aria-hidden="true">1</span> El camino</h3>
           <div class="tu-unity__step-options" data-config="path" role="group" aria-label="Camino">
             {%- for block in path_blocks -%}
-              <button type="button" class="tu-unity__option" data-path-option="{{ block.id }}" data-title="{{ block.settings.title | escape }}" data-min="{{ block.settings.minimum_qty }}" data-qty-step="{{ block.settings.qty_step }}" data-unit="{{ block.settings.qty_unit | escape }}" data-color="{{ block.settings.bag_color }}" aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}">
+              <button type="button" class="tu-unity__option" data-path-option="{{ block.id }}" data-title="{{ block.settings.title | escape }}" data-min="{{ block.settings.minimum_qty }}" data-qty-step="{{ block.settings.qty_step }}" data-unit="{{ block.settings.qty_unit | escape }}" data-color="{{ block.settings.bag_color }}" aria-pressed="{% if forloop.index == 2 %}true{% else %}false{% endif %}">
                 <strong>{{ block.settings.title | escape }}</strong><small>desde {{ block.settings.minimum_spec | escape }}</small>
               </button>
             {%- endfor -%}
@@ -180,9 +181,10 @@
 
         <div class="tu-unity__step" data-step="4">
           <h3><span class="tu-unity__step-number" aria-hidden="true">5</span> Volumen</h3>
+          <div class="tu-unity__quantity-readout" aria-live="polite"><strong data-qty-value>100</strong><span data-qty-unit>bolsas de 340 g / mes</span></div>
           <div class="tu-unity__stepper" role="group" aria-label="Cantidad de bolsas">
             <button type="button" data-qty-minus aria-label="Reducir la cantidad de bolsas">−</button>
-            <input type="number" data-config="quantity" min="50" max="5000" step="10" value="100" inputmode="numeric" aria-label="Cantidad de bolsas">
+            <input type="range" data-config="quantity" min="50" max="5000" step="10" value="100" aria-label="Cantidad de bolsas">
             <button type="button" data-qty-plus aria-label="Aumentar la cantidad de bolsas">+</button>
           </div>
           <p class="tu-unity__hint" data-qty-hint>Mínimo del camino: 50 bolsas.</p>
@@ -239,20 +241,18 @@
       <aside class="tu-panel" aria-live="polite">
         <h2>Así se ve el brief</h2>
         <div class="tu-bag-preview" data-bag-preview>
-          <div class="tu-unity-bag" data-unity-bag aria-hidden="true">
-            <div class="tu-unity-bag__fold"></div>
-            <div class="tu-unity-bag__body">
-              <div class="tu-unity-bag__texture"></div>
-              <div class="tu-unity-bag__valve"></div>
-              <div class="tu-unity-bag__label">
-                <img data-logo-preview hidden alt="" width="140" height="70">
-                <span class="tu-unity-bag__brand" data-bag-label>Tu marca</span>
-                <span class="tu-unity-bag__meta" data-bag-meta>Café de origen</span>
-              </div>
+          <div class="tu-unity-bag tu-unity-bag--1840" data-unity-bag aria-hidden="true">
+            <img class="tu-unity-bag__art" src="{{ 'tueste-unity-bag-1840.webp' | asset_url }}" alt="" width="594" height="1289" loading="lazy">
+            <div class="tu-unity-bag__dynamic-label" data-bag-dynamic-label>
+              <span class="tu-unity-bag__edition">Edición exclusiva</span>
+              <img data-logo-preview hidden alt="" width="140" height="70">
+              <span class="tu-unity-bag__brand" data-bag-label>Tu marca</span>
+              <span class="tu-unity-bag__meta" data-bag-meta>Café Aures 1840</span>
+              <span class="tu-unity-bag__details">Cañón de Aures · 89 SCA · 340 g</span>
+              <span class="tu-unity-bag__byline">By Tueste</span>
             </div>
-            <div class="tu-unity-bag__seam"></div>
           </div>
-          <span class="tu-bag-preview__stamp" data-bag-stamp>Vista previa · <strong>Tu sello, rápido</strong></span>
+          <span class="tu-bag-preview__stamp" data-bag-stamp>Vista previa · <strong>Tu logo en la 1840</strong></span>
         </div>
         <dl class="tu-config-summary">
           <div><dt>Camino</dt><dd data-summary="path">—</dd></div>
@@ -355,11 +355,17 @@
 
   <div class="tu-wrap tu-section" id="siembra">
     <div class="tu-unity__siembra">
-      <img class="tu-unity__siembra-badge" src="{{ tree_badge_image }}" alt="Insignia holográfica de Tueste Tree, para 30 árboles o más" loading="lazy" width="440" height="607">
-      <div>
+      <div class="tu-unity__siembra-art">
+        <img src="{{ tree_card_image }}" alt="Tarjeta ilustrada de Tueste Tree con un árbol de café" loading="lazy" width="640" height="830">
+      </div>
+      <div class="tu-unity__siembra-copy">
         <p class="tu-kicker">Tueste Tree × Unity</p>
         <h2 class="tu-unity__sound-title">{{ section.settings.siembra_title }}</h2>
         <p class="tu-lead">{{ section.settings.siembra_lead | escape }}</p>
+        <div class="tu-unity__siembra-note">
+          <img src="{{ tree_badge_image }}" alt="Insignia holográfica de Tueste Tree para adopciones de 30 árboles o más" loading="lazy" width="120" height="166">
+          <p><strong>Insignia holográfica</strong><span>Las adopciones de 30 árboles o más reciben la insignia de socio fundador.</span></p>
+        </div>
         <div class="tu-hero__actions">
           <a class="tu-button tu-button--primary" href="{{ tree_wa_href }}" target="_blank" rel="noopener">Hablar con el agente</a>
           <a class="tu-button tu-button--ghost" href="{{ tree_url | escape }}">Conocer Tueste Tree</a>
@@ -381,7 +387,7 @@
   {% render 'universo-tueste', current: 'unity' %}
   {% render 'tueste-universo-footer' %}
 
-  <script src="{{ 'tueste-unity.js' | asset_url }}" defer></script>
+  <script src="{{ 'tueste-unity-legacy.js' | asset_url }}" defer></script>
 </section>
 
 {% schema %}

@@ -1,0 +1,97 @@
+{%- comment -%}
+  Tueste Unity · Experiencias Tueste Crew (catas, catering, activaciones).
+{%- endcomment -%}
+{{ 'tueste-unity.css' | asset_url | stylesheet_tag }}
+
+{%- assign range_items = section.settings.range | split: '|' -%}
+
+<div class="tu-unity" id="TuesteUnityExperiencias-{{ section.id }}">
+  <section class="sec" id="rituales" aria-labelledby="TuesteUnityExperienciasTitle-{{ section.id }}">
+    <div class="wrap rituals">
+      <div>
+        <span class="kicker">{{ section.settings.kicker | escape }}</span>
+        <h2 class="disp" id="TuesteUnityExperienciasTitle-{{ section.id }}" style="font-size:clamp(1.5rem,3.6vw,2.6rem);margin-top:.8rem">{{ section.settings.heading }}</h2>
+        {%- if section.settings.lead != blank -%}
+          <p class="lead" style="margin-top:1rem">{{ section.settings.lead }}</p>
+        {%- endif -%}
+        {%- if section.settings.range != blank -%}
+          <ul class="range" aria-label="Lo que hacemos">
+            {%- for item in range_items -%}<li>{{ item | strip | escape }}</li>{%- endfor -%}
+          </ul>
+        {%- endif -%}
+        {%- if section.blocks.size > 0 -%}
+          <div class="formats rail">
+            {%- for block in section.blocks -%}
+              <article class="fmt" {{ block.shopify_attributes }}>
+                {%- if block.settings.tag != blank -%}<span class="crew">{{ block.settings.tag | escape }}</span>{%- endif -%}
+                <h3>{{ block.settings.title | escape }}</h3>
+                <p>{{ block.settings.text | escape }}</p>
+                {%- if block.settings.button_label != blank and block.settings.button_url != blank -%}
+                  <a class="btn btn-secondary" href="{{ block.settings.button_url }}" target="_blank" rel="noopener">{{ block.settings.button_label | escape }}</a>
+                {%- endif -%}
+              </article>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+        {%- if section.settings.cta_title != blank -%}
+          <div class="quote-cta">
+            <div><b>{{ section.settings.cta_title | escape }}</b><span>{{ section.settings.cta_text | escape }}</span></div>
+            {%- if section.settings.cta_label != blank and section.settings.cta_url != blank -%}
+              <a class="btn btn-primary" href="{{ section.settings.cta_url }}" target="_blank" rel="noopener">{{ section.settings.cta_label | escape }}</a>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+      <div class="art">
+        {%- if section.settings.image != blank -%}
+          {{ section.settings.image | image_url: width: 720 | image_tag: loading: 'lazy', widths: '360, 720', alt: section.settings.image.alt | default: section.settings.image_alt }}
+        {%- else -%}
+          <img src="{{ 'tueste-unity-rituales.png' | file_url }}" alt="{{ section.settings.image_alt | escape }}" loading="lazy" width="640" height="640">
+        {%- endif -%}
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Unity · Experiencias",
+  "tag": "section",
+  "class": "section-tueste-unity-experiencias",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Experiencias · Tueste Crew" },
+    { "type": "inline_richtext", "id": "heading", "label": "Título", "default": "Experiencias <em>alrededor del café</em>" },
+    { "type": "inline_richtext", "id": "lead", "label": "Descripción", "default": "Desarrollamos experiencias para marcas, empresas y eventos: desde catas personalizadas hasta catering de café. Todo lo diseña, produce y vive con tu gente el <strong>Tueste Crew</strong>." },
+    { "type": "text", "id": "range", "label": "Lo que hacemos (separado por |)", "default": "Catas personalizadas|Barras y catering de café|Activaciones de marca|Eventos corporativos|Lanzamientos" },
+    { "type": "text", "id": "cta_title", "label": "Cierre · título", "default": "¿Tienes otra idea?" },
+    { "type": "text", "id": "cta_text", "label": "Cierre · texto", "default": "Cuéntanos la fecha, el lugar y cuántas personas; armamos la experiencia a tu medida." },
+    { "type": "text", "id": "cta_label", "label": "Cierre · botón", "default": "Cotizar mi experiencia" },
+    { "type": "text", "id": "cta_url", "label": "Cierre · URL", "default": "https://wa.me/573102690145?text=Hola%20Tueste%20Crew%2C%20quiero%20cotizar%20una%20experiencia%20de%20caf%C3%A9%20a%20la%20medida.%0AFecha%3A%20%0ALugar%3A%20%0APersonas%3A%20" },
+    { "type": "image_picker", "id": "image", "label": "Ilustración", "info": "Por defecto: tueste-unity-rituales.png (Shopify Files)." },
+    { "type": "text", "id": "image_alt", "label": "Texto alternativo", "default": "Sesión nocturna del Tueste Crew: personas alrededor de una mesa con café, velas y un tocadiscos" }
+  ],
+  "blocks": [
+    {
+      "type": "formato",
+      "name": "Formato",
+      "settings": [
+        { "type": "text", "id": "tag", "label": "Etiqueta", "default": "100 % Tueste Crew" },
+        { "type": "text", "id": "title", "label": "Título", "default": "Cata sensorial experiencial" },
+        { "type": "textarea", "id": "text", "label": "Texto", "default": "Un recorrido guiado por el café del Cañón de Aures con los cinco sentidos." },
+        { "type": "text", "id": "button_label", "label": "Botón", "default": "Cotizar esta cata" },
+        { "type": "text", "id": "button_url", "label": "URL del botón (WhatsApp)", "default": "https://wa.me/573102690145?text=Hola%20Tueste%20Crew%2C%20quiero%20cotizar%20una%20Cata%20sensorial%20experiencial" }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Tueste Unity · Experiencias",
+      "blocks": [
+        { "type": "formato", "settings": { "tag": "100 % Tueste Crew", "title": "Cata sensorial experiencial", "text": "Un recorrido guiado por el café del Cañón de Aures con los cinco sentidos: aroma, sabor, textura y sonido. Íntima, didáctica y pensada para conectar a tu equipo o tus clientes con el origen.", "button_label": "Cotizar esta cata", "button_url": "https://wa.me/573102690145?text=Hola%20Tueste%20Crew%2C%20quiero%20cotizar%20una%20Cata%20sensorial%20experiencial" } },
+        { "type": "formato", "settings": { "tag": "100 % Tueste Crew", "title": "Experiencia tipo fiesta", "text": "Café, música y celebración en un mismo lugar: barra de café, set musical y ambiente de fiesta, producidos de principio a fin por nuestro equipo.", "button_label": "Cotizar esta fiesta", "button_url": "https://wa.me/573102690145?text=Hola%20Tueste%20Crew%2C%20quiero%20cotizar%20una%20Experiencia%20tipo%20fiesta" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

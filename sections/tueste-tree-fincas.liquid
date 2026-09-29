@@ -1,0 +1,96 @@
+{%- comment -%}
+  Tueste Tree · Las fincas fundadoras. Cada bloque es una finca (foto opcional; sin foto se dibuja el arco vitral en CSS).
+{%- endcomment -%}
+{{ 'tueste-tree-extras.css' | asset_url | stylesheet_tag }}
+
+<section class="ttx ttx-fincas" id="TuesteTreeFincas-{{ section.id }}" aria-labelledby="TuesteTreeFincasTitle-{{ section.id }}">
+  <div class="ttx-wrap">
+    <div class="ttx-head">
+      <p class="ttx-kicker">{{ section.settings.kicker | escape }}</p>
+      <h2 id="TuesteTreeFincasTitle-{{ section.id }}">{{ section.settings.heading }}</h2>
+      {%- if section.settings.lead != blank -%}
+        <p class="ttx-lead">{{ section.settings.lead | escape }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="farms">
+      {%- for block in section.blocks -%}
+        <article class="farm {{ block.settings.color }}" {{ block.shopify_attributes }}>
+          <div class="arch{% if block.settings.photo != blank %} has-photo{% endif %}">
+            {%- if block.settings.photo != blank -%}
+              {{ block.settings.photo | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '600, 900, 1200', alt: block.settings.photo.alt | default: block.settings.title }}
+            {%- endif -%}
+            <span class="n">Finca {{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+          </div>
+          <div class="body">
+            <h3>{{ block.settings.title }}</h3>
+            {%- if block.settings.location != blank -%}
+              <div class="loc">{{ block.settings.location | escape }}</div>
+            {%- endif -%}
+            <p>{{ block.settings.text | escape }}</p>
+            <dl>
+              {%- if block.settings.farmer != blank -%}
+                <dt>{{ block.settings.farmer_label | default: 'Caficultora' | escape }}</dt><dd class="who">{{ block.settings.farmer | escape }}</dd>
+              {%- endif -%}
+              {%- if block.settings.location_long != blank -%}
+                <dt>Ubicación</dt><dd>{{ block.settings.location_long | escape }}</dd>
+              {%- endif -%}
+              {%- if block.settings.role != blank -%}
+                <dt>Siembra</dt><dd>{{ block.settings.role | escape }}</dd>
+              {%- endif -%}
+            </dl>
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Tree · Las fincas",
+  "tag": "section",
+  "class": "section-tueste-tree-fincas",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Las dos fincas fundadoras" },
+    { "type": "inline_richtext", "id": "heading", "label": "Título", "default": "Aquí se siembran los primeros <em>30.000 árboles.</em>" },
+    { "type": "textarea", "id": "lead", "label": "Descripción", "default": "Dos fincas, dos caficultoras y un mismo paisaje: el Eje Cafetero, entre Circasia (Quindío) y Caicedonia (Valle del Cauca). En estas laderas empieza Tueste Tree." }
+  ],
+  "blocks": [
+    {
+      "type": "finca",
+      "name": "Finca",
+      "settings": [
+        { "type": "image_picker", "id": "photo", "label": "Foto (opcional)", "info": "Sin foto se muestra el arco vitral dibujado en CSS." },
+        {
+          "type": "select",
+          "id": "color",
+          "label": "Color del arco",
+          "options": [
+            { "value": "a", "label": "Verde" },
+            { "value": "b", "label": "Cereza" }
+          ],
+          "default": "a"
+        },
+        { "type": "inline_richtext", "id": "title", "label": "Nombre", "default": "Finca <em>Tres Esquinas</em>" },
+        { "type": "text", "id": "location", "label": "Ubicación corta", "default": "Vereda Naranjal Bajo · Circasia · Quindío" },
+        { "type": "textarea", "id": "text", "label": "Texto", "default": "La finca donde nació el proyecto y donde vive el lote fundacional." },
+        { "type": "text", "id": "farmer_label", "label": "Etiqueta de la persona", "default": "Caficultora" },
+        { "type": "text", "id": "farmer", "label": "Caficultor/a", "default": "Laura Fernanda Suárez Ríos" },
+        { "type": "text", "id": "location_long", "label": "Ubicación completa", "default": "Vereda Naranjal Bajo, Circasia, Quindío" },
+        { "type": "text", "id": "role", "label": "Siembra", "default": "Lote fundacional · primeros árboles de Tueste Tree" }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Tueste Tree · Las fincas",
+      "blocks": [
+        { "type": "finca", "settings": { "color": "a", "title": "Finca <em>Tres Esquinas</em>", "location": "Vereda Naranjal Bajo · Circasia · Quindío", "text": "La finca donde nació el proyecto y donde vive el lote fundacional. Aquí eliges tu lugar en la tierra, se siembra tu árbol y se graba el primer capítulo del año.", "farmer": "Laura Fernanda Suárez Ríos", "location_long": "Vereda Naranjal Bajo, Circasia, Quindío", "role": "Lote fundacional · primeros árboles de Tueste Tree" } },
+        { "type": "finca", "settings": { "color": "b", "title": "Finca <em>La Esperanza</em>", "location": "Vereda Aures · Caicedonia · Valle del Cauca", "text": "En la vereda Aures de Caicedonia, el cañón donde crece el Aures 1840, el café de origen de Tueste. La Esperanza amplía la siembra hacia la segunda fase del proyecto, con el mismo cuidado y el mismo seguimiento.", "farmer": "Clara Inés Ríos Ríos", "location_long": "Vereda Aures, Caicedonia, Valle del Cauca", "role": "Segunda fase · hacia los 30.000 árboles" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

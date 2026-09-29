@@ -2,10 +2,284 @@
   "sections": {
     "tueste_tree_mockup": {
       "type": "tueste-tree-mockup",
-      "settings": {}
+      "settings": {
+        "hero_eyebrow": "Finca Tres Esquinas · Naranjal Bajo, Circasia · Quindío"
+      }
+    },
+    "tree_impacto": {
+      "type": "tueste-tree-impacto",
+      "settings": {
+        "kicker": "Sentido social · por qué sembramos",
+        "heading": "Cada árbol hace más que café. <em>Hace territorio.</em>",
+        "lead": "Tueste Tree nace en el Eje Cafetero colombiano con una idea simple: que sembrar café vuelva a ser un buen negocio para quien lo cultiva y una buena noticia para la montaña. Tu árbol es parte de eso.",
+        "figure": "30.000",
+        "figure_text": "árboles en la primera fase del proyecto, sembrados en dos fincas del Eje Cafetero —Circasia, Quindío y Caicedonia, Valle del Cauca— con dos caficultoras al frente. Los primeros 10.200 son fundacionales: quienes entran ahora cofundan el origen."
+      },
+      "blocks": {
+        "pilar_1": {
+          "type": "pilar",
+          "settings": {
+            "icon": "tree",
+            "label": "01 · Reforestación",
+            "title": "Reforestamos el Eje Cafetero",
+            "text": "Cada adopción siembra un cafeto nuevo en laderas que estaban perdiendo cobertura. Café bajo sombra, suelos que se sostienen y agua que vuelve a las quebradas del Quindío.",
+            "future": false,
+            "future_label": "En camino"
+          }
+        },
+        "pilar_2": {
+          "type": "pilar",
+          "settings": {
+            "icon": "hands",
+            "label": "02 · Alianzas",
+            "title": "Alianzas con pequeños caficultores",
+            "text": "No compramos tierra: trabajamos con familias caficultoras que ponen su finca y su saber. La siembra, el cuidado y la cosecha se hacen con ellas, y ellas participan del valor que genera cada árbol.",
+            "future": false,
+            "future_label": "En camino"
+          }
+        },
+        "pilar_3": {
+          "type": "pilar",
+          "settings": {
+            "icon": "chart",
+            "label": "03 · Valor justo",
+            "title": "Un café mejor valorado",
+            "text": "Cuando el café tiene nombre, número y una historia que se puede seguir, deja de ser un commodity. Buscamos que el mercado pague lo que vale un origen cuidado, y que ese valor llegue a la finca.",
+            "future": false,
+            "future_label": "En camino"
+          }
+        },
+        "pilar_4": {
+          "type": "pilar",
+          "settings": {
+            "icon": "leaf",
+            "label": "04 · Futuro",
+            "title": "Bonos de carbono",
+            "text": "Un cafetal que crece captura carbono. El siguiente paso del proyecto es medirlo y certificarlo para emitir bonos de carbono, con la estructuración legal y técnica que eso requiere.",
+            "future": true,
+            "future_label": "En camino"
+          }
+        }
+      },
+      "block_order": [
+        "pilar_1",
+        "pilar_2",
+        "pilar_3",
+        "pilar_4"
+      ]
+    },
+    "tree_fincas": {
+      "type": "tueste-tree-fincas",
+      "settings": {
+        "kicker": "Las dos fincas fundadoras",
+        "heading": "Aquí se siembran los primeros <em>30.000 árboles.</em>",
+        "lead": "Dos fincas, dos caficultoras y un mismo paisaje: el Eje Cafetero, entre Circasia (Quindío) y Caicedonia (Valle del Cauca). En estas laderas empieza Tueste Tree."
+      },
+      "blocks": {
+        "finca_1": {
+          "type": "finca",
+          "settings": {
+            "color": "a",
+            "title": "Finca <em>Tres Esquinas</em>",
+            "location": "Vereda Naranjal Bajo · Circasia · Quindío",
+            "text": "La finca donde nació el proyecto y donde vive el lote fundacional. Aquí eliges tu lugar en la tierra, se siembra tu árbol y se graba el primer capítulo del año.",
+            "farmer_label": "Caficultora",
+            "farmer": "Laura Fernanda Suárez Ríos",
+            "location_long": "Vereda Naranjal Bajo, Circasia, Quindío",
+            "role": "Lote fundacional · primeros árboles de Tueste Tree"
+          }
+        },
+        "finca_2": {
+          "type": "finca",
+          "settings": {
+            "color": "b",
+            "title": "Finca <em>La Esperanza</em>",
+            "location": "Vereda Aures · Caicedonia · Valle del Cauca",
+            "text": "En la vereda Aures de Caicedonia, el cañón donde crece el Aures 1840, el café de origen de Tueste. La Esperanza amplía la siembra hacia la segunda fase del proyecto, con el mismo cuidado y el mismo seguimiento.",
+            "farmer_label": "Caficultora",
+            "farmer": "Clara Inés Ríos Ríos",
+            "location_long": "Vereda Aures, Caicedonia, Valle del Cauca",
+            "role": "Segunda fase · hacia los 30.000 árboles"
+          }
+        }
+      },
+      "block_order": [
+        "finca_1",
+        "finca_2"
+      ]
+    },
+    "tree_faq": {
+      "type": "tueste-tree-faq",
+      "settings": {
+        "kicker": "Preguntas frecuentes",
+        "heading": "Lo que todos preguntan <em>antes de sembrar.</em>",
+        "cta_label": "Sembrar mi árbol",
+        "link_label": "Hacer otra pregunta por WhatsApp",
+        "link_url": "https://wa.me/573102682677?text=Hola%2C%20tengo%20una%20pregunta%20sobre%20Tueste%20Tree"
+      },
+      "blocks": {
+        "pregunta_1": {
+          "type": "pregunta",
+          "settings": {
+            "question": "¿Qué recibo cuando siembro un árbol?",
+            "answer": "<p>Tu Certificado de Tradición numerado en 48 horas, la primera foto o video de tu lote en el primer mes y, a lo largo del año, los cuatro capítulos: la primera lluvia, la floración, la cosecha y la taza. Al final recibes café del lote donde vive tu árbol con acceso preferencial, el balance del año y la opción de renovar a precio de fundador.</p><p>Además recibes tu insignia digital (Semilla, Plata, Oro u Holográfica) según cuántos árboles siembres.</p>",
+            "open": true
+          }
+        },
+        "pregunta_2": {
+          "type": "pregunta",
+          "settings": {
+            "question": "¿Cuánto cuesta y cuántos árboles puedo sembrar?",
+            "answer": "<p>Cada árbol fundacional cuesta USD 100. En línea puedes sembrar de 1 a 30 árboles en una misma adopción. Si quieres más de 30, o sembrar como empresa, hablas directamente con nuestro agente por WhatsApp.</p>",
+            "open": false
+          }
+        },
+        "pregunta_3": {
+          "type": "pregunta",
+          "settings": {
+            "question": "¿Es una inversión? ¿Recibo dinero de vuelta?",
+            "answer": "<p>No. Tueste Tree es una adopción simbólica y cultural: lo que recibes es café, seguimiento y un lugar en el origen, no un rendimiento económico. Esta página no constituye una oferta pública de valores ni una promesa de rentabilidad. La figura de socio fundador está sujeta a la estructuración legal correspondiente conforme a la normativa colombiana.</p>",
+            "open": false
+          }
+        },
+        "pregunta_4": {
+          "type": "pregunta",
+          "settings": {
+            "question": "¿El café que recibo es de mi árbol exacto?",
+            "answer": "<p>Es el café del lote donde vive tu árbol (o un beneficio equivalente). Un solo cafeto produce muy poco y su cosecha varía con el clima, así que prometemos el lote, no la planta: así la promesa se cumple siempre.</p>",
+            "open": false
+          }
+        },
+        "pregunta_5": {
+          "type": "pregunta",
+          "settings": {
+            "question": "¿Dónde queda mi árbol? ¿Puedo visitarlo?",
+            "answer": "<p>Los primeros árboles se siembran en la Finca Tres Esquinas (vereda Naranjal Bajo, Circasia, Quindío) y en la Finca La Esperanza (vereda Aures, Caicedonia, Valle del Cauca). Tu certificado indica el número y la variedad de tu árbol. Las visitas se coordinan con nosotros: escríbenos por WhatsApp o participa en un Ritual de adopción en finca.</p>",
+            "open": false
+          }
+        },
+        "pregunta_6": {
+          "type": "pregunta",
+          "settings": {
+            "question": "¿Qué pasa si mi árbol se enferma o no prende?",
+            "answer": "<p>Lo reponemos dentro del mismo lote y tu número de árbol se conserva. El cuidado del cafetal está a cargo de las caficultoras aliadas, con acompañamiento técnico de Tueste.</p>",
+            "open": false
+          }
+        },
+        "pregunta_7": {
+          "type": "pregunta",
+          "settings": {
+            "question": "¿Cuánto dura la adopción?",
+            "answer": "<p>Un año completo de seguimiento desde la siembra. Al cerrar el ciclo recibes el balance y la invitación a renovar a precio de fundador; el árbol sigue en la tierra y tu nombre con él.</p>",
+            "open": false
+          }
+        },
+        "pregunta_8": {
+          "type": "pregunta",
+          "settings": {
+            "question": "¿Puedo regalar un árbol o sembrar a nombre de otra persona?",
+            "answer": "<p>Sí. Al sembrar escribes el nombre del guardián y, si quieres, el nombre del árbol; el certificado sale a ese nombre. Para regalos corporativos o ediciones de marca, Tueste Unity arma la propuesta a la medida.</p>",
+            "open": false
+          }
+        },
+        "pregunta_9": {
+          "type": "pregunta",
+          "settings": {
+            "question": "¿Cómo ayuda mi árbol al territorio?",
+            "answer": "<p>Cada adopción reforesta laderas del Eje Cafetero con café bajo sombra, sostiene a familias caficultoras aliadas que participan del valor del proyecto y ayuda a que el café de origen se pague mejor. En una siguiente fase buscamos medir el carbono que captura el cafetal para emitir bonos de carbono.</p>",
+            "open": false
+          }
+        },
+        "pregunta_10": {
+          "type": "pregunta",
+          "settings": {
+            "question": "¿Qué son las insignias?",
+            "answer": "<p>Son la marca digital de tu adopción y cambian según cuántos árboles siembras: Semilla (1 a 9), Plata (10 a 19), Oro (20 a 29) y Holográfica (30 o más, socio fundador). Viajan contigo en el certificado y en tu perfil de guardián.</p>",
+            "open": false
+          }
+        }
+      },
+      "block_order": [
+        "pregunta_1",
+        "pregunta_2",
+        "pregunta_3",
+        "pregunta_4",
+        "pregunta_5",
+        "pregunta_6",
+        "pregunta_7",
+        "pregunta_8",
+        "pregunta_9",
+        "pregunta_10"
+      ]
+    },
+    "universo": {
+      "type": "tueste-universo",
+      "settings": {
+        "kicker": "Universo Tueste",
+        "heading": "Un origen, <em>cuatro caminos</em>.",
+        "intro": "Todo nace en el mismo cafetal del Cañón de Aures: el café que compras, el árbol que siembras, la marca que creas con nosotros y la música que lo cuenta.",
+        "here_label": "Estás aquí",
+        "style": "tueste"
+      },
+      "blocks": {
+        "camino_1": {
+          "type": "camino",
+          "settings": {
+            "brand": "tienda",
+            "show_name": false,
+            "description": "Café de origen, piezas y ritual. La casa de todo lo que hacemos.",
+            "cta": "Entrar →",
+            "current": false,
+            "link": "/"
+          }
+        },
+        "camino_2": {
+          "type": "camino",
+          "settings": {
+            "brand": "tree",
+            "show_name": false,
+            "description": "Siembra un árbol en la Finca Tres Esquinas y cofunda un origen.",
+            "cta": "Entrar →",
+            "current": true,
+            "link": "/pages/tueste-tree"
+          }
+        },
+        "camino_3": {
+          "type": "camino",
+          "settings": {
+            "brand": "unity",
+            "show_name": false,
+            "description": "Tu marca de café con nuestro origen y una firma sonora.",
+            "cta": "Entrar →",
+            "current": false,
+            "link": "/pages/tueste-unity"
+          }
+        },
+        "camino_4": {
+          "type": "camino",
+          "settings": {
+            "brand": "records",
+            "show_name": false,
+            "description": "El sello: lanzamientos, artistas y dónde escuchar el café.",
+            "cta": "Entrar →",
+            "current": false,
+            "link": "/pages/tueste-records"
+          }
+        }
+      },
+      "block_order": [
+        "camino_1",
+        "camino_2",
+        "camino_3",
+        "camino_4"
+      ]
     }
   },
   "order": [
-    "tueste_tree_mockup"
+    "tueste_tree_mockup",
+    "tree_impacto",
+    "tree_fincas",
+    "tree_faq",
+    "universo"
   ]
 }

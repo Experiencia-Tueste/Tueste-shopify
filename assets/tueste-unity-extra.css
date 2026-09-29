@@ -100,18 +100,17 @@
 .tu-unity__dot:focus-visible,
 .tu-unity__stepper button:focus-visible { outline: 3px solid var(--tu-amber); outline-offset: 3px; }
 
-/* ---------- Bag preview: layered mockup instead of a flat block ---------- */
-.tu-unity-bag { position: relative; width: min(190px, 55%); margin: 0 auto; filter: drop-shadow(18px 24px 34px rgba(0, 0, 0, .45)); }
-.tu-unity-bag__fold { height: 22px; margin: 0 6px; border-radius: 10px 10px 0 0; background: rgba(0, 0, 0, .22); }
-.tu-unity-bag__body { position: relative; aspect-ratio: .62; padding: 1.1rem .9rem; border-radius: 6px 6px 20px 20px; background: var(--bag-color, #8d493d); overflow: hidden; transform: rotate(-3deg); }
-.tu-unity-bag__texture { position: absolute; inset: 0; opacity: .5; mix-blend-mode: overlay; background-image: repeating-linear-gradient(115deg, rgba(255, 255, 255, .16) 0 2px, transparent 2px 9px), radial-gradient(circle at 30% 15%, rgba(255, 255, 255, .35), transparent 55%); }
-.tu-unity-bag__body::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 0, 0, .18), transparent 30%, transparent 70%, rgba(0, 0, 0, .3)); pointer-events: none; }
-.tu-unity-bag__valve { position: absolute; top: 34%; left: 50%; width: 26px; height: 26px; margin: -13px 0 0 -13px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, .55), rgba(0, 0, 0, .35) 70%); box-shadow: inset 0 0 0 2px rgba(255, 232, 191, .25); }
-.tu-unity-bag__label { position: relative; margin-top: 46%; padding: .6rem .5rem; border-radius: 10px; background: rgba(21, 19, 15, .42); backdrop-filter: blur(1px); text-align: center; }
-.tu-unity-bag__label img { max-height: 46px; margin: 0 auto .3rem; object-fit: contain; }
-.tu-unity-bag__brand { display: block; color: var(--tu-cream); font: .95rem/1.15 var(--tu-display); text-transform: uppercase; letter-spacing: .02em; }
-.tu-unity-bag__meta { display: block; margin-top: .2rem; color: rgba(255, 232, 191, .7); font: .6rem/1.2 var(--tu-mono); letter-spacing: .08em; text-transform: uppercase; }
-.tu-unity-bag__seam { height: 14px; margin: -4px 18px 0; border-radius: 0 0 8px 8px; background: rgba(0, 0, 0, .28); }
+/* ---------- Bag preview: exact 1840 artwork with a live name/logo label ---------- */
+.tu-unity-bag { position: relative; width: min(250px, 62%); margin: 0 auto; filter: drop-shadow(18px 24px 34px rgba(0, 0, 0, .45)); }
+.tu-unity-bag__art { display: block; width: 100%; height: auto; }
+.tu-unity-bag__dynamic-label { position: absolute; top: 64.5%; left: 26.1%; z-index: 2; width: 48.8%; height: 24%; color: #1d1848; text-align: center; transform: rotate(1deg); }
+.tu-unity-bag__edition { position: absolute; top: 0; left: 0; width: 100%; font: .28rem/1.1 var(--tu-mono); letter-spacing: .22em; text-transform: uppercase; }
+.tu-unity-bag__dynamic-label img { position: absolute; top: 12%; left: 11%; width: 78%; max-height: 2.4rem; object-fit: contain; }
+.tu-unity-bag__dynamic-label.has-logo .tu-unity-bag__brand { display: none; }
+.tu-unity-bag__brand { position: absolute; top: 12%; left: 0; width: 100%; font: 800 clamp(.55rem, 1.5vw, .98rem)/1.05 var(--tu-display); letter-spacing: .01em; text-transform: uppercase; }
+.tu-unity-bag__meta { position: absolute; top: 59%; left: 0; width: 100%; font: 800 .38rem/1.1 var(--tu-mono); letter-spacing: .12em; text-transform: uppercase; }
+.tu-unity-bag__details { position: absolute; top: 73%; left: 0; width: 100%; font: .25rem/1.2 var(--tu-mono); letter-spacing: .1em; text-transform: uppercase; }
+.tu-unity-bag__byline { position: absolute; top: 84%; left: 0; width: 100%; font: .22rem/1.1 var(--tu-mono); letter-spacing: .16em; text-transform: uppercase; }
 .tu-bag-preview__stamp { display: block; margin-top: 1rem; text-align: center; color: var(--tu-muted); font: .72rem/1.3 var(--tu-mono); letter-spacing: .04em; text-transform: uppercase; }
 .tu-bag-preview__stamp strong { color: var(--tu-cream); font-family: var(--tu-sans); text-transform: none; letter-spacing: 0; }
 
@@ -171,8 +170,18 @@
 .tu-unity__quote-cta span { color: var(--tu-muted); font-size: .84rem; }
 
 /* ---------- Tu marca también siembra ---------- */
-.tu-unity__siembra { display: grid; grid-template-columns: minmax(160px, .5fr) minmax(0, 1.5fr); gap: clamp(2rem, 5vw, 4rem); align-items: center; }
-.tu-unity__siembra-badge { width: min(220px, 100%); margin: 0 auto; filter: drop-shadow(0 20px 40px rgba(0, 0, 0, .4)); }
+.tu-unity__siembra { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(320px, .92fr); gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+.tu-unity__siembra-art { overflow: hidden; border: 1px solid var(--tu-line); border-radius: var(--tu-radius); background: var(--tu-surface); box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, .22); }
+.tu-unity__siembra-art img { display: block; width: 100%; height: auto; aspect-ratio: 1.28; object-fit: cover; }
+.tu-unity__siembra-copy { display: grid; align-content: center; gap: 1rem; }
+.tu-unity__siembra-copy .tu-kicker,
+.tu-unity__siembra-copy .tu-unity__sound-title,
+.tu-unity__siembra-copy .tu-lead { margin: 0; }
+.tu-unity__siembra-note { display: grid; grid-template-columns: 62px 1fr; align-items: center; gap: .9rem; padding: .8rem 1rem; border: 1px solid var(--tu-line); border-radius: var(--tu-radius); background: rgba(255, 232, 191, .045); }
+.tu-unity__siembra-note img { width: 62px; height: 86px; object-fit: cover; border-radius: 6px; }
+.tu-unity__siembra-note p { display: grid; gap: .25rem; margin: 0; }
+.tu-unity__siembra-note strong { color: var(--tu-cream); font-size: .86rem; }
+.tu-unity__siembra-note span { color: var(--tu-muted); font-size: .76rem; line-height: 1.45; }
 .tu-unity__close { display: grid; justify-items: start; gap: 1.2rem; text-align: left; }
 .tu-unity__close > img { width: min(180px, 50vw); height: auto; }
 .tu-unity__close .tu-unity__sound-title { max-width: 18ch; }
@@ -194,7 +203,7 @@
   .tu-unity__terms { grid-template-columns: repeat(2, 1fr); }
   .tu-unity__format-grid { grid-template-columns: 1fr; }
   .tu-unity__siembra { grid-template-columns: 1fr; text-align: left; }
-  .tu-unity__siembra-badge { width: min(180px, 60%); }
+  .tu-unity__siembra-art img { aspect-ratio: 1.45; }
 }
 
 @media (max-width: 640px) {

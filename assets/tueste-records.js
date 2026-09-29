@@ -1,250 +1,169 @@
+/* ------------------------------------------------------------
+ * Tueste Records · slider del hero, filtros del catálogo y arte generativo (portado del HTML original)
+ * Se inicializa sobre cada [data-tueste-records]. Los datos (lanzamientos, plataformas, playlists, noticias)
+ * ahora viven en Liquid; aquí solo queda el comportamiento.
+ * ------------------------------------------------------------ */
 (function () {
   'use strict';
 
-  /* ---------- generative monochrome art (canvas, no photos) ---------- */
-  function rng(seed) {
-    var value = seed;
+  /* ---------- arte generativo monocromo (sin fotos) ---------- */
+  function rng(s) {
     return function () {
-      value = (value * 1664525 + 1013904223) % 4294967296;
-      return value / 4294967296;
+      s = (s * 1664525 + 1013904223) % 4294967296;
+      return s / 4294967296;
     };
   }
 
-  function drawGenerativeArt(canvas, seed) {
-    var width = canvas.clientWidth;
-    var height = canvas.clientHeight;
-    if (!width || !height) return;
+  function drawArt(cv, seed, dense) {
     var dpr = Math.min(2, window.devicePixelRatio || 1);
-    canvas.width = width * dpr;
-    canvas.height = height * dpr;
-    var ctx = canvas.getContext('2d');
-    if (!ctx) return;
-    ctx.scale(dpr, dpr);
-    var random = rng(seed * 7919 + 13);
-
-    ctx.fillStyle = '#111214';
-    ctx.fillRect(0, 0, width, height);
-
-    var cx = width * (0.35 + random() * 0.4);
-    var cy = height * (0.35 + random() * 0.4);
-    var radius = Math.max(width, height) * (0.7 + random() * 0.5);
-    var rings = 70;
-    for (var i = 0; i < rings; i++) {
-      var t = i / rings;
-      ctx.beginPath();
-      ctx.arc(cx, cy, radius * t, 0, Math.PI * 2);
-      var ringAlpha = 0.02 + 0.1 * Math.pow(1 - t, 2) * (0.4 + random() * 0.6);
-      ctx.strokeStyle = 'rgba(236, 232, 224, ' + ringAlpha.toFixed(3) + ')';
-      ctx.lineWidth = 0.6 + random() * 1.6;
-      ctx.stroke();
+    var w = cv.clientWidth || 600;
+    var h = cv.clientHeight || 600;
+    if (!w || !h) return;
+    cv.width = w * dpr;
+    cv.height = h * dpr;
+    var c = cv.getContext('2d');
+    c.scale(dpr, dpr);
+    var r = rng(seed * 7919 + 13);
+    c.fillStyle = '#111214';
+    c.fillRect(0, 0, w, h);
+    var cx = w * (0.35 + r() * 0.4);
+    var cy = h * (0.35 + r() * 0.4);
+    var R = Math.max(w, h) * (0.7 + r() * 0.5);
+    var n = dense ? 90 : 46;
+    for (var i = 0; i < n; i++) {
+      var t = i / n;
+      c.beginPath();
+      c.arc(cx, cy, R * t, 0, Math.PI * 2);
+      c.strokeStyle = 'rgba(236,232,224,' + (0.02 + 0.10 * Math.pow(1 - t, 2) * (0.4 + r() * 0.6)) + ')';
+      c.lineWidth = 0.6 + r() * 1.6;
+      c.stroke();
     }
-
-    var accents = 1 + Math.floor(random() * 3);
-    for (var a = 0; a < accents; a++) {
-      ctx.beginPath();
-      ctx.arc(cx, cy, radius * (0.05 + random() * 0.6), 0, Math.PI * 2);
-      var accentAlpha = 0.25 + random() * 0.4;
-      ctx.strokeStyle = 'rgba(194, 154, 85, ' + accentAlpha.toFixed(3) + ')';
-      ctx.lineWidth = 1 + random() * 1.5;
-      ctx.stroke();
+    var k = 1 + Math.floor(r() * 3);
+    for (var j = 0; j < k; j++) {
+      c.beginPath();
+      c.arc(cx, cy, R * (0.05 + r() * 0.6), 0, Math.PI * 2);
+      c.strokeStyle = 'rgba(194,154,85,' + (0.25 + r() * 0.4) + ')';
+      c.lineWidth = 1 + r() * 1.5;
+      c.stroke();
     }
-
-    var vignette = ctx.createRadialGradient(cx, cy, radius * 0.1, cx, cy, radius * 0.9);
-    vignette.addColorStop(0, 'rgba(10, 10, 11, 0)');
-    vignette.addColorStop(1, 'rgba(10, 10, 11, .75)');
-    ctx.fillStyle = vignette;
-    ctx.fillRect(0, 0, width, height);
-  }
-
-  function paintCanvases(root) {
-    root.querySelectorAll('canvas').forEach(function (canvas) {
-      var seededAncestor = canvas.closest('[data-seed]');
-      var seed = Number(
-        canvas.getAttribute('data-seed') ||
-        (seededAncestor && seededAncestor.getAttribute('data-seed')) ||
-        1
-      );
-      drawGenerativeArt(canvas, seed);
-    });
-  }
-
-  /* ---------- catalog filters ---------- */
-  function initFilters(root) {
-    var filters = root.querySelectorAll('[data-record-filter]');
-    var releases = root.querySelectorAll('[data-release-type]');
-    if (!filters.length) return;
-
-    filters.forEach(function (filter) {
-      filter.addEventListener('click', function () {
-        var selected = filter.getAttribute('data-record-filter');
-        filters.forEach(function (item) {
-          var active = item === filter;
-          item.classList.toggle('is-active', active);
-          item.setAttribute('aria-pressed', String(active));
-        });
-        releases.forEach(function (release) {
-          if (selected === 'all') {
-            release.hidden = false;
-          } else if (selected === 'soon') {
-            release.hidden = release.getAttribute('data-release-soon') !== 'true';
-          } else {
-            release.hidden = release.getAttribute('data-release-type') !== selected;
-          }
-        });
-      });
-    });
-  }
-
-  /* ---------- hero carousel ---------- */
-  function initHero(root) {
-    var hero = root.querySelector('[data-hero]');
-    var slidesWrap = root.querySelector('[data-hero-slides]');
-    if (!hero || !slidesWrap) return;
-
-    var slides = Array.prototype.slice.call(slidesWrap.querySelectorAll('[data-seed]'));
-    if (!slides.length) return;
-
-    var dotsWrap = root.querySelector('[data-hero-dots]');
-    var counter = root.querySelector('[data-hero-counter]');
-    var toggle = root.querySelector('[data-hero-toggle]');
-    var toggleIcon = root.querySelector('[data-hero-toggle-icon]');
-    var toggleLabel = root.querySelector('[data-hero-toggle-label]');
-    var prevButton = root.querySelector('[data-hero-prev]');
-    var nextButton = root.querySelector('[data-hero-next]');
-    var total = slides.length;
-    var current = 0;
-    var timer = null;
-    var pausedByUser = false;
-    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-
-    var dots = slides.map(function (slide, index) {
-      var dot = document.createElement('button');
-      dot.type = 'button';
-      dot.className = 'tu-records__hero-dot';
-      dot.setAttribute('aria-label', 'Ir a la diapositiva ' + (index + 1) + ' de ' + total);
-      dot.addEventListener('click', function () {
-        goTo(index);
-      });
-      if (dotsWrap) dotsWrap.appendChild(dot);
-      return dot;
-    });
-
-    function render() {
-      slides.forEach(function (slide, index) {
-        var active = index === current;
-        slide.classList.toggle('is-active', active);
-        slide.setAttribute('aria-hidden', String(!active));
-        slide.inert = !active;
-      });
-      dots.forEach(function (dot, index) {
-        var active = index === current;
-        dot.classList.toggle('is-active', active);
-        if (active) {
-          dot.setAttribute('aria-current', 'true');
-        } else {
-          dot.removeAttribute('aria-current');
-        }
-      });
-      if (counter) {
-        counter.textContent = String(current + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
+    try {
+      var img = c.getImageData(0, 0, w * dpr, h * dpr);
+      var d = img.data;
+      for (var p = 0; p < d.length; p += 4) {
+        var g = (r() - 0.5) * 18;
+        d[p] += g; d[p + 1] += g; d[p + 2] += g;
       }
+      c.putImageData(img, 0, 0);
+    } catch (e) { /* canvas tainted o sin permisos: se omite el grano */ }
+    var gr = c.createRadialGradient(cx, cy, R * 0.1, cx, cy, R * 0.9);
+    gr.addColorStop(0, 'rgba(10,10,11,0)');
+    gr.addColorStop(1, 'rgba(10,10,11,.75)');
+    c.fillStyle = gr;
+    c.fillRect(0, 0, w, h);
+  }
+
+  function paint(root) {
+    root.querySelectorAll('canvas[data-gen]').forEach(function (cv) {
+      var holder = cv.closest('[data-seed]');
+      var seed = +(cv.dataset.seed || (holder && holder.dataset.seed) || 1);
+      drawArt(cv, seed, cv.dataset.gen === 'dense');
+    });
+  }
+
+  /* ---------- slider del hero ---------- */
+  function initSlider(root) {
+    var slides = Array.prototype.slice.call(root.querySelectorAll('[data-slide]'));
+    var dots = root.querySelector('[data-dots]');
+    var counter = root.querySelector('[data-counter]');
+    var prev = root.querySelector('[data-prev]');
+    var next = root.querySelector('[data-next]');
+    if (slides.length < 2) return;
+    var cur = 0, timer = null;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var interval = +(root.dataset.autoplay || 6500);
+
+    if (dots) {
+      slides.forEach(function (s, i) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.setAttribute('role', 'tab');
+        b.setAttribute('aria-label', 'Slide ' + (i + 1));
+        b.addEventListener('click', function () { go(i); });
+        dots.appendChild(b);
+      });
     }
 
-    function goTo(index) {
-      current = (index + total) % total;
-      render();
+    function go(i) {
+      cur = (i + slides.length) % slides.length;
+      slides.forEach(function (s, j) {
+        var on = j === cur;
+        s.classList.toggle('on', on);
+        s.setAttribute('aria-hidden', String(!on));
+      });
+      if (dots) Array.prototype.forEach.call(dots.children, function (d, j) {
+        d.classList.toggle('on', j === cur);
+        d.setAttribute('aria-selected', String(j === cur));
+      });
+      if (counter) counter.textContent = String(cur + 1).padStart(2, '0') + ' / ' + String(slides.length).padStart(2, '0');
       restart();
-    }
-
-    function stop() {
-      if (timer) {
-        clearInterval(timer);
-        timer = null;
-      }
     }
 
     function restart() {
-      stop();
-      if (pausedByUser || reduceMotion.matches) return;
-      timer = setInterval(function () {
-        goTo(current + 1);
-      }, 6500);
+      clearInterval(timer);
+      if (!reduce && interval > 0) timer = setInterval(function () { go(cur + 1); }, interval);
     }
 
-    if (prevButton) {
-      prevButton.addEventListener('click', function () {
-        goTo(current - 1);
-      });
-    }
-    if (nextButton) {
-      nextButton.addEventListener('click', function () {
-        goTo(current + 1);
-      });
-    }
-
-    if (toggle) {
-      toggle.addEventListener('click', function () {
-        pausedByUser = !pausedByUser;
-        toggle.setAttribute('aria-pressed', String(pausedByUser));
-        if (toggleIcon) toggleIcon.textContent = pausedByUser ? '▶' : '⏸';
-        if (toggleLabel) toggleLabel.textContent = pausedByUser ? 'Reanudar autoplay' : 'Pausar autoplay';
-        if (pausedByUser) {
-          stop();
-        } else {
-          restart();
-        }
-      });
-    }
-
-    hero.addEventListener('mouseenter', stop);
-    hero.addEventListener('mouseleave', function () {
-      if (!pausedByUser) restart();
-    });
-    hero.addEventListener('focusin', stop);
-    hero.addEventListener('focusout', function () {
-      if (!pausedByUser) restart();
-    });
-
-    if (typeof reduceMotion.addEventListener === 'function') {
-      reduceMotion.addEventListener('change', restart);
-    } else if (typeof reduceMotion.addListener === 'function') {
-      reduceMotion.addListener(restart);
-    }
-
-    render();
-
-    /* Sin autoplay mientras el hero no se ve. */
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) { entry.isIntersecting ? restart() : stop(); });
-      }, { threshold: 0.2 }).observe(hero);
-    } else {
-      restart();
-    }
+    if (prev) prev.addEventListener('click', function () { go(cur - 1); });
+    if (next) next.addEventListener('click', function () { go(cur + 1); });
+    root.addEventListener('mouseenter', function () { clearInterval(timer); });
+    root.addEventListener('mouseleave', restart);
+    go(0);
   }
 
-  function initRecords(root) {
-    if (!root || root.dataset.tuesteRecordsReady === 'true') return;
-    root.dataset.tuesteRecordsReady = 'true';
-
-    initFilters(root);
-    initHero(root);
-    paintCanvases(root);
-
-    var repaintTimer;
-    window.addEventListener('resize', function () {
-      clearTimeout(repaintTimer);
-      repaintTimer = setTimeout(function () {
-        paintCanvases(root);
-      }, 200);
+  /* ---------- filtros del catálogo ---------- */
+  function initFilters(root) {
+    var filters = root.querySelector('[data-filters]');
+    var grid = root.querySelector('[data-grid]');
+    if (!filters || !grid) return;
+    filters.addEventListener('click', function (e) {
+      var b = e.target.closest('button');
+      if (!b) return;
+      Array.prototype.forEach.call(filters.children, function (x) {
+        x.classList.toggle('on', x === b);
+        x.setAttribute('aria-pressed', String(x === b));
+      });
+      var f = b.dataset.f;
+      grid.querySelectorAll('[data-type]').forEach(function (r) {
+        var show = f === 'all' || (f === 'soon' ? r.dataset.soon === '1' : r.dataset.type === f);
+        r.hidden = !show;
+      });
     });
   }
 
-  function boot() {
-    document.querySelectorAll('[data-tueste-records]').forEach(initRecords);
+  function init() {
+    document.querySelectorAll('[data-tueste-records]').forEach(function (root) {
+      if (root.dataset.trInit) return;
+      root.dataset.trInit = '1';
+      initSlider(root);
+      initFilters(root);
+      paint(root);
+    });
   }
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
-  else boot();
-  document.addEventListener('shopify:section:load', boot);
+  var rt;
+  window.addEventListener('resize', function () {
+    clearTimeout(rt);
+    rt = setTimeout(function () {
+      document.querySelectorAll('[data-tueste-records]').forEach(paint);
+    }, 200);
+  });
+
+  /* Editor de temas: repintar cuando se carga o selecciona una sección */
+  document.addEventListener('shopify:section:load', function () {
+    document.querySelectorAll('[data-tueste-records]').forEach(function (root) { root.dataset.trInit = ''; });
+    init();
+  });
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
 }());

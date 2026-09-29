@@ -1,0 +1,96 @@
+{%- comment -%}
+  Tueste Unity · Hero + marquee. La ilustración por defecto vive en Shopify Files (tueste-unity-hero-vitral-1840.png).
+{%- endcomment -%}
+{{ 'tueste-unity.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  if section.settings.image != blank
+    assign hero_img = section.settings.image | image_url: width: 1600
+  else
+    assign hero_img = 'tueste-unity-hero-vitral-1840.png' | file_url
+  endif
+  assign marquee_items = section.settings.marquee | split: '|'
+-%}
+
+<div class="tu-unity" id="TuesteUnityHero-{{ section.id }}">
+  <section class="hero" style="--tu-hero-img: url('{{ hero_img }}');">
+    <div class="bgimg" role="img" aria-label="{{ section.settings.image_alt | escape }}"></div>
+    <div class="wrap">
+      {%- if section.settings.kicker != blank -%}
+        <span class="kicker">{{ section.settings.kicker | escape }}</span>
+      {%- endif -%}
+      <h1 class="disp">{{ section.settings.heading }}</h1>
+      {%- if section.settings.lead != blank -%}
+        <p class="lead">{{ section.settings.lead }}</p>
+      {%- endif -%}
+      <div class="cta">
+        {%- if section.settings.button_label != blank -%}
+          <a class="btn btn-primary" href="{{ section.settings.button_link | default: '#taller' }}">{{ section.settings.button_label | escape }} →</a>
+        {%- endif -%}
+        {%- if section.settings.link_label != blank -%}
+          <a class="btn-tertiary" href="{{ section.settings.link_url | default: '#caminos' }}">{{ section.settings.link_label | escape }}</a>
+        {%- endif -%}
+      </div>
+      {%- if section.blocks.size > 0 -%}
+        <div class="specs" aria-label="Datos del café">
+          {%- for block in section.blocks -%}
+            <span {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </section>
+
+  {%- if section.settings.show_marquee and section.settings.marquee != blank -%}
+    <div class="marquee" aria-hidden="true"><div>
+      {%- for i in (1..2) -%}
+        {%- for item in marquee_items -%}
+          <span>{{ item | strip | escape }}</span><i>✺</i>
+        {%- endfor -%}
+      {%- endfor -%}
+    </div></div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Unity · Hero",
+  "tag": "section",
+  "class": "section-tueste-unity-hero",
+  "limit": 1,
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Tueste Unity · Estudio de café, marca y sonido" },
+    { "type": "inline_richtext", "id": "heading", "label": "Título", "default": "Tu café.<br><em>Nuestro origen.</em>" },
+    { "type": "inline_richtext", "id": "lead", "label": "Descripción", "default": "Para marcas, empresas y personas que quieren vender su propio café. Ponemos tu logo en la bolsa <strong>Aures 1840</strong> o diseñamos contigo una fórmula propia con empaque completo. Y como el café también se escucha, le damos a tu marca una firma sonora." },
+    { "type": "text", "id": "button_label", "label": "Botón principal", "default": "Arma tu café" },
+    { "type": "url", "id": "button_link", "label": "Enlace del botón", "info": "Por defecto lleva al taller (#taller)." },
+    { "type": "text", "id": "link_label", "label": "Enlace secundario", "default": "Ver los tres caminos" },
+    { "type": "url", "id": "link_url", "label": "URL del enlace secundario", "info": "Por defecto #caminos." },
+    { "type": "image_picker", "id": "image", "label": "Ilustración de fondo", "info": "Por defecto: tueste-unity-hero-vitral-1840.png (Shopify Files)." },
+    { "type": "text", "id": "image_alt", "label": "Texto alternativo de la ilustración", "default": "Dos manos sostienen una bolsa de café bajo un arco de vitral, con ondas de sonido de colores detrás" },
+    { "type": "checkbox", "id": "show_marquee", "label": "Mostrar marquee", "default": true },
+    { "type": "text", "id": "marquee", "label": "Textos del marquee (separados por |)", "default": "Tu logo en la 1840|Fórmula propia|Empaque completo|Firma sonora|Experiencias Tueste Crew|Árboles con tu nombre" }
+  ],
+  "blocks": [
+    {
+      "type": "dato",
+      "name": "Dato",
+      "settings": [
+        { "type": "inline_richtext", "id": "text", "label": "Texto", "default": "<b>89</b> puntos SCA" }
+      ]
+    }
+  ],
+  "max_blocks": 5,
+  "presets": [
+    {
+      "name": "Tueste Unity · Hero",
+      "blocks": [
+        { "type": "dato", "settings": { "text": "<b>89</b> puntos SCA" } },
+        { "type": "dato", "settings": { "text": "Cañón de Aures · <b>1.840</b> msnm" } },
+        { "type": "dato", "settings": { "text": "Tostado al pedido · <b>15</b> días" } },
+        { "type": "dato", "settings": { "text": "Firma sonora incluida" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

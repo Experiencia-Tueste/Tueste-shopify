@@ -1,0 +1,114 @@
+{%- comment -%}
+  Tueste Unity · Los tres caminos para crear café de marca propia.
+  El tercer camino (fórmula propia) dibuja la bolsa ilustrada con JS (#pathBag) si no tiene imagen.
+{%- endcomment -%}
+{{ 'tueste-unity.css' | asset_url | stylesheet_tag }}
+
+<div class="tu-unity" id="TuesteUnityCaminos-{{ section.id }}">
+  <section class="sec" id="caminos" aria-labelledby="TuesteUnityCaminosTitle-{{ section.id }}">
+    <div class="wrap">
+      <div class="head">
+        <span class="kicker">{{ section.settings.kicker | escape }}</span>
+        <h2 class="disp" id="TuesteUnityCaminosTitle-{{ section.id }}">{{ section.settings.heading }}</h2>
+        {%- if section.settings.lead != blank -%}
+          <p class="lead">{{ section.settings.lead | escape }}</p>
+        {%- endif -%}
+      </div>
+      <p class="railhint" aria-hidden="true" hidden>Desliza para ver los tres →</p>
+      <div class="paths rail">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign default_file = ''
+            case block.settings.path
+              when 'etiqueta'
+                assign default_file = 'tueste-unity-sello-1840.png'
+              when '1840'
+                assign default_file = 'tueste-unity-formula.png'
+            endcase
+          -%}
+          <article class="path{% if block.settings.featured %} star{% endif %}" {{ block.shopify_attributes }}>
+            {%- if block.settings.image != blank -%}
+              <div class="art">{{ block.settings.image | image_url: width: 720 | image_tag: loading: 'lazy', widths: '360, 720', alt: block.settings.image.alt | default: block.settings.title }}</div>
+            {%- elsif default_file != blank -%}
+              <div class="art"><img src="{{ default_file | file_url }}" alt="{{ block.settings.image_alt | escape }}" loading="lazy" width="640" height="640"></div>
+            {%- else -%}
+              <div class="art bagart" id="pathBag" aria-hidden="true"></div>
+            {%- endif -%}
+            <div class="body">
+              <span class="pk">{{ block.settings.kicker | escape }}</span>
+              <h3>{{ block.settings.title | escape }}</h3>
+              <p>{{ block.settings.text | escape }}</p>
+              <ul>
+                {%- if block.settings.row1_label != blank -%}<li><span>{{ block.settings.row1_label | escape }}</span><span>{{ block.settings.row1_value | escape }}</span></li>{%- endif -%}
+                {%- if block.settings.row2_label != blank -%}<li><span>{{ block.settings.row2_label | escape }}</span><span>{{ block.settings.row2_value | escape }}</span></li>{%- endif -%}
+                {%- if block.settings.row3_label != blank -%}<li><span>{{ block.settings.row3_label | escape }}</span><span>{{ block.settings.row3_value | escape }}</span></li>{%- endif -%}
+                {%- if block.settings.row4_label != blank -%}<li><span>{{ block.settings.row4_label | escape }}</span><span>{{ block.settings.row4_value | escape }}</span></li>{%- endif -%}
+              </ul>
+              <button class="btn {% if block.settings.featured %}btn-primary{% else %}btn-secondary{% endif %}" type="button" data-go="{{ block.settings.path }}">{{ block.settings.button_label | escape }}</button>
+            </div>
+          </article>
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Unity · Tres caminos",
+  "tag": "section",
+  "class": "section-tueste-unity-caminos",
+  "limit": 1,
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Tres caminos · el mismo origen" },
+    { "type": "inline_richtext", "id": "heading", "label": "Título", "default": "Elige cómo quieres <em>contar tu café</em>" },
+    { "type": "textarea", "id": "lead", "label": "Descripción", "default": "Todos salen de la misma finca, con el mismo control de calidad y el respaldo de Tueste. Cambia cuánto de la bolsa, y de la taza, es tuyo." }
+  ],
+  "blocks": [
+    {
+      "type": "camino",
+      "name": "Camino",
+      "settings": [
+        {
+          "type": "select",
+          "id": "path",
+          "label": "Camino del taller",
+          "options": [
+            { "value": "etiqueta", "label": "Edición con etiqueta" },
+            { "value": "1840", "label": "Tu logo en la 1840" },
+            { "value": "formula", "label": "Fórmula propia" }
+          ],
+          "default": "1840",
+          "info": "Conecta el botón con el mismo camino en el taller."
+        },
+        { "type": "image_picker", "id": "image", "label": "Ilustración", "info": "Sin imagen: Edición con etiqueta usa tueste-unity-sello-1840.png, Tu logo en la 1840 usa tueste-unity-formula.png (Shopify Files) y Fórmula propia dibuja la bolsa ilustrada." },
+        { "type": "text", "id": "image_alt", "label": "Texto alternativo", "default": "Ilustración del camino" },
+        { "type": "text", "id": "kicker", "label": "Kicker", "default": "Tu logo en la 1840" },
+        { "type": "text", "id": "title", "label": "Título", "default": "Tu marca, nuestra bolsa insignia" },
+        { "type": "textarea", "id": "text", "label": "Texto", "default": "El café Aures 1840 de 89 puntos con tu identidad en la bolsa." },
+        { "type": "text", "id": "row1_label", "label": "Fila 1 · etiqueta", "default": "Café" },
+        { "type": "text", "id": "row1_value", "label": "Fila 1 · valor", "default": "Aures 1840 · 89 SCA" },
+        { "type": "text", "id": "row2_label", "label": "Fila 2 · etiqueta", "default": "Bolsa" },
+        { "type": "text", "id": "row2_value", "label": "Fila 2 · valor", "default": "340 g con válvula" },
+        { "type": "text", "id": "row3_label", "label": "Fila 3 · etiqueta", "default": "Mínimo" },
+        { "type": "text", "id": "row3_value", "label": "Fila 3 · valor", "default": "100 bolsas / mes" },
+        { "type": "text", "id": "row4_label", "label": "Fila 4 · etiqueta" },
+        { "type": "text", "id": "row4_value", "label": "Fila 4 · valor" },
+        { "type": "text", "id": "button_label", "label": "Botón", "default": "Armar mi línea" },
+        { "type": "checkbox", "id": "featured", "label": "Destacar este camino", "default": false }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    {
+      "name": "Tueste Unity · Tres caminos",
+      "blocks": [
+        { "type": "camino", "settings": { "path": "etiqueta", "image_alt": "Una mano sella la etiqueta de una bolsa de café", "kicker": "Edición con etiqueta", "title": "Tu sello, rápido", "text": "Café, bolsa y una etiqueta con tu marca. La forma más ágil de lanzar una edición propia para un evento, un regalo corporativo o una prueba de mercado.", "row1_label": "Café", "row1_value": "±86 SCA, molido", "row2_label": "Bolsa", "row2_value": "desde 200 g", "row3_label": "Mínimo", "row3_value": "50 bolsas", "button_label": "Armar esta edición" } },
+        { "type": "camino", "settings": { "path": "1840", "image_alt": "Catación: dos manos sostienen la cuchara sobre la taza, rodeadas de notas de sabor", "kicker": "Tu logo en la 1840", "title": "Tu marca, nuestra bolsa insignia", "text": "El café Aures 1840 de 89 puntos con tu identidad en la bolsa. Nosotros tostamos, empacamos y controlamos cada lote; tú vendes una línea propia sin montar infraestructura.", "row1_label": "Café", "row1_value": "Aures 1840 · 89 SCA", "row2_label": "Bolsa", "row2_value": "340 g con válvula", "row3_label": "Mínimo", "row3_value": "100 bolsas / mes", "row4_label": "Incluye", "row4_value": "playlist oficial de tu marca", "button_label": "Armar mi línea", "featured": true } },
+        { "type": "camino", "settings": { "path": "formula", "image_alt": "Bolsa ilustrada de fórmula propia", "kicker": "Fórmula propia", "title": "Tu blend, tu empaque", "text": "Te hacemos preguntas sobre tu concepto, tu público y tu atmósfera, y con eso diseñamos un perfil de taza que nadie más tiene. La bolsa se diseña completa, a tu estilo.", "row1_label": "Café", "row1_value": "más de 90 SCA", "row2_label": "Bolsa", "row2_value": "100 % personalizada", "row3_label": "Mínimo", "row3_value": "500 bolsas", "button_label": "Diseñar mi fórmula" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

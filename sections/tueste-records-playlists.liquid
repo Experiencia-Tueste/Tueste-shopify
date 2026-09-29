@@ -1,0 +1,99 @@
+{%- comment -%}
+  Tueste Records · Sigue nuestras playlists. Un bloque por playlist; las portadas por defecto son assets del tema.
+{%- endcomment -%}
+{{ 'tueste-records.css' | asset_url | stylesheet_tag }}
+
+<div class="tu-records" id="TuesteRecordsPlaylists-{{ section.id }}">
+  <section class="tr-section playlists" id="playlists" aria-labelledby="TuesteRecordsPlaylistsTitle-{{ section.id }}">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="eyebrow">{{ section.settings.kicker | escape }}</span><h2 id="TuesteRecordsPlaylistsTitle-{{ section.id }}">{{ section.settings.heading | escape }}</h2></div>
+        {%- if section.settings.more_label != blank and section.settings.more_url != blank -%}
+          <a class="more" href="{{ section.settings.more_url }}" target="_blank" rel="noopener">{{ section.settings.more_label | escape }}</a>
+        {%- endif -%}
+      </div>
+      <div class="pl-grid">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            case block.settings.default_cover
+              when 'tueste'
+                assign default_cover = 'tueste-universo-records.webp' | asset_url
+              when 'classics'
+                assign default_cover = 'tueste-universo-records.webp' | asset_url
+              else
+                assign default_cover = 'tueste-universo-records.webp' | asset_url
+            endcase
+          -%}
+          <article class="pl" {{ block.shopify_attributes }}>
+            <a href="{{ block.settings.url | default: '#' }}" target="_blank" rel="noopener" aria-label="Abrir {{ block.settings.title | escape }} en Spotify">
+              {%- if block.settings.cover != blank -%}
+                {{ block.settings.cover | image_url: width: 600 | image_tag: loading: 'lazy', widths: '300, 600', alt: block.settings.title }}
+              {%- else -%}
+                <img src="{{ default_cover }}" alt="Portada de la playlist {{ block.settings.title | escape }}" loading="lazy" width="300" height="300">
+              {%- endif -%}
+            </a>
+            <div class="body">
+              <small>{{ block.settings.label | escape }}{% if block.settings.label != blank %} · {% endif %}{{ forloop.index | prepend: '0' | slice: -2, 2 }}</small>
+              <h3>{{ block.settings.title | escape }}</h3>
+              <p>{{ block.settings.text | escape }}</p>
+              <a class="btn ghost" href="{{ block.settings.url | default: '#' }}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24zm5.5 17.3a.75.75 0 0 1-1 .25c-2.8-1.7-6.4-2.1-10.6-1.1a.75.75 0 1 1-.3-1.5c4.6-1 8.5-.6 11.7 1.3.3.2.4.7.2 1zm1.5-3.3a.9.9 0 0 1-1.3.3c-3.2-2-8.1-2.6-11.9-1.4a.9.9 0 1 1-.5-1.8c4.4-1.3 9.8-.7 13.5 1.6.4.3.5.9.2 1.3zm.1-3.4C15.3 8.3 9 8.1 5.3 9.2a1.1 1.1 0 1 1-.7-2.1c4.3-1.3 11.3-1 15.7 1.6a1.1 1.1 0 0 1-1.2 1.9z"/></svg>{{ block.settings.button_label | default: 'Seguir en Spotify' | escape }}</a>
+            </div>
+          </article>
+        {%- endfor -%}
+      </div>
+      {%- if section.settings.note != blank -%}<p class="plat-note">{{ section.settings.note | escape }}</p>{%- endif -%}
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Records · Playlists",
+  "tag": "section",
+  "class": "section-tueste-records-playlists",
+  "limit": 1,
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Playlists" },
+    { "type": "text", "id": "heading", "label": "Título", "default": "Sigue nuestras playlists" },
+    { "type": "text", "id": "more_label", "label": "Enlace de la cabecera", "default": "Abrir en Spotify" },
+    { "type": "text", "id": "more_url", "label": "URL del enlace", "default": "https://open.spotify.com/playlist/4yw3gSoVGBoODGiYhGcFLd?si=b459fc85d0da4979" },
+    { "type": "textarea", "id": "note", "label": "Nota al pie", "default": "Tres selecciones vivas del sello: se actualizan con cada sesión, cada lanzamiento y cada lote. Síguelas para que el café te llegue también por los oídos." }
+  ],
+  "blocks": [
+    {
+      "type": "playlist",
+      "name": "Playlist",
+      "settings": [
+        { "type": "image_picker", "id": "cover", "label": "Portada" },
+        {
+          "type": "select",
+          "id": "default_cover",
+          "label": "Portada por defecto (asset del tema)",
+          "options": [
+            { "value": "origen", "label": "Origen Frequencies" },
+            { "value": "tueste", "label": "#TUESTE" },
+            { "value": "classics", "label": "#TUESTE CLASSICS" }
+          ],
+          "default": "origen"
+        },
+        { "type": "text", "id": "label", "label": "Etiqueta", "default": "Playlist · Spotify" },
+        { "type": "text", "id": "title", "label": "Título", "default": "Origen Frequencies" },
+        { "type": "textarea", "id": "text", "label": "Descripción", "default": "Frecuencias creadas con los sonidos reales del cafetal." },
+        { "type": "text", "id": "url", "label": "URL de la playlist", "default": "https://open.spotify.com/playlist/4yw3gSoVGBoODGiYhGcFLd?si=b459fc85d0da4979" },
+        { "type": "text", "id": "button_label", "label": "Botón", "default": "Seguir en Spotify" }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Tueste Records · Playlists",
+      "blocks": [
+        { "type": "playlist", "settings": { "default_cover": "origen", "title": "Origen Frequencies", "text": "Frecuencias creadas con los sonidos reales del cafetal. Para escuchar mientras el café pasa.", "url": "https://open.spotify.com/playlist/4yw3gSoVGBoODGiYhGcFLd?si=b459fc85d0da4979" } },
+        { "type": "playlist", "settings": { "default_cover": "tueste", "title": "#TUESTE", "text": "Lo que suena en el tostador: la selección electrónica de la casa, siempre en movimiento.", "url": "https://open.spotify.com/playlist/3zl55ovP0Wr4mvhnUo0oEo?si=8b245dcc92d641a9" } },
+        { "type": "playlist", "settings": { "default_cover": "classics", "title": "#TUESTE CLASSICS", "text": "Los clásicos que nos trajeron hasta aquí, con Café Aures 1840 de fondo.", "url": "https://open.spotify.com/playlist/0H82655qMXbmOZHv1BC0jn?si=22c3bd050dea4452" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

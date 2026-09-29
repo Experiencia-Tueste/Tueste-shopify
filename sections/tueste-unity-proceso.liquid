@@ -1,0 +1,78 @@
+{%- comment -%}
+  Tueste Unity · Cómo trabajamos (pasos) + condiciones.
+{%- endcomment -%}
+{{ 'tueste-unity.css' | asset_url | stylesheet_tag }}
+
+<div class="tu-unity" id="TuesteUnityProceso-{{ section.id }}">
+  <section class="sec" id="proceso" aria-labelledby="TuesteUnityProcesoTitle-{{ section.id }}">
+    <div class="wrap">
+      <div class="head">
+        <span class="kicker">{{ section.settings.kicker | escape }}</span>
+        <h2 class="disp" id="TuesteUnityProcesoTitle-{{ section.id }}">{{ section.settings.heading }}</h2>
+      </div>
+      {%- assign steps = section.blocks | where: 'type', 'paso' -%}
+      {%- assign terms = section.blocks | where: 'type', 'condicion' -%}
+      {%- if steps.size > 0 -%}
+        <div class="flow">
+          {%- for block in steps -%}
+            <div {{ block.shopify_attributes }}><span class="fn">{{ forloop.index }}</span><span class="when">{{ block.settings.when | escape }}</span><h3>{{ block.settings.title | escape }}</h3><p>{{ block.settings.text | escape }}</p></div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+      {%- if terms.size > 0 -%}
+        <div class="terms">
+          {%- for block in terms -%}
+            <div {{ block.shopify_attributes }}><b>{{ block.settings.title | escape }}</b><span>{{ block.settings.text | escape }}</span></div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Unity · Cómo trabajamos",
+  "tag": "section",
+  "class": "section-tueste-unity-proceso",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Cómo trabajamos" },
+    { "type": "inline_richtext", "id": "heading", "label": "Título", "default": "Del brief a la <em>primera taza</em>" }
+  ],
+  "blocks": [
+    {
+      "type": "paso",
+      "name": "Paso",
+      "settings": [
+        { "type": "text", "id": "when", "label": "Cuándo", "default": "Semana 1" },
+        { "type": "text", "id": "title", "label": "Título", "default": "El brief" },
+        { "type": "textarea", "id": "text", "label": "Texto", "default": "Concepto, público y atmósfera de tu marca." }
+      ]
+    },
+    {
+      "type": "condicion",
+      "name": "Condición",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Título", "default": "Pago" },
+        { "type": "text", "id": "text", "label": "Texto", "default": "70 % para iniciar producción, saldo contra entrega." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tueste Unity · Cómo trabajamos",
+      "blocks": [
+        { "type": "paso", "settings": { "when": "Semana 1", "title": "El brief", "text": "Concepto, público y atmósfera de tu marca. Elegimos juntos el camino." } },
+        { "type": "paso", "settings": { "when": "Semana 1–2", "title": "La taza", "text": "Curaduría del perfil y muestras para catar. En fórmula propia, diseñamos el blend." } },
+        { "type": "paso", "settings": { "when": "Semana 2–3", "title": "Bolsa y sonido", "text": "Adaptamos tu identidad al empaque, preparamos impresión y componemos tu firma sonora." } },
+        { "type": "paso", "settings": { "when": "15 días por pedido", "title": "Tueste al momento", "text": "Cada pedido se tuesta cuando se produce, para que llegue fresco." } },
+        { "type": "paso", "settings": { "when": "Lanzamiento", "title": "Tu café en el mundo", "text": "Presencia en tueste.co, en las redes de Tueste y en nuestro contenido." } },
+        { "type": "condicion", "settings": { "title": "Pago", "text": "70 % para iniciar producción, saldo contra entrega." } },
+        { "type": "condicion", "settings": { "title": "Despacho", "text": "15 días desde la confirmación de cada pedido." } },
+        { "type": "condicion", "settings": { "title": "Envío", "text": "Por cuenta del cliente, a todo el país." } },
+        { "type": "condicion", "settings": { "title": "Garantía", "text": "Reponemos bolsas con defecto reportadas el día de recibo." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

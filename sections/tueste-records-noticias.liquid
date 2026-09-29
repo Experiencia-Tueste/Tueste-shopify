@@ -1,0 +1,105 @@
+{%- comment -%}
+  Tueste Records · Noticias / En lo que estamos. Un bloque "destacada" + bloques "nota".
+  Los textos por defecto son de ejemplo (vienen del prototipo): reemplazar por noticias reales.
+{%- endcomment -%}
+{{ 'tueste-records.css' | asset_url | stylesheet_tag }}
+
+{%- assign featured = section.blocks | where: 'type', 'destacada' | first -%}
+{%- assign notes = section.blocks | where: 'type', 'nota' -%}
+
+<div class="tu-records" id="TuesteRecordsNoticias-{{ section.id }}" data-tueste-records>
+  <section class="tr-section" id="noticias" aria-labelledby="TuesteRecordsNoticiasTitle-{{ section.id }}">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="eyebrow">{{ section.settings.kicker | escape }}</span><h2 id="TuesteRecordsNoticiasTitle-{{ section.id }}">{{ section.settings.heading | escape }}</h2></div>
+        {%- if section.settings.more_label != blank -%}<a class="more" href="{{ section.settings.more_url | default: '#suscribete' }}">{{ section.settings.more_label | escape }}</a>{%- endif -%}
+      </div>
+      <div class="news">
+        {%- if featured -%}
+          <article class="news-main" data-seed="{{ featured.settings.seed | default: 99 }}" {{ featured.shopify_attributes }}>
+            <div class="cover">
+              {%- if featured.settings.image != blank -%}
+                {{ featured.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '600, 1200', alt: featured.settings.image.alt | default: featured.settings.title }}
+              {%- else -%}
+                <canvas data-gen="dense" aria-hidden="true"></canvas>
+              {%- endif -%}
+            </div>
+            {%- if featured.settings.kind != blank -%}<span class="kind">{{ featured.settings.kind | escape }}</span>{%- endif -%}
+            <h3>{{ featured.settings.title | escape }}</h3>
+            <p>{{ featured.settings.text | escape }}</p>
+            {%- if featured.settings.link_label != blank -%}
+              <a class="more" href="{{ featured.settings.link_url | default: '#' }}">{{ featured.settings.link_label | escape }}</a>
+            {%- endif -%}
+          </article>
+        {%- endif -%}
+        <div class="news-list">
+          {%- for block in notes -%}
+            <div class="news-item" {{ block.shopify_attributes }}>
+              <time>{{ block.settings.date | escape }}</time>
+              <div>
+                {%- if block.settings.kind != blank -%}<span class="kind">{{ block.settings.kind | escape }}</span>{%- endif -%}
+                <h4>{{ block.settings.title | escape }}</h4>
+                <p>{{ block.settings.text | escape }}</p>
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script src="{{ 'tueste-records.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Records · Noticias",
+  "tag": "section",
+  "class": "section-tueste-records-noticias",
+  "limit": 1,
+  "settings": [
+    { "type": "paragraph", "content": "Los textos por defecto son de ejemplo (vienen del prototipo). Reemplázalos por noticias reales del sello." },
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Noticias" },
+    { "type": "text", "id": "heading", "label": "Título", "default": "En lo que estamos" },
+    { "type": "text", "id": "more_label", "label": "Enlace de la cabecera", "default": "Recibir novedades" },
+    { "type": "text", "id": "more_url", "label": "URL del enlace", "default": "#suscribete" }
+  ],
+  "blocks": [
+    {
+      "type": "destacada",
+      "name": "Nota destacada",
+      "limit": 1,
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Imagen" },
+        { "type": "number", "id": "seed", "label": "Semilla del arte generativo" },
+        { "type": "text", "id": "kind", "label": "Tipo", "default": "Entrevista" },
+        { "type": "text", "id": "title", "label": "Título", "default": "«El café y el sonido se tuestan igual: con paciencia»" },
+        { "type": "textarea", "id": "text", "label": "Texto", "default": "Conversación sobre grabar en la finca, trabajar con ruido de fondo y por qué el sello nace dentro de una tostadora." },
+        { "type": "text", "id": "link_label", "label": "Enlace", "default": "Leer la entrevista" },
+        { "type": "url", "id": "link_url", "label": "URL del enlace" }
+      ]
+    },
+    {
+      "type": "nota",
+      "name": "Nota",
+      "settings": [
+        { "type": "text", "id": "date", "label": "Fecha", "default": "18 sep 2026" },
+        { "type": "text", "id": "kind", "label": "Tipo", "default": "Sello" },
+        { "type": "text", "id": "title", "label": "Título", "default": "Tueste Records abre convocatoria de demos" },
+        { "type": "textarea", "id": "text", "label": "Texto", "default": "Buscamos proyectos de la región." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tueste Records · Noticias",
+      "blocks": [
+        { "type": "destacada", "settings": { "seed": 99, "kind": "Entrevista", "title": "«El café y el sonido se tuestan igual: con paciencia»", "text": "Conversación sobre grabar en la finca, trabajar con ruido de fondo y por qué el sello nace dentro de una tostadora.", "link_label": "Leer la entrevista" } },
+        { "type": "nota", "settings": { "date": "18 sep 2026", "kind": "Estudio", "title": "Sesión trilladora 001 ya está grabada", "text": "Dos horas de toma única. Estamos mezclando; sale primero para suscriptores." } },
+        { "type": "nota", "settings": { "date": "12 sep 2026", "kind": "Sello", "title": "Tueste Records abre convocatoria de demos", "text": "Buscamos proyectos de la región. Escribe a demos@tueste.co con dos piezas y una línea sobre ti." } },
+        { "type": "nota", "settings": { "date": "05 sep 2026", "kind": "Contenido", "title": "Serie: frecuencias de temporada", "text": "Grabaciones de campo de la finca en cada etapa del cultivo. Primer capítulo: la floración." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

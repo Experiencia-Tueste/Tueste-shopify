@@ -1,0 +1,77 @@
+{%- comment -%}
+  Tueste Tree · Preguntas frecuentes (acordeón nativo con <details>).
+{%- endcomment -%}
+{{ 'tueste-tree-extras.css' | asset_url | stylesheet_tag }}
+
+<section class="ttx ttx-faq" id="TuesteTreeFaq-{{ section.id }}" aria-labelledby="TuesteTreeFaqTitle-{{ section.id }}">
+  <div class="ttx-wrap">
+    <div class="ttx-head">
+      <p class="ttx-kicker">{{ section.settings.kicker | escape }}</p>
+      <h2 id="TuesteTreeFaqTitle-{{ section.id }}">{{ section.settings.heading }}</h2>
+    </div>
+
+    <div class="faq">
+      {%- for block in section.blocks -%}
+        <details {% if block.settings.open %}open{% endif %} {{ block.shopify_attributes }}>
+          <summary>{{ block.settings.question | escape }}</summary>
+          <div class="a">{{ block.settings.answer }}</div>
+        </details>
+      {%- endfor -%}
+    </div>
+
+    {%- if section.settings.cta_label != blank or section.settings.link_label != blank -%}
+      <div class="faq-cta">
+        {%- if section.settings.cta_label != blank -%}
+          <a class="ttx-btn" href="{{ section.settings.cta_link | default: '#TuesteTree' }}">{{ section.settings.cta_label | escape }} <span aria-hidden="true">→</span></a>
+        {%- endif -%}
+        {%- if section.settings.link_label != blank and section.settings.link_url != blank -%}
+          <a class="ttx-link" href="{{ section.settings.link_url }}" target="_blank" rel="noopener">{{ section.settings.link_label | escape }}</a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Tree · Preguntas",
+  "tag": "section",
+  "class": "section-tueste-tree-faq",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Preguntas frecuentes" },
+    { "type": "inline_richtext", "id": "heading", "label": "Título", "default": "Lo que todos preguntan <em>antes de sembrar.</em>" },
+    { "type": "text", "id": "cta_label", "label": "Botón principal", "default": "Sembrar mi árbol" },
+    { "type": "url", "id": "cta_link", "label": "Enlace del botón", "info": "Por defecto sube al inicio de la landing (#TuesteTree)." },
+    { "type": "text", "id": "link_label", "label": "Enlace secundario", "default": "Hacer otra pregunta por WhatsApp" },
+    { "type": "text", "id": "link_url", "label": "URL del enlace secundario", "default": "https://wa.me/573102682677?text=Hola%2C%20tengo%20una%20pregunta%20sobre%20Tueste%20Tree" }
+  ],
+  "blocks": [
+    {
+      "type": "pregunta",
+      "name": "Pregunta",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Pregunta", "default": "¿Qué recibo cuando siembro un árbol?" },
+        { "type": "richtext", "id": "answer", "label": "Respuesta", "default": "<p>Tu Certificado de Tradición numerado en 48 horas y, a lo largo del año, los cuatro capítulos: la primera lluvia, la floración, la cosecha y la taza.</p>" },
+        { "type": "checkbox", "id": "open", "label": "Abierta por defecto", "default": false }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tueste Tree · Preguntas",
+      "blocks": [
+        { "type": "pregunta", "settings": { "open": true, "question": "¿Qué recibo cuando siembro un árbol?", "answer": "<p>Tu Certificado de Tradición numerado en 48 horas, la primera foto o video de tu lote en el primer mes y, a lo largo del año, los cuatro capítulos: la primera lluvia, la floración, la cosecha y la taza. Al final recibes café del lote donde vive tu árbol con acceso preferencial, el balance del año y la opción de renovar a precio de fundador.</p><p>Además recibes tu insignia digital (Semilla, Plata, Oro u Holográfica) según cuántos árboles siembres.</p>" } },
+        { "type": "pregunta", "settings": { "question": "¿Cuánto cuesta y cuántos árboles puedo sembrar?", "answer": "<p>Cada árbol fundacional cuesta USD 100. En línea puedes sembrar de 1 a 30 árboles en una misma adopción. Si quieres más de 30, o sembrar como empresa, hablas directamente con nuestro agente por WhatsApp.</p>" } },
+        { "type": "pregunta", "settings": { "question": "¿Es una inversión? ¿Recibo dinero de vuelta?", "answer": "<p>No. Tueste Tree es una adopción simbólica y cultural: lo que recibes es café, seguimiento y un lugar en el origen, no un rendimiento económico. Esta página no constituye una oferta pública de valores ni una promesa de rentabilidad. La figura de socio fundador está sujeta a la estructuración legal correspondiente conforme a la normativa colombiana.</p>" } },
+        { "type": "pregunta", "settings": { "question": "¿El café que recibo es de mi árbol exacto?", "answer": "<p>Es el café del lote donde vive tu árbol (o un beneficio equivalente). Un solo cafeto produce muy poco y su cosecha varía con el clima, así que prometemos el lote, no la planta: así la promesa se cumple siempre.</p>" } },
+        { "type": "pregunta", "settings": { "question": "¿Dónde queda mi árbol? ¿Puedo visitarlo?", "answer": "<p>Los primeros árboles se siembran en la Finca Tres Esquinas (vereda Naranjal Bajo, Circasia, Quindío) y en la Finca La Esperanza (vereda Aures, Caicedonia, Valle del Cauca). Tu certificado indica el número y la variedad de tu árbol. Las visitas se coordinan con nosotros: escríbenos por WhatsApp o participa en un Ritual de adopción en finca.</p>" } },
+        { "type": "pregunta", "settings": { "question": "¿Qué pasa si mi árbol se enferma o no prende?", "answer": "<p>Lo reponemos dentro del mismo lote y tu número de árbol se conserva. El cuidado del cafetal está a cargo de las caficultoras aliadas, con acompañamiento técnico de Tueste.</p>" } },
+        { "type": "pregunta", "settings": { "question": "¿Cuánto dura la adopción?", "answer": "<p>Un año completo de seguimiento desde la siembra. Al cerrar el ciclo recibes el balance y la invitación a renovar a precio de fundador; el árbol sigue en la tierra y tu nombre con él.</p>" } },
+        { "type": "pregunta", "settings": { "question": "¿Puedo regalar un árbol o sembrar a nombre de otra persona?", "answer": "<p>Sí. Al sembrar escribes el nombre del guardián y, si quieres, el nombre del árbol; el certificado sale a ese nombre. Para regalos corporativos o ediciones de marca, Tueste Unity arma la propuesta a la medida.</p>" } },
+        { "type": "pregunta", "settings": { "question": "¿Cómo ayuda mi árbol al territorio?", "answer": "<p>Cada adopción reforesta laderas del Eje Cafetero con café bajo sombra, sostiene a familias caficultoras aliadas que participan del valor del proyecto y ayuda a que el café de origen se pague mejor. En una siguiente fase buscamos medir el carbono que captura el cafetal para emitir bonos de carbono.</p>" } },
+        { "type": "pregunta", "settings": { "question": "¿Qué son las insignias?", "answer": "<p>Son la marca digital de tu adopción y cambian según cuántos árboles siembras: Semilla (1 a 9), Plata (10 a 19), Oro (20 a 29) y Holográfica (30 o más, socio fundador). Viajan contigo en el certificado y en tu perfil de guardián.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

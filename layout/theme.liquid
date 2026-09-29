@@ -72,6 +72,7 @@
     -%}
 
     {%- if template.suffix == 'tienda-editorial' or template.suffix == 'tueste-tree' or template.suffix == 'tueste-unity' or template.suffix == 'tueste-records' or template.suffix == 'verificar' or template.suffix == 'certificado-arbol' or request.page_type == 'index' -%}
+      {%- render 'tueste-fonts' -%}
       <style>
         @font-face {
           font-family: "Tueste Typeface";

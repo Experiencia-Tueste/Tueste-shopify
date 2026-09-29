@@ -1,0 +1,48 @@
+{%- comment -%}
+  Tueste Unity · Cierre con logo y contactos (taller, WhatsApp, correo).
+{%- endcomment -%}
+{{ 'tueste-unity.css' | asset_url | stylesheet_tag }}
+
+<div class="tu-unity" id="TuesteUnityCierre-{{ section.id }}">
+  <section class="sec" aria-labelledby="TuesteUnityCierreTitle-{{ section.id }}">
+    <div class="wrap close">
+      {%- if section.settings.logo != blank -%}
+        {{ section.settings.logo | image_url: width: 400 | image_tag: loading: 'lazy', widths: '200, 400', alt: 'Tueste Unity', style: 'height:48px;width:auto' }}
+      {%- else -%}
+        <img src="{{ 'tueste-unity-logo.png' | asset_url }}" alt="Tueste Unity" width="700" height="245" style="height:48px;width:auto" loading="lazy">
+      {%- endif -%}
+      <h2 class="disp" id="TuesteUnityCierreTitle-{{ section.id }}">{{ section.settings.heading }}</h2>
+      <div class="contacts">
+        {%- if section.settings.button_label != blank -%}
+          <a class="btn btn-primary" href="{{ section.settings.button_link | default: '#taller' }}">{{ section.settings.button_label | escape }}</a>
+        {%- endif -%}
+        {%- if section.settings.whatsapp_label != blank and section.settings.whatsapp_url != blank -%}
+          <a class="btn btn-secondary" href="{{ section.settings.whatsapp_url }}" target="_blank" rel="noopener">{{ section.settings.whatsapp_label | escape }}</a>
+        {%- endif -%}
+        {%- if section.settings.mail != blank -%}
+          <a class="btn btn-secondary" href="mailto:{{ section.settings.mail | escape }}">{{ section.settings.mail | escape }}</a>
+        {%- endif -%}
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Unity · Cierre",
+  "tag": "section",
+  "class": "section-tueste-unity-cierre",
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Logo", "info": "Por defecto: logo Tueste Unity del tema." },
+    { "type": "inline_richtext", "id": "heading", "label": "Título", "default": "Hagamos juntos un café <em>que suene a tu marca</em>" },
+    { "type": "text", "id": "button_label", "label": "Botón principal", "default": "Armar mi café" },
+    { "type": "url", "id": "button_link", "label": "Enlace del botón", "info": "Por defecto #taller." },
+    { "type": "text", "id": "whatsapp_label", "label": "WhatsApp · texto", "default": "WhatsApp +57 310 269 0145" },
+    { "type": "text", "id": "whatsapp_url", "label": "WhatsApp · URL", "default": "https://wa.me/573102690145?text=Hola%20Tueste%20Unity%2C%20quiero%20vender%20mi%20propio%20caf%C3%A9" },
+    { "type": "text", "id": "mail", "label": "Correo", "default": "tuesteunity@tueste.co" }
+  ],
+  "presets": [
+    { "name": "Tueste Unity · Cierre" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,112 @@
+{%- comment -%}
+  Tueste Records · Hero editorial tipo slider. Cada bloque es una diapositiva.
+  Sin imagen, la diapositiva pinta el arte generativo monocromo (canvas) del original.
+{%- endcomment -%}
+{{ 'tueste-records.css' | asset_url | stylesheet_tag }}
+
+<div class="tu-records" id="TuesteRecordsHero-{{ section.id }}" data-tueste-records data-autoplay="{{ section.settings.autoplay_speed | times: 1000 }}">
+  <section class="hero" id="top" aria-roledescription="carrusel" aria-label="{{ section.settings.aria_label | escape }}">
+    <div class="wrap topline">
+      <div class="badge">
+        {%- if section.settings.logo != blank -%}
+          {{ section.settings.logo | image_url: width: 400 | image_tag: loading: 'eager', widths: '200, 400', alt: 'Tueste Records', class: 'brand' }}
+        {%- else -%}
+          <img class="brand" src="{{ 'tueste-records-logo.webp' | asset_url }}" alt="Tueste Records" width="1198" height="410">
+        {%- endif -%}
+      </div>
+      {%- if section.settings.backed_label != blank -%}
+        <div class="badge"><span>{{ section.settings.backed_label | escape }}</span><strong class="backed-mark">Logik Pro</strong></div>
+      {%- endif -%}
+    </div>
+
+    <div class="slides">
+      {%- for block in section.blocks -%}
+        <article class="slide{% if forloop.first %} on{% endif %}" data-slide data-seed="{{ block.settings.seed | default: forloop.index | times: 7 }}" aria-hidden="{% if forloop.first %}false{% else %}true{% endif %}" {{ block.shopify_attributes }}>
+          <div class="art">
+            {%- if block.settings.image != blank -%}
+              {{ block.settings.image | image_url: width: 1800 | image_tag: loading: 'lazy', widths: '800, 1200, 1800', alt: block.settings.image.alt | default: block.settings.title }}
+            {%- else -%}
+              <canvas data-gen="dense" aria-hidden="true"></canvas>
+            {%- endif -%}
+          </div>
+          <div class="wrap copy">
+            <div class="meta">
+              {%- if block.settings.eyebrow != blank -%}<span class="eyebrow live">{{ block.settings.eyebrow | escape }}</span>{%- endif -%}
+              {%- if block.settings.tag_hot != blank -%}<span class="tag hot">{{ block.settings.tag_hot | escape }}</span>{%- endif -%}
+              {%- if block.settings.tag != blank -%}<span class="tag">{{ block.settings.tag | escape }}</span>{%- endif -%}
+            </div>
+            {%- if forloop.first -%}
+              <h1>{{ block.settings.title | escape }}</h1>
+            {%- else -%}
+              <h2 class="slide-title">{{ block.settings.title | escape }}</h2>
+            {%- endif -%}
+            {%- if block.settings.text != blank -%}<p>{{ block.settings.text | escape }}</p>{%- endif -%}
+            <div class="btns">
+              {%- if block.settings.button_label != blank -%}
+                <a class="btn" href="{{ block.settings.button_url | default: '#lanzamientos' }}"{% if block.settings.button_url contains 'http' %} target="_blank" rel="noopener"{% endif %}>{{ block.settings.button_label | escape }}</a>
+              {%- endif -%}
+              {%- if block.settings.button2_label != blank -%}
+                <a class="btn ghost" href="{{ block.settings.button2_url | default: '#lanzamientos' }}"{% if block.settings.button2_url contains 'http' %} target="_blank" rel="noopener"{% endif %}>{{ block.settings.button2_label | escape }}</a>
+              {%- endif -%}
+            </div>
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+    {%- if section.blocks.size > 1 -%}
+      <div class="slider-ui">
+        <span data-counter>01 / {{ section.blocks.size | prepend: '0' | slice: -2, 2 }}</span>
+        <div class="dots" data-dots role="tablist"></div>
+        <button class="arrow" type="button" data-prev aria-label="Anterior">←</button>
+        <button class="arrow" type="button" data-next aria-label="Siguiente">→</button>
+      </div>
+    {%- endif -%}
+  </section>
+</div>
+
+<script src="{{ 'tueste-records.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Records · Hero",
+  "tag": "section",
+  "class": "section-tueste-records-hero",
+  "limit": 1,
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Logo del sello", "info": "Por defecto: logo Tueste Records del tema." },
+    { "type": "text", "id": "backed_label", "label": "Texto de respaldo", "default": "Respaldado por", "info": "Se muestra junto al logo de Logik Pro." },
+    { "type": "text", "id": "aria_label", "label": "Nombre accesible del carrusel", "default": "Lo que se viene" },
+    { "type": "range", "id": "autoplay_speed", "label": "Cambio automático (segundos)", "min": 0, "max": 15, "step": 1, "default": 7, "info": "0 desactiva el cambio automático." }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Diapositiva",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Imagen", "info": "Sin imagen se pinta el arte generativo del sello." },
+        { "type": "number", "id": "seed", "label": "Semilla del arte generativo", "info": "Cambia el dibujo cuando no hay imagen." },
+        { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Ya disponible" },
+        { "type": "text", "id": "tag_hot", "label": "Etiqueta destacada", "default": "" },
+        { "type": "text", "id": "tag", "label": "Etiqueta", "default": "Álbum" },
+        { "type": "text", "id": "title", "label": "Título", "default": "Coffee in Frequencies" },
+        { "type": "textarea", "id": "text", "label": "Texto", "default": "" },
+        { "type": "text", "id": "button_label", "label": "Botón principal", "default": "Escuchar" },
+        { "type": "text", "id": "button_url", "label": "URL del botón principal", "default": "#lanzamientos" },
+        { "type": "text", "id": "button2_label", "label": "Botón secundario", "default": "Ver catálogo" },
+        { "type": "text", "id": "button2_url", "label": "URL del botón secundario", "default": "#lanzamientos" }
+      ]
+    }
+  ],
+  "max_blocks": 5,
+  "presets": [
+    {
+      "name": "Tueste Records · Hero",
+      "blocks": [
+        { "type": "slide", "settings": { "seed": 7, "eyebrow": "Ya disponible", "tag_hot": "Tueste Sessions 001", "tag": "Álbum · Origen Tostado", "title": "Coffee in Frequencies", "text": "Diez frecuencias, de 60 Hz al infinito, que recorren el viaje de la semilla de café desde el silencio hasta la expansión. Más que música: un paisaje sonoro grabado con los sonidos reales del café.", "button_label": "Escuchar en Spotify", "button_url": "https://open.spotify.com/album/3QORX6JtWw22nwDNMy9jLp", "button2_label": "Ver catálogo", "button2_url": "#lanzamientos" } },
+        { "type": "slide", "settings": { "seed": 21, "eyebrow": "Ya disponible", "tag": "Álbum · Logik Pro", "title": "Tueste Selection", "text": "Una obra hecha no solo para escucharse, sino para sentirse.", "button_label": "Escuchar en Spotify", "button_url": "https://open.spotify.com/album/33rpXDbvGX7XtJbfzXvxct", "button2_label": "Dónde escuchar", "button2_url": "#plataformas" } },
+        { "type": "slide", "settings": { "seed": 42, "eyebrow": "Playlists", "tag": "Spotify", "title": "Sigue nuestras playlists", "text": "Origen Frequencies, #TUESTE y #TUESTE CLASSICS: tres selecciones vivas del sello que se actualizan con cada sesión, cada lanzamiento y cada lote.", "button_label": "Ver las playlists", "button_url": "#playlists", "button2_label": "Lista del sello", "button2_url": "#suscribete" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

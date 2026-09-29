@@ -1,0 +1,102 @@
+{%- comment -%}
+  Tueste Tree · Sentido social: reforestación, alianzas con caficultores, valoración del café y bonos de carbono (futuro).
+{%- endcomment -%}
+{{ 'tueste-tree-extras.css' | asset_url | stylesheet_tag }}
+
+<section class="ttx ttx-impacto" id="TuesteTreeImpacto-{{ section.id }}" aria-labelledby="TuesteTreeImpactoTitle-{{ section.id }}">
+  <div class="ttx-wrap">
+    <div class="ttx-head">
+      <p class="ttx-kicker">{{ section.settings.kicker | escape }}</p>
+      <h2 id="TuesteTreeImpactoTitle-{{ section.id }}">{{ section.settings.heading }}</h2>
+      {%- if section.settings.lead != blank -%}
+        <p class="ttx-lead">{{ section.settings.lead | escape }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="pillars">
+      {%- for block in section.blocks -%}
+        <article class="pillar{% if block.settings.future %} future{% endif %}" {{ block.shopify_attributes }}>
+          {%- if block.settings.future and block.settings.future_label != blank -%}
+            <span class="soon">{{ block.settings.future_label | escape }}</span>
+          {%- endif -%}
+          <div class="ico" aria-hidden="true">
+            {%- case block.settings.icon -%}
+              {%- when 'hands' -%}
+                <svg viewBox="0 0 24 24"><path d="M3 12l3-3 4 4"/><path d="M21 12l-3-3-4 4"/><path d="M6 9v7a4 4 0 0 0 4 4h4a4 4 0 0 0 4-4V9"/><path d="M10 15h4"/></svg>
+              {%- when 'chart' -%}
+                <svg viewBox="0 0 24 24"><path d="M4 19h16"/><path d="M6 15l4-5 3 3 5-7"/><path d="M15 6h3v3"/></svg>
+              {%- when 'leaf' -%}
+                <svg viewBox="0 0 24 24"><path d="M5 19C5 9 11 5 20 5c0 9-4 15-14 15"/><path d="M5 19c3-5 6-8 10-10"/></svg>
+              {%- else -%}
+                <svg viewBox="0 0 24 24"><path d="M12 22v-7"/><path d="M7 15h10l-2.4-4H15l-3-5-3 5h.4L7 15z"/><path d="M5 22h14"/></svg>
+            {%- endcase -%}
+          </div>
+          {%- if block.settings.label != blank -%}
+            <div class="cn">{{ block.settings.label | escape }}</div>
+          {%- endif -%}
+          <h3>{{ block.settings.title | escape }}</h3>
+          <p>{{ block.settings.text | escape }}</p>
+        </article>
+      {%- endfor -%}
+    </div>
+
+    {%- if section.settings.figure != blank -%}
+      <div class="impact-note">
+        <b>{{ section.settings.figure | escape }}</b>
+        <p>{{ section.settings.figure_text | escape }}</p>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Tree · Sentido social",
+  "tag": "section",
+  "class": "section-tueste-tree-impacto",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Sentido social · por qué sembramos" },
+    { "type": "inline_richtext", "id": "heading", "label": "Título", "default": "Cada árbol hace más que café. <em>Hace territorio.</em>" },
+    { "type": "textarea", "id": "lead", "label": "Descripción", "default": "Tueste Tree nace en el Eje Cafetero colombiano con una idea simple: que sembrar café vuelva a ser un buen negocio para quien lo cultiva y una buena noticia para la montaña. Tu árbol es parte de eso." },
+    { "type": "text", "id": "figure", "label": "Cifra destacada", "default": "30.000" },
+    { "type": "textarea", "id": "figure_text", "label": "Texto de la cifra", "default": "árboles en la primera fase del proyecto, sembrados en dos fincas del Eje Cafetero —Circasia, Quindío y Caicedonia, Valle del Cauca— con dos caficultoras al frente. Los primeros 10.200 son fundacionales: quienes entran ahora cofundan el origen." }
+  ],
+  "blocks": [
+    {
+      "type": "pilar",
+      "name": "Pilar",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icono",
+          "options": [
+            { "value": "tree", "label": "Árbol" },
+            { "value": "hands", "label": "Manos" },
+            { "value": "chart", "label": "Gráfica" },
+            { "value": "leaf", "label": "Hoja" }
+          ],
+          "default": "tree"
+        },
+        { "type": "text", "id": "label", "label": "Etiqueta", "default": "01 · Reforestación" },
+        { "type": "text", "id": "title", "label": "Título", "default": "Reforestamos el Eje Cafetero" },
+        { "type": "textarea", "id": "text", "label": "Texto", "default": "Cada adopción siembra un cafeto nuevo en laderas que estaban perdiendo cobertura." },
+        { "type": "checkbox", "id": "future", "label": "Es un paso futuro", "default": false },
+        { "type": "text", "id": "future_label", "label": "Etiqueta de futuro", "default": "En camino" }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Tueste Tree · Sentido social",
+      "blocks": [
+        { "type": "pilar", "settings": { "icon": "tree", "label": "01 · Reforestación", "title": "Reforestamos el Eje Cafetero", "text": "Cada adopción siembra un cafeto nuevo en laderas que estaban perdiendo cobertura. Café bajo sombra, suelos que se sostienen y agua que vuelve a las quebradas del Quindío." } },
+        { "type": "pilar", "settings": { "icon": "hands", "label": "02 · Alianzas", "title": "Alianzas con pequeños caficultores", "text": "No compramos tierra: trabajamos con familias caficultoras que ponen su finca y su saber. La siembra, el cuidado y la cosecha se hacen con ellas, y ellas participan del valor que genera cada árbol." } },
+        { "type": "pilar", "settings": { "icon": "chart", "label": "03 · Valor justo", "title": "Un café mejor valorado", "text": "Cuando el café tiene nombre, número y una historia que se puede seguir, deja de ser un commodity. Buscamos que el mercado pague lo que vale un origen cuidado, y que ese valor llegue a la finca." } },
+        { "type": "pilar", "settings": { "icon": "leaf", "label": "04 · Futuro", "title": "Bonos de carbono", "text": "Un cafetal que crece captura carbono. El siguiente paso del proyecto es medirlo y certificarlo para emitir bonos de carbono, con la estructuración legal y técnica que eso requiere.", "future": true, "future_label": "En camino" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

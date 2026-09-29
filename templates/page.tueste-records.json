@@ -1,144 +1,385 @@
 {
   "sections": {
-    "tueste_records": {
-      "type": "tueste-records",
-      "blocks": {
-        "release_1": {
-          "type": "release",
-          "settings": {
-            "catalog_number": "TR-004",
-            "type": "ep",
-            "soon": true,
-            "year": "2026",
-            "status": "Próximamente",
-            "title": "Cañón del Barbas EP",
-            "artist": "Tueste Records",
-            "description": "Cuatro piezas grabadas entre la niebla del cañón y la trilladora. Frecuencias de campo, bajo profundo y un tueste lento.",
-            "art_label": "Cañón del\nBarbas",
-            "color": "#2b2118",
-            "link_label_1": "Spotify",
-            "link_url_1": "https://open.spotify.com",
-            "link_label_2": "Apple Music",
-            "link_url_2": "https://music.apple.com",
-            "link_label_3": "YouTube",
-            "link_url_3": "https://music.youtube.com"
-          }
-        },
-        "release_2": {
-          "type": "release",
-          "settings": {
-            "catalog_number": "TR-003",
-            "type": "single",
-            "soon": false,
-            "year": "2026",
-            "status": "Disponible",
-            "title": "Primera lluvia",
-            "artist": "Tueste Records",
-            "description": "El single que abre la temporada. Disponible en todas las plataformas digitales desde hoy.",
-            "art_label": "Primera\nLluvia",
-            "color": "#1c2b33",
-            "link_label_1": "Spotify",
-            "link_url_1": "https://open.spotify.com",
-            "link_label_2": "Apple Music",
-            "link_url_2": "https://music.apple.com",
-            "link_label_3": "YouTube",
-            "link_url_3": "https://music.youtube.com"
-          }
-        },
-        "release_3": {
-          "type": "release",
-          "settings": {
-            "catalog_number": "TR-002",
-            "type": "single",
-            "soon": false,
-            "year": "2026",
-            "status": "Disponible",
-            "title": "Frecuencias de temporada · Floración",
-            "artist": "Serie de campo",
-            "description": "Grabaciones de campo de la finca en cada etapa del cultivo. Primer capítulo: la floración.",
-            "art_label": "Temporada\nFloración",
-            "color": "#21301f",
-            "link_label_1": "Spotify",
-            "link_url_1": "https://open.spotify.com",
-            "link_label_2": "Apple Music",
-            "link_url_2": "https://music.apple.com",
-            "link_label_3": "YouTube",
-            "link_url_3": "https://music.youtube.com"
-          }
-        },
-        "release_4": {
-          "type": "release",
-          "settings": {
-            "catalog_number": "TR-001",
-            "type": "album",
-            "soon": true,
-            "year": "2026",
-            "status": "Próximamente",
-            "title": "Sesión trilladora 001",
-            "artist": "En vivo",
-            "description": "Grabación en vivo dentro de la trilladora de Tueste, sin público y sin repetir tomas. Solo para suscriptores del sello.",
-            "art_label": "Sesión\nTrilladora",
-            "color": "#2f2318",
-            "link_label_1": "Bandcamp",
-            "link_url_1": "https://bandcamp.com",
-            "link_label_2": "",
-            "link_label_3": ""
-          }
-        },
-        "release_5": {
-          "type": "release",
-          "settings": {
-            "catalog_number": "LP-118",
-            "type": "album",
-            "soon": false,
-            "year": "2025",
-            "status": "Disponible",
-            "title": "Aures 1840 · Mixtape",
-            "artist": "Varios artistas",
-            "description": "Una selección de clásicos del sello con Café Aures 1840 de fondo.",
-            "art_label": "Aures\n1840",
-            "color": "#3a2410",
-            "link_label_1": "Spotify",
-            "link_url_1": "https://open.spotify.com",
-            "link_label_2": "Apple Music",
-            "link_url_2": "https://music.apple.com",
-            "link_label_3": "YouTube",
-            "link_url_3": "https://music.youtube.com"
-          }
-        },
-        "release_6": {
-          "type": "release",
-          "settings": {
-            "catalog_number": "LP-109",
-            "type": "ep",
-            "soon": false,
-            "year": "2024",
-            "status": "Disponible",
-            "title": "Tres Esquinas",
-            "artist": "Varios artistas",
-            "description": "Grabado en la Finca Tres Esquinas, la misma cuna del Universo Tueste.",
-            "art_label": "Tres\nEsquinas",
-            "color": "#24201c",
-            "link_label_1": "Spotify",
-            "link_url_1": "https://open.spotify.com",
-            "link_label_2": "Apple Music",
-            "link_url_2": "https://music.apple.com",
-            "link_label_3": "YouTube",
-            "link_url_3": "https://music.youtube.com"
-          }
-        },
-        "spotify": { "type": "platform", "settings": { "icon": "spotify", "name": "Spotify", "description": "Perfil del sello", "url": "https://open.spotify.com" } },
-        "apple": { "type": "platform", "settings": { "icon": "apple", "name": "Apple Music", "description": "Catálogo del sello", "url": "https://music.apple.com" } },
-        "youtube": { "type": "platform", "settings": { "icon": "youtube", "name": "YouTube", "description": "Sesiones y visuales", "url": "https://www.youtube.com" } },
-        "deezer": { "type": "platform", "settings": { "icon": "deezer", "name": "Deezer", "description": "Perfil del sello", "url": "https://www.deezer.com" } },
-        "amazon": { "type": "platform", "settings": { "icon": "amazon", "name": "Amazon Music", "description": "Catálogo completo", "url": "https://music.amazon.com" } },
-        "tidal": { "type": "platform", "settings": { "icon": "tidal", "name": "Tidal", "description": "Audio en alta fidelidad", "url": "https://tidal.com" } },
-        "soundcloud": { "type": "platform", "settings": { "icon": "soundcloud", "name": "SoundCloud", "description": "Pruebas y frecuencias", "url": "https://soundcloud.com" } },
-        "bandcamp": { "type": "platform", "settings": { "icon": "bandcamp", "name": "Bandcamp", "description": "Compra directa a los artistas", "url": "https://bandcamp.com" } }
+    "records_hero": {
+      "type": "tueste-records-hero",
+      "settings": {
+        "backed_label": "Respaldado por",
+        "aria_label": "Lo que se viene",
+        "autoplay_speed": 7
       },
-      "block_order": ["release_1", "release_2", "release_3", "release_4", "release_5", "release_6", "spotify", "apple", "youtube", "deezer", "amazon", "tidal", "soundcloud", "bandcamp"],
-      "settings": {}
+      "blocks": {
+        "slide_1": {
+          "type": "slide",
+          "settings": {
+            "eyebrow": "Ya disponible",
+            "tag_hot": "Tueste Sessions 001",
+            "tag": "Álbum · Origen Tostado",
+            "title": "Coffee in Frequencies",
+            "text": "Diez frecuencias, de 60 Hz al infinito, que recorren el viaje de la semilla de café desde el silencio hasta la expansión. Más que música: un paisaje sonoro grabado con los sonidos reales del café.",
+            "button_label": "Escuchar en Spotify",
+            "button_url": "https://open.spotify.com/album/3QORX6JtWw22nwDNMy9jLp",
+            "button2_label": "Ver catálogo",
+            "button2_url": "#lanzamientos",
+            "seed": 7
+          }
+        },
+        "slide_2": {
+          "type": "slide",
+          "settings": {
+            "eyebrow": "Ya disponible",
+            "tag_hot": "",
+            "tag": "Álbum · Logik Pro",
+            "title": "Tueste Selection",
+            "text": "Una obra hecha no solo para escucharse, sino para sentirse.",
+            "button_label": "Escuchar en Spotify",
+            "button_url": "https://open.spotify.com/album/33rpXDbvGX7XtJbfzXvxct",
+            "button2_label": "Dónde escuchar",
+            "button2_url": "#plataformas",
+            "seed": 21
+          }
+        },
+        "slide_3": {
+          "type": "slide",
+          "settings": {
+            "eyebrow": "Playlists",
+            "tag_hot": "",
+            "tag": "Spotify",
+            "title": "Sigue nuestras playlists",
+            "text": "Origen Frequencies, #TUESTE y #TUESTE CLASSICS: tres selecciones vivas del sello que se actualizan con cada sesión, cada lanzamiento y cada lote.",
+            "button_label": "Ver las playlists",
+            "button_url": "#playlists",
+            "button2_label": "Lista del sello",
+            "button2_url": "#suscribete",
+            "seed": 42
+          }
+        }
+      },
+      "block_order": [
+        "slide_1",
+        "slide_2",
+        "slide_3"
+      ]
+    },
+    "records_lanzamientos": {
+      "type": "tueste-records-lanzamientos",
+      "settings": {
+        "kicker": "Catálogo",
+        "heading": "Lanzamientos",
+        "more_label": "Todas las plataformas",
+        "more_url": "#plataformas",
+        "show_filters": true
+      },
+      "blocks": {
+        "lanzamiento_1": {
+          "type": "lanzamiento",
+          "settings": {
+            "title": "Coffee in Frequencies",
+            "artist": "Origen Tostado",
+            "type": "album",
+            "soon": false,
+            "seed": 7,
+            "catalog": "Tueste Sessions 001",
+            "spotify": "https://open.spotify.com/album/3QORX6JtWw22nwDNMy9jLp"
+          }
+        },
+        "lanzamiento_2": {
+          "type": "lanzamiento",
+          "settings": {
+            "title": "Tueste Selection",
+            "artist": "Tueste · Logik Pro",
+            "type": "album",
+            "soon": false,
+            "seed": 21,
+            "catalog": "Logik Pro",
+            "spotify": "https://open.spotify.com/album/33rpXDbvGX7XtJbfzXvxct"
+          }
+        }
+      },
+      "block_order": [
+        "lanzamiento_1",
+        "lanzamiento_2"
+      ]
+    },
+    "records_plataformas": {
+      "type": "tueste-records-plataformas",
+      "settings": {
+        "kicker": "Distribución",
+        "heading": "Dónde escuchar",
+        "note_right": "Catálogo distribuido por Logik Pro desde 2012",
+        "note": "Cada lanzamiento aparece en todas las plataformas el mismo día. Los enlaces de arriba llevan al perfil del sello; los de cada lanzamiento llevan directo a la pieza."
+      },
+      "blocks": {
+        "plataforma_1": {
+          "type": "plataforma",
+          "settings": {
+            "platform": "spotify",
+            "name": "Spotify",
+            "subtitle": "Sello · Perfil",
+            "url": "https://open.spotify.com/artist/50lPI20KEXnXbYY2G8i787"
+          }
+        },
+        "plataforma_2": {
+          "type": "plataforma",
+          "settings": {
+            "platform": "apple",
+            "name": "Apple Music",
+            "subtitle": "Sello · Perfil",
+            "url": "https://music.apple.com"
+          }
+        },
+        "plataforma_3": {
+          "type": "plataforma",
+          "settings": {
+            "platform": "youtube",
+            "name": "YouTube Music",
+            "subtitle": "Canal oficial",
+            "url": "https://music.youtube.com"
+          }
+        },
+        "plataforma_4": {
+          "type": "plataforma",
+          "settings": {
+            "platform": "deezer",
+            "name": "Deezer",
+            "subtitle": "Sello · Perfil",
+            "url": "https://www.deezer.com"
+          }
+        },
+        "plataforma_5": {
+          "type": "plataforma",
+          "settings": {
+            "platform": "amazon",
+            "name": "Amazon Music",
+            "subtitle": "Sello · Perfil",
+            "url": "https://music.amazon.com"
+          }
+        },
+        "plataforma_6": {
+          "type": "plataforma",
+          "settings": {
+            "platform": "tidal",
+            "name": "Tidal",
+            "subtitle": "Sello · Perfil",
+            "url": "https://tidal.com"
+          }
+        },
+        "plataforma_7": {
+          "type": "plataforma",
+          "settings": {
+            "platform": "soundcloud",
+            "name": "SoundCloud",
+            "subtitle": "Adelantos y sesiones",
+            "url": "https://soundcloud.com"
+          }
+        },
+        "plataforma_8": {
+          "type": "plataforma",
+          "settings": {
+            "platform": "bandcamp",
+            "name": "Bandcamp",
+            "subtitle": "Compra directa",
+            "url": "https://bandcamp.com"
+          }
+        }
+      },
+      "block_order": [
+        "plataforma_1",
+        "plataforma_2",
+        "plataforma_3",
+        "plataforma_4",
+        "plataforma_5",
+        "plataforma_6",
+        "plataforma_7",
+        "plataforma_8"
+      ]
+    },
+    "records_playlists": {
+      "type": "tueste-records-playlists",
+      "settings": {
+        "kicker": "Playlists",
+        "heading": "Sigue nuestras playlists",
+        "more_label": "Abrir en Spotify",
+        "more_url": "https://open.spotify.com/playlist/4yw3gSoVGBoODGiYhGcFLd?si=b459fc85d0da4979",
+        "note": "Tres selecciones vivas del sello: se actualizan con cada sesión, cada lanzamiento y cada lote. Síguelas para que el café te llegue también por los oídos."
+      },
+      "blocks": {
+        "playlist_1": {
+          "type": "playlist",
+          "settings": {
+            "default_cover": "origen",
+            "label": "Playlist · Spotify",
+            "title": "Origen Frequencies",
+            "text": "Frecuencias creadas con los sonidos reales del cafetal. Para escuchar mientras el café pasa.",
+            "url": "https://open.spotify.com/playlist/4yw3gSoVGBoODGiYhGcFLd?si=b459fc85d0da4979",
+            "button_label": "Seguir en Spotify"
+          }
+        },
+        "playlist_2": {
+          "type": "playlist",
+          "settings": {
+            "default_cover": "tueste",
+            "label": "Playlist · Spotify",
+            "title": "#TUESTE",
+            "text": "Lo que suena en el tostador: la selección electrónica de la casa, siempre en movimiento.",
+            "url": "https://open.spotify.com/playlist/3zl55ovP0Wr4mvhnUo0oEo?si=8b245dcc92d641a9",
+            "button_label": "Seguir en Spotify"
+          }
+        },
+        "playlist_3": {
+          "type": "playlist",
+          "settings": {
+            "default_cover": "classics",
+            "label": "Playlist · Spotify",
+            "title": "#TUESTE CLASSICS",
+            "text": "Los clásicos que nos trajeron hasta aquí, con Café Aures 1840 de fondo.",
+            "url": "https://open.spotify.com/playlist/0H82655qMXbmOZHv1BC0jn?si=22c3bd050dea4452",
+            "button_label": "Seguir en Spotify"
+          }
+        }
+      },
+      "block_order": [
+        "playlist_1",
+        "playlist_2",
+        "playlist_3"
+      ]
+    },
+    "records_noticias": {
+      "type": "tueste-records-noticias",
+      "settings": {
+        "kicker": "Noticias",
+        "heading": "En lo que estamos",
+        "more_label": "Recibir novedades",
+        "more_url": "#suscribete"
+      },
+      "blocks": {
+        "destacada_1": {
+          "type": "destacada",
+          "settings": {
+            "kind": "Entrevista",
+            "title": "«El café y el sonido se tuestan igual: con paciencia»",
+            "text": "Conversación sobre grabar en la finca, trabajar con ruido de fondo y por qué el sello nace dentro de una tostadora.",
+            "link_label": "Leer la entrevista",
+            "seed": 99
+          }
+        },
+        "nota_2": {
+          "type": "nota",
+          "settings": {
+            "date": "18 sep 2026",
+            "kind": "Estudio",
+            "title": "Sesión trilladora 001 ya está grabada",
+            "text": "Dos horas de toma única. Estamos mezclando; sale primero para suscriptores."
+          }
+        },
+        "nota_3": {
+          "type": "nota",
+          "settings": {
+            "date": "12 sep 2026",
+            "kind": "Sello",
+            "title": "Tueste Records abre convocatoria de demos",
+            "text": "Buscamos proyectos de la región. Escribe a demos@tueste.co con dos piezas y una línea sobre ti."
+          }
+        },
+        "nota_4": {
+          "type": "nota",
+          "settings": {
+            "date": "05 sep 2026",
+            "kind": "Contenido",
+            "title": "Serie: frecuencias de temporada",
+            "text": "Grabaciones de campo de la finca en cada etapa del cultivo. Primer capítulo: la floración."
+          }
+        }
+      },
+      "block_order": [
+        "destacada_1",
+        "nota_2",
+        "nota_3",
+        "nota_4"
+      ]
+    },
+    "records_suscribete": {
+      "type": "tueste-records-suscribete",
+      "settings": {
+        "kicker": "Lista del sello",
+        "heading": "Entérate antes que las plataformas",
+        "text": "Lanzamientos exclusivos, sesiones en vivo y preguardado antes de la fecha oficial. Un correo por lanzamiento, nada más.",
+        "placeholder": "tu@correo.com",
+        "button_label": "Unirme",
+        "success": "Listo. Te escribimos con el próximo lanzamiento.",
+        "show_backed": true,
+        "backed_text": "Sello registrado en plataformas digitales desde 2012"
+      }
+    },
+    "universo": {
+      "type": "tueste-universo",
+      "settings": {
+        "kicker": "Universo Tueste",
+        "heading": "Un origen, <em>cuatro caminos</em>.",
+        "intro": "Todo nace en el mismo cafetal del Cañón de Aures: el café que compras, el árbol que siembras, la marca que creas con nosotros y la música que lo cuenta.",
+        "here_label": "Estás aquí",
+        "style": "records"
+      },
+      "blocks": {
+        "camino_1": {
+          "type": "camino",
+          "settings": {
+            "brand": "tienda",
+            "show_name": false,
+            "description": "Café de origen, piezas y ritual. La casa de todo lo que hacemos.",
+            "cta": "Entrar →",
+            "current": false,
+            "link": "/"
+          }
+        },
+        "camino_2": {
+          "type": "camino",
+          "settings": {
+            "brand": "tree",
+            "show_name": false,
+            "description": "Siembra un árbol en la Finca Tres Esquinas y cofunda un origen.",
+            "cta": "Entrar →",
+            "current": false,
+            "link": "/pages/tueste-tree"
+          }
+        },
+        "camino_3": {
+          "type": "camino",
+          "settings": {
+            "brand": "unity",
+            "show_name": false,
+            "description": "Tu marca de café con nuestro origen y una firma sonora.",
+            "cta": "Entrar →",
+            "current": false,
+            "link": "/pages/tueste-unity"
+          }
+        },
+        "camino_4": {
+          "type": "camino",
+          "settings": {
+            "brand": "records",
+            "show_name": false,
+            "description": "El sello: lanzamientos, artistas y dónde escuchar el café.",
+            "cta": "Entrar →",
+            "current": true,
+            "link": "/pages/tueste-records"
+          }
+        }
+      },
+      "block_order": [
+        "camino_1",
+        "camino_2",
+        "camino_3",
+        "camino_4"
+      ]
     }
   },
-  "order": ["tueste_records"]
+  "order": [
+    "records_hero",
+    "records_lanzamientos",
+    "records_plataformas",
+    "records_playlists",
+    "records_noticias",
+    "records_suscribete",
+    "universo"
+  ]
 }

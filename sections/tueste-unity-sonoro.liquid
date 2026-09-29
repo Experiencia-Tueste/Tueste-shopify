@@ -1,0 +1,89 @@
+{%- comment -%}
+  Tueste Unity · Branding sonoro.
+{%- endcomment -%}
+{{ 'tueste-unity.css' | asset_url | stylesheet_tag }}
+
+<div class="tu-unity" id="TuesteUnitySonoro-{{ section.id }}">
+  <section class="sec" id="sonoro" aria-labelledby="TuesteUnitySonoroTitle-{{ section.id }}">
+    <div class="wrap sound">
+      <div class="art">
+        {%- if section.settings.image != blank -%}
+          {{ section.settings.image | image_url: width: 720 | image_tag: loading: 'lazy', widths: '360, 720', alt: section.settings.image.alt | default: section.settings.image_alt }}
+        {%- else -%}
+          <img src="{{ 'tueste-unity-sonoro.png' | file_url }}" alt="{{ section.settings.image_alt | escape }}" loading="lazy" width="640" height="640">
+        {%- endif -%}
+      </div>
+      <div>
+        <span class="kicker">{{ section.settings.kicker | escape }}</span>
+        <h2 class="disp" id="TuesteUnitySonoroTitle-{{ section.id }}" style="font-size:clamp(1.5rem,3.6vw,2.6rem);margin-top:.8rem">{{ section.settings.heading }}</h2>
+        {%- if section.settings.voice != blank -%}
+          <p class="voice" style="margin-top:1rem">{{ section.settings.voice | escape }}</p>
+        {%- endif -%}
+        <ul class="slist">
+          {%- for block in section.blocks -%}
+            <li {{ block.shopify_attributes }}>
+              <span class="ic" aria-hidden="true">
+                {%- case block.settings.icon -%}
+                  {%- when 'disc' -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.5"/></svg>
+                  {%- when 'bars' -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg>
+                  {%- when 'mic' -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3zM5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+                  {%- else -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h2M7 8v8M11 5v14M15 9v6M19 11v2"/></svg>
+                {%- endcase -%}
+              </span>
+              <div><b>{{ block.settings.title | escape }}</b><span>{{ block.settings.text | escape }}</span></div>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Unity · Branding sonoro",
+  "tag": "section",
+  "class": "section-tueste-unity-sonoro",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Branding sonoro" },
+    { "type": "inline_richtext", "id": "heading", "label": "Título", "default": "El café <em>también se escucha</em>" },
+    { "type": "textarea", "id": "voice", "label": "Frase", "default": "Grabamos los sonidos reales del café en el origen y con ellos componemos la voz de tu marca." },
+    { "type": "image_picker", "id": "image", "label": "Ilustración", "info": "Por defecto: tueste-unity-sonoro.png (Shopify Files)." },
+    { "type": "text", "id": "image_alt", "label": "Texto alternativo", "default": "Un micrófono entre ramas de café graba las cerezas; ondas de colores salen de una taza" }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Elemento",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icono",
+          "options": [
+            { "value": "wave", "label": "Onda" },
+            { "value": "disc", "label": "Disco" },
+            { "value": "bars", "label": "Barras" },
+            { "value": "mic", "label": "Micrófono" }
+          ],
+          "default": "wave"
+        },
+        { "type": "text", "id": "title", "label": "Título", "default": "Firma y logo sonoro" },
+        { "type": "textarea", "id": "text", "label": "Texto", "default": "Un motivo corto y reconocible para tus videos, tu tienda y tus lanzamientos." }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Tueste Unity · Branding sonoro",
+      "blocks": [
+        { "type": "item", "settings": { "icon": "wave", "title": "Firma y logo sonoro", "text": "Un motivo corto y reconocible para tus videos, tu tienda y tus lanzamientos." } },
+        { "type": "item", "settings": { "icon": "disc", "title": "Playlist oficial curado por Tueste", "text": "En Spotify o la plataforma que uses, con enlace desde tueste.co y actualizaciones periódicas." } },
+        { "type": "item", "settings": { "icon": "bars", "title": "Música para contenido y puntos físicos", "text": "Ambientes para tu local, tus redes y tus activaciones." } },
+        { "type": "item", "settings": { "icon": "mic", "title": "Biblioteca de sonidos de origen", "text": "Cosecha, despulpado, lluvia en el cafetal: sonido grabado por nuestro equipo en la finca." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

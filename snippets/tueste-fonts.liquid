@@ -1,0 +1,49 @@
+{%- comment -%}
+  Tipografías del universo Tueste (Tueste Typeface, Archivo Black, Poppins, Lora, DM Mono).
+  Se cargan desde los assets del tema en las plantillas tienda-editorial, tueste-tree, tueste-unity y tueste-records.
+  Uso: {% render 'tueste-fonts' %}
+{%- endcomment -%}
+<style>
+  @font-face {
+    font-family: "Tueste Typeface";
+    src: url('{{ 'tueste-typeface.ttf' | asset_url }}') format('truetype');
+    font-display: swap;
+    font-weight: 400 900;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "Archivo Black";
+    src: url('{{ 'archivo-black.ttf' | asset_url }}') format('truetype');
+    font-display: swap;
+    font-weight: 900;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: Poppins;
+    src: url('{{ 'poppins-regular.ttf' | asset_url }}') format('truetype');
+    font-display: swap;
+    font-weight: 400;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: Poppins;
+    src: url('{{ 'poppins-semibold.ttf' | asset_url }}') format('truetype');
+    font-display: swap;
+    font-weight: 600 800;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: Lora;
+    src: url('{{ 'lora-italic.ttf' | asset_url }}') format('truetype');
+    font-display: swap;
+    font-weight: 400 700;
+    font-style: italic;
+  }
+  @font-face {
+    font-family: "DM Mono";
+    src: url('{{ 'dm-mono-regular.ttf' | asset_url }}') format('truetype');
+    font-display: swap;
+    font-weight: 400 500;
+    font-style: normal;
+  }
+</style>

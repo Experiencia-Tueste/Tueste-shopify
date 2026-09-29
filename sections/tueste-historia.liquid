@@ -1,0 +1,95 @@
+{%- comment -%}
+  Tueste · Historia y origen. Texto editorial + imagen + ficha de datos del origen.
+{%- endcomment -%}
+{{ 'tueste-historia.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign fallback_image = 'tueste-tree-hero-vitral.webp' | asset_url
+-%}
+
+<section class="tu-historia" id="TuesteHistoria-{{ section.id }}" aria-labelledby="TuesteHistoriaTitle-{{ section.id }}">
+  <div class="th-wrap">
+    <div class="th-copy">
+      {%- if section.settings.kicker != blank -%}
+        <p class="th-kicker">{{ section.settings.kicker | escape }}</p>
+      {%- endif -%}
+      <h2 id="TuesteHistoriaTitle-{{ section.id }}">{{ section.settings.heading }}</h2>
+      <div class="th-body">{{ section.settings.body }}</div>
+      {%- if section.settings.voice != blank -%}
+        <p class="th-voice">{{ section.settings.voice | escape }}</p>
+      {%- endif -%}
+
+      {%- if section.blocks.size > 0 -%}
+        <ul class="th-facts" aria-label="Datos del origen">
+          {%- for block in section.blocks -%}
+            <li {{ block.shopify_attributes }}><span>{{ block.settings.label | escape }}</span><b>{{ block.settings.value | escape }}</b></li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+
+      {%- if section.settings.button_label != blank or section.settings.button2_label != blank -%}
+        <div class="th-actions">
+          {%- if section.settings.button_label != blank -%}
+            <a class="th-btn" href="{{ section.settings.button_link | default: '#' }}">{{ section.settings.button_label | escape }}</a>
+          {%- endif -%}
+          {%- if section.settings.button2_label != blank -%}
+            <a class="th-btn th-btn--secondary" href="{{ section.settings.button2_link | default: '#' }}">{{ section.settings.button2_label | escape }}</a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <figure class="th-media">
+      {%- if section.settings.image != blank -%}
+        {{ section.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '480, 800, 1200', alt: section.settings.image.alt | default: section.settings.caption }}
+      {%- else -%}
+        <img src="{{ fallback_image }}" alt="{{ section.settings.caption | escape }}" loading="lazy" width="1600" height="900">
+      {%- endif -%}
+      {%- if section.settings.caption != blank -%}
+        <figcaption>{{ section.settings.caption | escape }}</figcaption>
+      {%- endif -%}
+    </figure>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Tueste · Historia",
+  "tag": "section",
+  "class": "section-tueste-historia",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Historia y origen" },
+    { "type": "inline_richtext", "id": "heading", "label": "Título", "default": "Del origen a la taza, <em>con intención</em>." },
+    { "type": "richtext", "id": "body", "label": "Texto", "default": "<p>En <strong>Tueste</strong> el café no se sirve, se interpreta. Cultivamos café colombiano de origen en el Cañón de Aures y lo convertimos en música, ritual y comunidad.</p><p>Aquí compras café fresco, siembras un árbol y sigues su cosecha, creas tu propia marca de café con nosotros o escuchas lo que el sello publica. Todo nace en el mismo cafetal.</p>" },
+    { "type": "text", "id": "voice", "label": "Frase (voz editorial)", "default": "Donde el café se escucha." },
+    { "type": "image_picker", "id": "image", "label": "Imagen", "info": "Si no se elige, se usa la ilustración vitral del hero de Tueste Tree (asset del tema)." },
+    { "type": "text", "id": "caption", "label": "Pie de imagen", "default": "Cañón de Aures · Quindío · Colombia" },
+    { "type": "text", "id": "button_label", "label": "Botón principal", "default": "Comprar café" },
+    { "type": "url", "id": "button_link", "label": "Enlace del botón principal" },
+    { "type": "text", "id": "button2_label", "label": "Botón secundario", "default": "Sembrar un árbol" },
+    { "type": "url", "id": "button2_link", "label": "Enlace del botón secundario" }
+  ],
+  "blocks": [
+    {
+      "type": "dato",
+      "name": "Dato del origen",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Etiqueta", "default": "Origen" },
+        { "type": "text", "id": "value", "label": "Valor", "default": "Cañón de Aures · 1.840 msnm" }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Tueste · Historia y origen",
+      "blocks": [
+        { "type": "dato", "settings": { "label": "Origen", "value": "Cañón de Aures · 1.840 msnm" } },
+        { "type": "dato", "settings": { "label": "Café insignia", "value": "Aures 1840 · 89 puntos SCA" } },
+        { "type": "dato", "settings": { "label": "Fincas", "value": "Tres Esquinas (Circasia) · La Esperanza (Caicedonia)" } },
+        { "type": "dato", "settings": { "label": "Tueste", "value": "Al pedido · despacho en 15 días" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

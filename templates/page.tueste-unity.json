@@ -1,115 +1,409 @@
 {
   "sections": {
-    "tueste_unity": {
-      "type": "tueste-unity",
-      "settings": {},
+    "unity_hero": {
+      "type": "tueste-unity-hero",
+      "settings": {
+        "kicker": "Tueste Unity · Estudio de café, marca y sonido",
+        "heading": "Tu café.<br><em>Nuestro origen.</em>",
+        "lead": "Para marcas, empresas y personas que quieren vender su propio café. Ponemos tu logo en la bolsa <strong>Aures 1840</strong> o diseñamos contigo una fórmula propia con empaque completo. Y como el café también se escucha, le damos a tu marca una firma sonora.",
+        "button_label": "Arma tu café",
+        "link_label": "Ver los tres caminos",
+        "image_alt": "Dos manos sostienen una bolsa de café bajo un arco de vitral, con ondas de sonido de colores detrás",
+        "show_marquee": true,
+        "marquee": "Tu logo en la 1840|Fórmula propia|Empaque completo|Firma sonora|Experiencias Tueste Crew|Árboles con tu nombre"
+      },
       "blocks": {
-        "path_entry": {
-          "type": "path",
+        "dato_1": {
+          "type": "dato",
           "settings": {
-            "kicker": "EDICIÓN CON ETIQUETA",
-            "title": "Tu sello, rápido",
-            "description": "Café, bolsa y una etiqueta con tu marca. La forma más ágil de lanzar una edición propia para un evento, un regalo corporativo o una prueba de mercado.",
-            "coffee_spec": "±86 SCA, molido",
-            "bag_spec": "desde 200 g",
-            "minimum_spec": "50 bolsas",
-            "includes": "",
-            "minimum_qty": 50,
-            "qty_step": 10,
-            "qty_unit": "bolsas por pedido",
-            "bag_color": "#8d493d",
-            "cta_label": "Armar esta edición",
-            "featured": false
+            "text": "<b>89</b> puntos SCA"
           }
         },
-        "path_signature": {
-          "type": "path",
+        "dato_2": {
+          "type": "dato",
           "settings": {
-            "kicker": "TU LOGO EN LA 1840",
-            "title": "Tu marca, nuestra bolsa insignia",
-            "description": "El café Aures 1840 de 89 puntos con tu identidad en la bolsa. Nosotros tostamos, empacamos y controlamos cada lote; tú vendes una línea propia sin montar infraestructura.",
-            "coffee_spec": "Aures 1840 · 89 SCA",
-            "bag_spec": "340 g con válvula",
-            "minimum_spec": "100 bolsas / mes",
-            "includes": "playlist oficial de tu marca",
-            "minimum_qty": 100,
-            "qty_step": 50,
-            "qty_unit": "bolsas al mes",
-            "bag_color": "#a96520",
-            "cta_label": "Armar mi línea",
-            "featured": true
+            "text": "Cañón de Aures · <b>1.840</b> msnm"
           }
         },
-        "path_studio": {
-          "type": "path",
+        "dato_3": {
+          "type": "dato",
           "settings": {
-            "kicker": "FÓRMULA PROPIA",
-            "title": "Tu blend, tu empaque",
-            "description": "Te hacemos preguntas sobre tu concepto, tu público y tu atmósfera, y con eso diseñamos un perfil de taza que nadie más tiene. La bolsa se diseña completa, a tu estilo.",
-            "coffee_spec": "más de 90 SCA",
-            "bag_spec": "100 % personalizada",
-            "minimum_spec": "500 bolsas",
-            "includes": "",
-            "minimum_qty": 500,
-            "qty_step": 100,
-            "qty_unit": "bolsas por pedido",
-            "bag_color": "#2e6347",
-            "cta_label": "Diseñar mi fórmula",
-            "featured": false
+            "text": "Tostado al pedido · <b>15</b> días"
           }
         },
-        "timeline_brief": {
-          "type": "timeline_step",
+        "dato_4": {
+          "type": "dato",
           "settings": {
-            "when": "Semana 1",
-            "title": "El brief",
-            "description": "Concepto, público y atmósfera de tu marca. Elegimos juntos el camino."
-          }
-        },
-        "timeline_cup": {
-          "type": "timeline_step",
-          "settings": {
-            "when": "Semana 1–2",
-            "title": "La taza",
-            "description": "Curaduría del perfil y muestras para catar. En fórmula propia, diseñamos el blend."
-          }
-        },
-        "timeline_pack": {
-          "type": "timeline_step",
-          "settings": {
-            "when": "Semana 2–3",
-            "title": "Bolsa y sonido",
-            "description": "Adaptamos tu identidad al empaque, preparamos impresión y componemos tu firma sonora."
-          }
-        },
-        "timeline_roast": {
-          "type": "timeline_step",
-          "settings": {
-            "when": "15 días por pedido",
-            "title": "Tueste al momento",
-            "description": "Cada pedido se tuesta cuando se produce, para que llegue fresco."
-          }
-        },
-        "timeline_launch": {
-          "type": "timeline_step",
-          "settings": {
-            "when": "Lanzamiento",
-            "title": "Tu café en el mundo",
-            "description": "Presencia en tueste.co, en las redes de Tueste y en nuestro contenido."
+            "text": "Firma sonora incluida"
           }
         }
       },
       "block_order": [
-        "path_entry",
-        "path_signature",
-        "path_studio",
-        "timeline_brief",
-        "timeline_cup",
-        "timeline_pack",
-        "timeline_roast",
-        "timeline_launch"
+        "dato_1",
+        "dato_2",
+        "dato_3",
+        "dato_4"
+      ]
+    },
+    "unity_caminos": {
+      "type": "tueste-unity-caminos",
+      "settings": {
+        "kicker": "Tres caminos · el mismo origen",
+        "heading": "Elige cómo quieres <em>contar tu café</em>",
+        "lead": "Todos salen de la misma finca, con el mismo control de calidad y el respaldo de Tueste. Cambia cuánto de la bolsa, y de la taza, es tuyo."
+      },
+      "blocks": {
+        "camino_1": {
+          "type": "camino",
+          "settings": {
+            "path": "etiqueta",
+            "image_alt": "Una mano sella la etiqueta de una bolsa de café",
+            "kicker": "Edición con etiqueta",
+            "title": "Tu sello, rápido",
+            "text": "Café, bolsa y una etiqueta con tu marca. La forma más ágil de lanzar una edición propia para un evento, un regalo corporativo o una prueba de mercado.",
+            "row1_label": "Café",
+            "row1_value": "±86 SCA, molido",
+            "row2_label": "Bolsa",
+            "row2_value": "desde 200 g",
+            "row3_label": "Mínimo",
+            "row3_value": "50 bolsas",
+            "button_label": "Armar esta edición",
+            "featured": false
+          }
+        },
+        "camino_2": {
+          "type": "camino",
+          "settings": {
+            "path": "1840",
+            "image_alt": "Catación: dos manos sostienen la cuchara sobre la taza, rodeadas de notas de sabor",
+            "kicker": "Tu logo en la 1840",
+            "title": "Tu marca, nuestra bolsa insignia",
+            "text": "El café Aures 1840 de 89 puntos con tu identidad en la bolsa. Nosotros tostamos, empacamos y controlamos cada lote; tú vendes una línea propia sin montar infraestructura.",
+            "row1_label": "Café",
+            "row1_value": "Aures 1840 · 89 SCA",
+            "row2_label": "Bolsa",
+            "row2_value": "340 g con válvula",
+            "row3_label": "Mínimo",
+            "row3_value": "100 bolsas / mes",
+            "button_label": "Armar mi línea",
+            "featured": true,
+            "row4_label": "Incluye",
+            "row4_value": "playlist oficial de tu marca"
+          }
+        },
+        "camino_3": {
+          "type": "camino",
+          "settings": {
+            "path": "formula",
+            "image_alt": "Bolsa ilustrada de fórmula propia",
+            "kicker": "Fórmula propia",
+            "title": "Tu blend, tu empaque",
+            "text": "Te hacemos preguntas sobre tu concepto, tu público y tu atmósfera, y con eso diseñamos un perfil de taza que nadie más tiene. La bolsa se diseña completa, a tu estilo.",
+            "row1_label": "Café",
+            "row1_value": "más de 90 SCA",
+            "row2_label": "Bolsa",
+            "row2_value": "100 % personalizada",
+            "row3_label": "Mínimo",
+            "row3_value": "500 bolsas",
+            "button_label": "Diseñar mi fórmula",
+            "featured": false
+          }
+        }
+      },
+      "block_order": [
+        "camino_1",
+        "camino_2",
+        "camino_3"
+      ]
+    },
+    "unity_taller": {
+      "type": "tueste-unity-taller",
+      "settings": {
+        "kicker": "El taller · arma tu café en seis pasos",
+        "heading": "Mira tu bolsa <em>antes de que exista</em>",
+        "lead": "Elige un camino, escribe el nombre de tu marca y escucha cómo suena. Al final te conectamos con un asesor por WhatsApp, con tu elección ya escrita.",
+        "default_brand": "Casa Niebla",
+        "whatsapp": "573102690145",
+        "mail": "tuesteunity@tueste.co",
+        "trees_label": "Quiero sumar árboles de Tueste Tree a mi edición (regalo para mi equipo o mis clientes).",
+        "contact_hint": "Déjanos tus datos y te llevamos a WhatsApp con tu elección ya escrita. Un asesor de Tueste Unity te responde con cotización y muestras.",
+        "consent": "Autorizo a Tueste (Monacua Global Company S.A.S.) a usar estos datos para contactarme sobre esta cotización.",
+        "fine_print": "Se abre WhatsApp con tu mensaje listo; solo tienes que darle enviar. Precio, perfil final y diseño se cierran con tu asesor."
+      }
+    },
+    "unity_sonoro": {
+      "type": "tueste-unity-sonoro",
+      "settings": {
+        "kicker": "Branding sonoro",
+        "heading": "El café <em>también se escucha</em>",
+        "voice": "Grabamos los sonidos reales del café en el origen y con ellos componemos la voz de tu marca.",
+        "image_alt": "Un micrófono entre ramas de café graba las cerezas; ondas de colores salen de una taza"
+      },
+      "blocks": {
+        "item_1": {
+          "type": "item",
+          "settings": {
+            "icon": "wave",
+            "title": "Firma y logo sonoro",
+            "text": "Un motivo corto y reconocible para tus videos, tu tienda y tus lanzamientos."
+          }
+        },
+        "item_2": {
+          "type": "item",
+          "settings": {
+            "icon": "disc",
+            "title": "Playlist oficial curado por Tueste",
+            "text": "En Spotify o la plataforma que uses, con enlace desde tueste.co y actualizaciones periódicas."
+          }
+        },
+        "item_3": {
+          "type": "item",
+          "settings": {
+            "icon": "bars",
+            "title": "Música para contenido y puntos físicos",
+            "text": "Ambientes para tu local, tus redes y tus activaciones."
+          }
+        },
+        "item_4": {
+          "type": "item",
+          "settings": {
+            "icon": "mic",
+            "title": "Biblioteca de sonidos de origen",
+            "text": "Cosecha, despulpado, lluvia en el cafetal: sonido grabado por nuestro equipo en la finca."
+          }
+        }
+      },
+      "block_order": [
+        "item_1",
+        "item_2",
+        "item_3",
+        "item_4"
+      ]
+    },
+    "unity_proceso": {
+      "type": "tueste-unity-proceso",
+      "settings": {
+        "kicker": "Cómo trabajamos",
+        "heading": "Del brief a la <em>primera taza</em>"
+      },
+      "blocks": {
+        "paso_1": {
+          "type": "paso",
+          "settings": {
+            "when": "Semana 1",
+            "title": "El brief",
+            "text": "Concepto, público y atmósfera de tu marca. Elegimos juntos el camino."
+          }
+        },
+        "paso_2": {
+          "type": "paso",
+          "settings": {
+            "when": "Semana 1–2",
+            "title": "La taza",
+            "text": "Curaduría del perfil y muestras para catar. En fórmula propia, diseñamos el blend."
+          }
+        },
+        "paso_3": {
+          "type": "paso",
+          "settings": {
+            "when": "Semana 2–3",
+            "title": "Bolsa y sonido",
+            "text": "Adaptamos tu identidad al empaque, preparamos impresión y componemos tu firma sonora."
+          }
+        },
+        "paso_4": {
+          "type": "paso",
+          "settings": {
+            "when": "15 días por pedido",
+            "title": "Tueste al momento",
+            "text": "Cada pedido se tuesta cuando se produce, para que llegue fresco."
+          }
+        },
+        "paso_5": {
+          "type": "paso",
+          "settings": {
+            "when": "Lanzamiento",
+            "title": "Tu café en el mundo",
+            "text": "Presencia en tueste.co, en las redes de Tueste y en nuestro contenido."
+          }
+        },
+        "condicion_6": {
+          "type": "condicion",
+          "settings": {
+            "title": "Pago",
+            "text": "70 % para iniciar producción, saldo contra entrega."
+          }
+        },
+        "condicion_7": {
+          "type": "condicion",
+          "settings": {
+            "title": "Despacho",
+            "text": "15 días desde la confirmación de cada pedido."
+          }
+        },
+        "condicion_8": {
+          "type": "condicion",
+          "settings": {
+            "title": "Envío",
+            "text": "Por cuenta del cliente, a todo el país."
+          }
+        },
+        "condicion_9": {
+          "type": "condicion",
+          "settings": {
+            "title": "Garantía",
+            "text": "Reponemos bolsas con defecto reportadas el día de recibo."
+          }
+        }
+      },
+      "block_order": [
+        "paso_1",
+        "paso_2",
+        "paso_3",
+        "paso_4",
+        "paso_5",
+        "condicion_6",
+        "condicion_7",
+        "condicion_8",
+        "condicion_9"
+      ]
+    },
+    "unity_experiencias": {
+      "type": "tueste-unity-experiencias",
+      "settings": {
+        "kicker": "Experiencias · Tueste Crew",
+        "heading": "Experiencias <em>alrededor del café</em>",
+        "lead": "Desarrollamos experiencias para marcas, empresas y eventos: desde catas personalizadas hasta catering de café. Todo lo diseña, produce y vive con tu gente el <strong>Tueste Crew</strong>.",
+        "range": "Catas personalizadas|Barras y catering de café|Activaciones de marca|Eventos corporativos|Lanzamientos",
+        "cta_title": "¿Tienes otra idea?",
+        "cta_text": "Cuéntanos la fecha, el lugar y cuántas personas; armamos la experiencia a tu medida.",
+        "cta_label": "Cotizar mi experiencia",
+        "cta_url": "https://wa.me/573102690145?text=Hola%20Tueste%20Crew%2C%20quiero%20cotizar%20una%20experiencia%20de%20caf%C3%A9%20a%20la%20medida.%0AFecha%3A%20%0ALugar%3A%20%0APersonas%3A%20",
+        "image_alt": "Sesión nocturna del Tueste Crew: personas alrededor de una mesa con café, velas y un tocadiscos"
+      },
+      "blocks": {
+        "formato_1": {
+          "type": "formato",
+          "settings": {
+            "tag": "100 % Tueste Crew",
+            "title": "Cata sensorial experiencial",
+            "text": "Un recorrido guiado por el café del Cañón de Aures con los cinco sentidos: aroma, sabor, textura y sonido. Íntima, didáctica y pensada para conectar a tu equipo o tus clientes con el origen.",
+            "button_label": "Cotizar esta cata",
+            "button_url": "https://wa.me/573102690145?text=Hola%20Tueste%20Crew%2C%20quiero%20cotizar%20una%20Cata%20sensorial%20experiencial"
+          }
+        },
+        "formato_2": {
+          "type": "formato",
+          "settings": {
+            "tag": "100 % Tueste Crew",
+            "title": "Experiencia tipo fiesta",
+            "text": "Café, música y celebración en un mismo lugar: barra de café, set musical y ambiente de fiesta, producidos de principio a fin por nuestro equipo.",
+            "button_label": "Cotizar esta fiesta",
+            "button_url": "https://wa.me/573102690145?text=Hola%20Tueste%20Crew%2C%20quiero%20cotizar%20una%20Experiencia%20tipo%20fiesta"
+          }
+        }
+      },
+      "block_order": [
+        "formato_1",
+        "formato_2"
+      ]
+    },
+    "unity_tree": {
+      "type": "tueste-unity-tree",
+      "settings": {
+        "kicker": "Tueste Tree × Unity",
+        "heading": "Tu marca <em>también siembra</em>",
+        "lead": "Suma árboles del lote fundacional de Tueste Tree a tu edición: cada árbol lleva un nombre, un número y un certificado. Es la forma de regalarle a tu equipo o a tus clientes un lugar en el origen de tu café.",
+        "holo_title": "Insignia holográfica",
+        "holo_text": "Las adopciones de 30 árboles o más reciben la insignia de socio fundador y se gestionan directo con nuestro agente.",
+        "button_label": "Hablar con el agente",
+        "button_url": "https://wa.me/573102682677?text=Hola%2C%20quiero%20sumar%20%C3%A1rboles%20de%20Tueste%20Tree%20para%20mi%20empresa",
+        "link_label": "Conocer Tueste Tree",
+        "image_alt": "Las cuatro insignias de Tueste Tree en abanico: semilla, plata, oro y holográfica"
+      }
+    },
+    "unity_cierre": {
+      "type": "tueste-unity-cierre",
+      "settings": {
+        "heading": "Hagamos juntos un café <em>que suene a tu marca</em>",
+        "button_label": "Armar mi café",
+        "whatsapp_label": "WhatsApp +57 310 269 0145",
+        "whatsapp_url": "https://wa.me/573102690145?text=Hola%20Tueste%20Unity%2C%20quiero%20vender%20mi%20propio%20caf%C3%A9",
+        "mail": "tuesteunity@tueste.co"
+      }
+    },
+    "universo": {
+      "type": "tueste-universo",
+      "settings": {
+        "kicker": "Universo Tueste",
+        "heading": "Un origen, <em>cuatro caminos</em>.",
+        "intro": "Todo nace en el mismo cafetal del Cañón de Aures: el café que compras, el árbol que siembras, la marca que creas con nosotros y la música que lo cuenta.",
+        "here_label": "Estás aquí",
+        "style": "tueste"
+      },
+      "blocks": {
+        "camino_1": {
+          "type": "camino",
+          "settings": {
+            "brand": "tienda",
+            "show_name": false,
+            "description": "Café de origen, piezas y ritual. La casa de todo lo que hacemos.",
+            "cta": "Entrar →",
+            "current": false,
+            "link": "/"
+          }
+        },
+        "camino_2": {
+          "type": "camino",
+          "settings": {
+            "brand": "tree",
+            "show_name": false,
+            "description": "Siembra un árbol en la Finca Tres Esquinas y cofunda un origen.",
+            "cta": "Entrar →",
+            "current": false,
+            "link": "/pages/tueste-tree"
+          }
+        },
+        "camino_3": {
+          "type": "camino",
+          "settings": {
+            "brand": "unity",
+            "show_name": false,
+            "description": "Tu marca de café con nuestro origen y una firma sonora.",
+            "cta": "Entrar →",
+            "current": true,
+            "link": "/pages/tueste-unity"
+          }
+        },
+        "camino_4": {
+          "type": "camino",
+          "settings": {
+            "brand": "records",
+            "show_name": false,
+            "description": "El sello: lanzamientos, artistas y dónde escuchar el café.",
+            "cta": "Entrar →",
+            "current": false,
+            "link": "/pages/tueste-records"
+          }
+        }
+      },
+      "block_order": [
+        "camino_1",
+        "camino_2",
+        "camino_3",
+        "camino_4"
       ]
     }
   },
-  "order": ["tueste_unity"]
+  "order": [
+    "unity_hero",
+    "unity_caminos",
+    "unity_taller",
+    "unity_sonoro",
+    "unity_proceso",
+    "unity_experiencias",
+    "unity_tree",
+    "unity_cierre",
+    "universo"
+  ]
 }

@@ -1,0 +1,63 @@
+{%- comment -%}
+  Tueste Unity · Tueste Tree × Unity: sumar árboles del lote fundacional a una edición de marca.
+{%- endcomment -%}
+{{ 'tueste-unity.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  if section.settings.image != blank
+    assign plant_img = section.settings.image | image_url: width: 1100
+  else
+    assign plant_img = 'tueste-unity-insignias.png' | file_url
+  endif
+  assign holo_badge = 'tueste-tree-insignia-30-holografica.webp' | asset_url
+-%}
+
+<div class="tu-unity" id="TuesteUnityTree-{{ section.id }}">
+  <section class="sec" id="siembra" aria-labelledby="TuesteUnityTreeTitle-{{ section.id }}">
+    <div class="wrap">
+      <div class="plant">
+        <div class="art" role="img" aria-label="{{ section.settings.image_alt | escape }}" style="--tu-plant-img: url('{{ plant_img }}');"></div>
+        <div class="body">
+          <span class="kicker">{{ section.settings.kicker | escape }}</span>
+          <h2 class="disp" id="TuesteUnityTreeTitle-{{ section.id }}" style="font-size:clamp(1.4rem,3vw,2.1rem)">{{ section.settings.heading }}</h2>
+          <p class="lead">{{ section.settings.lead | escape }}</p>
+          {%- if section.settings.holo_title != blank -%}
+            <div class="holo"><img src="{{ holo_badge }}" alt="" width="64" height="88" loading="lazy"><small><b>{{ section.settings.holo_title | escape }}</b>{{ section.settings.holo_text | escape }}</small></div>
+          {%- endif -%}
+          <div class="actions">
+            {%- if section.settings.button_label != blank and section.settings.button_url != blank -%}
+              <a class="btn btn-primary" href="{{ section.settings.button_url }}" target="_blank" rel="noopener">{{ section.settings.button_label | escape }}</a>
+            {%- endif -%}
+            {%- if section.settings.link_label != blank -%}
+              <a class="btn-tertiary" href="{{ section.settings.link_url | default: '/pages/tueste-tree' }}">{{ section.settings.link_label | escape }}</a>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Unity · Tueste Tree",
+  "tag": "section",
+  "class": "section-tueste-unity-tree",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Tueste Tree × Unity" },
+    { "type": "inline_richtext", "id": "heading", "label": "Título", "default": "Tu marca <em>también siembra</em>" },
+    { "type": "textarea", "id": "lead", "label": "Descripción", "default": "Suma árboles del lote fundacional de Tueste Tree a tu edición: cada árbol lleva un nombre, un número y un certificado. Es la forma de regalarle a tu equipo o a tus clientes un lugar en el origen de tu café." },
+    { "type": "text", "id": "holo_title", "label": "Insignia · título", "default": "Insignia holográfica" },
+    { "type": "textarea", "id": "holo_text", "label": "Insignia · texto", "default": "Las adopciones de 30 árboles o más reciben la insignia de socio fundador y se gestionan directo con nuestro agente." },
+    { "type": "text", "id": "button_label", "label": "Botón", "default": "Hablar con el agente" },
+    { "type": "text", "id": "button_url", "label": "URL del botón (WhatsApp)", "default": "https://wa.me/573102682677?text=Hola%2C%20quiero%20sumar%20%C3%A1rboles%20de%20Tueste%20Tree%20para%20mi%20empresa" },
+    { "type": "text", "id": "link_label", "label": "Enlace secundario", "default": "Conocer Tueste Tree" },
+    { "type": "url", "id": "link_url", "label": "URL del enlace secundario", "info": "Por defecto /pages/tueste-tree." },
+    { "type": "image_picker", "id": "image", "label": "Ilustración", "info": "Por defecto: tueste-unity-insignias.png (Shopify Files)." },
+    { "type": "text", "id": "image_alt", "label": "Texto alternativo", "default": "Las cuatro insignias de Tueste Tree en abanico: semilla, plata, oro y holográfica" }
+  ],
+  "presets": [
+    { "name": "Tueste Unity · Tueste Tree" }
+  ]
+}
+{% endschema %}

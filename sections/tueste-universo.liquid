@@ -1,0 +1,141 @@
+{%- comment -%}
+  Universo Tueste · "Un origen, cuatro caminos"
+  Bloque de navegación común entre la tienda, Tueste Tree, Tueste Unity y Tueste Records.
+  Cada bloque "camino" trae su logo por defecto desde los assets del tema; se puede reemplazar desde el editor.
+{%- endcomment -%}
+{{ 'tueste-universo.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign theme_class = ''
+  if section.settings.style == 'records'
+    assign theme_class = ' tu-universe--records'
+  endif
+-%}
+
+<section class="tu-universe{{ theme_class }}" id="TuesteUniverso-{{ section.id }}" aria-label="{{ section.settings.kicker | escape }}">
+  <div class="tu-wrap">
+    {%- if section.settings.kicker != blank -%}
+      <p class="tu-kicker">{{ section.settings.kicker | escape }}</p>
+    {%- endif -%}
+    {%- if section.settings.heading != blank -%}
+      <h2>{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    {%- if section.settings.intro != blank -%}
+      <p class="tu-intro">{{ section.settings.intro | escape }}</p>
+    {%- endif -%}
+
+    <div class="tu-grid">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          case block.settings.brand
+            when 'tree'
+              assign default_logo = 'tueste-tree-logo-crema.png' | asset_url
+              assign default_name = 'Tueste Tree'
+            when 'unity'
+              assign default_logo = 'tueste-unity-logo.png' | asset_url
+              assign default_name = 'Tueste Unity'
+            when 'records'
+              assign default_logo = 'tueste-records-logo.webp' | asset_url
+              assign default_name = 'Tueste Records'
+            else
+              assign default_logo = 'tueste-logo-glass.png' | asset_url
+              assign default_name = 'Tueste'
+          endcase
+          assign card_name = block.settings.name | default: default_name
+          assign is_here = false
+          if block.settings.current
+            assign is_here = true
+          elsif block.settings.link != blank and request.path == block.settings.link
+            assign is_here = true
+          endif
+        -%}
+        <a
+          class="tu-card{% if is_here %} is-here{% endif %}"
+          href="{{ block.settings.link | default: '#' }}"
+          {% if is_here %}aria-current="page"{% endif %}
+          aria-label="{{ card_name | escape }}"
+          {{ block.shopify_attributes }}
+        >
+          <div class="tu-n"><span>{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span><b>{{ section.settings.here_label | escape }}</b></div>
+          <div class="tu-logo">
+            {%- if block.settings.logo != blank -%}
+              {{ block.settings.logo | image_url: width: 320 | image_tag: alt: card_name, loading: 'lazy', widths: '160, 320' }}
+            {%- else -%}
+              <img src="{{ default_logo }}" alt="{{ card_name | escape }}" loading="lazy" width="320" height="120">
+            {%- endif -%}
+          </div>
+          {%- if block.settings.show_name -%}
+            <p class="tu-name">{{ card_name | escape }}</p>
+          {%- endif -%}
+          <p>{{ block.settings.description | escape }}</p>
+          <span class="tu-go">{{ block.settings.cta | default: 'Entrar →' | escape }}</span>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Universo Tueste",
+  "tag": "section",
+  "class": "section-tueste-universo",
+  "limit": 1,
+  "settings": [
+    { "type": "paragraph", "content": "Bloque común de navegación entre las cuatro experiencias. Los logos salen de los assets del tema; puedes reemplazarlos por bloque." },
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Universo Tueste" },
+    { "type": "inline_richtext", "id": "heading", "label": "Título", "default": "Un origen, <em>cuatro caminos</em>." },
+    { "type": "textarea", "id": "intro", "label": "Introducción", "default": "Todo nace en el mismo cafetal del Cañón de Aures: el café que compras, el árbol que siembras, la marca que creas con nosotros y la música que lo cuenta." },
+    { "type": "text", "id": "here_label", "label": "Etiqueta de la página actual", "default": "Estás aquí" },
+    {
+      "type": "select",
+      "id": "style",
+      "label": "Estilo",
+      "options": [
+        { "value": "tueste", "label": "Tostado y crema (tienda, Tree, Unity)" },
+        { "value": "records", "label": "Sobrio (Tueste Records)" }
+      ],
+      "default": "tueste"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "camino",
+      "name": "Camino",
+      "settings": [
+        {
+          "type": "select",
+          "id": "brand",
+          "label": "Marca",
+          "options": [
+            { "value": "tienda", "label": "Tueste · tienda" },
+            { "value": "tree", "label": "Tueste Tree" },
+            { "value": "unity", "label": "Tueste Unity" },
+            { "value": "records", "label": "Tueste Records" }
+          ],
+          "default": "tienda"
+        },
+        { "type": "image_picker", "id": "logo", "label": "Logo (opcional, reemplaza el del tema)" },
+        { "type": "text", "id": "name", "label": "Nombre", "info": "Si se deja vacío se usa el nombre de la marca." },
+        { "type": "checkbox", "id": "show_name", "label": "Mostrar el nombre debajo del logo", "default": false },
+        { "type": "textarea", "id": "description", "label": "Descripción", "default": "Café de origen, piezas y ritual. La casa de todo lo que hacemos." },
+        { "type": "url", "id": "link", "label": "Enlace" },
+        { "type": "text", "id": "cta", "label": "Texto del enlace", "default": "Entrar →" },
+        { "type": "checkbox", "id": "current", "label": "Marcar como la página actual", "default": false, "info": "Se marca sola cuando el enlace coincide con la página; usa esto para forzarlo." }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Universo Tueste",
+      "blocks": [
+        { "type": "camino", "settings": { "brand": "tienda", "description": "Café de origen, piezas y ritual. La casa de todo lo que hacemos.", "link": "/" } },
+        { "type": "camino", "settings": { "brand": "tree", "description": "Siembra un árbol en la Finca Tres Esquinas y cofunda un origen.", "link": "/pages/tueste-tree" } },
+        { "type": "camino", "settings": { "brand": "unity", "description": "Tu marca de café con nuestro origen y una firma sonora.", "link": "/pages/tueste-unity" } },
+        { "type": "camino", "settings": { "brand": "records", "description": "El sello: lanzamientos, artistas y dónde escuchar el café.", "link": "/pages/tueste-records" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
