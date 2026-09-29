@@ -42,7 +42,10 @@
   assign taza_rosada_product = all_products['taza-efimero-rosada']
   assign taza_morada_product = all_products['taza-efimero-morada']
   assign taza_splash_product = all_products['taza-artesanal-splash-edicion-limitada']
-  assign hoodie_product = all_products['origin-grey-hoodie-n-1840-ltd']
+  assign hoodie_product = all_products['origin-grey-hoodie-nº-1840-ltd']
+  if hoodie_product == blank
+    assign hoodie_product = all_products['origin-grey-hoodie-n-1840-ltd']
+  endif
   assign taza_rosada_url = taza_rosada_product.url
   assign taza_morada_url = taza_morada_product.url
   assign taza_splash_url = taza_splash_product.url
@@ -145,6 +148,10 @@
           {% for block in section.blocks %}
             {% if block.type == 'coffee' %}
               {%- assign selected_product = block.settings.product -%}
+              {%- if selected_product.handle == blank and selected_product != blank -%}
+                {%- assign selected_product_handle = selected_product | split: '/' | last -%}
+                {%- assign selected_product = all_products[selected_product_handle] -%}
+              {%- endif -%}
               {%- case forloop.index -%}
                 {%- when 1 -%}{%- assign fallback_image = 'aures-conscious.png' -%}
                 {%- when 2 -%}{%- assign fallback_image = 'aures-amour.png' -%}
@@ -183,6 +190,8 @@
                     {%- assign selected_product_url = selected_product_url | append: '?view=tueste-cafe-conscious' -%}
                   {%- when 'cafe-aures-1840-amour' -%}
                     {%- assign selected_product_url = selected_product_url | append: '?view=tueste-cafe-amour' -%}
+                  {%- when 'combo-cafe-aures-1840-taza-efimero' -%}
+                    {%- assign selected_product_url = selected_product_url | append: '?view=tueste-taza' -%}
                 {%- endcase -%}
               {%- endif -%}
               <article class="te-preview__cafe" {{ block.shopify_attributes }}>
