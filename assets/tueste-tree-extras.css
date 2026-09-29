@@ -70,6 +70,7 @@
 }
 
 .ttx h2 {
+  color: var(--ttx-cream);
   font-family: var(--ttx-disp);
   font-size: clamp(1.5rem, 3.6vw, 2.6rem);
   font-weight: 700;
