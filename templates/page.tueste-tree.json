@@ -1,20 +1,20 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "tueste_tree_mockup": {
       "type": "tueste-tree-mockup",
-      "settings": {
-        "hero_eyebrow": "Finca Tres Esquinas · Naranjal Bajo, Circasia · Quindío"
-      }
+      "settings": {}
     },
     "tree_impacto": {
       "type": "tueste-tree-impacto",
-      "settings": {
-        "kicker": "Sentido social · por qué sembramos",
-        "heading": "Cada árbol hace más que café. <em>Hace territorio.</em>",
-        "lead": "Tueste Tree nace en el Eje Cafetero colombiano con una idea simple: que sembrar café vuelva a ser un buen negocio para quien lo cultiva y una buena noticia para la montaña. Tu árbol es parte de eso.",
-        "figure": "30.000",
-        "figure_text": "árboles en la primera fase del proyecto, sembrados en dos fincas del Eje Cafetero —Circasia, Quindío y Caicedonia, Valle del Cauca— con dos caficultoras al frente. Los primeros 10.200 son fundacionales: quienes entran ahora cofundan el origen."
-      },
       "blocks": {
         "pilar_1": {
           "type": "pilar",
@@ -66,15 +66,17 @@
         "pilar_2",
         "pilar_3",
         "pilar_4"
-      ]
+      ],
+      "settings": {
+        "kicker": "Sentido social · por qué sembramos",
+        "heading": "Cada árbol hace más que café. <em>Hace territorio.</em>",
+        "lead": "Tueste Tree nace en el Eje Cafetero colombiano con una idea simple: que sembrar café vuelva a ser un buen negocio para quien lo cultiva y una buena noticia para la montaña. Tu árbol es parte de eso.",
+        "figure": "30.000",
+        "figure_text": "árboles en la primera fase del proyecto, sembrados en dos fincas del Eje Cafetero —Circasia, Quindío y Caicedonia, Valle del Cauca— con dos caficultoras al frente. Los primeros 10.200 son fundacionales: quienes entran ahora cofundan el origen."
+      }
     },
     "tree_fincas": {
       "type": "tueste-tree-fincas",
-      "settings": {
-        "kicker": "Las dos fincas fundadoras",
-        "heading": "Aquí se siembran los primeros <em>30.000 árboles.</em>",
-        "lead": "Dos fincas, dos caficultoras y un mismo paisaje: el Eje Cafetero, entre Circasia (Quindío) y Caicedonia (Valle del Cauca). En estas laderas empieza Tueste Tree."
-      },
       "blocks": {
         "finca_1": {
           "type": "finca",
@@ -106,17 +108,15 @@
       "block_order": [
         "finca_1",
         "finca_2"
-      ]
+      ],
+      "settings": {
+        "kicker": "Las dos fincas fundadoras",
+        "heading": "Aquí se siembran los primeros <em>30.000 árboles.</em>",
+        "lead": "Dos fincas, dos caficultoras y un mismo paisaje: el Eje Cafetero, entre Circasia (Quindío) y Caicedonia (Valle del Cauca). En estas laderas empieza Tueste Tree."
+      }
     },
     "tree_faq": {
       "type": "tueste-tree-faq",
-      "settings": {
-        "kicker": "Preguntas frecuentes",
-        "heading": "Lo que todos preguntan <em>antes de sembrar.</em>",
-        "cta_label": "Sembrar mi árbol",
-        "link_label": "Hacer otra pregunta por WhatsApp",
-        "link_url": "https://wa.me/573102682677?text=Hola%2C%20tengo%20una%20pregunta%20sobre%20Tueste%20Tree"
-      },
       "blocks": {
         "pregunta_1": {
           "type": "pregunta",
@@ -210,17 +210,17 @@
         "pregunta_8",
         "pregunta_9",
         "pregunta_10"
-      ]
+      ],
+      "settings": {
+        "kicker": "Preguntas frecuentes",
+        "heading": "Lo que todos preguntan <em>antes de sembrar.</em>",
+        "cta_label": "Sembrar mi árbol",
+        "link_label": "Hacer otra pregunta por WhatsApp",
+        "link_url": "https://wa.me/573102682677?text=Hola%2C%20tengo%20una%20pregunta%20sobre%20Tueste%20Tree"
+      }
     },
     "universo": {
       "type": "tueste-universo",
-      "settings": {
-        "kicker": "Universo Tueste",
-        "heading": "Un origen, <em>cuatro caminos</em>.",
-        "intro": "Todo nace en el mismo cafetal del Cañón de Aures: el café que compras, el árbol que siembras, la marca que creas con nosotros y la música que lo cuenta.",
-        "here_label": "Estás aquí",
-        "style": "tueste"
-      },
       "blocks": {
         "camino_1": {
           "type": "camino",
@@ -228,9 +228,9 @@
             "brand": "tienda",
             "show_name": false,
             "description": "Café de origen, piezas y ritual. La casa de todo lo que hacemos.",
+            "link": "/",
             "cta": "Entrar →",
-            "current": false,
-            "link": "/"
+            "current": false
           }
         },
         "camino_2": {
@@ -239,9 +239,9 @@
             "brand": "tree",
             "show_name": false,
             "description": "Siembra un árbol en la Finca Tres Esquinas y cofunda un origen.",
+            "link": "/pages/tueste-tree",
             "cta": "Entrar →",
-            "current": true,
-            "link": "/pages/tueste-tree"
+            "current": true
           }
         },
         "camino_3": {
@@ -250,9 +250,9 @@
             "brand": "unity",
             "show_name": false,
             "description": "Tu marca de café con nuestro origen y una firma sonora.",
+            "link": "/pages/tueste-unity",
             "cta": "Entrar →",
-            "current": false,
-            "link": "/pages/tueste-unity"
+            "current": false
           }
         },
         "camino_4": {
@@ -261,9 +261,9 @@
             "brand": "records",
             "show_name": false,
             "description": "El sello: lanzamientos, artistas y dónde escuchar el café.",
+            "link": "/pages/tueste-records",
             "cta": "Entrar →",
-            "current": false,
-            "link": "/pages/tueste-records"
+            "current": false
           }
         }
       },
@@ -272,7 +272,14 @@
         "camino_2",
         "camino_3",
         "camino_4"
-      ]
+      ],
+      "settings": {
+        "kicker": "Universo Tueste",
+        "heading": "Un origen, <em>cuatro caminos</em>.",
+        "intro": "Todo nace en el mismo cafetal del Cañón de Aures: el café que compras, el árbol que siembras, la marca que creas con nosotros y la música que lo cuenta.",
+        "here_label": "Estás aquí",
+        "style": "tueste"
+      }
     }
   },
   "order": [
