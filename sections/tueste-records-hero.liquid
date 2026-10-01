@@ -15,7 +15,7 @@
         {%- endif -%}
       </div>
       {%- if section.settings.backed_label != blank -%}
-        <div class="badge"><span>{{ section.settings.backed_label | escape }}</span><strong class="backed-mark">Logik Pro</strong></div>
+        <div class="badge"><span>{{ section.settings.backed_label | escape }}</span><img src="{{ 'logik-pro-logo.webp' | asset_url }}" alt="Logik Pro" width="425" height="65"></div>
       {%- endif -%}
     </div>
 
@@ -25,6 +25,8 @@
           <div class="art">
             {%- if block.settings.image != blank -%}
               {{ block.settings.image | image_url: width: 1800 | image_tag: loading: 'lazy', widths: '800, 1200, 1800', alt: block.settings.image.alt | default: block.settings.title }}
+            {%- elsif block.settings.image_asset != blank -%}
+              <img src="{{ block.settings.image_asset | asset_url }}" alt="{{ block.settings.title | escape }}" width="400" height="400" loading="lazy">
             {%- else -%}
               <canvas data-gen="dense" aria-hidden="true"></canvas>
             {%- endif -%}
@@ -84,12 +86,13 @@
       "name": "Diapositiva",
       "settings": [
         { "type": "image_picker", "id": "image", "label": "Imagen", "info": "Sin imagen se pinta el arte generativo del sello." },
+        { "type": "text", "id": "image_asset", "label": "Imagen desde assets del tema", "info": "Nombre de archivo en assets. Se usa si no eliges imagen." },
         { "type": "number", "id": "seed", "label": "Semilla del arte generativo", "info": "Cambia el dibujo cuando no hay imagen." },
         { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Ya disponible" },
         { "type": "text", "id": "tag_hot", "label": "Etiqueta destacada", "default": "Destacado" },
         { "type": "text", "id": "tag", "label": "Etiqueta", "default": "Álbum" },
         { "type": "text", "id": "title", "label": "Título", "default": "Coffee in Frequencies" },
-        { "type": "textarea", "id": "text", "label": "Texto", "default": "Una obra hecha no solo para escucharse, sino para sentirse." },
+        { "type": "textarea", "id": "text", "label": "Texto", "default": "Descubre el próximo lanzamiento de Tueste Records." },
         { "type": "text", "id": "button_label", "label": "Botón principal", "default": "Escuchar" },
         { "type": "text", "id": "button_url", "label": "URL del botón principal", "default": "#lanzamientos" },
         { "type": "text", "id": "button2_label", "label": "Botón secundario", "default": "Ver catálogo" },
@@ -103,8 +106,8 @@
       "name": "Tueste Records · Hero",
       "blocks": [
         { "type": "slide", "settings": { "seed": 7, "eyebrow": "Ya disponible", "tag_hot": "Tueste Sessions 001", "tag": "Álbum · Origen Tostado", "title": "Coffee in Frequencies", "text": "Diez frecuencias, de 60 Hz al infinito, que recorren el viaje de la semilla de café desde el silencio hasta la expansión. Más que música: un paisaje sonoro grabado con los sonidos reales del café.", "button_label": "Escuchar en Spotify", "button_url": "https://open.spotify.com/album/3QORX6JtWw22nwDNMy9jLp", "button2_label": "Ver catálogo", "button2_url": "#lanzamientos" } },
-        { "type": "slide", "settings": { "seed": 21, "eyebrow": "Ya disponible", "tag_hot": "", "tag": "Álbum · Logik Pro", "title": "Tueste Selection", "text": "Una obra hecha no solo para escucharse, sino para sentirse.", "button_label": "Escuchar en Spotify", "button_url": "https://open.spotify.com/album/33rpXDbvGX7XtJbfzXvxct", "button2_label": "Dónde escuchar", "button2_url": "#plataformas" } },
-        { "type": "slide", "settings": { "seed": 42, "eyebrow": "Playlists", "tag_hot": "", "tag": "Spotify", "title": "Sigue nuestras playlists", "text": "Origen Frequencies, #TUESTE y #TUESTE CLASSICS: tres selecciones vivas del sello que se actualizan con cada sesión, cada lanzamiento y cada lote.", "button_label": "Ver las playlists", "button_url": "#playlists", "button2_label": "Lista del sello", "button2_url": "#suscribete" } }
+        { "type": "slide", "settings": { "seed": 21, "eyebrow": "Ya disponible", "tag": "Álbum · Logik Pro", "title": "Tueste Selection", "text": "Una obra hecha no solo para escucharse, sino para sentirse.", "button_label": "Escuchar en Spotify", "button_url": "https://open.spotify.com/album/33rpXDbvGX7XtJbfzXvxct", "button2_label": "Dónde escuchar", "button2_url": "#plataformas" } },
+        { "type": "slide", "settings": { "seed": 42, "eyebrow": "Playlists", "tag": "Spotify", "title": "Sigue nuestras playlists", "text": "Origen Frequencies, #TUESTE y #TUESTE CLASSICS: tres selecciones vivas del sello que se actualizan con cada sesión, cada lanzamiento y cada lote.", "button_label": "Ver las playlists", "button_url": "#playlists", "button2_label": "Lista del sello", "button2_url": "#suscribete" } }
       ]
     }
   ]
