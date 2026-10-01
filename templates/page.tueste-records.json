@@ -11,11 +11,15 @@
   "sections": {
     "records_hero": {
       "type": "tueste-records-hero",
+      "settings": {
+        "backed_label": "Respaldado por",
+        "aria_label": "Lo que se viene",
+        "autoplay_speed": 7
+      },
       "blocks": {
         "slide_1": {
           "type": "slide",
           "settings": {
-            "seed": 7,
             "eyebrow": "Ya disponible",
             "tag_hot": "Nuevo · 4 jun 2026",
             "tag": "Álbum · Origen Tostado",
@@ -24,13 +28,14 @@
             "button_label": "Escuchar en Spotify",
             "button_url": "https://open.spotify.com/album/2LB9Dh1bQtIygRPqPMalRe",
             "button2_label": "Ver catálogo",
-            "button2_url": "#lanzamientos"
+            "button2_url": "#lanzamientos",
+            "seed": 7,
+            "image_asset": "tueste-records-cover-from-coffee-to-frequencies.webp"
           }
         },
         "slide_2": {
           "type": "slide",
           "settings": {
-            "seed": 21,
             "eyebrow": "Ya disponible",
             "tag_hot": "",
             "tag": "Álbum · Origen Tostado",
@@ -39,13 +44,14 @@
             "button_label": "Escuchar en Spotify",
             "button_url": "https://open.spotify.com/album/3QORX6JtWw22nwDNMy9jLp",
             "button2_label": "Dónde escuchar",
-            "button2_url": "#plataformas"
+            "button2_url": "#plataformas",
+            "seed": 21,
+            "image_asset": "tueste-records-cover-coffee-in-frequencies.webp"
           }
         },
         "slide_3": {
           "type": "slide",
           "settings": {
-            "seed": 42,
             "eyebrow": "Ya disponible",
             "tag_hot": "",
             "tag": "EP · Origen Tostado",
@@ -54,7 +60,9 @@
             "button_label": "Escuchar en Spotify",
             "button_url": "https://open.spotify.com/album/33rpXDbvGX7XtJbfzXvxct",
             "button2_label": "Lista del sello",
-            "button2_url": "#suscribete"
+            "button2_url": "#suscribete",
+            "seed": 42,
+            "image_asset": "tueste-records-cover-tueste-selection.webp"
           }
         }
       },
@@ -62,27 +70,29 @@
         "slide_1",
         "slide_2",
         "slide_3"
-      ],
-      "settings": {
-        "backed_label": "Respaldado por",
-        "aria_label": "Lo que se viene",
-        "autoplay_speed": 7
-      }
+      ]
     },
     "records_lanzamientos": {
       "type": "tueste-records-lanzamientos",
+      "settings": {
+        "kicker": "Catálogo",
+        "heading": "Lanzamientos",
+        "more_label": "Todas las plataformas",
+        "more_url": "#plataformas",
+        "show_filters": true
+      },
       "blocks": {
         "lanzamiento_1": {
           "type": "lanzamiento",
           "settings": {
-            "cover_asset": "tueste-records-cover-from-coffee-to-frequencies.webp",
-            "seed": 11,
-            "catalog": "Álbum · 4 jun 2026",
             "title": "From Coffee to Frequencies",
             "artist": "Origen Tostado",
             "type": "album",
             "year": "2026",
             "soon": false,
+            "seed": 11,
+            "catalog": "Álbum · 4 jun 2026",
+            "cover_asset": "tueste-records-cover-from-coffee-to-frequencies.webp",
             "spotify": "https://open.spotify.com/album/2LB9Dh1bQtIygRPqPMalRe",
             "youtube": "https://music.youtube.com/browse/MPREb_t7YkMOagm9j",
             "deezer": "https://www.deezer.com/album/970797691",
@@ -92,14 +102,14 @@
         "lanzamiento_2": {
           "type": "lanzamiento",
           "settings": {
-            "cover_asset": "tueste-records-cover-coffee-in-frequencies.webp",
-            "seed": 7,
-            "catalog": "Álbum · 7 may 2026 · 10 frecuencias",
             "title": "Coffee in Frequencies",
             "artist": "Origen Tostado",
             "type": "album",
             "year": "2026",
             "soon": false,
+            "seed": 7,
+            "catalog": "Álbum · 7 may 2026 · 10 frecuencias",
+            "cover_asset": "tueste-records-cover-coffee-in-frequencies.webp",
             "spotify": "https://open.spotify.com/album/3QORX6JtWw22nwDNMy9jLp",
             "apple": "https://music.apple.com/us/album/coffee-in-frequencies/1890692688",
             "youtube": "https://music.youtube.com/browse/MPREb_FOmBFlkzBMp",
@@ -109,14 +119,14 @@
         "lanzamiento_3": {
           "type": "lanzamiento",
           "settings": {
-            "cover_asset": "tueste-records-cover-tueste-selection.webp",
-            "seed": 21,
-            "catalog": "EP · 30 abr 2026 · 5 temas",
             "title": "Tueste Selection",
             "artist": "Origen Tostado",
             "type": "ep",
             "year": "2026",
             "soon": false,
+            "seed": 21,
+            "catalog": "EP · 30 abr 2026 · 5 temas",
+            "cover_asset": "tueste-records-cover-tueste-selection.webp",
             "spotify": "https://open.spotify.com/album/33rpXDbvGX7XtJbfzXvxct",
             "apple": "https://music.apple.com/us/album/tueste-selection-ep/1884720631",
             "deezer": "https://www.deezer.com/album/938609761"
@@ -127,17 +137,16 @@
         "lanzamiento_1",
         "lanzamiento_2",
         "lanzamiento_3"
-      ],
-      "settings": {
-        "kicker": "Catálogo",
-        "heading": "Lanzamientos",
-        "more_label": "Todas las plataformas",
-        "more_url": "#plataformas",
-        "show_filters": true
-      }
+      ]
     },
     "records_plataformas": {
       "type": "tueste-records-plataformas",
+      "settings": {
+        "kicker": "Distribución",
+        "heading": "Dónde escuchar",
+        "note_right": "Catálogo distribuido por Logik Pro desde 2012",
+        "note": "Origen Tostado es el proyecto del sello. ℗ 2026 Logik Pro – Tueste Group."
+      },
       "blocks": {
         "plataforma_1": {
           "type": "plataforma",
@@ -191,16 +200,17 @@
         "plataforma_3",
         "plataforma_4",
         "plataforma_5"
-      ],
-      "settings": {
-        "kicker": "Distribución",
-        "heading": "Dónde escuchar",
-        "note_right": "Catálogo distribuido por Logik Pro desde 2012",
-        "note": "Origen Tostado es el proyecto del sello. ℗ 2026 Logik Pro – Tueste Group."
-      }
+      ]
     },
     "records_playlists": {
       "type": "tueste-records-playlists",
+      "settings": {
+        "kicker": "Playlists",
+        "heading": "Sigue nuestras playlists",
+        "more_label": "Abrir en Spotify",
+        "more_url": "https://open.spotify.com/playlist/4yw3gSoVGBoODGiYhGcFLd?si=b459fc85d0da4979",
+        "note": "Tres selecciones vivas del sello: se actualizan con cada sesión, cada lanzamiento y cada lote. Síguelas para que el café te llegue también por los oídos."
+      },
       "blocks": {
         "playlist_1": {
           "type": "playlist",
@@ -240,28 +250,27 @@
         "playlist_1",
         "playlist_2",
         "playlist_3"
-      ],
-      "settings": {
-        "kicker": "Playlists",
-        "heading": "Sigue nuestras playlists",
-        "more_label": "Abrir en Spotify",
-        "more_url": "https://open.spotify.com/playlist/4yw3gSoVGBoODGiYhGcFLd?si=b459fc85d0da4979",
-        "note": "Tres selecciones vivas del sello: se actualizan con cada sesión, cada lanzamiento y cada lote. Síguelas para que el café te llegue también por los oídos."
-      }
+      ]
     },
     "records_noticias": {
       "type": "tueste-records-noticias",
+      "settings": {
+        "kicker": "Noticias",
+        "heading": "En lo que estamos",
+        "more_label": "Recibir novedades",
+        "more_url": "#suscribete"
+      },
       "blocks": {
         "destacada_1": {
           "type": "destacada",
           "settings": {
-            "image_asset": "tueste-records-cover-from-coffee-to-frequencies.webp",
-            "seed": 11,
             "kind": "Lanzamiento",
             "title": "From Coffee to Frequencies ya está en plataformas",
             "text": "El tercer trabajo de Origen Tostado salió el 4 de junio de 2026. Disponible en Spotify, YouTube Music, Deezer y Amazon Music.",
             "link_label": "Escuchar en Spotify",
-            "link_url": "https://open.spotify.com/album/2LB9Dh1bQtIygRPqPMalRe"
+            "link_url": "https://open.spotify.com/album/2LB9Dh1bQtIygRPqPMalRe",
+            "seed": 11,
+            "image_asset": "tueste-records-cover-from-coffee-to-frequencies.webp"
           }
         },
         "nota_2": {
@@ -287,13 +296,7 @@
         "destacada_1",
         "nota_2",
         "nota_3"
-      ],
-      "settings": {
-        "kicker": "Noticias",
-        "heading": "En lo que estamos",
-        "more_label": "Recibir novedades",
-        "more_url": "#suscribete"
-      }
+      ]
     },
     "records_suscribete": {
       "type": "tueste-records-suscribete",
@@ -310,6 +313,13 @@
     },
     "universo": {
       "type": "tueste-universo",
+      "settings": {
+        "kicker": "Universo Tueste",
+        "heading": "Un origen, <em>cuatro caminos</em>.",
+        "intro": "Todo nace en el mismo cafetal del Cañón de Aures: el café que compras, el árbol que siembras, la marca que creas con nosotros y la música que lo cuenta.",
+        "here_label": "Estás aquí",
+        "style": "records"
+      },
       "blocks": {
         "camino_1": {
           "type": "camino",
@@ -317,9 +327,9 @@
             "brand": "tienda",
             "show_name": false,
             "description": "Café de origen, piezas y ritual. La casa de todo lo que hacemos.",
-            "link": "/",
             "cta": "Entrar →",
-            "current": false
+            "current": false,
+            "link": "/"
           }
         },
         "camino_2": {
@@ -328,9 +338,9 @@
             "brand": "tree",
             "show_name": false,
             "description": "Siembra un árbol en la Finca Tres Esquinas y cofunda un origen.",
-            "link": "/pages/tueste-tree",
             "cta": "Entrar →",
-            "current": false
+            "current": false,
+            "link": "/pages/tueste-tree"
           }
         },
         "camino_3": {
@@ -339,9 +349,9 @@
             "brand": "unity",
             "show_name": false,
             "description": "Tu marca de café con nuestro origen y una firma sonora.",
-            "link": "/pages/tueste-unity",
             "cta": "Entrar →",
-            "current": false
+            "current": false,
+            "link": "/pages/tueste-unity"
           }
         },
         "camino_4": {
@@ -350,9 +360,9 @@
             "brand": "records",
             "show_name": false,
             "description": "El sello: lanzamientos, artistas y dónde escuchar el café.",
-            "link": "/pages/tueste-records",
             "cta": "Entrar →",
-            "current": true
+            "current": true,
+            "link": "/pages/tueste-records"
           }
         }
       },
@@ -361,14 +371,7 @@
         "camino_2",
         "camino_3",
         "camino_4"
-      ],
-      "settings": {
-        "kicker": "Universo Tueste",
-        "heading": "Un origen, <em>cuatro caminos</em>.",
-        "intro": "Todo nace en el mismo cafetal del Cañón de Aures: el café que compras, el árbol que siembras, la marca que creas con nosotros y la música que lo cuenta.",
-        "here_label": "Estás aquí",
-        "style": "records"
-      }
+      ]
     }
   },
   "order": [

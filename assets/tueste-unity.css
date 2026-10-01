@@ -22,7 +22,9 @@
 .tu-unity .kicker{font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--amber);display:inline-flex;align-items:center;gap:.6em}
 .tu-unity .kicker::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--amber);box-shadow:0 0 0 3px rgba(251,169,34,.18);flex:none}
 .tu-unity h1,.tu-unity h2,.tu-unity h3{margin:0;font-weight:700;text-wrap:balance}
-.tu-unity .disp{font-family:var(--disp);text-transform:uppercase;letter-spacing:.03em;line-height:1.06;font-weight:700}
+.tu-unity .disp,.tu-unity h1,.tu-unity h2,.tu-unity h3{color:var(--cream)}
+.tu-unity .disp{font-family:var(--disp);text-transform:uppercase;letter-spacing:.03em;line-height:1.06;font-weight:700;color:var(--cream)}
+.tu-unity .disp em{color:var(--amber);font-style:normal}
 .tu-unity .lead{font-size:1.05rem;color:var(--cream2);max-width:40rem;margin:0}
 .tu-unity .muted{color:var(--muted)}
 .tu-unity .btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;border-radius:999px;padding:.95rem 1.6rem;font-weight:600;font-size:.98rem;transition:transform .15s ease,background .2s,border-color .2s;text-decoration:none;white-space:nowrap}
@@ -50,9 +52,9 @@
 
 /* hero */
 .tu-unity .hero{position:relative;display:grid;align-items:center;isolation:isolate;overflow:hidden;min-height:min(640px,82vh)}
-.tu-unity .hero .bgimg{position:absolute;inset:0;z-index:-2;display:block!important;background:#12321c var(--tu-hero-img) 70% 50%/cover no-repeat;animation:drift 24s ease-in-out infinite alternate}
-.tu-unity .hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(21,19,15,.86) 0%,rgba(21,19,15,.55) 36%,rgba(21,19,15,0) 62%),linear-gradient(180deg,rgba(21,19,15,0) 60%,var(--bg) 100%)}
-.tu-unity .hero .wrap{padding-block:4.5rem 4rem;display:grid;gap:1.2rem;justify-items:start}
+.tu-unity .hero .bgimg{position:absolute;inset:0;z-index:0;background:#12321c var(--tu-hero-img) 70% 50%/cover no-repeat;animation:drift 24s ease-in-out infinite alternate}
+.tu-unity .hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(21,19,15,.86) 0%,rgba(21,19,15,.55) 36%,rgba(21,19,15,0) 62%),linear-gradient(180deg,rgba(21,19,15,0) 60%,var(--bg) 100%)}
+.tu-unity .hero .wrap{position:relative;z-index:2;padding-block:4.5rem 4rem;display:grid;gap:1.2rem;justify-items:start}
 .tu-unity .hero h1{font-size:clamp(2rem,5.2vw,4.3rem);max-width:13ch;text-shadow:0 2px 18px rgba(21,19,15,.6)}
 .tu-unity .hero h1 em{font-style:normal;color:var(--amber)}
 .tu-unity .hero .lead{max-width:34rem;text-shadow:0 2px 14px rgba(21,19,15,.8)}
