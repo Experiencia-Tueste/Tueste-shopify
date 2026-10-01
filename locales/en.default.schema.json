@@ -4155,10 +4155,10 @@
       "name": "Reveal image with text"
     },
     "reveal-image-with-text-overlay": {
-      "name": "Reveal image with text overlay"
+      "name": "Image text overlay"
     },
     "reveal-video-with-text-overlay": {
-      "name": "Reveal video with text overlay"
+      "name": "Video text overlay"
     },
     "reveal-testimonials": {
       "name": "Reveal testimonials"

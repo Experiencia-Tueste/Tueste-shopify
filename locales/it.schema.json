@@ -4160,10 +4160,10 @@
       "name": "Rivela l'immagine con il testo"
     },
     "reveal-image-with-text-overlay": {
-      "name": "Rivela l'immagine con sovrapposizione di testo"
+      "name": "Immagine con testo"
     },
     "reveal-video-with-text-overlay": {
-      "name": "Rivela il video con sovrapposizione di testo"
+      "name": "Video con testo"
     },
     "reveal-testimonials": {
       "name": "Rivela testimonianze"

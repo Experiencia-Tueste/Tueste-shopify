@@ -4160,10 +4160,10 @@
       "name": "Tiết lộ hình ảnh có văn bản"
     },
     "reveal-image-with-text-overlay": {
-      "name": "Tiết lộ hình ảnh có lớp phủ văn bản"
+      "name": "Ảnh có chữ"
     },
     "reveal-video-with-text-overlay": {
-      "name": "Tiết lộ video có lớp phủ văn bản"
+      "name": "Video có chữ"
     },
     "reveal-testimonials": {
       "name": "Tiết lộ lời chứng thực"
