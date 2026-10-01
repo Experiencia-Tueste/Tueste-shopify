@@ -1,6 +1,7 @@
 {%- comment -%}
-  Tueste Unity · Hero + marquee. La ilustración por defecto vive en el CDN de
-  Shopify; el image_picker permite reemplazarla desde el editor del tema.
+  Tueste Unity · Hero + marquee. El selector del editor tiene prioridad; el
+  fallback usa el recurso CDN oficial para que el banner no quede vacío si el
+  archivo todavía no fue agregado a Shopify Files.
 {%- endcomment -%}
 {{ 'tueste-unity.css' | asset_url | stylesheet_tag }}
 
@@ -67,7 +68,7 @@
     { "type": "url", "id": "button_link", "label": "Enlace del botón", "info": "Por defecto lleva al taller (#taller)." },
     { "type": "text", "id": "link_label", "label": "Enlace secundario", "default": "Ver los tres caminos" },
     { "type": "url", "id": "link_url", "label": "URL del enlace secundario", "info": "Por defecto #caminos." },
-    { "type": "image_picker", "id": "image", "label": "Ilustración de fondo", "info": "Por defecto: tueste-unity-hero-vitral-1840.png (Shopify Files)." },
+    { "type": "image_picker", "id": "image", "label": "Ilustración de fondo", "info": "Opcional. Si lo dejas vacío usa la ilustración oficial de Tueste Unity." },
     { "type": "text", "id": "image_alt", "label": "Texto alternativo de la ilustración", "default": "Dos manos sostienen una bolsa de café bajo un arco de vitral, con ondas de sonido de colores detrás" },
     { "type": "checkbox", "id": "show_marquee", "label": "Mostrar marquee", "default": true },
     { "type": "text", "id": "marquee", "label": "Textos del marquee (separados por |)", "default": "Tu logo en la 1840|Fórmula propia|Empaque completo|Firma sonora|Experiencias Tueste Crew|Árboles con tu nombre" }
