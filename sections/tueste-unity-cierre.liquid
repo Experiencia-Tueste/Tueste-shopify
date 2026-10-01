@@ -9,7 +9,7 @@
       {%- if section.settings.logo != blank -%}
         {{ section.settings.logo | image_url: width: 400 | image_tag: loading: 'lazy', widths: '200, 400', alt: 'Tueste Unity', style: 'height:48px;width:auto' }}
       {%- else -%}
-        <img src="{{ 'tueste-unity-logo.png' | asset_url }}" alt="Tueste Unity" width="700" height="245" style="height:48px;width:auto" loading="lazy">
+        <img src="{{ 'tueste-unity-logo.webp' | asset_url }}" alt="Tueste Unity" width="700" height="245" style="height:48px;width:auto" loading="lazy">
       {%- endif -%}
       <h2 class="disp" id="TuesteUnityCierreTitle-{{ section.id }}">{{ section.settings.heading }}</h2>
       <div class="contacts">

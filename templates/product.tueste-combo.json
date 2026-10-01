@@ -86,40 +86,30 @@
         "text_tueste_1": {
           "type": "text",
           "settings": {
-            "icon": "users",
+            "icon": "none",
             "iwidth": "custom",
             "icon_width": 20,
-            "text": "<strong>Caficultora:</strong> Doña Clara Inés Ríos Ríos",
+            "text": "<strong>🚚 Envío gratis</strong> a toda Colombia en compras desde $55.000.",
             "text_size": "text-base"
           }
         },
         "text_tueste_2": {
           "type": "text",
           "settings": {
-            "icon": "organic",
-            "iwidth": "custom",
-            "icon_width": 20,
-            "text": "<strong>Finca:</strong> La Esperanza, Cañón de Aures — Caicedonia, Valle del Cauca",
-            "text_size": "text-base"
-          }
-        },
-        "text_tueste_3": {
-          "type": "text",
-          "settings": {
             "icon": "none",
             "iwidth": "custom",
             "icon_width": 20,
-            "text": "<strong>🚚 Envío gratis</strong> a toda Colombia en compras desde $55.000 — este café ya lo incluye.",
+            "text": "<strong>QR musical</strong> en cada bolsa: escanea y escucha la obra del lote.",
             "text_size": "text-base"
           }
         },
         "collapsible_desc": {
           "type": "collapsible_tab",
           "settings": {
-            "opened": false,
+            "opened": true,
             "style": "with-border",
             "icon": "none",
-            "heading": "Descripción completa",
+            "heading": "Qué incluye",
             "content": "{{ product.description }}",
             "page": "",
             "liquid": ""
@@ -141,7 +131,6 @@
         "share",
         "text_tueste_1",
         "text_tueste_2",
-        "text_tueste_3",
         "collapsible_desc",
         "sticky_buy_button"
       ],
@@ -165,105 +154,59 @@
         "rounded": true
       }
     },
-    "frecuencia": {
-      "type": "tueste-producto-frecuencia",
-      "settings": {
-        "kicker": "Un café que se escucha",
-        "heading": "Este lote <em>suena así</em>",
-        "text": "Escanea el QR de la bolsa y escucha mientras preparas tu taza. Cada lote incluye una obra musical original creada con sonidos reales del café — la molienda, el vapor, el goteo, el secado — grabados en finca y transformados en música electrónica por Tueste Unity. Ningún otro café en el mundo suena así.",
-        "voice": "Escúchala mientras preparas tu taza.",
-        "spotify_track": "0FIXGZWj2TQCaEZRieJ1Of",
-        "track_name": "432Hz ASCENT",
-        "album_url": "https://open.spotify.com/album/3QORX6JtWw22nwDNMy9jLp",
-        "album_label": "Coffee in Frequencies · álbum completo",
-        "spotify_label": "Abrir en Spotify",
-        "records_label": "Tueste Records",
-        "accent": "#FBA922",
-        "play_label": "Escuchar la frecuencia",
-        "status_spotify": "Reproduce desde Spotify · 30 s sin sesión, completa con tu cuenta",
-        "status_native": "Obra original del lote · Tueste Unity",
-        "alias_fallback": "Frecuencia del lote",
-        "hz_fallback": 432,
-        "show_qr": true,
-        "qr_text": "En la bolsa va el QR musical del lote: escanéalo con el celular y escucha mientras preparas tu taza."
-      }
-    },
-    "origen": {
-      "type": "tueste-producto-origen",
-      "settings": {
-        "kicker": "Origen con nombre propio",
-        "heading": "Cañón de Aures, <em>1.840 metros</em>",
-        "text": "Cultivado en la Finca La Esperanza, Cañón de Aures — Caicedonia, Valle del Cauca — a 1.840 metros de altura, dentro del Paisaje Cultural Cafetero.",
-        "caficultora": "Doña Clara Inés Ríos Ríos",
-        "caficultora_role": "Caficultora",
-        "finca": "Finca La Esperanza",
-        "region_fallback": "Caicedonia, Valle del Cauca",
-        "altitud_fallback": "1.840 m s. n. m.",
-        "image_alt": "Ladera cafetera del Cañón de Aures",
-        "caption": "Vereda Aures · Caicedonia · Valle del Cauca",
-        "button_label": "Conocer las fincas en Tueste Tree",
-        "button_link": "/pages/tueste-tree#fincas"
-      }
-    },
-    "perfil": {
-      "type": "tueste-producto-perfil",
-      "settings": {
-        "kicker": "Perfil de taza",
-        "heading": "Lo que vas a <em>sentir</em>",
-        "text": "Notas de nueces caramelizadas y chocolate · Acidez cítrica media (naranja) · Cuerpo jugoso · Tueste medio · Proceso lavado · Variedad Castillo.",
-        "voice": "Un café de origen único con 85 puntos SCA.",
-        "acidity_level": 55,
-        "body_level": 70,
-        "intensity_level": 55,
-        "no_radar_text": "La evaluación sensorial de este lote se publica cuando el catador entrega la ficha."
-      }
-    },
-    "ritual": {
-      "type": "tueste-producto-ritual",
+    "detalles": {
+      "type": "tueste-producto-detalles",
       "blocks": {
-        "paso_1": {
-          "type": "paso",
-          "settings": {
-            "icon": "bag",
-            "title": "Recibe el lote",
-            "text": "Una bolsa de 340 g, numerada, con el QR musical del lote. Despacho en 24–48 h hábiles."
-          }
-        },
-        "paso_2": {
-          "type": "paso",
-          "settings": {
-            "icon": "qr",
-            "title": "Escanea el QR",
-            "text": "Está en la bolsa. Abre la obra del lote en tu celular."
-          }
-        },
-        "paso_3": {
-          "type": "paso",
+        "dato_1": {
+          "type": "dato",
           "settings": {
             "icon": "cup",
-            "title": "Prepara tu taza",
-            "text": "Grano para moler en casa o molienda media lista para tu método."
+            "label": "Contenido",
+            "value": "2 bolsas de 340 g · 680 g en total"
           }
         },
-        "paso_4": {
-          "type": "paso",
+        "dato_2": {
+          "type": "dato",
           "settings": {
-            "icon": "headphones",
-            "title": "Escucha mientras cae",
-            "text": "La molienda, el vapor, el goteo y el secado convertidos en música. Ningún otro café suena así."
+            "icon": "wave",
+            "label": "Frecuencias",
+            "value": "432 Hz ASCENT · 528 Hz EXPANSION"
+          }
+        },
+        "dato_3": {
+          "type": "dato",
+          "settings": {
+            "icon": "sun",
+            "label": "Origen",
+            "value": "Finca La Esperanza · Cañón de Aures · 1.840 m"
+          }
+        },
+        "dato_4": {
+          "type": "dato",
+          "settings": {
+            "icon": "box",
+            "label": "Despacho",
+            "value": "24–48 h hábiles · grano o molienda media"
           }
         }
       },
       "block_order": [
-        "paso_1",
-        "paso_2",
-        "paso_3",
-        "paso_4"
+        "dato_1",
+        "dato_2",
+        "dato_3",
+        "dato_4"
       ],
       "settings": {
-        "kicker": "Cómo vivirlo",
-        "heading": "Del paquete <em>a la taza</em>",
-        "text": "Envío gratis a toda Colombia en compras desde $55.000 — este café ya lo incluye."
+        "kicker": "Combo",
+        "heading": "Dos lotes, <em>dos frecuencias</em>",
+        "text": "Conscious (nueces caramelizadas y chocolate, 85 pts SCA) y Amour (dulce y afrutado, acidez baja): dos perfiles de taza distintos, del mismo origen. Cada bolsa suena diferente.",
+        "voice": "Para regalar o para comparar los dos perfiles en casa.",
+        "use_product_image": true,
+        "product_image_index": 1,
+        "image_alt": "",
+        "image_position": "right",
+        "sello_badge": "EDICIÓN LIMITADA",
+        "sello_text": "Cada lote es único y numerado. Cuando se acaba, se acaba — y su música se va con él."
       }
     },
     "relacionados": {
@@ -273,33 +216,41 @@
           "type": "producto",
           "settings": {
             "product": "cafe-aures-1840-conscious",
-            "note": "Lote 01 · 432 Hz · Nueces caramelizadas y chocolate"
+            "note": "Lote 01 · 432 Hz"
           }
         },
         "producto_2": {
           "type": "producto",
           "settings": {
             "product": "cafe-aures-1840-amour",
-            "note": "Lote 02 · 528 Hz · Dulce y afrutado"
+            "note": "Lote 02 · 528 Hz"
           }
         },
         "producto_3": {
           "type": "producto",
           "settings": {
-            "product": "combo-cafes-unity",
-            "note": "Dos lotes, dos frecuencias · 680 g"
+            "product": "combo-cafe-aures-1840-taza-efimero",
+            "note": "Café + Taza Efímero"
+          }
+        },
+        "producto_4": {
+          "type": "producto",
+          "settings": {
+            "product": "cafe-aures-1840-experiencia-sonora-digital",
+            "note": "Café + frecuencia exclusiva"
           }
         }
       },
       "block_order": [
         "producto_1",
         "producto_2",
-        "producto_3"
+        "producto_3",
+        "producto_4"
       ],
       "settings": {
-        "kicker": "El otro lote",
-        "heading": "Dos lotes, <em>dos frecuencias</em>",
-        "text": "Cada lote es único y numerado. Cuando se acaba, se acaba — y su música se va con él.",
+        "kicker": "Los lotes por separado",
+        "heading": "Cada café, <em>con su frecuencia</em>",
+        "text": "",
         "here_label": "Estás aquí",
         "available_label": "Disponible",
         "soldout_label": "Agotado"
@@ -429,10 +380,7 @@
   },
   "order": [
     "main-product",
-    "frecuencia",
-    "origen",
-    "perfil",
-    "ritual",
+    "detalles",
     "relacionados",
     "help-drawer",
     "universo"

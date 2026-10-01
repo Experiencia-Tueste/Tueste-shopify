@@ -6,6 +6,7 @@
     · Si no, usa el track de Spotify configurado en la sección (Coffee in Frequencies · Origen Tostado) mediante la
       Spotify iFrame API, con botón propio y visualizador de onda. Si la API no carga, muestra el embed estándar.
 {%- endcomment -%}
+{{ 'tueste-producto.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'tueste-producto-frecuencia.js' | asset_url }}" defer></script>
 
 {%- liquid

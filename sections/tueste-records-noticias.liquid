@@ -20,6 +20,8 @@
             <div class="cover">
               {%- if featured.settings.image != blank -%}
                 {{ featured.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '600, 1200', alt: featured.settings.image.alt | default: featured.settings.title }}
+              {%- elsif featured.settings.image_asset != blank -%}
+                <img src="{{ featured.settings.image_asset | asset_url }}" alt="{{ featured.settings.title | escape }}" width="400" height="400" loading="lazy">
               {%- else -%}
                 <canvas data-gen="dense" aria-hidden="true"></canvas>
               {%- endif -%}
@@ -71,6 +73,7 @@
       "limit": 1,
       "settings": [
         { "type": "image_picker", "id": "image", "label": "Imagen" },
+        { "type": "text", "id": "image_asset", "label": "Imagen desde assets del tema", "info": "Nombre de archivo en assets. Se usa si no eliges imagen." },
         { "type": "number", "id": "seed", "label": "Semilla del arte generativo" },
         { "type": "text", "id": "kind", "label": "Tipo", "default": "Entrevista" },
         { "type": "text", "id": "title", "label": "Título", "default": "«El café y el sonido se tuestan igual: con paciencia»" },

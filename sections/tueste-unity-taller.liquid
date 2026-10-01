@@ -7,8 +7,8 @@
 {{ 'tueste-unity.css' | asset_url | stylesheet_tag }}
 
 {%- liquid
-  assign bag_art = 'tueste-unity-bag-1840.webp' | asset_url
-  assign bag_mask = bag_art
+  assign bag_art = 'tueste-unity-bolsa-1840.webp' | asset_url
+  assign bag_mask = 'tueste-unity-bolsa-mask.png' | asset_url
   assign wa_digits = section.settings.whatsapp | remove: '+' | remove: ' ' | remove: '-'
 -%}
 

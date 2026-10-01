@@ -43,6 +43,8 @@
             {%- endif -%}
               {%- if block.settings.cover != blank -%}
                 {{ block.settings.cover | image_url: width: 640 | image_tag: loading: 'lazy', widths: '320, 640', alt: block.settings.title }}
+              {%- elsif block.settings.cover_asset != blank -%}
+                <img src="{{ block.settings.cover_asset | asset_url }}" alt="{{ block.settings.title | escape }}" width="400" height="400" loading="lazy">
               {%- else -%}
                 <canvas data-gen="light" aria-hidden="true"></canvas>
                 <span class="t">{{ block.settings.title | escape }}</span>
@@ -96,6 +98,7 @@
       "name": "Lanzamiento",
       "settings": [
         { "type": "image_picker", "id": "cover", "label": "Portada", "info": "Sin portada se pinta el arte generativo del sello." },
+        { "type": "text", "id": "cover_asset", "label": "Portada desde assets del tema", "info": "Nombre de archivo en assets. Se usa si no eliges portada. Ej.: tueste-records-cover-coffee-in-frequencies.webp" },
         { "type": "number", "id": "seed", "label": "Semilla del arte generativo" },
         { "type": "text", "id": "catalog", "label": "Número de catálogo", "info": "Ej. TR-001" },
         { "type": "text", "id": "title", "label": "Título", "default": "Coffee in Frequencies" },

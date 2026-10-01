@@ -3,6 +3,7 @@
   Radar SCA dibujado en SVG a partir de product.metafields.custom.cupping_profile (JSON con score y values),
   notas desde custom.notes / main_flavor / acidity / body / intensity. Sin librerías externas.
 {%- endcomment -%}
+{{ 'tueste-producto.css' | asset_url | stylesheet_tag }}
 
 {%- liquid
   assign mf = product.metafields.custom

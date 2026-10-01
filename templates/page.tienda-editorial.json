@@ -1,85 +1,937 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
-    "tueste_universo_home": {
-      "type": "tueste-universo-home",
-      "settings": {
-        "tree_taken": 3570,
-        "tree_total": 10200,
-        "tree_url": "",
-        "unity_url": "",
-        "records_url": "",
-        "spotify_url": "https://open.spotify.com/album/3QORX6JtWw22nwDNMy9jLp"
-      },
+    "slideshow": {
+      "type": "slideshow",
       "blocks": {
-        "coffee_1": {
-          "type": "coffee",
+        "image_aQD37x": {
+          "type": "image",
           "settings": {
-            "product": "shopify://products/cafe-aures-1840-conscious",
-            "title": "Aures 1840 Conscious",
-            "meta": "Lote 01 · 340 g",
-            "description": "Panela, cereza madura y cacao. Grano entero o molido, tueste medio.",
-            "price": "$55.000 COP",
-            "color_style": "leaf"
+            "image": "shopify://shop_images/banner_hodie.png",
+            "image_mobile": "shopify://shop_images/banner_movil_hodie_94ada9c4-7f6b-4588-b7ad-c20f559ed239.png",
+            "heading": "",
+            "heading_size": "title-lg tracking-heading",
+            "heading_tag": "h2",
+            "button_label": "Comprar",
+            "button_link": "shopify://products/origin-grey-hoodie-nº-1840-ltd",
+            "button_style": "secondary",
+            "button_external": false,
+            "button_icon": false
           }
         },
-        "coffee_2": {
-          "type": "coffee",
+        "slide-3": {
+          "type": "video",
           "settings": {
-            "product": "shopify://products/cafe-aures-1840-amour",
-            "title": "Aures 1840 Amour",
-            "meta": "Lote 02 · 340 g",
-            "description": "El lote más dulce de la colección. Grano entero o molido.",
-            "price": "$55.000 COP",
-            "color_style": "cherry",
-            "sold_out": true
+            "video": "shopify://files/videos/cafe-colombiano-fresco.mp4",
+            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "cover_image": "shopify://shop_images/DSC09148_2.jpg",
+            "description": "Café colombiano de origen, hecho música, ritual y comunidad.",
+            "video_url_mobile": "",
+            "heading": "MUSIC, ART & COFFEE",
+            "heading_size": "title-xl tracking-heading",
+            "heading_tag": "span",
+            "button_label": "Comprar café",
+            "button_link": "shopify://collections/cafes",
+            "button_style": "secondary",
+            "button_external": false,
+            "button_icon": true
           }
         },
-        "coffee_3": {
-          "type": "coffee",
+        "image_NBfRNH": {
+          "type": "image",
           "settings": {
-            "product": "shopify://products/combo-cafes-unity",
-            "title": "Combo Unity",
-            "meta": "680 g · dos frecuencias",
-            "description": "Conscious y Amour juntos: 340 g de cada lote, con su molienda a elegir.",
-            "price": "$98.000 COP",
-            "color_style": "amber clean"
+            "image": "shopify://shop_images/banner_lanzamiento.png",
+            "image_mobile": "shopify://shop_images/banner_lanzamiento_movil_9b5f5de9-4c89-4efb-91c6-43bb5bdd7606.png",
+            "heading": "",
+            "heading_size": "title-lg tracking-heading",
+            "heading_tag": "h2",
+            "button_label": "",
+            "button_link": "https://open.spotify.com/intl-es/album/33rpXDbvGX7XtJbfzXvxct?si=n3vr16K9RWq05OpRI6TSWQ",
+            "button_style": "primary",
+            "button_external": false,
+            "button_icon": false
           }
         },
-        "coffee_4": {
-          "type": "coffee",
+        "image_4V4VGH": {
+          "type": "image",
           "settings": {
-            "product": "shopify://products/combo-cafe-aures-1840-taza-efimero",
-            "title": "Aures 1840 + Taza Efímero",
-            "meta": "340 g + taza artesanal",
-            "description": "El ritual completo en casa: el lote y una taza hecha a mano por artesanos locales.",
-            "price": "$150.000 COP",
-            "color_style": "fill",
-            "sold_out": true
-          }
-        },
-        "coffee_5": {
-          "type": "coffee",
-          "settings": {
-            "product": "shopify://products/cafe-aures-1840-experiencia-sonora-digital",
-            "title": "Aures 1840 + Experiencia Sonora",
-            "meta": "340 g + experiencia digital",
-            "description": "El café que se bebe y se escucha: una frecuencia de Origen Tostado creada para el lote.",
-            "price": "$75.000 COP",
-            "color_style": "fill",
-            "sold_out": true
+            "image": "shopify://shop_images/banner_2.png",
+            "image_mobile": "shopify://shop_images/banner_movil.png",
+            "heading": "",
+            "heading_size": "title-lg tracking-heading",
+            "heading_tag": "h2",
+            "button_label": "Escucha",
+            "button_link": "https://open.spotify.com/intl-es/album/3QORX6JtWw22nwDNMy9jLp?si=I2mmGlXvRQWIRBDjSr7XHQ",
+            "button_style": "secondary",
+            "button_external": false,
+            "button_icon": false
           }
         }
       },
       "block_order": [
-        "coffee_1",
-        "coffee_2",
-        "coffee_3",
-        "coffee_4",
-        "coffee_5"
+        "image_aQD37x",
+        "slide-3",
+        "image_NBfRNH",
+        "image_4V4VGH"
+      ],
+      "settings": {
+        "autoplay": false,
+        "autoplay_speed": 7,
+        "show_navigation": true,
+        "image_height": "adapt",
+        "content_width": "medium",
+        "image_height_mobile": "adapt",
+        "accessibility_info": "Presentación de diapositivas sobre tu marca",
+        "color_text": "#ffffff",
+        "color_background": "#fffdf5",
+        "gradient_background": "",
+        "color_button_text": "#ffffff",
+        "color_button_background": "#ffaf20",
+        "color_button_gradient": "",
+        "color_overlay": "#000000",
+        "overlay_opacity": 20,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "divider": false,
+        "full_width": true,
+        "rounded": false,
+        "enable_parallax": false,
+        "parallax_direction": "vertical"
+      }
+    },
+    "rich-text-1": {
+      "type": "rich-text",
+      "blocks": {
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>En <strong>Tueste</strong> el café no se sirve, se interpreta. Cultivamos café colombiano de origen y lo convertimos en música, ritual y comunidad.</p><p>Aquí puedes comprar café fresco, adoptar un árbol y seguir su cosecha, o vivir una experiencia sensorial donde el café se escucha antes de probarse.</p>",
+            "text_font": "body",
+            "text_size": "subtext-md",
+            "text_max_size": 32,
+            "text_line_height": 1.6,
+            "text_letter_spacing": 0,
+            "text_capitalize": false,
+            "secondary_color": false,
+            "highlighted_text": "none",
+            "highlighted_scribble": "circle"
+          }
+        }
+      },
+      "block_order": [
+        "text"
+      ],
+      "settings": {
+        "text_alignment": "left",
+        "text_alignment_mobile": "left",
+        "heading": "Del origen a la taza, con intención.",
+        "heading_size": "title-md",
+        "heading_alignment": "text-left md:items-end md:flex-row",
+        "heading_width": "medium",
+        "heading_tag": "h1",
+        "subheading": "",
+        "description": "",
+        "button_label": "",
+        "button_link": "",
+        "button_external": false,
+        "button_icon": true,
+        "highlighted_text": "scribble",
+        "highlighted_scribble": "basic-underline",
+        "color_text": "",
+        "color_background": "",
+        "gradient_background": "",
+        "color_highlight": "",
+        "gradient_highlight": "",
+        "color_button_text": "",
+        "color_button_background": "",
+        "color_button_gradient": "",
+        "padding_top": 72,
+        "padding_bottom": 0,
+        "divider": false,
+        "narrow": false,
+        "rounded": false
+      }
+    },
+    "scrolling_text_YjgeMc": {
+      "type": "scrolling-text",
+      "blocks": {
+        "text_cjHbi6": {
+          "type": "text",
+          "settings": {
+            "text": "<strong>DONDE EL CAFÉ SE ESCUCHA</strong>",
+            "text_size": 120,
+            "text_font": "body",
+            "highlighted_text": "half_text",
+            "highlighted_scribble": "circle"
+          }
+        }
+      },
+      "block_order": [
+        "text_cjHbi6"
+      ],
+      "name": "t:sections.scrolling-text.name",
+      "settings": {
+        "direction": "left",
+        "speed": 20,
+        "grid_horizontal": 70,
+        "enable_twin": false,
+        "enable_parallax": true,
+        "color_text": "",
+        "color_background": "",
+        "gradient_background": "",
+        "color_highlight": "",
+        "gradient_highlight": "",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "divider": false,
+        "rounded": false
+      }
+    },
+    "featured-product": {
+      "type": "featured-product",
+      "blocks": {
+        "text": {
+          "type": "text",
+          "settings": {
+            "icon": "none",
+            "iwidth": "custom",
+            "icon_width": 20,
+            "text": "{{ section.settings.product.vendor }}",
+            "text_size": "text-base"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "title_size": "product-title-md",
+            "title_size_mobile": "product-title-md",
+            "show_price": true,
+            "show_rating": true
+          }
+        },
+        "description": {
+          "type": "description",
+          "disabled": true,
+          "settings": {
+            "text_size": "text-base"
+          }
+        },
+        "countdown": {
+          "type": "countdown",
+          "settings": {
+            "heading": "Hurry up!",
+            "subheading": "Sale end in:",
+            "color_text": "#e11d48",
+            "color_background": "#fff1f2",
+            "gradient_background": ""
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "show_variant_labels": true,
+            "picker_type": "button",
+            "enable_color_swatches": true,
+            "color_swatch_type": "color",
+            "size_chart": ""
+          }
+        },
+        "inventory": {
+          "type": "inventory",
+          "settings": {
+            "inventory_threshold": 15,
+            "show_inventory_transfer": true,
+            "show_inventory_quantity": "low",
+            "color_scheme": "accent-1"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_quantity_selector": false,
+            "show_price": true,
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": false,
+            "enable_back_in_stock": false,
+            "show_back_in_stock_name": false,
+            "show_back_in_stock_phone": false
+          }
+        },
+        "pickup_availability": {
+          "type": "pickup_availability",
+          "settings": {}
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Compartir",
+            "show_help_desk": true,
+            "help_label": "¿Necesitas ayuda?",
+            "help_page": "",
+            "help_page_external": false
+          }
+        },
+        "read_more": {
+          "type": "read_more",
+          "settings": {}
+        },
+        "spinning_text": {
+          "type": "spinning_text",
+          "settings": {
+            "text": "Café frecuencias"
+          }
+        }
+      },
+      "block_order": [
+        "text",
+        "title",
+        "description",
+        "countdown",
+        "variant_picker",
+        "inventory",
+        "buy_buttons",
+        "pickup_availability",
+        "share",
+        "read_more",
+        "spinning_text"
+      ],
+      "custom_css": [
+        "@media screen and (min-width: 1920px) {.featured-product {gap: var(--grid-gap); padding-inline: calc(var(--grid-gap) * 2); }}"
+      ],
+      "settings": {
+        "product": "cafe-aures-1840-conscious",
+        "enable_sticky_info": true,
+        "media_size": 60,
+        "gallery_layout": "thumbnail",
+        "thumbnail_position": "beside",
+        "image_ratio": "square",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_autoplay": true,
+        "enable_video_looping": true,
+        "mobile_layout": "full_width",
+        "image_ratio_mobile": "adapt_first",
+        "mobile_thumbnail": false,
+        "padding_top": 120,
+        "padding_bottom": 0,
+        "divider": false,
+        "full_width": false,
+        "rounded": true
+      }
+    },
+    "featured-collections": {
+      "type": "featured-collections",
+      "blocks": {
+        "collection_jeEg7G": {
+          "type": "collection",
+          "settings": {
+            "collection": "piezas-limitadas",
+            "products": [
+              "origin-grey-hoodie-nº-1840-ltd",
+              "taza-artesanal-splash-edicion-limitada",
+              "taza-efimero-rosada",
+              "taza-efimero-morada",
+              "taza-efimero-gris",
+              "taza-efimero-amarilla"
+            ],
+            "title": ""
+          }
+        },
+        "collection-2": {
+          "type": "collection",
+          "settings": {
+            "collection": "cafes",
+            "products": [
+              "cafe-aures-1840-conscious",
+              "cafe-aures-1840-amour",
+              "combo-cafes-unity",
+              "combo-cafe-aures-1840-taza-efimero",
+              "cafe-aures-1840-experiencia-sonora-digital"
+            ],
+            "title": "Café Fresco"
+          }
+        },
+        "collection_Q8F43k": {
+          "type": "collection",
+          "disabled": true,
+          "settings": {
+            "collection": "eventos",
+            "products": [],
+            "title": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_jeEg7G",
+        "collection-2",
+        "collection_Q8F43k"
+      ],
+      "settings": {
+        "product_limit": 6,
+        "columns": 4,
+        "carousel_on_desktop": true,
+        "show_view_all": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "heading": "Productos Destacados",
+        "heading_size": "title-md",
+        "heading_alignment": "text-left md:items-end md:flex-row",
+        "heading_tag": "h2",
+        "subheading": "",
+        "description": "",
+        "highlighted_text": "none",
+        "highlighted_scribble": "circle",
+        "color_text": "",
+        "color_background": "",
+        "gradient_background": "",
+        "color_highlight": "",
+        "gradient_highlight": "",
+        "color_button_text": "",
+        "color_button_background": "",
+        "color_button_gradient": "",
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "divider": false,
+        "full_width": false,
+        "rounded": true
+      }
+    },
+    "rich_text_ritual": {
+      "type": "rich-text",
+      "blocks": {
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Una experiencia presencial e inmersiva de café, música, luz y sonido. Escuchas el origen, catas el café y —en la etapa fundadora— adoptas tu propio árbol. Cupos limitados.</p>",
+            "text_font": "body",
+            "text_size": "subtext-md",
+            "text_max_size": 32,
+            "text_line_height": 1.6,
+            "text_letter_spacing": 0,
+            "text_capitalize": false,
+            "secondary_color": false,
+            "highlighted_text": "none",
+            "highlighted_scribble": "circle"
+          }
+        }
+      },
+      "block_order": [
+        "text"
+      ],
+      "settings": {
+        "text_alignment": "left",
+        "text_alignment_mobile": "left",
+        "heading": "Vive el Ritual de Adopción",
+        "heading_size": "title-md",
+        "heading_alignment": "text-left md:items-end md:flex-row",
+        "heading_width": "medium",
+        "heading_tag": "h2",
+        "subheading": "",
+        "description": "",
+        "button_label": "Ver el Ritual 001",
+        "button_link": "shopify://products/ritual-de-adopcion-fundador-001",
+        "button_external": false,
+        "button_icon": true,
+        "highlighted_text": "scribble",
+        "highlighted_scribble": "basic-underline",
+        "color_text": "",
+        "color_background": "",
+        "gradient_background": "",
+        "color_highlight": "",
+        "gradient_highlight": "",
+        "color_button_text": "",
+        "color_button_background": "",
+        "color_button_gradient": "",
+        "padding_top": 72,
+        "padding_bottom": 72,
+        "divider": false,
+        "narrow": false,
+        "rounded": false
+      }
+    },
+    "image_with_text_pAcyN4": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_m7EQnN": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>Nuestro playlist</strong> no se escucha, <strong>se siente</strong>.",
+            "heading_size": "title-md",
+            "heading_tag": "h2",
+            "highlighted_text": "none",
+            "highlighted_scribble": "circle"
+          }
+        },
+        "text_xXH6Cz": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Diseñamos esta playlist desde el origen. Curamos música electrónica y creamos canciones con sonidos reales del café, grabados cuidadosamente por nuestro equipo y transformados en obras musicales que hoy viven dentro del universo <strong>Tueste.</strong></p>",
+            "text_font": "body",
+            "text_size": "subtext-md",
+            "text_max_size": 32,
+            "text_line_height": 1.6,
+            "text_letter_spacing": 0,
+            "text_capitalize": false,
+            "secondary_color": false,
+            "highlighted_text": "none",
+            "highlighted_scribble": "circle"
+          }
+        },
+        "button_994X8L": {
+          "type": "button",
+          "settings": {
+            "button_label": "Escuchar a Origen Tostado",
+            "button_link": "shopify://pages/origen-tostado",
+            "button_style": "primary",
+            "button_size": "md",
+            "button_external": false,
+            "button_icon": true
+          }
+        }
+      },
+      "block_order": [
+        "heading_m7EQnN",
+        "text_xXH6Cz",
+        "button_994X8L"
+      ],
+      "name": "t:sections.image-with-text.name",
+      "settings": {
+        "image": "shopify://shop_images/MST04779_2.jpg",
+        "image_height": "650px",
+        "image_width": "medium",
+        "layout": "image_first",
+        "text_alignment": "left",
+        "content_position": "align-self-center",
+        "image_height_mobile": "auto",
+        "text_alignment_mobile": "left",
+        "color_text": "",
+        "color_background": "",
+        "gradient_background": "",
+        "color_background_2": "",
+        "gradient_background_2": "",
+        "color_highlight": "",
+        "gradient_highlight": "",
+        "color_button_text": "",
+        "color_button_background": "",
+        "color_button_gradient": "",
+        "padding_top": 72,
+        "padding_bottom": 72,
+        "divider": false,
+        "full_width": false,
+        "rounded": false,
+        "enable_parallax": true,
+        "parallax_direction": "vertical"
+      }
+    },
+    "rich_text_para_marcas": {
+      "type": "rich-text",
+      "blocks": {
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Tueste Unity</strong> es nuestro estudio creativo y de branding sonoro para marcas de café: co-branding, firma sonora, contenido y experiencias. Cada proyecto se cotiza a la medida.</p>",
+            "text_font": "body",
+            "text_size": "subtext-md",
+            "text_max_size": 32,
+            "text_line_height": 1.6,
+            "text_letter_spacing": 0,
+            "text_capitalize": false,
+            "secondary_color": false,
+            "highlighted_text": "none",
+            "highlighted_scribble": "circle"
+          }
+        }
+      },
+      "block_order": [
+        "text"
+      ],
+      "settings": {
+        "text_alignment": "left",
+        "text_alignment_mobile": "left",
+        "heading": "¿Tienes una marca de café?",
+        "heading_size": "title-md",
+        "heading_alignment": "text-left md:items-end md:flex-row",
+        "heading_width": "medium",
+        "heading_tag": "h2",
+        "subheading": "",
+        "description": "",
+        "button_label": "Conoce Tueste Unity",
+        "button_link": "shopify://pages/para-marcas",
+        "button_external": false,
+        "button_icon": true,
+        "highlighted_text": "scribble",
+        "highlighted_scribble": "basic-underline",
+        "color_text": "",
+        "color_background": "",
+        "gradient_background": "",
+        "color_highlight": "",
+        "gradient_highlight": "",
+        "color_button_text": "",
+        "color_button_background": "",
+        "color_button_gradient": "",
+        "padding_top": 72,
+        "padding_bottom": 72,
+        "divider": false,
+        "narrow": false,
+        "rounded": false
+      }
+    },
+    "blog-posts-collage": {
+      "type": "blog-posts-collage",
+      "disabled": true,
+      "settings": {
+        "blog": "",
+        "post_limit": 3,
+        "show_view_all": true,
+        "image_ratio": "landscape",
+        "show_tags": true,
+        "show_date": true,
+        "show_comments": true,
+        "show_author": false,
+        "show_excerpt": true,
+        "heading": "Latest Stories",
+        "heading_size": "title-md",
+        "heading_alignment": "text-left md:items-end md:flex-row",
+        "heading_tag": "h2",
+        "subheading": "",
+        "description": "",
+        "highlighted_text": "none",
+        "highlighted_scribble": "circle",
+        "color_text": "",
+        "color_background": "",
+        "gradient_background": "",
+        "color_highlight": "",
+        "gradient_highlight": "",
+        "color_button_text": "",
+        "color_button_background": "",
+        "color_button_gradient": "",
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "divider": false,
+        "full_width": false,
+        "rounded": false
+      }
+    },
+    "editorial_tree": {
+      "type": "editorial-tree",
+      "blocks": {
+        "stat_altitude": {
+          "type": "stat",
+          "settings": {
+            "value": "1.840 m",
+            "label": "Altitud · Cañón de Aures"
+          }
+        },
+        "stat_trees": {
+          "type": "stat",
+          "settings": {
+            "value": "10.200",
+            "label": "Árboles fundacionales"
+          }
+        },
+        "stat_symbolic": {
+          "type": "stat",
+          "settings": {
+            "value": "USD 100",
+            "label": "Por árbol fundacional"
+          }
+        },
+        "step_adopt": {
+          "type": "step",
+          "settings": {
+            "number": "01",
+            "title": "Elige tu lugar en el lote",
+            "text": "Tocas un punto libre y tu árbol queda numerado."
+          }
+        },
+        "step_certificate": {
+          "type": "step",
+          "settings": {
+            "number": "02",
+            "title": "Siembra y recibe tu certificado",
+            "text": "Certificado de Tradición numerado en 48 horas."
+          }
+        },
+        "step_follow": {
+          "type": "step",
+          "settings": {
+            "number": "03",
+            "title": "Vive el año de tu árbol",
+            "text": "Cuatro capítulos: lluvia, floración, cosecha y taza."
+          }
+        }
+      },
+      "block_order": [
+        "stat_altitude",
+        "stat_trees",
+        "stat_symbolic",
+        "step_adopt",
+        "step_certificate",
+        "step_follow"
+      ],
+      "settings": {
+        "anchor": "tree",
+        "eyebrow": "04 / Tueste Tree",
+        "heading": "Siembra un árbol. <em>Cofunda un origen</em>.",
+        "body": "<p>Los primeros 10.200 árboles son fundacionales. No compras una planta: entras a un origen vivo y lo sigues durante todo un año.</p>",
+        "image": "",
+        "media_note": "Finca Tres Esquinas · Lote fundacional",
+        "button_label": "Entrar a la finca",
+        "button_link": "/pages/tueste-tree",
+        "disclaimer": "Adopción simbólica y cultural · no representa inversión financiera."
+      }
+    },
+    "tueste_insignias": {
+      "type": "tueste-insignias",
+      "blocks": {
+        "badge_semilla": {
+          "type": "badge",
+          "settings": {
+            "image_asset": "tueste-tree-insignia-1-semilla.webp",
+            "range": "1 – 9",
+            "range_label": "Árboles",
+            "name": "Semilla",
+            "text": "Tarjeta a color sobre papel. El primer árbol del guardián."
+          }
+        },
+        "badge_plata": {
+          "type": "badge",
+          "settings": {
+            "image_asset": "tueste-tree-insignia-10-plata.webp",
+            "range": "10 – 19",
+            "range_label": "Árboles",
+            "name": "Plata",
+            "text": "Acabado metálico plateado para quien siembra un corredor."
+          }
+        },
+        "badge_oro": {
+          "type": "badge",
+          "settings": {
+            "image_asset": "tueste-tree-insignia-20-oro.webp",
+            "range": "20 – 29",
+            "range_label": "Árboles",
+            "name": "Oro",
+            "text": "Acabado dorado. Una franja entera del lote fundacional."
+          }
+        },
+        "badge_holo": {
+          "type": "badge",
+          "settings": {
+            "image_asset": "tueste-tree-insignia-30-holografica.webp",
+            "range": "30+",
+            "range_label": "Árboles",
+            "name": "Holográfica",
+            "text": "Arcoíris holográfico. Socio fundador del proyecto."
+          }
+        }
+      },
+      "block_order": [
+        "badge_semilla",
+        "badge_plata",
+        "badge_oro",
+        "badge_holo"
+      ],
+      "settings": {
+        "anchor": "insignias",
+        "eyebrow": "05 / Las insignias del proyecto",
+        "heading": "Cuatro acabados, <em>un mismo origen</em>.",
+        "body": "<p>Cada adopción recibe su insignia digital. El acabado cambia según cuántos árboles siembres.</p>"
+      }
+    },
+    "tueste_capitulos": {
+      "type": "tueste-capitulos",
+      "blocks": {
+        "cap1": {
+          "type": "chapter",
+          "settings": {
+            "image_asset": "tueste-tree-cap1-lluvia.webp",
+            "label": "Capítulo 1 · Semanas 1 a 4",
+            "title": "La primera lluvia",
+            "text": "Un brote de dos hojas a 1.840 m, envuelto en la niebla del cañón.",
+            "get": "Certificado numerado en 48 h y la primera foto del lote en el mes 1."
+          }
+        },
+        "cap2": {
+          "type": "chapter",
+          "settings": {
+            "image_asset": "tueste-tree-cap2-flor.webp",
+            "label": "Capítulo 2 · La floración",
+            "title": "La noche en que florece",
+            "text": "Tres días de flores blancas y olor a jazmín sobre toda la ladera.",
+            "get": "Video del lote en flor y la frecuencia sonora de la temporada."
+          }
+        },
+        "cap3": {
+          "type": "chapter",
+          "settings": {
+            "image_asset": "tueste-tree-cap3-cosecha.webp",
+            "label": "Capítulo 3 · La cosecha",
+            "title": "Cuando enrojece",
+            "text": "Las cerezas pasan de verde a rojo y se recogen a mano, una por una.",
+            "get": "Actualización de cosecha y acceso preferencial al café del lote."
+          }
+        },
+        "cap4": {
+          "type": "chapter",
+          "settings": {
+            "image_asset": "tueste-tree-cap4-taza.webp",
+            "label": "Capítulo 4 · La taza",
+            "title": "La taza con tu nombre",
+            "text": "El lote vuelve tostado a las manos del guardián que lo sembró.",
+            "get": "Café del lote, balance del año y renovación a precio de fundador."
+          }
+        }
+      },
+      "block_order": [
+        "cap1",
+        "cap2",
+        "cap3",
+        "cap4"
+      ],
+      "settings": {
+        "anchor": "vivir",
+        "eyebrow": "06 / Vivir el café",
+        "heading": "Tu árbol te va a escribir. <em>Y tú vas a estar ahí</em>.",
+        "body": "<p>Cuatro capítulos a lo largo del año, cada uno con algo que te llega.</p>",
+        "get_label": "Te llega",
+        "disclaimer": "Recibes café del lote donde vive tu árbol (o un beneficio equivalente), no de un árbol exacto."
+      }
+    },
+    "tueste_historia": {
+      "type": "tueste-historia",
+      "settings": {
+        "kicker": "Historia y origen",
+        "heading": "Del origen a la taza, <em>con intención</em>.",
+        "body": "<p>En <strong>Tueste</strong> el café no se sirve, se interpreta. Cultivamos café colombiano de origen en el Cañón de Aures y lo convertimos en música, ritual y comunidad.</p><p>Aquí compras café fresco, siembras un árbol y sigues su cosecha, creas tu propia marca de café con nosotros o escuchas lo que el sello publica. Todo nace en el mismo cafetal.</p>",
+        "voice": "Donde el café se escucha.",
+        "caption": "Cañón de Aures · Quindío · Colombia",
+        "button_label": "Comprar café",
+        "button2_label": "Sembrar un árbol",
+        "button_link": "shopify://collections/cafes",
+        "button2_link": "/pages/tueste-tree"
+      },
+      "blocks": {
+        "dato_1": {
+          "type": "dato",
+          "settings": {
+            "label": "Origen",
+            "value": "Cañón de Aures · 1.840 msnm"
+          }
+        },
+        "dato_2": {
+          "type": "dato",
+          "settings": {
+            "label": "Café insignia",
+            "value": "Aures 1840 · 89 puntos SCA"
+          }
+        },
+        "dato_3": {
+          "type": "dato",
+          "settings": {
+            "label": "Fincas",
+            "value": "Tres Esquinas (Circasia) · La Esperanza (Caicedonia)"
+          }
+        },
+        "dato_4": {
+          "type": "dato",
+          "settings": {
+            "label": "Tueste",
+            "value": "Al pedido · despacho en 15 días"
+          }
+        }
+      },
+      "block_order": [
+        "dato_1",
+        "dato_2",
+        "dato_3",
+        "dato_4"
+      ]
+    },
+    "universo": {
+      "type": "tueste-universo",
+      "settings": {
+        "kicker": "Universo Tueste",
+        "heading": "Un origen, <em>cuatro caminos</em>.",
+        "intro": "Todo nace en el mismo cafetal del Cañón de Aures: el café que compras, el árbol que siembras, la marca que creas con nosotros y la música que lo cuenta.",
+        "here_label": "Estás aquí",
+        "style": "tueste"
+      },
+      "blocks": {
+        "camino_1": {
+          "type": "camino",
+          "settings": {
+            "brand": "tienda",
+            "show_name": false,
+            "description": "Café de origen, piezas y ritual. La casa de todo lo que hacemos.",
+            "cta": "Entrar →",
+            "current": true,
+            "link": "/"
+          }
+        },
+        "camino_2": {
+          "type": "camino",
+          "settings": {
+            "brand": "tree",
+            "show_name": false,
+            "description": "Siembra un árbol en la Finca Tres Esquinas y cofunda un origen.",
+            "cta": "Entrar →",
+            "current": false,
+            "link": "/pages/tueste-tree"
+          }
+        },
+        "camino_3": {
+          "type": "camino",
+          "settings": {
+            "brand": "unity",
+            "show_name": false,
+            "description": "Tu marca de café con nuestro origen y una firma sonora.",
+            "cta": "Entrar →",
+            "current": false,
+            "link": "/pages/tueste-unity"
+          }
+        },
+        "camino_4": {
+          "type": "camino",
+          "settings": {
+            "brand": "records",
+            "show_name": false,
+            "description": "El sello: lanzamientos, artistas y dónde escuchar el café.",
+            "cta": "Entrar →",
+            "current": false,
+            "link": "/pages/tueste-records"
+          }
+        }
+      },
+      "block_order": [
+        "camino_1",
+        "camino_2",
+        "camino_3",
+        "camino_4"
       ]
     }
   },
   "order": [
-    "tueste_universo_home"
+    "slideshow",
+    "rich-text-1",
+    "tueste_historia",
+    "scrolling_text_YjgeMc",
+    "featured-product",
+    "featured-collections",
+    "editorial_tree",
+    "tueste_insignias",
+    "tueste_capitulos",
+    "rich_text_ritual",
+    "image_with_text_pAcyN4",
+    "rich_text_para_marcas",
+    "blog-posts-collage",
+    "universo"
   ]
 }

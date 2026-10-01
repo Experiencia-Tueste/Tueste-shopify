@@ -1,0 +1,67 @@
+{%- comment -%}
+  Tueste Tree · Capítulos del año para la portada editorial.
+{%- endcomment -%}
+<section class="te-preview__section tueste-capitulos" id="{{ section.settings.anchor | escape }}">
+  <div class="te-preview__wrap te-preview__reveal">
+    <div class="te-preview__section-heading">
+      {%- if section.settings.eyebrow != blank -%}<span class="te-preview__eyebrow">{{ section.settings.eyebrow | escape }}</span>{%- endif -%}
+      <h2>{{ section.settings.heading }}</h2>
+      {%- if section.settings.body != blank -%}<div class="rte">{{ section.settings.body }}</div>{%- endif -%}
+    </div>
+    <div class="te-preview__chapters">
+      {%- for block in section.blocks -%}
+        <article class="te-preview__chapter" {{ block.shopify_attributes }}>
+          <div class="te-preview__chapter-art">
+            <img src="{{ block.settings.image_asset | asset_url }}" alt="{{ block.settings.title | escape }}" loading="lazy" width="900" height="900">
+          </div>
+          <p class="te-preview__chapter-n">{{ block.settings.label | escape }}</p>
+          <h3>{{ block.settings.title | escape }}</h3>
+          <p>{{ block.settings.text | escape }}</p>
+          <div class="te-preview__chapter-get"><span>{{ section.settings.get_label | escape }}</span>{{ block.settings.get | escape }}</div>
+        </article>
+      {%- endfor -%}
+    </div>
+    {%- if section.settings.disclaimer != blank -%}<p class="te-preview__disclaimer">{{ section.settings.disclaimer | escape }}</p>{%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Tueste · Capítulos",
+  "tag": "section",
+  "class": "section-tueste-capitulos",
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Anchor", "default": "vivir" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "06 / Vivir el café" },
+    { "type": "inline_richtext", "id": "heading", "label": "Título", "default": "Tu árbol te va a escribir. <em>Y tú vas a estar ahí</em>." },
+    { "type": "richtext", "id": "body", "label": "Descripción", "default": "<p>Cuatro capítulos a lo largo del año, cada uno con algo que te llega.</p>" },
+    { "type": "text", "id": "get_label", "label": "Etiqueta de entrega", "default": "Te llega" },
+    { "type": "text", "id": "disclaimer", "label": "Nota", "default": "Recibes café del lote donde vive tu árbol (o un beneficio equivalente), no de un árbol exacto." }
+  ],
+  "blocks": [
+    {
+      "type": "chapter",
+      "name": "Capítulo",
+      "settings": [
+        { "type": "text", "id": "image_asset", "label": "Archivo de imagen", "default": "tueste-tree-cap1-lluvia.webp" },
+        { "type": "text", "id": "label", "label": "Etiqueta", "default": "Capítulo 1 · Semanas 1 a 4" },
+        { "type": "text", "id": "title", "label": "Título", "default": "La primera lluvia" },
+        { "type": "textarea", "id": "text", "label": "Texto", "default": "Un brote de dos hojas a 1.840 m, envuelto en la niebla del cañón." },
+        { "type": "textarea", "id": "get", "label": "Lo que recibe", "default": "Certificado numerado en 48 h y la primera foto del lote en el mes 1." }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Tueste · Capítulos",
+      "blocks": [
+        { "type": "chapter", "settings": { "image_asset": "tueste-tree-cap1-lluvia.webp", "label": "Capítulo 1 · Semanas 1 a 4", "title": "La primera lluvia", "text": "Un brote de dos hojas a 1.840 m, envuelto en la niebla del cañón.", "get": "Certificado numerado en 48 h y la primera foto del lote en el mes 1." } },
+        { "type": "chapter", "settings": { "image_asset": "tueste-tree-cap2-flor.webp", "label": "Capítulo 2 · La floración", "title": "La noche en que florece", "text": "Tres días de flores blancas y olor a jazmín sobre toda la ladera.", "get": "Video del lote en flor y la frecuencia sonora de la temporada." } },
+        { "type": "chapter", "settings": { "image_asset": "tueste-tree-cap3-cosecha.webp", "label": "Capítulo 3 · La cosecha", "title": "Cuando enrojece", "text": "Las cerezas pasan de verde a rojo y se recogen a mano, una por una.", "get": "Actualización de cosecha y acceso preferencial al café del lote." } },
+        { "type": "chapter", "settings": { "image_asset": "tueste-tree-cap4-taza.webp", "label": "Capítulo 4 · La taza", "title": "La taza con tu nombre", "text": "El lote vuelve tostado a las manos del guardián que lo sembró.", "get": "Café del lote, balance del año y renovación a precio de fundador." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

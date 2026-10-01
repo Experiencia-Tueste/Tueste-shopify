@@ -3,6 +3,7 @@
   Ficha técnica desde los metafields custom.* que ya existen en los cafés (region, altitud, variety, process,
   fermentation, score, type). Caficultora y finca vienen de settings; enlaza a Tueste Tree (las fincas).
 {%- endcomment -%}
+{{ 'tueste-producto.css' | asset_url | stylesheet_tag }}
 
 {%- liquid
   assign mf = product.metafields.custom

@@ -32,13 +32,13 @@
               assign default_logo = 'tueste-tree-logo-crema.png' | asset_url
               assign default_name = 'Tueste Tree'
             when 'unity'
-              assign default_logo = 'tueste-unity-logo.png' | asset_url
+              assign default_logo = 'tueste-unity-logo.webp' | asset_url
               assign default_name = 'Tueste Unity'
             when 'records'
               assign default_logo = 'tueste-records-logo.webp' | asset_url
               assign default_name = 'Tueste Records'
             else
-              assign default_logo = 'tueste-logo-glass.png' | asset_url
+              assign default_logo = 'tueste-logo-crema.png' | asset_url
               assign default_name = 'Tueste'
           endcase
           assign card_name = block.settings.name | default: default_name

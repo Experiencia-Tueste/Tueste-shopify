@@ -3,7 +3,7 @@
 {%- endcomment -%}
 {{ 'tueste-tree-extras.css' | asset_url | stylesheet_tag }}
 
-<section class="ttx ttx-faq" id="TuesteTreeFaq-{{ section.id }}" aria-labelledby="TuesteTreeFaqTitle-{{ section.id }}">
+<section class="ttx ttx-faq" id="preguntas" data-section-id="TuesteTreeFaq-{{ section.id }}" aria-labelledby="TuesteTreeFaqTitle-{{ section.id }}">
   <div class="ttx-wrap">
     <div class="ttx-head">
       <p class="ttx-kicker">{{ section.settings.kicker | escape }}</p>
@@ -22,7 +22,7 @@
     {%- if section.settings.cta_label != blank or section.settings.link_label != blank -%}
       <div class="faq-cta">
         {%- if section.settings.cta_label != blank -%}
-          <a class="ttx-btn" href="{{ section.settings.cta_link | default: '#TuesteTree' }}">{{ section.settings.cta_label | escape }} <span aria-hidden="true">→</span></a>
+          <a class="ttx-btn" href="{{ section.settings.cta_link | default: '/products/adopcion-digital-tueste-tree?view=tueste-adopcion' }}">{{ section.settings.cta_label | escape }} <span aria-hidden="true">→</span></a>
         {%- endif -%}
         {%- if section.settings.link_label != blank and section.settings.link_url != blank -%}
           <a class="ttx-link" href="{{ section.settings.link_url }}" target="_blank" rel="noopener">{{ section.settings.link_label | escape }}</a>
@@ -41,7 +41,7 @@
     { "type": "text", "id": "kicker", "label": "Kicker", "default": "Preguntas frecuentes" },
     { "type": "inline_richtext", "id": "heading", "label": "Título", "default": "Lo que todos preguntan <em>antes de sembrar.</em>" },
     { "type": "text", "id": "cta_label", "label": "Botón principal", "default": "Sembrar mi árbol" },
-    { "type": "url", "id": "cta_link", "label": "Enlace del botón", "info": "Por defecto sube al inicio de la landing (#TuesteTree)." },
+    { "type": "url", "id": "cta_link", "label": "Enlace del botón", "info": "Por defecto va al producto de adopción con la ficha Tueste." },
     { "type": "text", "id": "link_label", "label": "Enlace secundario", "default": "Hacer otra pregunta por WhatsApp" },
     { "type": "text", "id": "link_url", "label": "URL del enlace secundario", "default": "https://wa.me/573102682677?text=Hola%2C%20tengo%20una%20pregunta%20sobre%20Tueste%20Tree" }
   ],

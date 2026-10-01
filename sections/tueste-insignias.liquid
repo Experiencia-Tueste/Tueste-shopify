@@ -1,0 +1,62 @@
+{%- comment -%}
+  Tueste Tree · Insignias del proyecto para la portada editorial.
+{%- endcomment -%}
+<section class="te-preview__section tueste-insignias" id="{{ section.settings.anchor | escape }}">
+  <div class="te-preview__wrap te-preview__reveal">
+    <div class="te-preview__section-heading">
+      {%- if section.settings.eyebrow != blank -%}<span class="te-preview__eyebrow">{{ section.settings.eyebrow | escape }}</span>{%- endif -%}
+      <h2>{{ section.settings.heading }}</h2>
+      {%- if section.settings.body != blank -%}<div class="rte">{{ section.settings.body }}</div>{%- endif -%}
+    </div>
+    <div class="te-preview__badges">
+      {%- for block in section.blocks -%}
+        {%- assign badge_image = block.settings.image_asset | asset_url -%}
+        <article class="te-preview__badge" {{ block.shopify_attributes }}>
+          <img src="{{ badge_image }}" alt="Insignia {{ block.settings.name | escape }}" loading="lazy" width="600" height="600">
+          <p class="te-preview__badge-q">{{ block.settings.range | escape }}<small>{{ block.settings.range_label | escape }}</small></p>
+          <p class="te-preview__badge-name">{{ block.settings.name | escape }}</p>
+          <p class="te-preview__badge-desc">{{ block.settings.text | escape }}</p>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Tueste · Insignias",
+  "tag": "section",
+  "class": "section-tueste-insignias",
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Anchor", "default": "insignias" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "05 / Las insignias del proyecto" },
+    { "type": "inline_richtext", "id": "heading", "label": "Título", "default": "Cuatro acabados, <em>un mismo origen</em>." },
+    { "type": "richtext", "id": "body", "label": "Descripción", "default": "<p>Cada adopción recibe su insignia digital. El acabado cambia según cuántos árboles siembres.</p>" }
+  ],
+  "blocks": [
+    {
+      "type": "badge",
+      "name": "Insignia",
+      "settings": [
+        { "type": "text", "id": "image_asset", "label": "Archivo de imagen", "default": "tueste-tree-insignia-1-semilla.webp" },
+        { "type": "text", "id": "range", "label": "Rango", "default": "1 – 9" },
+        { "type": "text", "id": "range_label", "label": "Etiqueta del rango", "default": "Árboles" },
+        { "type": "text", "id": "name", "label": "Nombre", "default": "Semilla" },
+        { "type": "textarea", "id": "text", "label": "Descripción", "default": "Tarjeta a color sobre papel. El primer árbol del guardián." }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Tueste · Insignias",
+      "blocks": [
+        { "type": "badge", "settings": { "image_asset": "tueste-tree-insignia-1-semilla.webp", "range": "1 – 9", "name": "Semilla", "text": "Tarjeta a color sobre papel. El primer árbol del guardián." } },
+        { "type": "badge", "settings": { "image_asset": "tueste-tree-insignia-10-plata.webp", "range": "10 – 19", "name": "Plata", "text": "Acabado metálico plateado para quien siembra un corredor." } },
+        { "type": "badge", "settings": { "image_asset": "tueste-tree-insignia-20-oro.webp", "range": "20 – 29", "name": "Oro", "text": "Acabado dorado. Una franja entera del lote fundacional." } },
+        { "type": "badge", "settings": { "image_asset": "tueste-tree-insignia-30-holografica.webp", "range": "30+", "name": "Holográfica", "text": "Arcoíris holográfico. Socio fundador del proyecto." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

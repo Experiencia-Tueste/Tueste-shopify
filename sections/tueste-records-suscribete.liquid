@@ -32,7 +32,7 @@
     {%- if section.settings.show_backed -%}
       <div class="wrap wrap-backed">
         <div class="backed">
-          <div class="lp"><span>Respaldado por</span><strong class="backed-mark">Logik Pro</strong><span>· {{ section.settings.backed_text | escape }}</span></div>
+          <div class="lp"><span>Respaldado por</span><img src="{{ 'logik-pro-logo.webp' | asset_url }}" alt="Logik Pro" width="425" height="65"><span>· {{ section.settings.backed_text | escape }}</span></div>
           <span>© {{ 'now' | date: '%Y' }} Tueste Records</span>
         </div>
       </div>

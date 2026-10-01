@@ -17,11 +17,11 @@
           {%- liquid
             case block.settings.default_cover
               when 'tueste'
-                assign default_cover = 'tueste-universo-records.webp' | asset_url
+                assign default_cover = 'tueste-records-playlist-tueste.webp' | asset_url
               when 'classics'
-                assign default_cover = 'tueste-universo-records.webp' | asset_url
+                assign default_cover = 'tueste-records-playlist-classics.webp' | asset_url
               else
-                assign default_cover = 'tueste-universo-records.webp' | asset_url
+                assign default_cover = 'tueste-records-playlist-origen.jpg' | asset_url
             endcase
           -%}
           <article class="pl" {{ block.shopify_attributes }}>
