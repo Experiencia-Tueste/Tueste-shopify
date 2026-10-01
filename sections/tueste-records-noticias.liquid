@@ -29,8 +29,8 @@
             {%- if featured.settings.kind != blank -%}<span class="kind">{{ featured.settings.kind | escape }}</span>{%- endif -%}
             <h3>{{ featured.settings.title | escape }}</h3>
             <p>{{ featured.settings.text | escape }}</p>
-            {%- if featured.settings.link_label != blank -%}
-              <a class="more" href="{{ featured.settings.link_url | default: '#' }}">{{ featured.settings.link_label | escape }}</a>
+            {%- if featured.settings.link_label != blank and featured.settings.link_url != blank -%}
+              <a class="more" href="{{ featured.settings.link_url }}">{{ featured.settings.link_label | escape }}</a>
             {%- endif -%}
           </article>
         {%- endif -%}

@@ -42,6 +42,35 @@
               assign default_name = 'Tueste'
           endcase
           assign card_name = block.settings.name | default: default_name
+          assign camino_url = block.settings.link | default: '#'
+          if block.settings.brand == 'tree'
+            assign camino_url = pages['tueste-tree'].url | default: camino_url
+            unless camino_url contains 'view=tueste-tree'
+              if camino_url contains '?'
+                assign camino_url = camino_url | append: '&view=tueste-tree'
+              else
+                assign camino_url = camino_url | append: '?view=tueste-tree'
+              endif
+            endunless
+          elsif block.settings.brand == 'unity'
+            assign camino_url = pages['tueste-unity'].url | default: camino_url
+            unless camino_url contains 'view=tueste-unity'
+              if camino_url contains '?'
+                assign camino_url = camino_url | append: '&view=tueste-unity'
+              else
+                assign camino_url = camino_url | append: '?view=tueste-unity'
+              endif
+            endunless
+          elsif block.settings.brand == 'records'
+            assign camino_url = pages['tueste-records'].url | default: camino_url
+            unless camino_url contains 'view=tueste-records'
+              if camino_url contains '?'
+                assign camino_url = camino_url | append: '&view=tueste-records'
+              else
+                assign camino_url = camino_url | append: '?view=tueste-records'
+              endif
+            endunless
+          endif
           assign is_here = false
           if block.settings.current
             assign is_here = true
@@ -51,7 +80,7 @@
         -%}
         <a
           class="tu-card{% if is_here %} is-here{% endif %}"
-          href="{{ block.settings.link | default: '#' }}"
+          href="{{ camino_url }}"
           {% if is_here %}aria-current="page"{% endif %}
           aria-label="{{ card_name | escape }}"
           {{ block.shopify_attributes }}

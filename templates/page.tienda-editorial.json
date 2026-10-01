@@ -489,7 +489,7 @@
           "type": "button",
           "settings": {
             "button_label": "Escuchar a Origen Tostado",
-            "button_link": "shopify://pages/origen-tostado",
+            "button_link": "/pages/tueste-records?view=tueste-records",
             "button_style": "primary",
             "button_size": "md",
             "button_external": false,
@@ -564,7 +564,7 @@
         "subheading": "",
         "description": "",
         "button_label": "Conoce Tueste Unity",
-        "button_link": "shopify://pages/para-marcas",
+        "button_link": "/pages/tueste-unity?view=tueste-unity",
         "button_external": false,
         "button_icon": true,
         "highlighted_text": "scribble",

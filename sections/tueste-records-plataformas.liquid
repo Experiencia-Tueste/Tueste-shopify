@@ -12,7 +12,7 @@
       </div>
       <div class="plat-grid">
         {%- for block in section.blocks -%}
-          <a class="plat" href="{{ block.settings.url | default: '#' }}" target="_blank" rel="noopener" {{ block.shopify_attributes }}>
+          {%- if block.settings.url != blank -%}<a class="plat" href="{{ block.settings.url }}" target="_blank" rel="noopener" {{ block.shopify_attributes }}>{%- else -%}<div class="plat" {{ block.shopify_attributes }}>{%- endif -%}
             {%- case block.settings.platform -%}
               {%- when 'apple' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.4 12.7c0-2.5 2-3.7 2.1-3.8-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9s-2-.9-3.3-.8C6.1 7 4.5 8 3.6 9.5c-1.8 3.2-.5 7.9 1.3 10.5.9 1.3 1.9 2.7 3.3 2.6 1.3-.1 1.8-.8 3.4-.8s2 .8 3.4.8c1.4 0 2.3-1.3 3.1-2.6 1-1.5 1.4-2.9 1.4-3-.1 0-2.7-1-2.7-4.3zM14 5.3c.7-.9 1.2-2.1 1.1-3.3-1 0-2.3.7-3 1.6-.7.8-1.2 2-1.1 3.2 1.1.1 2.3-.6 3-1.5z"/></svg>
               {%- when 'youtube' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg>
@@ -24,7 +24,7 @@
               {%- else -%}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24zm5.5 17.3a.75.75 0 0 1-1 .25c-2.8-1.7-6.4-2.1-10.6-1.1a.75.75 0 1 1-.3-1.5c4.6-1 8.5-.6 11.7 1.3.3.2.4.7.2 1zm1.5-3.3a.9.9 0 0 1-1.3.3c-3.2-2-8.1-2.6-11.9-1.4a.9.9 0 1 1-.5-1.8c4.4-1.3 9.8-.7 13.5 1.6.4.3.5.9.2 1.3zm.1-3.4C15.3 8.3 9 8.1 5.3 9.2a1.1 1.1 0 1 1-.7-2.1c4.3-1.3 11.3-1 15.7 1.6a1.1 1.1 0 0 1-1.2 1.9z"/></svg>
             {%- endcase -%}
             <div><b>{{ block.settings.name | escape }}</b><br><small>{{ block.settings.subtitle | escape }}</small></div>
-          </a>
+          {%- if block.settings.url != blank -%}</a>{%- else -%}</div>{%- endif -%}
         {%- endfor -%}
       </div>
       {%- if section.settings.note != blank -%}<p class="plat-note">{{ section.settings.note | escape }}</p>{%- endif -%}
