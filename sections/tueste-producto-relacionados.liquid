@@ -30,24 +30,15 @@
             if p.id == product.id
               assign is_current = true
             endif
-            assign related_view = blank
-            if p.handle contains 'adopcion-digital-tueste-tree' or p.handle contains 'ritual-de-adopcion'
-              assign related_view = 'tueste-adopcion'
-            elsif p.handle contains 'cafe-aures-1840-conscious'
-              assign related_view = 'tueste-cafe-conscious'
-            elsif p.handle contains 'cafe-aures-1840-amour'
-              assign related_view = 'tueste-cafe-amour'
-            elsif p.handle contains 'combo-cafes-unity' or p.handle contains 'combo-cafe-aures-1840-taza-efimero' or p.handle contains 'experiencia-sonora'
-              assign related_view = 'tueste-combo'
-            elsif p.handle contains 'taza-'
-              assign related_view = 'tueste-taza'
-            elsif p.handle contains 'hoodie'
-              assign related_view = 'tueste-hoodie'
-            endif
-            assign related_url = p.url
-            if related_view != blank
-              assign related_url = related_url | append: '?view=' | append: related_view
-            endif
+            assign mapped_asset = blank
+            case p.handle
+              when 'combo-cafes-unity'
+                assign mapped_asset = 'combo-unity.png'
+              when 'combo-cafe-aures-1840-taza-efimero'
+                assign mapped_asset = 'combo-taza.jpg'
+              when 'cafe-aures-1840-experiencia-sonora-digital'
+                assign mapped_asset = 'combo-sonora.jpg'
+            endcase
           -%}
           <li class="tp-rel__card{% if is_current %} is-current{% endif %}" {{ block.shopify_attributes }}>
             {%- if is_current -%}<span class="tp-rel__here">{{ section.settings.here_label | escape }}</span>{%- endif -%}
@@ -56,13 +47,15 @@
                 {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', widths: '300, 600', alt: p.title }}
               {%- elsif block.settings.swatch != blank and block.settings.prefer_swatch -%}
                 <span class="tp-swatch" style="--sw: {{ block.settings.swatch }}" aria-hidden="true"></span>
+              {%- elsif mapped_asset != blank -%}
+                <img src="{{ mapped_asset | asset_url }}" alt="{{ p.title | escape }}" loading="lazy" width="600" height="600">
               {%- elsif p.featured_image != blank -%}
                 {{ p.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', widths: '300, 600', alt: p.featured_image.alt | default: p.title }}
               {%- else -%}
                 <span class="tp-swatch" style="--sw: {{ block.settings.swatch | default: 'transparent' }}" aria-hidden="true"></span>
               {%- endif -%}
             </div>
-            <h3 class="tp-rel__title"><a href="{{ related_url }}"{% if is_current %} aria-current="page"{% endif %}>{{ block.settings.title | default: p.title | escape }}</a></h3>
+            <h3 class="tp-rel__title"><a href="{{ p.url }}"{% if is_current %} aria-current="page"{% endif %}>{{ block.settings.title | default: p.title | escape }}</a></h3>
             {%- if block.settings.note != blank -%}
               <p style="margin:0;font-size:.85rem;color:var(--tp-cream-2)">{{ block.settings.note | escape }}</p>
             {%- endif -%}

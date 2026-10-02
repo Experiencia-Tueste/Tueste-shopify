@@ -8,6 +8,7 @@
 {%- liquid
   assign mf = product.metafields.custom
   assign sid = section.id
+  assign origin_fallback_asset = 'tueste-tree-siembra-vitral.webp'
   assign region = mf.region | default: section.settings.region_fallback
   assign altitud = mf.altitud | default: section.settings.altitud_fallback
   assign variety = mf.variety
@@ -25,7 +26,17 @@
           {%- if section.settings.image != blank -%}
             {{ section.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '480, 800, 1200', alt: section.settings.image_alt }}
           {%- else -%}
-            <div class="tp-arch" role="img" aria-label="{{ section.settings.image_alt | escape }}"></div>
+            {%- comment -%}
+              Fallback visual obligatorio: evita dejar un bloque vacío cuando todavía no se ha
+              cargado una fotografía real de la finca en el editor del tema.
+            {%- endcomment -%}
+            <img
+              src="{{ origin_fallback_asset | asset_url }}"
+              alt="{{ section.settings.image_alt | escape }}"
+              loading="lazy"
+              width="560"
+              height="700"
+            >
           {%- endif -%}
           {%- if section.settings.caption != blank -%}
             <figcaption class="tp-origen__caption">{{ section.settings.caption | escape }}</figcaption>
