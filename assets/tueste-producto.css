@@ -1,0 +1,1039 @@
+/* ==========================================================================
+   Tueste · Páginas de producto del Universo (product.tueste-cafe-conscious,
+   product.tueste-cafe-amour, product.tueste-taza, product.tueste-hoodie)
+   - Parte 1: contrato oscuro sobre el tema Concept (mismo que tienda-editorial.css,
+     aplicado a body.template-tueste-producto). Las variables --te-* se declaran
+     en tienda-editorial.css; aquí se redeclaran para no depender de ese archivo.
+   - Parte 2: secciones propias .tu-producto (frecuencia, origen, perfil, ritual,
+     detalles, relacionados).
+   ========================================================================== */
+
+:root {
+  --te-bg: #15130f; --te-bg-2: #1c1913; --te-surface: #221f18; --te-surface-2: #2b251d;
+  --te-line: rgba(255, 232, 191, 0.14); --te-line-2: rgba(255, 232, 191, 0.28);
+  --te-cream: #ffe8bf; --te-cream-2: #f3dfb6; --te-muted: #a9997c; --te-ink: #282828;
+  --te-amber: #fba922; --te-ember: #f58a1f; --te-leaf: #3fbf5a; --te-leaf-2: #8dd64b; --te-cherry: #e23a5a; --te-lilac: #b694ff;
+  --te-display: "Tueste Typeface", "Archivo Black", "Poppins", sans-serif;
+  --te-serif: "Lora", Georgia, serif;
+  --te-body: "Poppins", system-ui, sans-serif;
+  --te-mono: "DM Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --te-radius: 22px; --te-radius-sm: 14px; --te-shadow: 0 30px 70px rgba(0, 0, 0, 0.45);
+}
+
+/* ==========================================================================
+   1 · Contrato oscuro sobre Concept (product.tueste-*)
+   ========================================================================== */
+   1 · Plantilla Shopify (product.tueste-*)
+   ========================================================================== */
+
+body.template-tueste-producto {
+  background: var(--te-bg);
+  color: var(--te-cream);
+  font-family: var(--te-body);
+  --color-base-text: 255 232 191;
+  --color-base-background: 21 19 15;
+  --color-base-button: 251 169 34;
+  --color-base-button-text: 40 40 40;
+  --color-background: var(--te-bg);
+  --color-foreground: var(--te-cream);
+  --font-heading-family: var(--te-display);
+  --font-body-family: var(--te-body);
+  --font-navigation-family: var(--te-body);
+  --font-button-family: var(--te-body);
+  overflow-x: hidden;
+}
+
+body.template-tueste-producto .page-container,
+body.template-tueste-producto .main-content {
+  background:
+    radial-gradient(circle at 12% 14%, rgba(251, 169, 34, 0.08), transparent 26rem),
+    radial-gradient(circle at 88% 46%, rgba(63, 191, 90, 0.05), transparent 24rem),
+    radial-gradient(circle at 50% 96%, rgba(182, 148, 255, 0.04), transparent 22rem),
+    var(--te-bg);
+}
+
+/* Barra superior: el único elemento con desenfoque, igual que en la landing. */
+body.template-tueste-producto :is(.announcement-bar, .header) {
+  background: rgba(21, 19, 15, 0.72) !important;
+  color: var(--te-cream) !important;
+  border-color: var(--te-line) !important;
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  box-shadow: none;
+}
+
+body.template-tueste-producto .announcement-bar {
+  font-family: var(--te-mono);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-size: 0.62rem;
+  line-height: 1.4;
+}
+
+body.template-tueste-producto .header :is(a, button, summary),
+body.template-tueste-producto .header .menu__item {
+  color: var(--te-cream) !important;
+  font-family: var(--te-body);
+}
+
+/* Titulares: Tueste Typeface en mayúsculas. */
+body.template-tueste-producto :is(h1, h2, .heading, .title) {
+  color: var(--te-cream);
+  font-family: var(--te-display);
+  font-style: normal;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: 1.06;
+  text-wrap: balance;
+  text-shadow: none;
+}
+
+body.template-tueste-producto :is(h1, h2) :is(em, strong, b) {
+  color: var(--te-amber);
+  font-style: normal;
+  font-weight: 700;
+}
+
+/* Subtítulos y nombres de pieza: voz emocional en Lora itálica. */
+body.template-tueste-producto :is(h3, h4) {
+  color: var(--te-cream);
+  font-family: var(--te-serif);
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.2;
+  text-transform: none;
+}
+
+body.template-tueste-producto :is(.section, .page-width) {
+  --color-background: var(--te-bg);
+  --color-foreground: var(--te-cream);
+}
+
+body.template-tueste-producto .section--rounded,
+body.template-tueste-producto .rounded,
+body.template-tueste-producto .card,
+body.template-tueste-producto .product-card,
+body.template-tueste-producto .product__media,
+body.template-tueste-producto .banner,
+body.template-tueste-producto .tueste-editorial-tree__shell {
+  border-radius: var(--te-radius);
+}
+
+body.template-tueste-producto .banner,
+body.template-tueste-producto .slideshow,
+body.template-tueste-producto .featured-product,
+body.template-tueste-producto .featured-collections,
+body.template-tueste-producto .image-with-text,
+body.template-tueste-producto .rich-text,
+body.template-tueste-producto .scrolling-text,
+body.template-tueste-producto .tueste-editorial-tree,
+body.template-tueste-producto .footer {
+  color: var(--te-cream);
+}
+
+body.template-tueste-producto .banner__overlay {
+  background:
+    linear-gradient(90deg, rgba(21, 19, 15, 0.78) 0%, rgba(21, 19, 15, 0.55) 38%, rgba(21, 19, 15, 0.05) 70%),
+    linear-gradient(180deg, rgba(21, 19, 15, 0.1) 0%, rgba(21, 19, 15, 0.3) 40%, rgba(21, 19, 15, 0.92) 78%, var(--te-bg) 100%);
+}
+
+body.template-tueste-producto .slideshow-content,
+body.template-tueste-producto .banner__box {
+  text-shadow: 0 2px 18px rgba(21, 19, 15, 0.7);
+}
+
+/* Sistema de botones del Anexo CTA. */
+body.template-tueste-producto :is(.button, .btn, button.button) {
+  border-radius: 999px;
+  font-family: var(--te-body);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: transform 0.15s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+body.template-tueste-producto .button--primary {
+  background: var(--te-amber);
+  border-color: var(--te-amber);
+  color: var(--te-ink);
+}
+
+body.template-tueste-producto .button--primary:hover {
+  background: var(--te-cream);
+  border-color: var(--te-cream);
+}
+
+body.template-tueste-producto .button--secondary {
+  background: transparent;
+  color: var(--te-cream);
+  border-color: var(--te-line-2);
+}
+
+body.template-tueste-producto .button--secondary:hover {
+  border-color: var(--te-amber);
+}
+
+body.template-tueste-producto :is(.rich-text, .image-with-text, .featured-product, .featured-collections, .tueste-editorial-tree) {
+  background: transparent;
+}
+
+body.template-tueste-producto :is(.featured-product, .featured-collections, .image-with-text) {
+  border-block: 1px solid var(--te-line);
+}
+
+/* Tarjetas: superficie plana, sin vidrio. */
+body.template-tueste-producto :is(.product-card, .card, .featured-product__media, .product__media) {
+  background: var(--te-surface);
+  border: 1px solid var(--te-line);
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+body.template-tueste-producto :is(.product-card, .card) {
+  transition: border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+}
+
+body.template-tueste-producto :is(.product-card, .card):hover {
+  border-color: var(--te-amber);
+  box-shadow: var(--te-shadow);
+  transform: translateY(-3px);
+}
+
+body.template-tueste-producto :is(.product-card__title, .product-card .title, .product__title) {
+  color: var(--te-cream);
+  font-family: var(--te-serif);
+  font-style: italic;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+body.template-tueste-producto :is(.product-card__price, .price, .product__price) {
+  color: var(--te-amber);
+  font-family: var(--te-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+}
+
+body.template-tueste-producto :is(.rte, .rich-text__text, .product-card__vendor, .text-opacity) {
+  color: var(--te-cream-2);
+}
+
+body.template-tueste-producto .scrolling-text {
+  color: var(--te-amber);
+  font-family: var(--te-display);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+body.template-tueste-producto .footer,
+body.template-tueste-producto .footer-copyright {
+  background: var(--te-bg-2) !important;
+  color: var(--te-cream) !important;
+  border-color: var(--te-line) !important;
+}
+
+body.template-tueste-producto .footer :is(a, button, input),
+body.template-tueste-producto .footer-copyright :is(a, button) {
+  color: var(--te-cream) !important;
+}
+
+body.template-tueste-producto :is(input, select, textarea) {
+  background: var(--te-surface);
+  color: var(--te-cream);
+  border-color: var(--te-line-2);
+  border-radius: 999px;
+}
+
+body.template-tueste-producto :is(input, select, textarea):focus {
+  border-color: var(--te-amber);
+  box-shadow: 0 0 0 3px rgba(251, 169, 34, 0.2);
+}
+
+body.template-tueste-producto :is(a, button):focus-visible {
+  outline: 2.5px solid var(--te-amber);
+  outline-offset: 3px;
+}
+
+body.template-tueste-producto .header__logo-link--tueste-editorial {
+  min-height: 44px;
+  padding: 0.4rem;
+}
+
+body.template-tueste-producto .header__logo-link--tueste-editorial img {
+  display: block;
+  width: clamp(150px, 13vw, 175px);
+  height: auto;
+}
+
+@media screen and (max-width: 767px) {
+  body.template-tueste-producto .section--padding {
+    padding-block: clamp(2.5rem, 10vw, 4.5rem);
+  }
+
+  body.template-tueste-producto .tueste-editorial-tree__shell {
+    padding: 1.25rem;
+  }
+}
+
+
+/* Ajustes específicos de la ficha de compra (main-product de Concept) */
+/*
+ * Las plantillas Tueste heredan 84px de padding superior de Concept. En la
+ * ficha de producto ese valor deja un bloque oscuro innecesario entre el
+ * encabezado y la primera imagen, especialmente en el breakpoint móvil
+ * donde la regla global de .section--padding lo amplía todavía más.
+ */
+body.template-tueste-producto .main-content > .shopify-section:first-child > .section.section--padding {
+  padding-block-start: 24px;
+}
+
+body.template-tueste-producto .product__title h1,
+body.template-tueste-producto .product__title .product-title {
+  color: var(--te-cream);
+  font-family: var(--te-display);
+  font-style: normal;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: 1.06;
+}
+
+body.template-tueste-producto .product__vendor,
+body.template-tueste-producto .breadcrumb,
+body.template-tueste-producto .breadcrumb a {
+  color: var(--te-muted);
+  font-family: var(--te-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+body.template-tueste-producto :is(.price, .product__price) {
+  font-size: 1rem;
+}
+
+body.template-tueste-producto .product__media,
+body.template-tueste-producto .product__gallery-container .media {
+  background: var(--te-surface);
+  border-radius: var(--te-radius);
+}
+
+body.template-tueste-producto .variant-picker .label,
+body.template-tueste-producto .quantity__label,
+body.template-tueste-producto .form__label {
+  color: var(--te-cream-2);
+  font-family: var(--te-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+body.template-tueste-producto .variant-picker .button,
+body.template-tueste-producto .variant-picker label.button,
+body.template-tueste-producto .variant-picker .variant-button {
+  background: transparent;
+  color: var(--te-cream);
+  border: 1px solid var(--te-line-2);
+  border-radius: 999px;
+}
+
+body.template-tueste-producto .variant-picker input:checked + label,
+body.template-tueste-producto .variant-picker .button.is-active,
+body.template-tueste-producto .variant-picker .variant-button.is-active {
+  background: var(--te-amber);
+  border-color: var(--te-amber);
+  color: var(--te-ink);
+}
+
+body.template-tueste-producto .quantity {
+  border: 1px solid var(--te-line-2);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+body.template-tueste-producto .quantity__input {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  color: var(--te-cream);
+}
+
+body.template-tueste-producto .quantity__button {
+  color: var(--te-cream);
+}
+
+body.template-tueste-producto .product__accordion,
+body.template-tueste-producto .product__accordion.with-border {
+  border-color: var(--te-line);
+  color: var(--te-cream);
+}
+
+body.template-tueste-producto .product__accordion summary {
+  color: var(--te-cream);
+  font-family: var(--te-body);
+  font-weight: 600;
+}
+
+body.template-tueste-producto .product__text,
+body.template-tueste-producto .product__accordion .rte {
+  color: var(--te-cream-2);
+}
+
+body.template-tueste-producto .product-sticky-form__card {
+  background: var(--te-surface);
+  border: 1px solid var(--te-line);
+  color: var(--te-cream);
+}
+
+body.template-tueste-producto .alert--error {
+  background: rgba(226, 58, 90, 0.14);
+  color: var(--te-cream);
+}
+
+body.template-tueste-producto .product-recommendations,
+body.template-tueste-producto .recently-viewed {
+  background: transparent;
+  border-top: 1px solid var(--te-line);
+}
+
+/* ==========================================================================
+   2 · Secciones propias (.tu-producto)
+   ========================================================================== */
+
+.tu-producto {
+  --tp-bg: var(--te-bg);
+  --tp-surface: var(--te-surface);
+  --tp-surface-2: var(--te-surface-2);
+  --tp-line: var(--te-line);
+  --tp-line-2: var(--te-line-2);
+  --tp-cream: var(--te-cream);
+  --tp-cream-2: var(--te-cream-2);
+  --tp-muted: var(--te-muted);
+  --tp-amber: var(--te-amber);
+  --tp-accent: var(--te-amber);
+  --tp-radius: var(--te-radius);
+  --tp-radius-sm: var(--te-radius-sm);
+  background: var(--tp-bg);
+  color: var(--tp-cream);
+  font-family: var(--te-body);
+  line-height: 1.6;
+  margin-inline: calc(50% - 50vw);
+  width: 100vw;
+  max-width: 100vw;
+  overflow-x: clip;
+}
+
+.tu-producto *,
+.tu-producto *::before,
+.tu-producto *::after { box-sizing: border-box; }
+
+.tu-producto .tp-wrap {
+  width: min(1180px, 100% - 2rem);
+  margin-inline: auto;
+}
+
+.tu-producto .tp-section {
+  padding-block: clamp(3rem, 7vw, 5.5rem);
+  border-top: 1px solid var(--tp-line);
+}
+
+.tu-producto .tp-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--tp-accent);
+  font-family: var(--te-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin: 0 0 1rem;
+}
+
+.tu-producto .tp-kicker::before {
+  content: "";
+  width: 22px;
+  height: 1px;
+  background: currentColor;
+}
+
+.tu-producto h2.tp-title,
+.tu-producto h3.tp-title {
+  margin: 0 0 1rem;
+  font-family: var(--te-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: 1.06;
+  text-wrap: balance;
+  color: var(--tp-cream);
+  font-size: clamp(1.6rem, 3.6vw, 2.6rem);
+}
+
+.tu-producto h3.tp-title { font-size: clamp(1.25rem, 2.6vw, 1.8rem); }
+
+.tu-producto .tp-title em,
+.tu-producto .tp-title strong {
+  color: var(--tp-accent);
+  font-style: normal;
+}
+
+.tu-producto .tp-lead {
+  max-width: 62ch;
+  color: var(--tp-cream-2);
+  font-size: 1.02rem;
+  margin: 0;
+}
+
+.tu-producto .tp-voice {
+  font-family: var(--te-serif);
+  font-style: italic;
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  color: var(--tp-cream);
+  margin: 0;
+}
+
+.tu-producto .tp-mono {
+  font-family: var(--te-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--tp-muted);
+}
+
+.tu-producto .tp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 46px;
+  padding: 0.7rem 1.35rem;
+  border-radius: 999px;
+  border: 1px solid var(--tp-accent);
+  background: var(--tp-accent);
+  color: var(--te-ink);
+  font-family: var(--te-body);
+  font-weight: 600;
+  font-size: 0.92rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.tu-producto .tp-btn:hover { background: var(--tp-cream); border-color: var(--tp-cream); transform: translateY(-1px); }
+.tu-producto .tp-btn--ghost { background: transparent; color: var(--tp-cream); border-color: var(--tp-line-2); }
+.tu-producto .tp-btn--ghost:hover { background: transparent; border-color: var(--tp-accent); color: var(--tp-cream); }
+.tu-producto :is(a, button, summary):focus-visible { outline: 2.5px solid var(--tp-accent); outline-offset: 3px; }
+
+/* --- Frecuencia ------------------------------------------------------- */
+.tu-producto .tp-freq {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: center;
+}
+
+.tu-producto .tp-freq__player {
+  position: relative;
+  background: radial-gradient(120% 90% at 50% 0%, color-mix(in srgb, var(--tp-accent) 18%, transparent), transparent 60%), var(--tp-surface);
+  border: 1px solid var(--tp-line);
+  border-radius: var(--tp-radius);
+  padding: 1.4rem;
+  display: grid;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.tu-producto .tp-freq__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.tu-producto .tp-freq__name {
+  font-family: var(--te-display);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 1.15rem;
+  color: var(--tp-cream);
+}
+
+.tu-producto .tp-freq__hz {
+  font-family: var(--te-mono);
+  letter-spacing: 0.18em;
+  font-size: 0.72rem;
+  color: var(--tp-accent);
+}
+
+.tu-producto .tp-freq__wave {
+  width: 100%;
+  height: 140px;
+  display: block;
+  border-radius: var(--tp-radius-sm);
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px dashed var(--tp-line);
+}
+
+.tu-producto .tp-freq__controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.tu-producto .tp-freq__play {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  border: 0;
+  background: var(--tp-accent);
+  color: var(--te-ink);
+  display: inline-grid;
+  place-items: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform 0.15s ease, background-color 0.2s ease;
+}
+
+.tu-producto .tp-freq__play:hover { transform: scale(1.05); background: var(--tp-cream); }
+.tu-producto .tp-freq__play svg { width: 22px; height: 22px; fill: currentColor; }
+.tu-producto .tp-freq__play .ic-pause { display: none; }
+.tu-producto .tp-freq__player.is-playing .ic-play { display: none; }
+.tu-producto .tp-freq__player.is-playing .ic-pause { display: block; }
+
+.tu-producto .tp-freq__status {
+  display: grid;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.tu-producto .tp-freq__status b { font-weight: 600; color: var(--tp-cream); }
+.tu-producto .tp-freq__status small { color: var(--tp-muted); font-size: 0.8rem; }
+
+.tu-producto .tp-freq__embed {
+  border-radius: 12px;
+  overflow: hidden;
+  min-height: 80px;
+}
+
+.tu-producto .tp-freq__embed iframe {
+  display: block;
+  width: 100%;
+  height: 80px;
+  border: 0;
+}
+
+.tu-producto .tp-freq__embed[hidden] { display: none; }
+
+.tu-producto .tp-freq__links {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.tu-producto .tp-freq__links a {
+  font-family: var(--te-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--tp-cream-2);
+  text-decoration: none;
+  border-bottom: 1px solid var(--tp-line-2);
+  padding-bottom: 2px;
+}
+
+.tu-producto .tp-freq__links a:hover { color: var(--tp-accent); border-color: var(--tp-accent); }
+
+.tu-producto .tp-freq__qr {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 1.5rem;
+  padding: 1rem 1.2rem;
+  border: 1px solid var(--tp-line);
+  border-radius: var(--tp-radius-sm);
+  background: var(--tp-surface);
+}
+
+.tu-producto .tp-freq__qr svg { width: 44px; height: 44px; flex-shrink: 0; color: var(--tp-accent); }
+.tu-producto .tp-freq__qr p { margin: 0; font-size: 0.92rem; color: var(--tp-cream-2); }
+
+/* --- Origen ----------------------------------------------------------- */
+.tu-producto .tp-origen {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: start;
+}
+
+.tu-producto .tp-origen__art {
+  position: relative;
+  border-radius: var(--tp-radius);
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background: var(--tp-surface);
+  border: 1px solid var(--tp-line);
+}
+
+.tu-producto .tp-origen__art img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.tu-producto .tp-origen__art .tp-arch {
+  position: absolute;
+  inset: 8% 14% 0;
+  border-radius: 999px 999px 0 0;
+  background:
+    linear-gradient(180deg, rgba(251, 169, 34, 0.35), rgba(63, 191, 90, 0.25) 60%, rgba(21, 19, 15, 0.9));
+  border: 1px solid var(--tp-line-2);
+  border-bottom: 0;
+}
+
+.tu-producto .tp-origen__art .tp-arch::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 42%;
+  background: repeating-linear-gradient(-6deg, rgba(255, 232, 191, 0.08) 0 6px, transparent 6px 18px);
+}
+
+.tu-producto .tp-origen__caption {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  right: 1rem;
+  font-family: var(--te-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--tp-cream-2);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
+}
+
+.tu-producto .tp-ficha {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tu-producto .tp-ficha > div {
+  border: 1px solid var(--tp-line);
+  border-radius: var(--tp-radius-sm);
+  background: var(--tp-surface);
+  padding: 0.85rem 1rem;
+  min-width: 0;
+}
+
+.tu-producto .tp-ficha dt {
+  font-family: var(--te-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--tp-muted);
+  margin: 0 0 0.25rem;
+}
+
+.tu-producto .tp-ficha dd {
+  margin: 0;
+  color: var(--tp-cream);
+  font-weight: 500;
+  font-size: 0.95rem;
+  overflow-wrap: anywhere;
+}
+
+.tu-producto .tp-ficha > div.is-wide { grid-column: 1 / -1; }
+
+.tu-producto .tp-caficultora {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.tu-producto .tp-caficultora .tp-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1px solid var(--tp-line-2);
+  display: grid;
+  place-items: center;
+  font-family: var(--te-display);
+  color: var(--tp-accent);
+  background: var(--tp-surface-2);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.tu-producto .tp-caficultora .tp-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.tu-producto .tp-caficultora b { display: block; font-family: var(--te-serif); font-style: italic; font-weight: 500; font-size: 1.1rem; }
+.tu-producto .tp-caficultora small { color: var(--tp-muted); }
+
+.tu-producto .tp-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.5rem; }
+
+/* --- Perfil de taza ----------------------------------------------------- */
+.tu-producto .tp-perfil {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: center;
+}
+
+.tu-producto .tp-radar {
+  width: 100%;
+  max-width: 460px;
+  margin-inline: auto;
+  display: block;
+}
+
+.tu-producto .tp-radar .grid-line { fill: none; stroke: var(--tp-line-2); stroke-width: 1; }
+.tu-producto .tp-radar .axis { stroke: var(--tp-line); stroke-width: 1; }
+.tu-producto .tp-radar .area { fill: color-mix(in srgb, var(--tp-accent) 28%, transparent); stroke: var(--tp-accent); stroke-width: 2; stroke-linejoin: round; }
+.tu-producto .tp-radar .dot { fill: var(--tp-cream); }
+.tu-producto .tp-radar .lbl { fill: var(--tp-cream-2); font-family: var(--te-mono); font-size: 9.5px; letter-spacing: 0.08em; text-transform: uppercase; }
+.tu-producto .tp-radar .lbl-v { fill: var(--tp-accent); font-family: var(--te-mono); font-size: 9px; }
+
+.tu-producto .tp-score {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin: 0 0 1rem;
+}
+
+.tu-producto .tp-score b {
+  font-family: var(--te-display);
+  font-size: clamp(2.6rem, 6vw, 4rem);
+  line-height: 1;
+  color: var(--tp-accent);
+}
+
+.tu-producto .tp-score span { font-family: var(--te-mono); font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--tp-muted); }
+
+.tu-producto .tp-notas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tu-producto .tp-notas li {
+  border: 1px solid var(--tp-line-2);
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.85rem;
+  color: var(--tp-cream);
+}
+
+.tu-producto .tp-notas li.is-accent { background: var(--tp-accent); border-color: var(--tp-accent); color: var(--te-ink); font-weight: 600; }
+
+.tu-producto .tp-meters { display: grid; gap: 0.7rem; margin-top: 1.5rem; }
+.tu-producto .tp-meter { display: grid; grid-template-columns: 96px 1fr auto; align-items: center; gap: 0.75rem; }
+.tu-producto .tp-meter span:first-child { font-family: var(--te-mono); font-size: 0.64rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--tp-muted); }
+.tu-producto .tp-meter i { display: block; height: 6px; border-radius: 999px; background: var(--tp-line); overflow: hidden; }
+.tu-producto .tp-meter i::after { content: ""; display: block; height: 100%; width: var(--w, 50%); background: var(--tp-accent); border-radius: 999px; }
+.tu-producto .tp-meter em { font-style: normal; font-size: 0.85rem; color: var(--tp-cream-2); }
+
+/* --- Ritual (pasos) ------------------------------------------------------ */
+.tu-producto .tp-pasos {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.9rem;
+  margin: 2rem 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: paso;
+}
+
+.tu-producto .tp-paso {
+  position: relative;
+  border: 1px solid var(--tp-line);
+  border-radius: var(--tp-radius);
+  background: var(--tp-surface);
+  padding: 1.35rem 1.2rem 1.2rem;
+  min-width: 0;
+  transition: border-color 180ms ease, transform 180ms ease;
+}
+
+.tu-producto .tp-paso:hover { border-color: var(--tp-accent); transform: translateY(-3px); }
+
+.tu-producto .tp-paso .tp-num {
+  font-family: var(--te-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.22em;
+  color: var(--tp-accent);
+  text-transform: uppercase;
+  margin-bottom: 0.9rem;
+  display: block;
+}
+
+.tu-producto .tp-paso .tp-ico { display: block; width: 34px; height: 34px; color: var(--tp-cream); margin-bottom: 0.9rem; }
+.tu-producto .tp-paso .tp-ico svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.tu-producto .tp-paso h3 { margin: 0 0 0.4rem; font-family: var(--te-serif); font-style: italic; font-weight: 500; font-size: 1.15rem; }
+.tu-producto .tp-paso p { margin: 0; color: var(--tp-cream-2); font-size: 0.92rem; }
+
+/* --- Detalles (taza / hoodie) -------------------------------------------- */
+.tu-producto .tp-detalles {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: start;
+}
+
+.tu-producto .tp-detalles__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tu-producto .tp-detalles__grid li {
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-start;
+  border: 1px solid var(--tp-line);
+  border-radius: var(--tp-radius-sm);
+  background: var(--tp-surface);
+  padding: 0.9rem 1rem;
+  min-width: 0;
+}
+
+.tu-producto .tp-detalles__grid .tp-ico { display: block; width: 26px; height: 26px; color: var(--tp-accent); flex-shrink: 0; }
+.tu-producto .tp-detalles__grid .tp-ico svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.tu-producto .tp-detalles__grid b { display: block; font-family: var(--te-mono); font-weight: 400; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--tp-muted); margin-bottom: 0.2rem; }
+.tu-producto .tp-detalles__grid span { color: var(--tp-cream); font-size: 0.95rem; overflow-wrap: anywhere; }
+
+.tu-producto .tp-sello {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  border: 1px dashed var(--tp-line-2);
+  border-radius: var(--tp-radius-sm);
+  padding: 1rem 1.2rem;
+}
+
+.tu-producto .tp-sello .tp-sello__badge {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: 1px solid var(--tp-accent);
+  display: grid;
+  place-items: center;
+  font-family: var(--te-display);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-align: center;
+  color: var(--tp-accent);
+  flex-shrink: 0;
+  line-height: 1.05;
+}
+
+.tu-producto .tp-sello p { margin: 0; color: var(--tp-cream-2); font-size: 0.92rem; }
+
+.tu-producto .tp-detalles__media {
+  border-radius: var(--tp-radius);
+  overflow: hidden;
+  border: 1px solid var(--tp-line);
+  background: var(--tp-surface);
+  aspect-ratio: 4 / 5;
+}
+
+.tu-producto .tp-detalles__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.tu-producto .tp-detalles__media .tp-arch { position: relative; width: 100%; height: 100%; }
+
+/* --- Relacionados -------------------------------------------------------- */
+.tu-producto .tp-rel {
+  display: grid;
+  grid-template-columns: repeat(var(--tp-cols, 3), minmax(0, 1fr));
+  gap: 1rem;
+  margin: 2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tu-producto .tp-rel__card {
+  position: relative;
+  display: grid;
+  gap: 0.6rem;
+  border: 1px solid var(--tp-line);
+  border-radius: var(--tp-radius);
+  background: var(--tp-surface);
+  padding: 0.9rem;
+  min-width: 0;
+  transition: border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+}
+
+.tu-producto .tp-rel__card:hover { border-color: var(--tp-accent); transform: translateY(-3px); box-shadow: var(--te-shadow); }
+.tu-producto .tp-rel__card.is-current { border-color: var(--tp-accent); }
+
+.tu-producto .tp-rel__media {
+  aspect-ratio: 1;
+  border-radius: var(--tp-radius-sm);
+  overflow: hidden;
+  background: var(--tp-surface-2);
+  display: grid;
+  place-items: center;
+}
+
+.tu-producto .tp-rel__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.tu-producto .tp-rel__media .tp-swatch { width: 46%; aspect-ratio: 1; border-radius: 50%; border: 1px solid var(--tp-line-2); background: var(--sw, var(--tp-line-2)); }
+
+.tu-producto .tp-rel__card a { color: inherit; text-decoration: none; }
+.tu-producto .tp-rel__card a::after { content: ""; position: absolute; inset: 0; }
+.tu-producto .tp-rel__title { font-family: var(--te-serif); font-style: italic; font-weight: 500; font-size: 1.05rem; margin: 0; }
+.tu-producto .tp-rel__meta { display: flex; justify-content: space-between; gap: 0.5rem; align-items: baseline; }
+.tu-producto .tp-rel__price { font-family: var(--te-mono); font-size: 0.74rem; letter-spacing: 0.08em; color: var(--tp-accent); }
+.tu-producto .tp-rel__tag { font-family: var(--te-mono); font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--tp-muted); }
+.tu-producto .tp-rel__tag.is-soldout { color: var(--te-cherry); }
+.tu-producto .tp-rel__here {
+  position: absolute;
+  top: 0.9rem;
+  left: 0.9rem;
+  z-index: 1;
+  font-family: var(--te-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  background: var(--tp-accent);
+  color: var(--te-ink);
+  border-radius: 999px;
+  padding: 0.25rem 0.6rem;
+}
+
+/* --- Responsive --------------------------------------------------------- */
+@media (max-width: 960px) {
+  .tu-producto .tp-freq,
+  .tu-producto .tp-origen,
+  .tu-producto .tp-perfil,
+  .tu-producto .tp-detalles { grid-template-columns: 1fr; }
+  .tu-producto .tp-pasos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tu-producto .tp-rel { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tu-producto .tp-origen__art { aspect-ratio: 16 / 10; }
+  .tu-producto .tp-detalles__media { aspect-ratio: 16 / 10; }
+}
+
+@media (max-width: 560px) {
+  .tu-producto .tp-pasos,
+  .tu-producto .tp-ficha,
+  .tu-producto .tp-detalles__grid { grid-template-columns: 1fr; }
+  .tu-producto .tp-rel { grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+  .tu-producto .tp-rel__card { padding: 0.7rem; }
+  .tu-producto .tp-meter { grid-template-columns: 80px 1fr auto; }
+  .tu-producto .tp-freq__player { padding: 1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tu-producto .tp-paso, .tu-producto .tp-rel__card, .tu-producto .tp-btn, .tu-producto .tp-freq__play { transition: none; }
+}
+
+/* Color explícito: Concept define color en h1/h2 globales */
+.tu-producto h1,.tu-producto h2,.tu-producto h3{color:var(--tp-cream)}
